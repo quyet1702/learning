@@ -1,0 +1,421 @@
+chạy php cơ bản:
+	tạo file index.php	-> viết code php -> chạy cmd tại file index.php -> php -S localhost:9999
+PHP CƠ BẢN:
+	Kiểu dữ liệu:
+		Chung:
+		Hằng số:
+		DateTime:
+		Number:
+		String:
+		Array:
+		Object:
+		Superglobals:
+		Phạm vi sử dụng biến:
+	Hàm hỗ trợ đặc biệt:
+Kiểu dữ liệu:
+	Chung:
+		isset()				// kiểm tra: biến khởi tạo chưa (undefine - biến ko tồn tại)
+		isempty()				// kiểm tra: giá trị: '', null, 0, false, undefine
+		gettype()				// lấy kiểu dữ liệu
+	Hằng số:
+		define("varName", "value",true);		// true là tên biến phân biệt chữ hoa, thường
+		define("cars", ["Alfa Romeo","BMW","Toyota"]);	// hằng số mảng
+		nếu khai báo ở ngoài hàm thì ở trong hàm cũng có thể sử dụng
+	Carbon:
+		Tạo carbon:
+			$date = Carbon::now()							// tạo ngày hiện tại: 
+			$date = Carbon::createFromFormat('d-m-Y', '17-02-1998');		// tạo ngày chỉ định
+		Lấy Thông tin:
+			$date->day;								// lấy ngày
+			$date->month;								// lấy tháng
+			$date->year								// lấy năm
+			$date->hour								// lấy giờ
+			$date->minute								// lấy phút
+			$date->second								// lấy giây
+			$dayOfWeek								// lấy ngày của tuần; 1 => thứ 2; 2=> thứ 3....0 => chủ nhật
+			$weekOfYear								// lấy số tuần của năm
+			$daysInMonth								// lấy số ngày trong 1 tháng
+		so sánh 2 carbon:
+			$date1->greaterThan($date2)						// trả về true nếu $date2 lớn hơn $date1
+			$date1->lessThan($date2)						// trả về true nếu $date2 nhỏ hơn $date1
+			$date1->lessThan($date2)						// trả về true nếu $date2 nhỏ hơn $date1
+			$date1->lessThanOrEqualTo($date2)					// trả về true nếu $date2 nhỏ hơn hoặc bằng $date1
+			$date1->equalTo($date2)							// trả về true nếu $date2 == date1
+			$date1->diffInDays($date2);						// số ngày chênh lệch giữa date1 và date2
+	DateTime: (use DateTime; DateTime::createFromFormat('d-m-Y', $date_str); || new DateTime(string Time) || strtotime(time string) || mktime(hour, minute, second, month, day, year) || time())
+			=> timestamp => date('format', timestamp) lấy string ngày tháng năm tùy ý
+		Kiểu time string;	'17-2-2023 12:00:00'
+			input: format; timestamp:
+			output: time string
+				date('d/m/Y H:i:s', 1621584000);		// tham số 1 là định dạng format ta cần lấy; tham số  2 là timestamp
+											// nếu không có tham số thứ 2 thì sẽ trả về ngày giờ hiện tại
+		Lấy ngày: date()
+		kiểu timestamp: 1621584000 					// thời gian hiện tại nhưng chưa format 1669214237
+			date_default_timezone_set("Asia/Ho_Chi_Minh");  	// đặt lại múi giờ
+			date("Y/m/d")						// 2022/10/28
+			date("Y")						// 2022
+			date("l")						// Friday
+			date("h:i:sa")						// 01:58:31am
+			date("d-m -Y  h:i:sa");					// 28-10-2022 01:59:51am
+			trong đó:
+				d - Thể hiện ngày trong tháng (01 đến 31)		23
+				M - một tháng từ 1 đến 12 bằng tiếng anh		Nov
+				m - Đại diện cho một tháng (01 đến 12)			11
+				Y - Đại diện cho một năm (bằng bốn chữ số)		2022
+				y - Đại diện cho một năm (bằng hai chữ số)		22
+				l - Đại diện cho ngày trong tuần			Friday
+				H - 24 giờ (00 đến 23)					16
+				h - 12 giờ với các số 0 đứng đầu (01 đến 12)	03
+				i - Phút có số 0 đứng đầu (00 đến 59)		40
+				s - Giây có số 0 đứng đầu (00 đến 59)		55
+				a - (sáng(am) hoặc chiều(pm))				am
+				A - (sáng(AM) hoặc chiều(AM)) đc viết hoa 		AM
+				:/>_							có thể chèn các ký tự để format
+		time string:
+			tuân theo 1 trong định dạng sau:
+				"YYYY-MM-DD h:m:s"
+				"YYYY/MM/DD h:m:s"
+				"YYYY.MM.DD h:m:s"
+				"DD-MM-YYYY h:m:s"
+				"DD/MM/YYYY h:m:s"
+				"DD.MM.YYYY h:m:s"
+		
+		stringTime -> timeStamp -> string Time ->format -> string time
+		Tạo timeStamp từ chuỗi ngày giờ có sẵn:	
+			cách 1: mktime(hour, minute, second, month, day, year)		// tham số là các số tương ứng
+			cách 2: strtotime($stringTime);						// tạo date từ chuỗi ngày giờ
+			Các stringTime:
+				"YYYY-MM-DD h:m:s"
+				"YYYY/MM/DD h:m:s"
+				"YYYY.MM.DD h:m:s"
+				"DD-MM-YYYY h:m:s"
+				"DD/MM/YYYY h:m:s"
+				"DD.MM.YYYY h:m:s"
+				"10:30pm April 15 2014"				
+				"tomorrow"						// ngày mai
+				"Saturday"						// thứ bảy sắp tới
+				"next Saturday"					// Thứ bảy sắp tới
+				"+3 Months"						// hiện tại + thêm 3 tháng
+				"+3 Days"						// hiện tại + thêm 3 ngày
+		Tạo string Time từ timeStamp:
+			Cách 1: date("Y-m-d h:i:sa", $timeStamp)			// trả về string time theo đúng định dạng
+			cách 2: $date = new DateTime();
+				$date->setTimestamp($timestamp);
+				echo $date->format('Y-m-d');  			// Output: 2023-05-21
+		Tạo string time từ string time:
+			cách 1:  $date = DateTime::createFromFormat('Y-d-m H:m:s', '2023-2-2 17:00:00');
+					$date->format('Y-m-d');
+		Tạo stringTime từ DateTime:
+			date_format($date,"Y/m/d H:i:s");
+			$editDate->format('Y/m/d H:i')				// format chuỗi date có dạng ngày tháng năm
+			date('d/m/Y H:i:s', strtotime($card->updated_at))	// format chuỗi date có đuôi 0000z
+	Number:
+		$y = 10.5; $x = 5; echo $x + $y; $x = 10.365;
+		is_int(); is_float($x); is_numeric($x); pi(); min(1, 2, 3); max(1, 2, 3)
+		abs(-6.7)		// trả về giá trị tuyệt đối
+		sqrt(64)		// trả về giá trị căn bậc 2 output 8
+		round(0.60)		// làm tròn số
+		floor(1.9)		// làm tròn xuống
+		rand()			// số ngẫu nhiên gồm 10 chữ số
+		rand(10, 100)		// số ngẫu nhiên khoảng từ 10 đến 100
+		gmp_init(1.1111111111111E+19);		// dùng để chuyển đổi chuỗi số thành số nguyên, dùng với giá trị số lớn
+		$a = '1.1111111111111E+19';
+		$c = bcmul($a, 1);	// dùng để chuyển đổi chuỗi số thành số nguyên, dùng với giá trị số cực lớn
+		number_format( $item->expense - $item->discount, 0, ',', '.')
+		number_format($number, $decimals = 2, $decimalSeparator = '.', $thousandsSeparator = ',');		// trả về chuỗi định dạng tiền tệ
+		$number: Số cần định dạng.
+		$decimals: Số chữ số thập phân muốn hiển thị (mặc định là 2).
+		$decimalSeparator: Ký tự phân cách thập phân (mặc định là ".").
+		$thousandsSeparator: Ký tự phân cách hàng ngàn (mặc định là ",").
+		
+	String:
+		Kiểm tra:
+		is_string($string)
+			$str = "Hello World!";
+			echo count_chars($str,3);		// Loại bỏ các ký tự trùng
+		$myString = "hello";
+		explode(" ",$str)				// array; ngắt 1 chuỗi thành 1 mảng
+		str_split("Hello")				// array; ngắt 1 chuỗi thành 1 mảng
+		join(" ",['213','34','1']);			// string; Nối các mảng phần tử thành 1 chuỗi
+		lcfirst("Hello world!")				// Đổi ký tự đầu tiên thành ký tự thường
+		ucwords("Hello world!")				// Đổi ký tự đầu tiên thành ký tự In hoa
+		strtoupper("Hello WORLD!");			// string; Chuyển đổi tất cả thành in hoa
+		strtolower("Hello WORLD.");			// string; Chuyển đổi tất cả thành thường
+		strtr("Hilla Warld","ia","eo");			// Thay thế các ký tự "ia" trong chuỗi bằng "eo"
+		substr("Hello world",6)				// lấy chuỗi từ index 6 đến hết
+		substr_compare("Hello world","Hello world",0)	// so sánh 2 chuỗi bắt đầu từ index 0 của chuỗi 1; trả về 0 nếu giống nhau
+		strcasecmp("Hello world!","HELLO WORLD!")	// so sánh 2 chuỗi không phân biệt hoa, thường; trả về 0 nếu ==
+		substr_count("Hello world. world","world");	// đếm số lần từ world xuất hiện trong chuỗi
+		strpos("I love php, I love php too!","php")	// trả về index của ký tự đầu tiên cùng đc tìm thấy
+		strripos("I love php, I love php too!","PHP")	// trả về index của ký tự cuối cùng đc tìm thấy
+		strpbrk("Hello world!","oe")			// kiểm tra các ký tự nếu xuất hiện trong chuỗi thì sẽ trả về chuỗi từ vị trí đc tìm thấy đến hết
+		strlen("Hello")					// trả về độ dài ký tự
+		str_word_count("Hello world!")			// trả về độ dài từ
+		strspn("Hello world!","kHlleo")			// trả về số lượng ký tự đc tìm thấy
+		trim($str,"he");				// xóa các ký tự đc tìm thấy ở 2 đầu
+		echo "I love " . $myString . "!";
+		echo strlen("Hello world!");			// int; đếm ký tự
+		echo str_word_count("Hello world!");		// int; đếm từ
+		echo strrev("Hello world!"); 			// string; đảo ngược chuỗi !dlrow olleH
+		echo strpos("Hello world!", "world"); 		// int; Tìm kiếm index của văn bản outputs 6
+		echo str_replace("world", "Dolly", "Hello world!"); // string; thay thế chuỗi outputs Hello Dolly!
+		trim($data)					// string; loại bỏ khoảng trắng 2 đầu
+		parse_str("name=Peter&age=43");			// void; phân tích 1 chuỗi truy vấn thành các biến $name; $age
+		RegEx	// Công cụ tìm kiếm chuỗi
+			$str = "Visit W3Schools";
+			$pattern = "/w3schools/i";		// tham số i giúp tìm kiếm chuỗi ko phân biệt in hoa thường
+			echo preg_match($pattern, $str);	// trả về 1 nếu tìm thấy, ngược lại trả về 0
+			echo preg_match_all($pattern, $str);	// trả về số lượng chuỗi đc tìm thấy
+			echo preg_replace($pattern, "W3School1s", $str);		// thay thế tất cả chuỗi đc tìm thấy
+		Hàm:
+			Thêm:
+			Xóa:
+			Sửa:
+				str_replace("old","new","Hello old!");		// trả về chuỗi đc thay thế
+				strrev('ssd')					// Đảo ngược thứ tự
+			Kiểm tra:
+				str_word_count(' sdf')			// Đếm từ
+				strlen('string')			// đếm ký tự		
+			Tìm kiếm:
+				strpos("Hello world!", "world")			// trả về index				
+			
+	Array:
+		Khai báo:
+			cách 1: $cars = array("Volvo","BMW","Toyota");
+			cách 2: $cars[0] = 'Volvo'; $cars[1] = 'BMW'; $cars[2] = 'Toyota';
+			cách 3: $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+			cách 4: $age['Peter'] = "35"; $age['Ben'] = "37";
+		Sử dụng:
+			$cars[0];
+			$cars["key"];
+			foreach($products as $key => $product) {
+  				echo "Key=" . $key . ", Value=" .$product;
+			}
+		Hàm hỗ trợ:
+			is_array($array); in_array('hello', $myArray); count($cars); array_sum($a);
+			array_key_exists("Volvo", $array)	// bool; kiểm tra key có tồn trong mảng hay ko
+							// int; đếm phần tử trong mảng
+			array_search
+			array_product($array)		// int; trả về tích của các phần tử nếu các phần tử là số; ngược lại thì trả về 0
+										// int; trả về tổng của các phần tử nếu các phần tử là số; ngược lại thì trả về 0
+			sort($cars);				// void; sắp xếp tăng dần theo value; key biến thành index 
+			rsort($cars);				// void; sắp xếp giảm dần theo value; key biến thành index
+			ksort($age);				// void; sắp xếp tăng dần theo key
+			krsort($age);				// void; sắp xếp giảm dần theo key
+			asort($age);				// void; sắp xếp tăng dần theo value
+			arsort($age);				// void; sắp xếp giảm dần theo value
+			array_unique($array);							// array; loại bỏ các phần tử giống nhau
+			array_change_key_case($age,CASE_UPPER)			// array; in hoa key của array
+			array_chunk([1,2,3,4,5,6,7,8],3)				// array; chia array thành 2 phần, trong đó 3 phần tử cuối là 1 phần: [[1,2,3,4,5], [6,7,8]]
+			$c=array_combine(["Peter","Ben"],[35,37]);		// array; gộp 1 mảng key và 1 mảng value thành 1 mảng key=> value; ["Peter"=>35, "Ben"=>37]
+			$c=array_count_values(["A","Cat","Dog","A","Dog"])	// array; Đếm các thành phần giống nhau: ["A"=>2,"Cat"=>1,"Dog"=>2]
+			$c=array_diff($a1,$a2)					// array; so sánh giá trị 2 array và trả về array giá trị khác nhau đó
+			array_intersect($a1,$a2)				// array; so sánh giá trị của 2 mảng và trả về array giá trị khớp
+			array_diff_assoc($a1,$a2)				// array; So sánh các khóa và giá trị của hai mảng và trả về sự khác biệt
+			array_intersect_assoc($a1,$a2)				// array; So sánh các khóa và giá trị của hai mảng và trả về kết quả khớp
+			array_diff_key($a1,$a2)					// array; So sánh các khóa của hai mảng và trả về sự khác biệt
+			array_intersect_key($a1,$a2)				// array; So sánh các khóa của hai mảng và trả về kết quả khớp
+			array_keys($a)						// array; trả về 1 mảng key
+			array_column($a, 'last_name', 'id');	// trong array object: lấy cột id làm key và cột last_name làm value
+			array_merge($a1,$a2)					// array; hợp nhất 2 mảng thành 1 mảng
+			array_slice($a,2)					// array; trả về array từ index = 2 trở đi
+			array_slice($a,1,2)					// array; trả về array từ index = 1 đến index = 2
+			array_pop($array)					// trả về phần tử cuối và xóa phần tử cuối ra khỏi array
+			array_push($a,"blue","yellow");				// void; thêm 1 hoặc nhiều phần tử vào cuối mảng
+			array_shift($a);					// trả về phần tử đầu mảng
+			array_unshift($a,"blue","yellow");			// void; thêm 1 hoặc nhiều phần tử vào đầu mảng
+			array_walk($a,function($item, $key){echo $item});	// void; tương tự foreach
+			array_values($a)					// array; trả về array chỉ có value
+			array_filter($a1,function($var){
+				if($var==1) return true;			// array; giữ lại phần tử nếu return true
+				return false;
+			})
+			array_map(function($item){return $item},$array)		// array; thay đổi value của phần tử trong mảng
+			array_flip($a1)						// array; trao đổi key => value thành value => key
+			range('a','d')						// array; tạo 1 array: ['a', 'b', 'c', 'd']
+			range(1,5)							// array; tạo 1 array: [1, 2, 3, 4, 5]
+			list($a, $b, $c) = $my_array;				// void; đưa các phần tử array vào từng biến đơn
+			$firstname = "Peter";
+			$lastname = "Griffin";
+			$age = "41";
+			$result = compact("firstname", "lastname", "age");	// array; đưa các biến đơn giản vào 1 array
+			unset($a);							// array; trả về array rỗng
+			Con trỏ Array:
+				end($array)						// di chuyển con trỏ về cuối mảng và trả về giá trị chứa con trỏ
+				next($array)					// di chuyển con trỏ sang trái 1 phần tử, sau đó trả về giá trị chứa con trỏ
+				pos($array)						// trả về giá trị mà con trỏ trỏ tới
+				reset($array)					// di chuyển con trỏ lên đầu và trả về giá trị chứa con trỏ
+	Object:
+		khai báo:
+			class Car {
+				public static $staticProp = "W3Schools";					// thuộc tính static
+				const NAME=1;									// hằng số, không thể thay đổi giá trị khi bao báo
+  				public $color;									// mặc định sẽ là public
+  				protected  $model;								// có thể dùng cho kê thừa và trong nội bộ class
+				private $name;									// chỉ có thể dùng trong nội bộ class
+  				public function __construct($color, $model) {					// construct
+    					$this->color = $color;
+    					$this->model = $model;
+  				}
+				function __destruct() {
+    					echo "The fruit is {$color}."; 						// hàm tự hủy, hàm nãy sẽ đc thực thi khi file php đc chạy hết
+  				}
+  				public function message() {							// method
+    					return "My car is a " . $this->color . " " . $this->model . "!";
+  				}
+				public static function staticMethod() {						// static method
+    					echo "Hello World!";
+  				}
+			}
+			class Strawberry extends Car {								// dùng extends để kế thừa lại các property và method
+  				public function message() {							// để override chỉ cần ghi lại method đó
+    					echo "Am I a fruit or a berry? ";
+  				}
+			}
+		
+		Khởi tạo:
+			$car = new Car('red','dsf');
+		sử dụng biến:
+			$car->message();
+			Car::NAME					// sử dụng trực tiếp, không cần khởi tạo đối tượng
+			self::NAME					// cách 2: sử dụng const bên trong nội bộ lớp đó
+			Car::staticProp					// sử dụng thuộc tính static giống const
+			self::staticProp
+			Car::staticMethod				// sử dụng giống static property và hằng số
+			self::staticMethod
+	Superglobals:
+		$GLOBALS
+		$_SERVER
+		$_REQUEST
+		$_POST
+		$_GET
+		$_FILES
+		$_ENV
+		$_COOKIE
+		$_SESSION
+		$request()
+	Phạm vi sử dụng biến:
+		- Mặc định: biến ngoài hàm chỉ sử dụng ở ngoài hàm
+		- Mặc định: biến trong hàm chỉ sử dụng ở trong hàm đó
+		- sử dụng biến ngoài hàm từ 1 hàm:
+			cách 1: khai báo trước với từ khóa global
+				$x = 5;$y = 10;
+				function myTest() {
+  					global $x, $y;
+  					$y = $x + $y;
+				}
+			cách 2: sử dụng trực tiếp ko cần khai báo
+				$x = 5;$y = 10;
+				function myTest() {
+  					$GLOBALS['y'] = $GLOBALS['x'] + $GLOBALS['y'];
+				}
+
+echo myString	// in dữ liệu
+include 'filename';		// đưa code của tệp vào 
+require 'filename';
+namespace Html;			// khai báo namspace có tên Html
+OOP:
+	Lớp:
+		class Car {
+			public $color;
+  			public $model;
+  			public function __construct($color, $model) {
+    				$this->color = $color;
+    				$this->model = $model;
+  			}
+			public static function staticMethod() {
+    				echo "Hello World!";
+  			}
+  			public function message() {
+    				return "My car is a " . $this->color . " " . $this->model . "!";
+  			}
+		}
+		Thực thi: 
+			$car = new Car();
+			echo $cart-> message();
+			greeting::welcome();		// static có thể gọi trực tiếp mà ko cần khởi tạo đối tượng: tenlop +::+tenStatic
+			hoặc
+				self::welcome();	// nếu trong cùng 1 lớp
+			hoặc
+				parent::welcome();	// nếu static ở lớp cha và thực thi ở lớp con
+	Kế thừa:
+		class A extend B {
+			public function intro() {}		// ghi đè chỉ cần định nghĩa lại
+		}
+	Hằng số của lớp:
+		class Goodbye {const LEAVING_MESSAGE = "Thank you for visiting W3Schools.com!";}
+		echo Goodbye::LEAVING_MESSAGE;		// tên lớp + :: +tên hằng số
+	Trừu tượng:
+		abstract class ParentClass {
+  			abstract public function someMethod1();
+ 			abstract public function someMethod2($name, $color);
+  			abstract public function someMethod3() : string;
+		}
+		extends và override
+		class Citroen extends Car {
+  			public function intro() : string {
+    				return "French extravagance! I'm a $this->name!";
+  			}
+		}
+	Giao diện:
+		interface Animal {
+  			public function makeSound();
+		}
+		class Cat implements Animal {
+  			public function makeSound() {
+    				echo "Meow";
+  			}
+		}
+	Trait:		// do class chỉ có 1 kế thừa, nên Trait giúp đa kế thừa // cách hoạt động giống kế thừa
+		trait message2 {
+  			public function msg2() {
+    				echo "OOP reduces code duplication!"; 
+  			}
+		}
+		class Welcome {
+  			use message1;
+		}
+	Thêm 1 property vào 1 object:
+			$student->{"bar"}='sdf';
+Switch:
+If Else:
+for: 	sử dụng cho kiểu iterable 
+	 foreach($myIterable as $item) {
+    echo $item;
+  }
+function:
+	tham số ko cần có kiểu dữ liệu củ thể:
+		function familyName($fname, $year) {
+  			echo "$fname Refsnes. Born in $year <br>";
+		}
+		familyName("Hege", "1975");
+	thêm kiểu dữ liệu cho tham số để đảm bảo tính nghiêm ngặt:
+		function addNumbers(int $a, int $b) {
+  			return $a + $b;
+		}
+		echo addNumbers(5, "5 days");
+	ngăn chặn việc tự động convert các kiểu dữ liệu khi chuyển tham số:
+		declare(strict_types=1); // phải đặt dòng đầu tiên của tệp
+	chỉ rõ kiểu trả về:
+		function addNumbers(float $a, float $b) : float {
+  			return $a + $b;
+		}
+		echo addNumbers(1.2, 5.2);
+	thay đổi giá trị của biến toàn cục: &$value
+		function add_five(&$value) {
+  			$value += 5;
+		}
+Gửi form:
+	index.html
+		<form action="welcome.php" method="post">
+			Name: <input type="text" name="name"><br>
+			E-mail: <input type="text" name="email"><br>
+			<input type="submit">
+		</form>
+	welcome.php
+		Welcome <?php echo $_POST["name"]; ?><br>
+		Your email address is: <?php echo $_POST["email"]; ?>
+	- $_POST["name"] trong đó name là tên của thuộc tính name trong thẻ input
+	- tương tự dùng method=get và $_GET[name]
+	$_SERVER["REQUEST_METHOD"]	// chứa chuỗi "POST" hoặc "GET" từ người dùng
+	echo htmlspecialchars($_SERVER["PHP_SELF"]);	// trả về tên file đang post và mã hóa ký tự đặc biệt

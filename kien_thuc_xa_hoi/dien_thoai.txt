@@ -1,0 +1,24 @@
+
+	Apple (Mỹ)
+	Samsung (Hàn Quốc)
+	Xiaomi (Trung Quốc)
+	Vivo (Trung Quốc)
+	Oppo (Trung Quốc)
+	Huawei (Trung Quốc)
+	Realme (Trung Quốc)
+	Lenovo (Trung Quốc)
+	Motorola (Mỹ)
+	TECNO (Hồng Kông)
+	Sony (Nhật Bản)
+	Asus (Đài Loan)
+	Nokia (Phần Lan)
+Điện thoại việt Nam
+	Mobiistar
+	BKAV
+	VSmart
+	VNPT
+	Viettle
+Điện thoại bị khai tử:
+	LG (5-4-2021) Hàn Quốc
+	BlackBerry (2004) Canada
+	Nexus (2016) Mỹ

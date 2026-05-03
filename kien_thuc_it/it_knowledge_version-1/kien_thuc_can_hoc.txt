@@ -1,0 +1,153 @@
+- tìm kiếm có gợi ý:
+
+
+Kỹ năng:
+	Wordpress, Git, AWS, MySQL, Docker
+	
+
+http
+	response
+	request
+fontend:
+	html
+	css
+	SASS/SCSS
+	js
+	lib:
+		vuejs:
+		reactjs:
+		angular:
+		Semantic UI:
+		Foundation:
+		Ember:
+		Preact:
+		Svelte:
+		bootstrap:
+		Material UI:
+		Tailwind:
+		charts:
+		bootstrap:
+		Bulma:
+		Materialize:
+backend:
+	model:
+	controller:
+	service:
+	request:
+	validate:
+	view:
+	middleware:
+	router:
+	config:
+	events:
+	file:
+	queues:
+	notifications:
+	mail:
+	task scheduling:
+	
+	framework:
+		laravel:	php
+		Django:	pyphon
+		Spring Boot: java
+		ExpressJS: Node.js
+		ASP.NET Core: c#
+		TensorFlow:
+git:
+	remote:
+	commit:
+	branch:
+	repository:
+	Merge:
+	Pull request:
+	cli: git init, git add, git commit, git push, git pull, git merge, git branch, git checkout, git log, git status, và git clone.
+editor:
+	visual studio code:	// nhiều ngôn ngữ
+	sublime text		// 
+	atom
+	jetbrains IDEA
+	ECLIPSE:
+	visual studio:
+	vs vim:	
+	Pycharm:	dành riêng cho python
+	brackets:	dành riêng cho html, css, js
+	
+server:
+	remote:
+	network:
+		địa chỉ IP:
+		subnets:
+		routing:
+		DHCP:
+		DNS:
+		docker:
+		Firewall:
+		TCP/IP, HTTP, FTP, SSH.
+		web server, database server, mail server, etc.
+		Apache, Nginx, MySQL, PostgreSQL, Sendmail, etc.
+		apt (Ubuntu/Debian), yum (CentOS/RHEL), hoặc Windows Update trên Windows Server.
+		Debugging
+		SSH (Secure Shell), VPN (Virtual Private Network), SNMP (Simple Network Management Protocol), và các tiêu chuẩn quản lý như ITIL (Information Technology Infrastructure Library) hoặc DevOps.
+
+sql:
+	database:
+		create DB:
+		drop DB:
+		backup DB:
+		
+	table:
+		Create table:
+		Drop table:
+		Alter table:
+	Column:
+		unique:
+		primary key:
+		foreign key:
+		null:
+		not null:
+		default:
+		DataTypes:
+		views:
+		injection:
+		hosting:
+	Data:
+		query:
+		insert:
+		update:
+		delete:
+		
+	indexer:
+	transaction:
+	update:
+	
+	query:
+		select:
+		groupBy:
+		having:
+		where:
+		orderBy:
+		limit:
+	stored procedures:
+	Sql:
+		SQL server:
+		MySQL:
+		SQLite:
+		PostgreSQL:
+		Oracle:
+		MongoDB:
+		Cassandra:
+		Redis:
+		Couchbase:
+		Amazon DynamoDB:
+		Sybase:
+		
+Ngôn ngữ lập trình web:
+	Python, JavaScript, C++, java, PHP, Ruby
+	
+	
+
+Hãy chăm sóc tốt cho bản thân nhất có thể bao gồm về tinh thần, vật chất, ăn uống, tri thức, chín chắn, nói được làm được, vui vẻ, hòa đồng, không lo lắng u sầu
+nếu mình loại bỏ những thứ ko tốt, hãy làm việc 1 cách năng nổ tích cực nhất có thể, không cần vội vàng hấp tất, thấy sao cho bản thân ở trạng thái tốt nhất là được
+Bước 1: hít thở sâu, tĩnh lặng, hòa bình với môi trường xung quanh
+Lên kế hoạch chi tiết, thật chi tiết những thứ mình sắp làm, và những vấn đề đang mắc phải.
+	

@@ -1,0 +1,196 @@
+		Tạo validate trên fontend với jquery:
+	import:
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	sử dụng:
+		   $(document).ready(function(){
+   		   	var a = $("form[name='contact']").validate({
+    			rules: {
+        			email: {
+        				required: true,
+        				email: true,
+       				minlength: 5,
+       	 			maxlength: 1000
+        			},
+        			phonenumber: {
+        				required: true,
+       				minlength: 8,
+        				maxlength: 15,
+        			}
+    			},
+    			messages:
+        			email: {
+            			required: "Email không được để trống",
+           				minlength: "Email không hợp lệ",
+            			maxlength: "Email quá dài"
+        			},
+        			phonenumber : {
+            			required: "Số điện thoại không được để trống",
+            			minlength: "Số điện thoại không hợp lệ",
+            			maxlength: "Số điện thoại không hợp lệ",
+        			}
+    			},
+    			submitHandler: function(form) {
+        			form.submit();
+    			}
+    		});
+		})
+	Kiểm tra:
+		var validator = $("form[name='contact']").validate();
+		validator.form()									// nếu form hợp lệ sẽ trả về true
+Tạo trang login:
+	use Illuminate\Support\Facades\Auth;
+	sinh code auth gồm, route, controller, view, model, migrate:
+		composer require laravel/breeze --dev
+		php artisan breeze:install
+	Kết nối db:
+		sửa file .env
+		vào phpmyadmin thêm db
+		php artisan config:cache
+	cập nhật lên db:
+		php artisan migrate
+	cơ bản:
+		middleware auth:
+			app/Http/Middleware/Authenticate.php		//chuyển hướng người dùng chưa đăng nhập tới trang login
+			đăng kí middleware tại kernel:			'auth' => \App\Http\Middleware\Authenticate::class,
+			Route::get('/flights', function () {}) -> middleware('auth:admin'); 	khai báo middleware cho route
+	xác thực login:		so sánh email, password từ request với db, nếu thành công thì trả về true Auth::attempt($credentials)
+		$credentials = $request->validate([
+            		'email' => ['required', 'email'],
+            		'password' => ['required'],
+        	]);
+		Auth::attempt($credentials)		// trả về true nếu tk mk đúng; tự động so sánh email từ request và db, nếu tồn tại thì băm password từ request, sau đó so sánh với pass của db
+									// dịch vụ xác thực này dựa trên config/auth.php => App\Models\User
+		cách 2:	Auth::attempt([
+				'email' => $email,				
+				'password' => $password,
+				'active' => 1						// thêm điều kiện đăng nhập cột active = 1
+				fn ($query) => $query->has('activeSubscription')	// thêm điều kiện truy vấn phức tạp
+			],
+			 $remember					// thêm chức năng nhớ tk nếu giá trị là true
+		);
+		cách 3;	Auth::guard('admin')->attempt($credentials)							// thêm xác thực dựa trên admin
+		$request->session()->regenerate();			//Lưu dữ liệu đăng nhập vào section
+		cách 4: Auth::login($user, $remember = true);		// đăng nhập bằng object User
+		cách 5: Auth::loginUsingId(1, $remember = true);	// đăng nhập bằng id
+		cách 6:	Auth::once($credentials)			// xác thực 1 lần và không sử dụng session hay cookie
+	khi đã login:
+		ứng dụng cấp cho 1 đối tượng để thao tác với user đã đăng nhập: Auth; có thể sử dụng trực tiếp ở view {{Auth::user()}}
+		Auth::user()				// là đối tượng User chứa dữ liệu bảng
+		Auth::user() ->name
+		Auth::user() ->email
+		Auth::user() ->id			// user() bao gồm các thuộc tính lưu ở db
+		Auth::logout()
+	đăng xuất:
+		Auth::logout();
+    		$request->session()->invalidate();		// hủy bỏ session đã lưu trữ user
+    		$request->session()->regenerateToken();
+	đăng xuất trên các thiết bị khác ngoại trừ thiết bị hiện tại:
+		Route::middleware(['auth', 'auth.session'])->group(function () {
+    			Route::get('/', function () {
+        			// ...
+    			});
+		});
+		// đảm bảo được xác thực bằng session auth.session
+		Auth::logoutOtherDevices($currentPassword);		$currentPassword là biến mặc định
+	dùng jwt:
+		App\ProvidersAuthServiceProvider
+			use Illuminate\Support\Facades\Auth;
+			 $this->registerPolicies();
+        		Auth::extend('jwt', function ($app, $name, array $config) {
+            			// Return an instance of Illuminate\Contracts\Auth\Guard...
+            			return new JwtGuard(Auth::createUserProvider($config['provider']));
+        		});
+		config/auth:
+			'guards' => [
+    				'api' => [
+        				'driver' => 'jwt',
+        				'provider' => 'users',
+    				],
+			],
+		cách 2:
+			App\ProvidersAuthServiceProvider:
+			Auth::viaRequest('custom-token', function (Request $request) {
+        			return User::where('token', $request->token)->first();
+    			});
+			config/auth:
+				'guards' => [
+    					'api' => [
+        				'driver' => 'custom-token',
+    					],
+				],
+	yêu cầu người dùng xác nhận mật khẩu khi thực hiện 1 request nhạy cảm:
+		Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])		// vào route\auth đặt tên cho route
+                ->name('password.confirm');
+
+		Route::get('/settings', function () {			// chỉ định route cần phải xác thực trước khi đc truy cập
+    			// ...
+		})->middleware(['password.confirm']);			// password.confirm chính là route được đặt tên đã thực hiện ở bước 1
+		if (! Hash::check($request->password, $request->user()->password)) {
+        		return back()->withErrors([
+            			'password' => ['The provided password does not match our records.']
+        		]);
+    		}
+		$request->session()->passwordConfirmed();		// nếu xác thực thành công, đánh dấu thời gian xác thực cho session
+	login:
+		luồng dữ liệu:
+		-> chuyển hướng trang login nếu chưa login sử dụng middleware (App\Http\Middleware\Authenticate.php -> route\auth.php -> App\Http\Controllers\Auth\AuthenticatedSessionController.create -> view\auth\login)
+		-> khi login thì đối chiếu với db rồi lưu session (route\auth -> App\Http\Controllers\Auth\AuthenticatedSessionController.store -> App\Http\Requests\Auth\LoginRequest -> App\Providers\RouteServiceProvider -> route\web)
+		-> khi đã login sẽ cấp đối tượng chứa dữ liệu user (đối tượng đã đc inject chứa dữ liệu user  {{Auth::user() ->name}} {{Auth::user() ->email}} {{Auth::user()->created_at}}...)
+		-> chỉnh sửa thông tin user (route/web -> ProfileController.update -> App\Http\Controllers\ProfileController)
+		-> xóa user (route/web -> ProfileController.destroy -> App\Http\Controllers\ProfileController)
+		-> xác nhận mật khẩu (route\auth\confirm-password -> ConfirmablePasswordController.show -> view -> ConfirmablePasswordController.store)
+		-> đăng xuất (route\auth\logout -> AuthenticatedSessionController.destroy -> view)
+Tạo role:
+	tạo model+migrate:		php artisan make:model Role -m
+	thêm cột cho migrate:		$table->string('name');
+	thêm ràng buộc cho Role:	public function Users(){
+        					return $this->hasMany(User::class);
+    					}
+	thêm cột role_id cho User từ migrate:
+					$table->integer('role_id');
+	refresh lại db:			php artisan migrate hoặc php artisan migrate:refresh	nếu đã có table trước đó
+	thêm seeder:			php artisan make:seeder roleSeeder
+	sửa file roleSeeder method run:	
+					$role = new Role();
+        				$role->name = 'admin';
+        				$role->save();
+	khai báo trên databaseSeeder:	$this->call(roleSeeder::class);
+	thêm ràng buộc cho User:
+   					public function Role(){
+        					return $this->belongsTo(Role::class);
+    					}
+	thêm role_id mặc định cho User khi tạo user:
+					protected $attributes = [		
+        					'role_id' => 1,
+    					];
+	thêm middleware:
+		php artisan make:middleware RoleMiddleware
+		sửa middleware RoleMiddleware:
+			public function handle(Request $request, Closure $next,$role)
+    			{
+        			if(!(Auth::user() || Auth::user()->role->name==$role)){
+            				return redirect()->route('login');
+        			}
+        			return $next($request);
+    			}
+		đăng kí middleware app/http/kernel.php: 	'role' => \App\Http\Middleware\RoleMiddleware::class,
+		sử dụng trên route: 
+			 Route::get('/profile', [ProfileController::class, 'edit'])->middleware([role:admin])->name('profile.edit');
+					// trong đó: role là tên đã đăng kí trên kernel; admin là tham số $role sẽ đc truyền vô trong Middleware đã tạo
+	sử dụng dữ liệu role trên controller hoặc view:
+		Auth::user()->role_id
+		Auth::user()->role->id
+		Auth::user()->role->name
+		Auth::user()->role->create_at
+Tìm hiểu thêm:
+	Phân quyền cho phép truy cập 1 trang		=> sử dụng middleware('auth')
+	Phân quyền cho phép thêm xóa sửa:		=> sử dụng role hoặc police
+	Phân quyền cho phép nhìn thấy 1 phần view:	=> sử dụng role	
+cài hỗ trợ debug:
+	composer require barryvdh/laravel-debugbar --dev
+
+
+Công cự auth nâng cao Laravel Jetstream:
+	
+	

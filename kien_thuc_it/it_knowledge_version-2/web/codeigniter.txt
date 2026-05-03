@@ -1,0 +1,6 @@
+cài đặt:
+        https://devdocs.io/codeigniter~3/installation/downloads
+        php -S localhost:9999
+router:
+        application/config/routes.php:
+                1

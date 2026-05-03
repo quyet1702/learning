@@ -1,0 +1,22 @@
+Wifi:
+_____________________________________________________________
+Wifi:
+		trạm phát sóng: viettle, vina, mobile,...
+		cáp mạng: vnpt, viettle, fpt,...	 
+
+		wifi hoặc modem wifi hoăc router wifi:
+			không dây:
+				wifi kết nối với tín hiệu intenet từ trạm phát sóng của các nhà mạng
+				đầu vào
+				tín hiệu nguồn
+			có dây:
+				- thu: 
+					- lấy tin hiệu qua kết nối hữu tuyến của cap mạng được cung cấp bởi các nhà mạng.
+					- nhận tín hiệu vô tuyến của thiết bị và giải mã
+				- phát: 
+					- truyển đổi thành tín hiệu vô tuyến rồi phát ra
+					- giải mã tín hiệu vô tuyến từ thiết bị và gửi lên internet
+		thiết bị đt, laptop:
+			card mạng: 
+				- thu: nhận tín hiệu vô tuyến của bộ phát wifi và truyển thành tín hiệu internet
+				- phát: gửi tín hiệu vô tuyến cho bộ phát wifi

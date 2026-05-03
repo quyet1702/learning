@@ -1,0 +1,668 @@
+Danh mục:
+	các lệnh cơ bản:
+	DOM cơ bản:
+	bất đồng bộ:
+	API cơ bản:
+	Lấy param trong url:
+	Number:
+	Kiểu dữ liệu:
+	String:
+	Array:
+	Regexp:
+	lập trình hướng đối tượng:
+	object constructor:
+	Date:
+	Callback:
+	DOM:
+	event:  
+----------------------------------------------------------------------------------------------------------------------------------------------
+	các lệnh cơ bản:
+		console.log('Thông báo');
+        	alert('Thông báo');				-> hiện thông báo: nút ok và trả về undefined
+        	confirm('Thông báo');				-> hiện thông báo: nút ok, nút cancel trả về true hoặc false
+        	prompt('Thông báo');				-> hiện thông báo: ô input, nút ok, nút cancel; trả về chuỗi nếu bấm ok, trả về null nếu bấm cancel
+        	setTimeout(function(){ //code}, 1000);		-> thực thi code sau 1s, chỉ chạy code 1 lần
+        	setInterval(function(){ //code}, 1000);		-> thực thi code mỗi 1, chạy code nhiều lần
+		clearInterval(refreshIntervalId);		-> hủy interval
+		location.href = "https://localhost:7240/home";	-> chuyển trang
+		Các câu lệnh theo 1 cấu trúc:
+		if(điều kiện){ //code1} else {//code2}
+		var result = a > b ? a:b      			-> nếu điều kiện đúng thì xuất a, sai thì xuất b
+                var a = 1;
+                switch(a){
+                	case 1: console.log("day la so 1");
+                        	break;
+                       	case 2: console.log(" day la so 2");
+                        	break;
+                    	}
+		for(var i = 1; i<=100; i++ ) { // code...}
+                for(var index in myArray) { 
+                	//console.log(myArray[index])
+                }
+                for(var value of mystring) { 
+                	// console.log(value)
+                }
+        	while:
+                    var i = 1;
+                    while(i<=100){
+                        console.log(i);
+                        i++;
+                    }
+
+        	do/while:   vòng lặp này cho phép chạy trước 1 lần rồi mới kiểm tra điều kiện
+                -> var i = 0;
+                    do {
+                        i++;
+                        console.log(i);
+                    } while(i < 10);
+
+        	lệnh break/ continue trong vòng lặp:
+            		-> gặp lệnh break trong vòng lặp thì nó sẽ thoát hẳn ra khỏi vòng lặp đó.
+            		-> gặp lệnh continue thì chương trình ko chạy các lệnh ở dưới mà sẽ nhảy cóc chuyển qua bước kiểm tra điều kiện trong vòng lặp
+	DOM cơ bản:
+		Event:
+			a.addEventListener('click',() => alert("da click"));
+		submit:
+			document.getElementById("form1").submit();
+        	Element:
+			+ var element = document.createElement("p");	=> parameter là tag hoặc element
+                	+ document.write('dsfadsf');
+                	+ var element = document.getElementById("object") -> select 1 thẻ theo id, chỉ đc 1 thẻ.
+               	 	+ var element = document.getElementsByClassName("asdfsd"); -> select thẻ theo class, có thể đc nhiều thẻ.
+               	 	+ var element = document.getElementsByTagName("h1"); -> select thẻ theo tên thẻ h1, có thể đc nhiều thẻ.
+               		+ var element = document.querySelector("classname"); -> select 1 thẻ theo kiểu giống select css
+                	+ var element = document.querySelectorAll("classname"); -> select 1 hoặc nhiều thẻ theo kiểu giống select css
+                	+ var element = document.forms; -> select nhiều thẻ
+                	+ var element = document.forms['id']; -> select 1 thẻ from qua tên id, nếu tên id theo đúng cú pháp đặt tên biếns
+                	+ var element = document.forms[1]; -> select 1 thẻ from qua tên id, mà tên id ko theo đúng cú pháp
+                	+ var element = document.anchors; -> trả về tất cả các thẻ a có attibute name
+                		=> chú ý là chỉ có getElementById và querySelector mới trả về thẻ 
+                		=> các select còn lại trả về array thẻ
+			
+        	Property:
+			Audio:
+				.play()					// dành cho thẻ input audio
+				.pause()				// dành cho thẻ input audio
+				Events:
+					.onpause				// xảy ra khi audio bắt đầu ngưng
+					.onplay					// xảy ra khi audio bắt đầu chạy
+					.onended				// xảy ra khi audio đã kết thúc
+					.ontimeupdate				// xảy ra khi audio đang chạy từng giây
+				properties:
+					currentTime				// lấy thời gian đang chay
+					duration				// lấy tổng thời gian của audio
+			.animate()				// tham khảo thêm
+			.scrollIntoView()
+			.dataset
+			.width = '500px';
+			.style.paddingTop="200px";
+			.class = "header__nav"                  => cho phép tạo 1 attribute hợp lệ
+			.classList				=> array class
+			.classList.add('blue','red', 'green');	=> thêm 1 hoăc nhiều class
+			.classList.remove('blue','red');	=> xóa 1 hoặc nhiều class
+			.innerText = "xin chao";		=> thêm nội dung cho element: <p>nội dung</p>
+			.textContent = "xin chao";		=> đặt text cho element
+			.innerHTML = "<h1 class="header">chao</h1>"     => thêm nội dung cho element: <p>nội dung</p>
+			.outerHTML = "<h1 class="header">chao</h1>"     => Thêm thẻ html đè vào thẻ đc select. và xóa thẻ đc select.
+		Method:
+			.remove();				=> xóa element ở trong html
+			.setAttribute("class","header");   	=> cho phép tạo 1 attribute không hợp lệ
+                        .getAttribute("class");                	=> lấy giá trị của attribute (class)
+			.appendChild(text_hoặc_element);	=> thêm nội dung cho element
+			.createTextNode("Tutorix is..");	=> trả vê chuỗi kiểu Text
+			.classList.toggle('blue');   		=> thêm class nếu chưa có, và xóa class nếu đã có
+			.addEventListener("keydown",function(event){//code});	=> thêm event
+                + sự khác nhau giữa innerText và textContent:
+                        -> innerText thì cho kết quả giống những gì nhìn thấy trên màn hình chỉ sử dụng trên element node
+                        -> textContent thì cho kết quả trong giống trong tag node, in ra cả thuộc tính css, sử dụng cho tag node và element node
+
+		thẻ video:
+			select:  var video = document.querySelector('video');
+			thuộc tính:
+				video.videoHeight		=> munber chiều cao của video
+				video.videoWidth		=> munber chiều ngang của video
+				video.currentTime		=> number thời gian đang coi của video tính bằng giây
+				video.src			=> string đường dẫn tới file video
+				video.autoplay			=> bool kiểm tra có tự động phát video hay ko
+				video.baseURI			=> string lấy đường dẫn file html đang phát video
+				video.currentSrc		=> string lấy đường dẫn file mp4 đang phát video
+				video.duration			=> trả về thời lượng video
+	bất đồng bộ:
+		- setTimeout, setInterval, fetch, XMLHttpRequest, Promise
+		Promise:
+			async function a(b){
+    				return await new Promise((resolve, reject)=>{
+        				console.log(b);
+        				resolve(b);
+    				});
+			}
+			await a(123).then((data)=>console.log(data+1))
+        			.catch(function(){
+            				console.log('failure;')
+        			})
+        			.finally(function(){
+            				console.log('done;')
+        			})
+
+	API cơ bản:
+		fetch:		const uri = 'api/todoitems';
+		- lấy dữ liệu từ API
+			fetch(uri)
+				.then(data => data.json())		=> dữ liệu ở dạng json được convert thành object js
+				.then(data => console.log(data))
+		- var url = "a.txt";
+    			fetch(url).then(function(response){
+        			return response.json();
+   			})
+    			.then(function(data){
+        			console.log(data);
+    			})
+    			.catch(function(){				=> nếu thất bại thì nó sẽ chạy vào hàm catch
+	
+    			})
+			.finally(()=>{console.log(2222)});
+		- Thêm dữ liệu:
+			fetch(uri, {
+   				method: 'POST',
+    				headers: {
+      					'Accept': 'application/json',
+      					'Content-Type': 'application/json'
+    				},
+    				body: JSON.stringify({name:"Quyet",age:24})	=> convert thành chuỗi json để post
+  			})
+			.then(data => data.json())
+			.then(data => console.log(data))
+		- Sửa dữ liệu:
+			fetch(`${uri}/${itemId}`, {				=> thay itemId cần sửa
+   				method: 'PUT',
+    				headers: {
+      					'Accept': 'application/json',
+      					'Content-Type': 'application/json'
+    				},
+    				body: JSON.stringify({id:4,name:"quyet",age:1})	=> nội dung muốn sửa và đảm bảo sửa đủ các trường bao gồm id
+  			})
+			.then(responsive => responsive.json())
+			.then(data => console.log(data))
+			
+		- Xóa dữ liệu:
+			fetch(`${uri}/${id}`, {			=> xóa dữ liệu với id	
+    				method: 'DELETE'
+  			})
+		- kèm Token vào api:
+			- Thêm vào trong headers: {'Authorization': 'Bearer '+token}
+Lấy param trong url:
+		var url_string = window.location.href
+		var url = new URL (url_string);
+		var c = url.searchParams.get ("key");
+		console.log (c);
+-------------------------------------------------------------------------------------------------------------------------
+Number:
+	Kiểm tra:
+		Number.isFinite(3412)			// kiểm tra số hữu hạn
+		Number.isInteger(12312)			// kiểm tra số nguyên
+		isNaN(234/0)				// kiểm tra số hợp lệ
+		Number.isFinite(2 / 0);			// kiểm tra phép tính hợp lệ
+	Hàm:
+		Number.parseInt('23123')		// ép số hoặc chuối => Int
+		Number.parseFloat(3213)			// ép số hoặc chuối => float
+		Number.prototype.toString()		// chuyển số thành chuỗi
+		Number.prototype.toFixed(2)		// lấy 2 số thập nhân
+		(11.23).toString()			// chuyển số thành chuỗi
+		(342.1223).toFixed(2)			// làm tròn số thập phân thứ 2:  -> 342.12
+		Math.PI					// trả về số PI
+                Math.round(3.4);			// trả về con số được làm tròn
+                Math.ceil(3.4);				// làm tròn lên thành 4
+                Math.floor(3.9)				// làm tròn xuống thành 3
+                Math.abs(-4);				// trả về số tuyệt đối 
+                Math.random()				// trả về số ngẫu nhiên trong khoảng 0 - 1
+                Math.max(100, 200, 1, 5);		// trả về số lớn nhất trong dãy số
+               	Math.Min(100, 200, 1, 5);		// trả về số Nhỏ nhất trong dãy số
+		new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(100000)		
+- Kiểu dữ liệu:
+	var:
+		- tự convert thành mọi kiểu dữ liệu
+		- biến có thể khởi tạo nhiều lần, là lấy phần khởi tạo cuối cùng
+		- khi biến được gắn trong for, if,.. đều có thể sử dụng ở bên ngoài
+	let:
+		- let được gắn giá trị trong for, if,.. sẽ không liên quan đến bên ngoài
+		- chỉ được khai báo 1 lần
+        + boolean: true, false
+            -> 6 giá trị luôn trả về false: 0, false, null, underfined, NaN, '', ""
+        + number
+                -> 
+		format:
+			console.log();
+String:
+	Nội suy:	`Xin chào ${name}`
+	Kiểm tra:
+		myString.includes('aa')			// kiểm tra chuỗi chứa ký tự 'aa' hay không; trả về true/false
+		myString.includes('adsf',1)		// kiểm tra chuỗi chứa ký tự 'aa' hay không; kiểm tra từ index 1
+                typeof myString == 'string'		// kiểm tra có phải là chuỗi hay không
+
+	Hàm:
+		myString.indexOf('mu');			// tìm index đầu tiên của ký tự trong chuỗi
+		myString.indexOf('mu', 6)		// tìm index đầu tiên của ký tự trong chuỗi, tìm từ index 6 trở đi
+		myString.lastIndexOf('mu')		// tìm index cuối cùng của ký tự trong chuỗi
+		myString.length				// độ dài của chuỗi
+		`toi la ${name} ${name1}` 		// nối chuỗi rút gọn trong ES6
+		myString.slice(4, 6)			// cắt chuối từ vị trí 4 tới vị trí 6
+		myString.slice(-4, -6)			// cắt chuối từ phải sang trái
+		myString.slice(4)			// cắt chuối từ vị trí 4 tới hết
+                myString.search('abd');			// tìm vị trí chuỗi
+		myString.trim()				// loại bỏ khoảng trắng thừa ở 2 đầu chuối
+		myString.replace('abc', 'quyet')	// thay thế 'abc' đầu thành 'quyet' trong chuỗi
+                myString.replace(/abc/g, 'quyet')	// thay thế toàn bộ 'abc' thành 'quyet' trong chuỗi
+                myString.toUpperCase()			// in hoa chuỗi
+		myString.charAt(5)			// lấy ký tự từ index
+		myString.split(', ')			// cắt chuỗi thành array
+        + Underfined		-> ví dụ: var a; nếu không gắn giá trị thì kiểu dữ liệu là Underfined 
+        + Null
+	+ date:
+        + Symbol
+            -> ví dụ: var a = Symbol('id') var b = Symbol('id')
+            -> sysbol có đặc tính kiểu dữ liệu là duy nhất nên  a===b luôn có giá trị false
+        + function
+            -> ví dụ khai báo: var a = function(){//code}
+                    -> không thể thực thi trước khi định nghĩa
+            -> ví dụ khai báo: function a(){//code}
+                    -> có thể thực thi trước khi định nghĩa
+            -> thực thi hàm: a();
+            ->truyền 1 hoặc nhiều tham số:  function a(name1, name2){
+                                        //code
+                                    }
+                                    a("đá", "ádsa");
+            -> gắn giá trị cho hàm bằng lệnh "return giá trị":
+                    -> các lệnh sau return đều ko đc thực thi
+                    -> ví dụ:   function cong(a, b){
+                                        return a + b;
+                                    }
+                                var a = cong();
+                        -> giá trị của hàm cong(); là: a + b
+        + Object
+		viết tắt của object nếu trùng key và value:
+			const objectA = {name: name, age: age}
+			const objectB = {name, age}
+		tên property động có thể thay đổi:
+			var fieldName = 'name';
+			const objectA = {[filedName]: 1};
+		destructuring - phân rã:
+			var array = ['javaScript', 'php', 'c#']
+			var [a, , c] = array;
+			var [a, ...c] = array;			// lấy các giá trị còn lại trừ giá trị đầu vào biến c
+			console.log(a, c);			đưa các giá trị của array thành các biến
+			const course = {
+				name: 'javaScript'
+				price: 1000,
+				childrent: {
+					name: 'c#'
+				}
+			}
+			var {name, price, childrent: {name: newName}} = course;		// đây là phân rã, đưa các property và 1 biến; nhưng tên biến phải trùng với key trong object hoặc đổi tên; nếu ko sẽ trả về undefined
+          + toán tử rest: ...params
+		      function abc(...params){
+				console.log(params);
+			}
+			params(1, 2, 3, 4, 5)			// giúp nhập bao nhiêu tham số cũng đc
+			function abc({name, age, ...params}){
+				console.log(name);
+				console.log(age);
+				console.log(params);
+			}
+			abc({name: 'quyet', age: 23, address: 'VN'})
+	+ toán tử spread:
+		var arrayA = ['QUYET'];
+		var arrayB = ['tâm', 'quyền'];				// khi sử dụng ...arrayB giống như bỏ 2 dấu ngoặc vuông; tương tự với object
+		var concatArray = [...arrayA, ...arrayB]
+		-> var myObject = {
+                    name: 'quyet',
+                    age: 22,
+                    myfunction: function(){//code}
+                    [keyname]:"đasad"
+                };
+		-> thuộc tính chỉ đc gắn khi được gọi đến
+                -> phương thức: myObject.myfunction()
+                -> thuộc tính: myObject.name
+                -> thêm key từ biến: trong ví dụ:
+                        ->  keyname ="email"
+                            [keyname]: "đasadd" nằm trong object
+                -> gọi ra: myObject.name hoặc myObject['NAME']
+                -> thêm phần tử: myObject.email = "dsfasdf" hoặc myObject['ho-ten'] = "đasdas"
+                -> xóa key value: delete myObject.name;
+                -> cách lấy key: Object.keys(myObject)
+                -> cách lấy value: Object.values(myObject)
+function:
+	arrow function: const sum = (a, b) => ({a: 1, b: 2});
+Array:
+	Kiểm tra:
+		var array = Array.from(var);		convert sang array
+		typeof myArray	== 'undefined'
+		myArray.includes('xinchao')		// kiểm tra phần tử có tồn tại không
+		myArray.includes('xinchao',1)		// kiểm tra với index
+                Array.isArray(myArray)			// kiểm tra có phải array không
+		myArray.every(function(value, index){	// kiểm tra tất cả phần tử thỏa 1 điều kiện nào đó hay ko
+			 return value == 0;
+		});
+		myArray.some(function(value, index){	// kiểm tra 1 trong các phần tử thỏa 1 điều kiện nào đó hay ko
+			 return value == 0;
+		});
+		var bool = myArray.includes("tam", 1);     // số 1 là vị trí bắt đầu tìm kiếm; xem có tồn tại hay không
+                                
+        Hàm:
+		myArray.includes('abc')			// tìm phần tử trong mảng; trả về true nếu tìm thấy
+		a.filter(onlyUnique)			// nếu có 2 hoặc nhiều phần tử giống nhau thì chỉ dữ lại 1
+		myArray.length				// trả về số phần tử của array
+                myArray[2]				// lấy phần tử của Array
+                myArray.toString();			// array thành chuỗi được ngăn cách bởi ký tự dấu ','
+		myArray.join("-");			// array thành chuỗi được ngăn cách bởi ký tự chỉ định
+		myArray.pop()				// xóa phần tử cuối mảng và trả về phần tử đã xóa
+		myArray.shift()				// xóa phần tử đầu mảng và trả về phần tử đã xóa
+		myArray.unshift("ádd", "dđ");		// thêm 1 hoặc nhiều phần tử vào đầu mảng và trả về length
+                myArray.push("ádd", "dđ")		// thêm 1 hoặc nhiều phần tử vào cuối mảng và trả về length
+                myArray.concat(myarray2)		// ghép 2 array
+                myArray.slice(index) 			// trả về array phần tử từ index đến hết
+                myArray.slice(index1, index1)		// trả về array phần tử từ index1 đến index2
+                myArray.slice(-1, -4)			// cắt phần tử trong mảng từ phải sang trái
+		myArray.splice(index);			// trả về array phần tử từ index đến hết; + tự động xóa phần tử trong myArray
+		myArray.splice(index, 2)		// trả về array phần tử từ index lấy 2 phần tử; + tự động xóa phần tử trong myArray;
+                myArray.splice(index, 2, "dfasdf")	// trả về array phần tử từ index lấy 2 phần tử; + tự động xóa phần tử trong myArray; + tự động thêm 'dfasdf' vào phần tử đã xóa
+		myArray.splice(2, 0, "Lemon", "Kiwi");	// thêm nhiều phần tử
+		myArray.concat("hello");		// trả về array thêm phần tử vào cuối mảng
+		myArray.concat(["hello","sdf"]);		// trả về array thêm nhiều phần tử vào cuối mảng
+		myArray.concat(arr2, arr3);		// gộp 3 mảng thành 1 mảng
+                myArray.forEach(function(){//code}); 	// lặp qua tất cả các phần tử
+		myArray.find(function(value, index){			// trả về 1 phần tử đầu tiên thỏa mãn điều kiện
+			return value.name == ""quyet";
+  	        }
+		myArray.filter(function(value, index){			// trả về array thỏa mãn điều kiện
+			return value.name == ""quyet";
+  	        }
+		myArray.map(function(value, key){			// chỉnh sửa các phần tử và trả về array mới
+                	return value = 'new value'
+                });
+		myArray.reduce(function(total, value, key){		// tạo biến total lưu trữ qua mỗi vòng lặp và gắn giá trị  = 0; trả về biến total;
+                	return total + value;				// return giá trị biến total
+                }, 0);
+                var a = [1,2,3,[4, 5, 6],[7,8]];
+                var lamphang = a.reduce(function(phang,value, key){	// làm phằng array
+                	return phang.concat(value);
+                },[]);
+optional chaining (?.):
+	khi 1 key không tồn tại, thì sẽ trả về undefined thay vì lỗi:
+		var a = {
+			name: 123,
+			getName(){
+				console.log(213);
+			}
+		}
+		a?.age
+		a?.getName();
+-------------------------------------------------------------------------------------------------------
+Module:
+	file Module:
+		import abc, { a, b, c } from './contants.js'  // biến abc sử dụng cho export default, và các biến trong {} sử dụng cho export thông thường
+		
+		export variable		
+		export variable		
+		export default variable		// mỗi file chỉ có 1 export default và có thể có nhiều export
+	file module trung gian:
+			export { default } from './logger.js'		// khi file module trung gian được gọi thì sẽ chuyển hướng sang 1 file module khác
+		hoặc
+			import logger from './logger.js'
+			export default logger;
+	file thực thi:
+		sử dụng thẻ <script type="module"></script>
+		import * as contants from './contants.js'
+		contants.KEY
+		
+-------------------------------------------------------------------------------------------------------
+Regexp:
+	cú pháp: /pattern/modifier(s);
+		Modifiers:
+			g		// Tìm kiếm toàn cầu
+			i		// Tìm kiếm không phân biệt in hoa in thường
+			m 		// Tìm kiếm cho nhiều dòng
+		pattern:
+			[abc]		// Đại diện cho 1 hoặc nhiều chữ bất kỳ
+			[a-z]		// chữ thường
+			[A-z]		// chữ thường hoặc in hoa
+			[^abc]		// Tìm bất kỳ ký tự nào không nằm trong dấu ngoặc
+			[0-9]		// Tìm bất kỳ số nào trong dấu ngoặc
+			[^0-9]		// Tìm bất kỳ số nào Không nằm trong dấu ngoặc
+			(x|y)		// Tìm bất kỳ ký tự nào là x hoặc y
+			\w+		// Tìm kiếm 1 từ có ít nhất 1 ký tự
+			^abc		// Tìm kiếm khớp ở đầu dòng
+			abc$		// Tìm kiếm khớp ở cuối dòng
+			a.c		// Tìm kiếm dấu . có thể là bất kỳ ký tự nào
+			\w		// là số chữ và _
+			\W		// Không phải số chữ và _
+			\d		// là số 0->9
+			\D		// Không phải là số 0->9
+			\s		// là khoảng trắng
+			\S		// không phải là khoảng trắng
+			\n		// ký tự xuống dòng
+			\t		// ký tự tab	
+			\bABC		// Tìm kiếm ABC ở đầu của 1 từ
+			ABC\b		// Tìm kiếm ABC ở cuối của 1 từ
+			\BABC		// Tìm kiếm ABC Không ở đầu của 1 từ
+			ABC\B		// Tìm kiếm ABC Không ở cuối của 1 từ
+			X{4}		// X có 4 ký tự
+			X{3,4}		// X có 3 đến 4 ký tự
+			X{3,}		// X có ít nhất 3 ký tự
+			is(?=all)	// Tìm kiếm 'is' mà trong chuỗi có 'all' theo sau
+			is(?!all)	// Tìm kiếm 'is' mà trong chuỗi không có 'all' theo sau
+			XB*		// Tìm kiếm ký tự A mà theo sau là 0 hoặc nhiều ký tự B
+			X+		// X có ít nhất 1 từ
+			X? 		// X có thể có hoặc không có =  X{0,1}
+			()		// các phép tìm kiếm trong dấu ngoặc sẽ trả về chuỗi tìm thấy
+		kết quả:
+			chữ cái bất kỳ 	=> a
+			[abc]		=> a
+			[0-9]		=> 1
+			ABC\b		=> ABC ở cuối
+			
+		let text = "-s this all there is?";
+		let pattern = /^[\+\-]?s/i;
+		let result = pattern.test(text);
+	Các hàm:
+		text.match(pattern);		// trả về array chuỗi đc tìm thấy
+		pattern.test(text)		// trả về true nếu tìm thấy, và false nếu ko tìm thấy
+		text.replace(/^0(?=\d)/, '');	// replace chuỗi đc tìm thấy thành '' và trả về chuỗi mới
+	Chọn 1 ký tự đầu dòng:
+		^[\+]		// Tìm kiếm 1 dấu + ở đầu dòng
+		^[\+]?		// Tìm kiếm 1 dấu + ở đầu dòng, có thể có hoặc không
+		^quyet		// Tìm kiếm 1 chuỗi quyet ở đầu dòng,
+		^quyet?		// Tìm kiếm 1 chuỗi quyet ở đầu dòng, có thể có hoặc không
+		^[abc]?		// Tìm kiếm 1 ký tự abc bất kỳ, có thể có hoặc không
+	Chọn ký tự giữa dòng:
+		quyet[abc]		// tìm ký tự abc bất kỳ sau quyet
+		quyet[abc]?		// tìm ký tự abc bất kỳ sau quyet, có thể có hoặc không
+		quyet[abc]+		// tìm ký tự abc bất kỳ sau quyet, abc có ít nhất 1 từ
+new RegExp(/^(\d{1}(?:[\\.\\,]\d{1})?|10)$/)
+let regexp = /^(\d{1}([\.\,]\d{1})?|10)$/;
+	Thực hành:
+		Tìm kiếm ràng buộc:
+			bước 1:
+				khóa đầu khóa cuối:	^()$
+			bước 2: xác định số hoặc ký tự: ^(\d)$
+			ký tự có thể có hoặc ko có: X?
+lập trình hướng đối tượng:
+	khai báo:
+		tạo 1 function:	function A(){}
+	property:
+		this.name = "quyet;	=> this tượng trưng cho A của A.name
+		phải có từ khóa this thì lệnh A.property mới có thể sử dụng
+		các property này tự động gắn khi new đối tượng
+	method:
+		giống property	this. Run = function(){//code}
+		các property này tự động chạy và gắn khi new đối tượng
+	method dạng 2:
+		khai báo nằm trong property
+		this.property={
+			 id:0,
+            		name:"Quyet",
+			....
+			method: function(){
+				var name = this.name	=> để có thể sử dụng this.name trong setTimeout, setInterval()
+				//code
+			}
+		}
+
+- object constructor:
+        + là 1 đối tượng gồm nhiều thuộc tính chung, sau đó sẽ đc new ra thành nhiều đối tượng
+        + tạo 1 function và các tham số rồi gắn vào tham số trong function đó
+        + khai báo 1 đối tượng được new ra từ function trên
+        + sử dụng các thuộc tính của đối tượng này: ví dụ: author.name
+        + khi new đối tượng thì có thể tự thêm các thuộc tính mới: author.title = "myseft";
+        + ví dụ:
+            ->  function User(firstName, lastName){
+                this.lastName = lastName;
+                this.firstName = firstName;
+                this.getName = function(){
+                    return `${this.firstName} ${this.lastName}`;
+                }
+            }
+            var author = new User("Hoang", "Quyet", "avatar");
+            var user = new User("Hoang", "Tam", "Avatar");
+            author.title = "myseft";
+            console.log(author.title);
+            console.log(author.firstName);
+            console.log(author.lastName);
+            console.log(author.getName());
+        + thêm thuộc tính cho User: User.prototype.age = 22;
+                -> console.log(user.age)
+
+- Đối tượng Date:
+        var date = new Date();
+	var date = new Date('2023-10-23')
+	var date = new Date('2023-10-23')
+	+ lấy ngày cuối cùng của tháng: (new Date(2023, 12, 0))
+        + date.getMilliseconds(); date.getMinutes(); date.getHours(); date.getDate(); date.getMonth() +1; date.getFullYear();
+	+ getDay()		=> lấy ngày của tuần	
+- callback:
+        + là hàm
+        + Được truyên qua đối số
+        + Được gọi lại trong hàm nhận đối số
+
+
+- event:       
+        -> https://www.w3schools.com/jsref/dom_obj_event.asp
+        -> cách thêm attribute: on + event
+        -> ví vụ event click thì ta có: onclick; -> <h1 onclick="console.log('đã click')">click vào đây</h1>
+        -> thêm event từ js: a.onclick = function(e) {
+                console.log(e.target)
+        }
+        -> e.target -> trả về element chính nó
+        -> ngăn chặn hàng vi mặc định: e.preventDefault(); -> ví dụ: nếu gắn lệnh vào thẻ a thì sẽ ngăn chặn hành vi chuyển trang
+        -> ngăn chặn event nổi bọt: e.stopPropagation();
+	- auto click: a.dispatchEvent(new MouseEvent("click"));
+	- JSON:
+        - là 1 định dạng dữ liệu
+	- trong 1 file .json thì là 1 mảng hoặc 1 object
+	- Promise:
+		đối tượng Promise:
+		var a = new Promise(function(Resolve, Reject){// Resolve("OK")});		=> tham số 1 là thành công, tham số 2 là thất bại
+					=> "OK" là dữ liệu sẽ truyền cho hàm then()
+		a.then(function(value){//code},function(value){//code});					=> tham số 1 sẽ chạy nếu thành công, tham số 2 sẽ chạy nếu thất bại
+
+	bước 1: tạo đối tượng promise có 1 tham số là 1 function, function này có 1 hoặc 2 tham số
+	bước 2: 
+	các loại sự kiện:
+		click			=> khi click chuột
+		keydown			=> khi bấm bàn phím
+			event.key	=> lấy phím đã bấm
+
+
+svg:
+	viewBox="0 0 700 550"	=> thuộc tính trên thẻ svg,"0 0 width height" các ảnh đồ họa sẽ dựa theo trục tọa độ trong khung này
+	width="100"		=> chiều ngang hiện thị lên màn hình
+	heith="100"		=> chiều dọc hiện thị lên màn hình
+	- tọa độ vẽ x=0 y=0 ở trên góc trái màn hinh
+	- có thể khai báo thuộc tính trong style=""
+	- fill:none			=> ko tô màu
+	- transform="rotate(30 20,40)"	=> transform="rotate(độ nghiên, y,x)"	căn theo trục y,x và độ nghiên
+	thẻ <g></g>			=> bao bọc các thẻ svg con
+		các thuộc tính được sử dụng cho tất cả thẻ con
+		
+	thẻ <svg></svg>:		=> khai báo svg
+		width="100"		=> chiều ngang
+		heith="100"		=> chiều dọc
+	thẻ <circle/>			=> vẽ hình tròn
+		cy="50"			=> xác định tâm hình tròn theo trục y so với height của svg
+		cx="50"			=> xác định tâm hình tròn theo trục x so với width của svg
+		r="40"			=> bán kính hình tròn
+		stroke="green"		=> màu viền
+		stroke-width="4"	=> chiều rộng viền
+		fill="yellow"		=> màu nền của hình
+		fill-opacity="0.1"	=> độ mờ
+	thẻ <rect/> 			=> vẽ hình chữ nhật
+		x=0			=> tọa độ bắt đầu vẽ, so với trục x thẻ svg
+		y=0			=> tọa độ bắt đầu vẽ, so với trục y thẻ svg
+		rx="20"			=> bo góc theo trục x
+		ry="20"			=> bo góc theo trục y
+		width="300"		=> chiều ngang hình chữ nhật
+		height="300"		=> chiều cao hình chữ nhật	
+		stroke="green"		=> màu viền
+		stroke-width="4"	=> chiều rộng viền
+		fill="yellow"		=> màu nền của hình
+		fill-opacity="0.1"	=> độ mờ
+	thẻ <ellipse/>
+		cy="50"			=> xác định tâm hình ellipse theo trục y so với height của svg
+		cx="50"			=> xác định tâm hình ellipse theo trục x so với width của svg
+		rx="20"			=> bo góc theo trục x
+		ry="20"			=> bo góc theo trục y
+	thẻ <line/>			=> vẽ đường thẳng
+		x1="0" y1="0"		=> tọa độ trục x y đầu đoạn thẳng
+		x2="200" y2="200"	=> tọa độ trục x y cuối đoạn thẳng
+		stroke="green"		=> màu viền
+		stroke-width="4"	=> chiều rộng viền
+	thẻ <polygon/>			=> vẽ hình đa giác
+		points="200,10 250,190 160,210"	=> các điểm vẽ của hình đa giác theo trục x,y. điểm đầu cuối tự nối với nhau
+		fill, stroke, stroke-width	=> sở hữu 1 số thuộc tính của hình chữ nhật
+		fill-rule:evenodd;		=> chỉ tô màu vùng có points
+		fill-rule:nonzero;		=> tô màu toàn bộ vùng trong hình
+	thẻ <polyline/>			=> vẽ đường thẳng nối đa điểm, điểm đầu và điểm cuối không nối với nhau
+		thuộc tính giống thẻ polygon
+	thẻ <path/>
+		d="M150 0 L75 200 L225 200 Z"	=> d là đường thẳng sẽ vẽ
+		chữ in là điểm vẽ dựa trên trục xy theo màn hình
+		chữ thường là điểm vẽ dựa trên trục xy có gốc tọa độ là điểm đang đứng
+		M x y (moveto)khai báo điểm bắt đầu để vẽ, và là nơi nhận điểm kết thúc
+		L x y (line to)điểm sẽ vẽ tới
+		Z là vẽ trở lại điểm bắt đầu
+		Q X Y x y là đường cong Bézier bậc hai	=> khi tạo thành hình tam giác nó sẽ tự biến thành 1 đường cong
+	thẻ <text>I love SVG</text>
+		fill="red"			=> màu chữ
+		x="0"				=> tọa độ bắt đầu vẽ
+		y="15"				=> tọa độ tâm của text theo trục y
+	 thẻ <tspan></tspan>			=> nằm trong thẻ text, giống ul và li
+		sở hữu các thuộc tính giống thẻ text
+	thẻ <a> 				=> nằm bao ngoài thẻ text, giúp text biến thành link
+		xlink:href="url"		=> truy cập tới url
+		target="_blank"			=> tạo 1 tab mới khi truy cập
+	thẻ <defs></defs>			=> dùng chứa các phần tử đặc biệt như <filter>
+	thẻ <filter></filter>			=> nằm trong thẻ <defs>
+		 x="-100" y="-100"		=> tăng giới hạn khung ảnh, important
+		width="400" height="300"	=> tăng giới hạn khung ảnh, important
+		id="f1"				=> dùng để xác định bộ lọc, để thẻ đồ họa trỏ tới
+		=> filter="url(#f1)"		=> sử dụng thuộc tính filter trong thẻ đồ họa để gắn hiệu ứng filter
+		thẻ <feOffset />			=> dùng để tạo hiệu ứng đổ bóng, tạo 1 bản sao và di chuyển bản sao đó
+			dx="20"				=> di chuyển đồ họa theo trục x
+			dy="20"				=> di chuyển đồ họa theo trục y
+			in="SourceGraphic"		=> đổ màu giống bản đồ họa gốc
+			in="SourceAlpha"		=> đổ màu đen
+		thẻ <feBlend />				=> tạo lại bản gốc của đồ họa
+			in="SourceGraphic"		=> lấy thông tin hình ảnh của đồ họa, bắt buộc phải có
+		thẻ <feGaussianBlur />		=> làm mờ ảnh đồ họa gốc và các thẻ đứng trước nó
+			stdDeviation="10"		=> độ mờ
+		<feColorMatrix/>			=> thay đổi màu của ảnh đồ họa gốc và thẻ trước nó
+			values = "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"	=> giá trị của từng phần tử dao động từ 0->1, số 0 hiện thị màu đen
+			"đỏ đỏ đen đỏ đỏ xanhlá xanhlá đen xanhlá xanhlá xanhtrời xanhtrời đen xanhtrời xanhtrời
+			đen đen đen opasity độmờ
+<defs>				giúp tô nhiều màu lên ảnh đồ họa, sử dụng fill="url(#id)"			
+    	<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"> 	=> x1,y1 vị trí bắt đầu tô màu x2,y2 vị trí kết thúc tô màu
+      		<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:0" />	=> khi tô sẽ duyệt lần lượt 2 thẻ stop
+      		<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />	=> offset=50% là vị trí tô màu chính
+    	</linearGradient>
+  </defs>
+	<radialGradient>	=> sử dụng thay thẻ linearGradient, tô ngay điểm chỉ định ở trên ảnh đồ họa
+				=> 

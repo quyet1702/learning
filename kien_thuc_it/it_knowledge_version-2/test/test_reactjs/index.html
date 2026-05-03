@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        function Component1(props){
+			var name = "Hoàng Văn Quyết";
+			var functionName = () => alert(213);
+			return	<div>
+						<span>Xin chào: {props.alies}</span>						// sử dụng properties
+						<h1>{name}</h1>												// gắn biến vào JSX
+						<Component2/>												// Thêm 1 component vào
+						<button onClick={functionName}>Take the shot!</button>		// thêm sự kiện
+					</div>
+		}
+        function Garage() {
+  				const cars = [
+    					{id: 1, brand: 'Ford'},
+    					{id: 2, brand: 'BMW'},
+    					{id: 3, brand: 'Audi'}
+  					];
+  				return (
+    					<React.Fragment>
+      						<h1>Who lives in my garage?</h1>
+      						<ul>
+        						{cars.map((car) => <Car key={car.id} brand={car.brand} />)}
+     						</ul>
+    					</React.Fragment>
+  				);
+			}
+        function Component2(){
+            return <h1>Đây là component 2</h1>
+        }
+        ReactDOM.render(<Component1 alies="quyết cá lóc"/>, document.getElementById('root'));
+    </script>
+</body>
+</html>

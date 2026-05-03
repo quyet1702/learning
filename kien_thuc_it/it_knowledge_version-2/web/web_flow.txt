@@ -1,0 +1,104 @@
+cache:
+request:
+		form:
+response:
+websocket:
+		cài đặt:
+SOLID:
+----------------------------------------------------------------------
+cache: lưu dữ liệu vào vùng nhớ tạm để tăng tốc độ truy xuất dữ liệu
+		2 loại cache:
+			- cache được lưu ở phía server
+			- cache được lưu ở phía client
+			- cache có thể có server riêng để truy xuất dữ liệu
+		cache trong authentication:
+			- khi đăng nhập server sẽ kiểm tra tk và mk đối chiếu với token trên server
+			- nếu thông tin đúng, thì server sẽ trả về token cho client và lưu cache
+			- các lần truy cập hay gửi request lần sau sẽ gửi kèm token trên cache về server
+			- server sẽ đối chiếu token từ request với token trên cache server, nếu cache server không có thì sẽ truy xuất từ db
+			Authentication là quá trình xác thực danh tính người dùng.
+			Authorization quyết định quyền hạn của người dùng sau khi đã xác thực.
+----------------------------------------------------------------------------
+request:
+		method: 
+		mã thông báo: 200 được sử dụng khi request sử lý hoàn tất và có dữ liệu trả về
+		mã thông báo: 204 được sử dụng khi request sử lý hoàn tất nhưng không có dữ liệu trả về
+		mã lỗi: 404 được sử dụng khi request sử lý chưa hoàn tất do dữ liệu rỗng
+		mã lỗi 500: được sử dụng khi có 1 vấn đề không rõ nguyên nhân, sử dụng khi nó rơi vào hàm try-catch
+		form:
+				name="name[]"			// dữ liệu form ở dạng mảng
+-----------------------------------
+Cookie: thích hợp để lưu token cho phiên đăng nhập
+		Session cookie: bị mất khi tắt tab hoặc đóng trình duyệt, ko lưu thời gian tồn tại của cookie; ko có lưu thời gian tồn tại của cookie
+		Persistent cookie: được lưu trữ trong ổ đĩa máy tính, ko bị mất khi tắt trình duyệt; có lưu thời gian tồn tại của cookie
+		Tạo cookie:
+			return response('Hello World')->withCookie(cookie('name', 'value')); 		//trả về session cookie
+			return response('Hello World')->withCookie(cookie('name', 'value', 60));	//trả về persistent cookie
+		Đọc cookie:
+			$value = $request->cookie('name');
+		Xóa cookie:
+			return response('Goodbye')->cookie(\Cookie::forget('name'));
+Session:
+		Được lưu trữ ở phía server; còn client chỉ lưu session Id:	storage/framework/sessions
+		Mọi hoạt động truy xuất dữ liệu cũng ở server
+		Cấu hình session: config/session				// cài đặt thời gian tồn tại, và nơi lưu session
+		Session tự động biến mất khi:
+			người dùng  đăng xuất, đóng trình duyệt, không hoạt động, Hết hạn theo thời gian, kết thúc phiên
+
+		use Illuminate\Support\Facades\Session;
+
+		// Khởi tạo một phiên mới
+		Session::start();
+		// Lưu trữ một giá trị vào session
+		Session::put('key', 'value');
+
+		// Lưu trữ nhiều giá trị vào session
+		Session::putMany([
+			'key1' => 'value1',
+			'key2' => 'value2',
+		]);
+		// Truy xuất giá trị từ session
+		$value = Session::get('key');
+		// Xóa một giá trị từ session
+		Session::forget('key');
+
+		// Xóa nhiều giá trị từ session
+		Session::forgetMany(['key1', 'key2']);
+		// Kiểm tra sự tồn tại của một giá trị trong session
+		if (Session::has('key')) {
+		// Giá trị tồn tại
+Cache:
+		Sử dụng để lưu trữ dữ liệu tạm trên client;
+		$expiration = 1;		// phút hiệu lực
+		$data = cache()->remember('key', $expiration, function () {
+				$data = Receipt::get();
+				return $data;
+		});
+		- trong ví dụ trên, chúng ta sẽ lưu cache trên client với thời gian hiệu lực expiration;
+		- nếu trong thời gian hiệu lực thì hàm sau sẽ không truy vấn cơ sở dữ liệu nữa, mà lấy trực tiếp data từ cache client
+		- chỉ áp dụng cho dữ liệu ít thay đổi;
+		}
+		
+		// Xóa toàn bộ dữ liệu trong session
+		Session::flush();
+websocket:
+		Cài đặt:
+				composer require cboden/ratchet			// cài đặt trên thư mục dự án
+		Tạo websocket server:
+
+SOLID:
+		Single Responsibility Principle: Nguyên tắc Trách nhiệm Đơn lẻ
+			- Mỗi class chỉ nên chịu trách nhiệm cho 1 công việc duy nhất
+			- giống như 1 controller chỉ nên chịu trách nhiệm trên 1 màn hình
+		Open-Closed Principle:	(Nguyên tắc Đóng mở)
+			- Các lớp phải mở rộng được để thêm chức năng mới nhưng không được phép sửa đổi lớp gốc
+		Liskov Substitution Principle:	(Nguyên tắc thay thế Liskov)
+			- tuân theo đúng việc kế thừa trong lập trình hướng đối tượng
+			- tuân theo tính đúng đắn của lớp cha con
+			- lớp cha phải có thể được sử dụng thay cho lớp con, tức là các hàm override từ lớp con không được thay đổi cấu trúc của lớp cha
+		Interface Segregation Principle: (Nguyên tắc phân tách giao diện
+			- tách các interface thành các interface nhỏ hơn để đảm bảo các interface không có hàm dư thừa khi sử dụng trên 1 UI người dùng
+		Dependency Inversion Principle: (Nguyên tắc đảo ngược phụ thuộc)
+			Thay vì gọi trực tiếp hàm cha ở trong hàm con, thì hãy sử dụng interface hoặc abstract để dependency inject
+ 
+	

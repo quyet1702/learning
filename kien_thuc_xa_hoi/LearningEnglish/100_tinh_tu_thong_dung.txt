@@ -1,0 +1,100 @@
+1	Shy	/ʃaɪ/	nhút nhát
+2	Confident	/ˈkɒn.fɪ.dənt/	tự tin
+3	Original	/əˈrɪdʒ.ən.əl/	nguyên bản
+4	Scared	/skeəd/	sợ hãi
+5	Popular	/ˈpɒp.jə.lər/	thịnh hành
+6	Absent	/ˈæb.sənt/	vắng mặt
+7	Nervous	/ˈnɜː.vəs/	lo lắng
+8	Special	/ˈspeʃ.əl/	đặc biệt
+9	Favourite	/ˈfeɪ.vər.ɪt/	yêu thích
+10	Crowded	/ˈkraʊ.dɪd/	đông đúc
+11	Peaceful	/ˈpiːs.fəl/	bình yên
+12	Beautiful	/ˈbjuː.tɪ.fəl/	đẹp
+13	Common	/ˈkɒm.ən/	phổ biến
+14	Acceptable	/əkˈsept.ə.bəl/	chấp nhận được
+15	Punctual	/ˈpʌŋk.tʃu.əl/	đúng giờ
+16	Challenging	/´tʃælindʒiη/	mang tính thách thức
+17	Jobless	/ˈdʒɒb.ləs/	thất nghiệp
+18	Qualified	/ˈkwɒl.ɪ.faɪd/	đủ khả năng
+19	Employed	/ɪmˈplɔɪd/	có việc làm
+20	Rich	/rɪtʃ/	giàu
+21	Cheap	/tʃiːp/	rẻ
+22	Expensive	/ɪkˈspen.sɪv/	đắt
+23	Wasteful	/ˈweɪst.fəl/	phí phạm
+24	Broke	/brəʊk/	cháy túi
+25	Due	/dʒuː/	đến hạn
+26	Reasonable	/ˈriː.zən.ə.bəl/	phải chăng
+27	Generous	/ˈdʒen.ər.əs/	hào phóng
+28	Exciting	/ɪkˈsaɪ.tɪŋ/	gây hứng thú
+29	Lively	/ˈlaɪv.li/	sống động
+30	Modern	/ˈmɒd.ən/	hiện đại
+31	Various	/ˈveə.ri.əs/	đa dạng
+32	Bustling	/ˈbʌs.lɪŋ/	náo nhiệt
+33	Appealing	/əˈpiː.lɪŋ/	thu hút
+34	Central	/ˈsen.trəl/	ở giữa
+35	Convenient	/kənˈviː.ni.ənt/	tiện lợi
+36	Pricey	/ˈpraɪ.si/	đắt đỏ
+37	Selfish	/ˈsel.fɪʃ/	ích kỉ
+38	Unhealthy	/ʌnˈhel.θi/	không tốt cho sức khoẻ
+39	Poor	/pɔːr/	nghèo
+40	Affordable	/əˈfɔː.də.bəl/	vừa túi tiền
+41	Overpopulated	/ˌəʊ.vəˈpɒp.jə.leɪ.tɪd/	quá tải dân số
+42	Comfortable	/ˈkʌm.fə.tə.bəl/	thoải mái
+43	Cramped	/kræmpt/	chật chội
+44	Safe	/seɪf/	an toàn
+45	Vibrant	/ˈvaɪ.brənt/	sôi động
+46	Friendly	/ˈfrend.li/	thân thiện
+47	One-way	/ˌwʌnˈweɪ/	một chiều
+48	Complicated	/ˈkɒm.plɪ.keɪ.tɪd/	phức tạp
+49	Chilled	/tʃɪld/	thư giãn
+50	Noisy	/ˈnɔɪ.zi/	ồn ào
+51	Comfy	/ˈkʌm.fi/	dễ chịu
+52	Cosy	/ˈkəʊ.zi/	ấm cúng
+53	Excited	/ɪkˈsaɪ.tɪd/	hào hứng
+54	Huge	/hjuːdʒ/	rất lớn
+55	Amazing	/əˈmeɪ.zɪŋ/	đáng kinh ngạc
+56	Disappointed	/ˌdɪs.əˈpɔɪn.tɪd/	thất vọng
+57	Hidden	/ˈhɪd.ən/	bị ẩn giấu
+58	Touristy	/ˈtʊə.rɪ.sti/	quá đông du khách
+59	Lovely	/ˈlʌv.li/	đáng yêu
+60	Local	/ˈləʊ.kəl/	thuộc địa phương
+61	National	/ˈnæʃ.ən.əl/	toàn quốc
+62	Normal	/ˈnɔː.məl/	bình thường
+63	Fair	/feər/	công bằng
+64	Strange	/streɪndʒ/	kì lạ
+65	Angry	/ˈæŋ.ɡri/	tức giận
+66	Proud	/praʊd/	tự hào
+67	Traditional	/trəˈdɪʃ.ən.əl/	truyền thống
+68	Familiar	/fəˈmɪl.i.ər/	quen thuộc
+69	Rainy	/ˈreɪ.ni/	nhiều mưa
+70	Pleasant	/ˈplez.ənt/	dễ chịu
+71	Sunny	/ˈsʌn.i/	nhiều nắng
+72	Nasty	/ˈnɑː.sti/	gây khó chịu
+73	Awful	/ˈɔː.fəl/	kinh khủng
+74	Typical	/ˈtɪp.ɪ.kəl/	điển hình
+75	Humid	/ˈhjuː.mɪd/	ẩm
+76	Yummy	/ˈjʌm.i/	ngon
+77	Crispy	/ˈkrɪs.pi/	giòn
+78	Sweet	/swiːt/	ngọt
+79	Savoury	/ˈseɪ.vər.i/	có vị mặn
+80	Vegetarian	/ˌvedʒ.ɪˈteə.ri.ən/	chay
+81	Oily	/ˈɔɪ.li/	nhiều dầu mỡ
+82	Dry	/draɪ/	khô
+83	Hangry	/ˈhæŋ.ɡri/	cáu vì đói
+84	Spicy	/ˈspaɪ.si/	cay
+85	Thirsty	/ˈθɜː.sti/	khát nước
+86	Tipsy	/ˈtɪp.si/	ngà ngà say
+87	Useless	/ˈjuːs.ləs/	vô dụng
+88	Sparkling	/ˈspɑː.klɪŋ/	có ga
+89	Terrible	/ˈter.ə.bəl/	tồi tệ
+90	Plain	/pleɪn/	nhạt
+91	Strong	/strɒŋ/	nồng
+92	Raw	/rɔː/	sống (chưa chín)
+93	Fresh	/freʃ/	tươi
+94	Delicious	/dɪˈlɪʃ.əs/	ngon miệng
+95	Frozen	/ˈfrəʊ.zən/	đông lạnh
+96	Undercooked	/ˌʌn.dəˈkʊkt/	chưa nấu kĩ
+97	Tasty	/ˈteɪ.sti/	ngon
+98	Strict	/strɪkt/	nghiêm ngặt
+99	Crappy	/ˈkræp.i/	dở tệ
+100	Ageing	/ˈeɪ.dʒɪŋ/	lão hóa

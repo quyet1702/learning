@@ -1,0 +1,16 @@
+Hoán đổi vị trí ở ô 3 mặt trước -> ô 3 mặt phải
+	R U R' U' R' F R2 U' R' U' R U R' F'
+Hoán đổi ô số 3 mặt trước và ô số 3 mặt sau:
+	UL'U'L
+
+Khi còn 1 tầng ở trên:
+	FRUR'U'F'
+	khi mặt trên đã xếp ô 2,4,5
+		FRUR'U'F' 
+	Khi mặt trên đã xếp dấu +
+		RUR'URUUR'
+	Khi mặt trên đã hoàn thành:
+		khi ô 1 và 3 hoàn thành
+			RUR'F'RUR'U'R'FRRU'R'U'
+		khi mặt sau hoàn thafnhL:
+			RRURUR'U'R'U'R'U'R' 

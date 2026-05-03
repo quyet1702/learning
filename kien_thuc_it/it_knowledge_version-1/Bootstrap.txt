@@ -1,0 +1,377 @@
+- 
+- chia layout:
+	remove class khi screen < (none)576px, (sm)576px, (md)768px, (lg)992px, (xl)1200px, (xxl)1400px
+	- container
+		container-(none,sm,md,lg,xl,xxl)	thêm margin-auto và width=100% theo màn hình
+		container-fluid				không có margin
+	layout => row				tự tạo 1 row width=100% để chứa 12 col
+				
+						nếu 1 thẻ không có col thì thẻ này và các thẻ sau sẽ bị đẩy ra khỏi row
+		
+	column:
+		flex 			=> item ở dạng column		
+	Row:
+		d-flex	<-> row		item ở dạng row và nowrap <-> item ở dạng row và wrap
+		d-inline-flex		set display:inline cho row
+		flex-(screen)-(row,column)		set item dạng row hay column
+		flex-(screen)-(row,column)-reverse	sắp xếp ngược lại
+		flex-(wrap,nowrap)	cho phép xuống row mới hay không cho
+			flex-(screen)-fill	chiếm phần còn lại của kích thước cha
+			flex-shrink-(1,2,3,4,5)	chiếm vừa đủ content
+			flex-grow-(1,2,3,4,5)	chiếm col-12
+		justify-content-(screen)-(start,end,center,between,around,evenly)	đẩy qua trái, phải, vào giữa,2 bên, padding đều, margin đều
+		align-items-(screen)-(start,center,end,baseline,stretch	height 100% của row, căn theo dòng cơ bản, height = 100%
+			order-(screen)-(0|1|2|3|4|5|last|first)	sắp xếp số càng cao càng nằm cuối, chỉ sắp xếp với các col có order
+			col-(screen)-size(1->12, auto(kích thước content)) col sẽ chiếm phần còn lại
+			offset-(screen)-(1|2|3|4|5...) 		nhảy cóc qua 1,2,3,4,5... col từ trái sang phải
+			align-self-(start,center,end)	đẩy lên trên, giữa dưới
+			(m(margin)|p(padding))(t(top)|b(bottom)|s(start),e(end)|x(left,right)|y(top,bottom))-(screen)-(0,1,2,3,4,5)
+				ví dụ: mt-md-3
+			pe-(none|auto)			tắt hoặc bật thuộc tính pointer
+		row-cols-3			chỉ cho phép 3 col trên 1 row, đếm từ trên xuống, và col có phân màn hình sẽ đc gom lại thành 1 col
+		roww-cols-auto			các col chỉ lấy kích thước content, và col có phân màn hình sẽ chiếm phần còn lại của row	
+		navbar				các thẻ con có height = nhau
+		navbar-brand			loại bỏ gạch chân và set inline-block cho thẻ a
+			text-sm-center		căn giữa chữ
+	- <table class=""> 
+		table
+input:	class=""
+	form-control					tự tạo padding kích thước trung bình
+	form-control form-control-(screen)		tự tạo padding lớn nhỏ theo screen
+<table class="":
+	talbe 			thêm đường thẳng ngăn cách các row
+	table-striped		thêm sọc ngựa vằn vào bảng
+	table-bordered		border toàn bộ bảng
+	table-hover		thêm hover vào các row
+	table-condensed		giảm padding của các cell
+	- <tr class="danger">	thêm color vào row
+	table-responsive	thêm vào thẻ cha của table để tạo scroll horizontally cho thiết bị nhỏ hơn 768px
+	table-(screen)		screen thể hiện kích thước padding của từng row
+- <img class="":
+	img-rounded	tạo radius nhẹ cho img
+	img-circle	tạo radius hình tròn cho img
+	img-thumbnail	tạo border đẹp cho img
+- <div class="":
+	container	padding width margin cho trang
+	thumbnail	tạo border đẹp
+	jumbotron	tạo background-color, size, font đẹp
+	page-header	tạo padding thích hợp dành cho header
+	well		tạo border, border-radius, padding, background-color thích hợp cho nội dung đặc sắc
+	well-sm,well-lg	kích thước padding
+	alert		tạo padding cho thông báo
+	alert-info	thêm màu cho khung thông báo
+	alert-dismissible	thêm padding right
+	.alert-dismissible .close	thêm position cho btn close
+	fade 		tạo transition hiệu ứng tự động ẩn
+- alert:
+	<div class="alert alert-danger alert-dismissible fade in">
+    		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   		 <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+  	</div>
+	
+nav:	
+<ul class="">
+	nav		thêm display: flex
+	nav-tabs	hiện dưới dạng tabs
+	nav-stacked	hiện dưới dạng dọc
+	nav-pills	class dẫn tới class con
+		<li class"action">	thêm backgound và color cho btn
+dropdown:
+navbar 					tinh chỉnh thành 1 flex row, chữ center, wrap
+navbar-dark				phiên bản màu đen flex + center + 
+navbar-expand-lg			đặt screen cho toggle
+	navbar-brand 			chữ màu trắng + hover+focus	
+	navbar-text			chữ màu trắng nhạt
+		a			chữ màu trắng + hover + focus
+	navbar-nav
+		nav-link		chữ màu trắng + hover + focus
+			disable		chữ màu trắng nhẹ
+			active		chữ màu trắng đậm
+	
+navbar-light				phiên bản màu trắng + hover + focus
+	navbar-brand 			chữ màu đen	
+	navbar-expand-(screen)		đặt screen cho toggle
+	navbar-text			chữ màu đen
+	navbar-nav
+		nav-link		chữ màu đen + hover + focus
+			disable		chữ màu đen nhẹ
+			active		chữ màu đen đậm
+	navbar-toggler			tạo nút toggle
+	data-bs-toggle="class"		class sẽ toggle khi click btn
+	data-bs-target=""#id		id sẽ trỏ đến thẻ cần toggle
+		span class="navbar-toggler-icon"	tạo icon toggle
+
+nav
+nav-pills
+nav-fill
+nav-tabs
+	nav-item
+		nav-link
+		active
+		disabled
+
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+
+
+riêng lẻ:
+	nav-link	đoạn link đẹp + hover+ focus
+	
+	navbar-brand	tinh chỉnh chữ của tên web
+	link-info	màu chữ + hover + focus
+
+
+
+vấn đề khi gặp lỗi
+	display flex
+	position
+	row hay column
+	padding margin
+	wrap hay nowrap
+
+reponsive:
+	chỉ sử dụng row
+		- trên row là có các element
+			mỗi element đều có d-flex và col
+				trên element có thành phần con phải lấp đầy khoảng trống của element
+			mỗi element nên set padding hay margin để thay đổi vị trí phù hợp
+		- khi reponsive thì sẽ đẩy các element xuống dòng để hiện thị cho phù hợp
+
+
+Tuân thủ quy tắc bao chứa và vật bị chứa:
+	- Xác định đâu là vật chứa, bao chứa, đâu vừa là vật chứa vừa là bao chứa
+	- Cấu hình bao chứa: kích thước bao chứa, vị trí các vật chứa,..
+		- dùng flex
+		- chú ý phần padding của vật chứa
+	- Cấu hình vật bị chứa: padding, margin, color, kích thước, style ,..
+		flex-grow-1	giúp đẩy các item trong flex
+	-
+Vật chứa mẫu sẵn:
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link text-dark"/>
+	<table class=table>
+		<thead>
+			 <tr>
+				<th scope="col">#</th>
+		<tbody>
+			<tr>
+				<th scope="row">1</th>
+
+cần chia rõ 3 phần:
+header - main - footer
+--------------------------------------------------------------------
+Layout:
+	header
+		<nav
+			Container
+				logo
+				toggler
+				main navbar
+				nav right
+	thành phần được ghim trên màn hình
+	main
+		
+		left sidebar			=> đây là khung sườn, có thể tạo thêm 1 số thẻ layout 
+		content				=> để tinh chỉnh như, container, flex,...
+			Breadcrumb		=> thanh điều hướng
+			table
+			footer
+		right sidebar
+		section 1		
+		section 2...		
+	footer
+Header:
+	<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">ESN Report</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                    
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               Thu Chi
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                               
+                                <li><a class="dropdown-item" href="#"> Tiền Thu </a></li>
+                                <li><a class="dropdown-item" href="#"> Tiền Chi </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kê Khai
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                                <li><a class="dropdown-item" href="#">Nhân Sự / Tài Xế</a></li>
+                                <li><a class="dropdown-item" href="#">Xe Tải / Môtô</a></li>
+                                <li><a class="dropdown-item" href="#">Các Phí Đơn Vận</a></li>
+                                   <li class="nav-item">
+                            <a class="nav-link" href="#">Giá Xăng Dầu</a>
+                        </li>
+                            </ul>
+                        </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Thống Kê</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-page="/Upload/Index" >Upload File</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               Quản Lý
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                               
+                                <li><a class="dropdown-item" asp-page="/Customers/Index" >Khách Hàng</a></li>
+                                <li><a class="dropdown-item" asp-page="/Employees/Index" >Nhân viên</a></li>
+                                <li><a class="dropdown-item" asp-page="/Carriages/Index" >Xe</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Orders/Index" >Đơn Hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/TransportOrders/Index" >Đơn Vận Chuyển</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+main:
+	<div class="container">
+        	<main role="main" class="pb-3" style="min-height: 800px">
+           	 	@RenderBody()
+        	</main>
+    	</div>
+
+table:
+	<div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+            </tr>
+	</thead>
+	<tbody>
+            <tr>
+              <td>1,001</td>
+              <td>random</td>
+              <td>data</td>
+              <td>placeholder</td>
+              <td>text</td>
+            </tr>
+	</tbody>
+        </table>
+      </div>
+
+footer:
+	<footer class="border-top footer text-muted">
+        	<div class="container">
+            		&copy; 2022 - ESN.Logistic.Report - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        	</div>
+    	</footer>
+
+--------------------------------
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+Các tiện ích CSS cơ bản của Bootstrap:
+	căn text theo trục x trong phạm vi padding: text-start, text-center, text-end
+	căn text theo trục y trong phạm vi padding: align-text-top, align-text-bottom
+	màu chữ: .text-(white|primary| secondary|success|info|warning|danger| light|dark| muted| hide| decoration-none|
+	Chuyển thành chữ in hoa: .text-uppercase
+	Chuyển thành chữ thường: .text-lowercase
+	Cắt chữ khi vượt quá chiều dài dòng: .text-truncate
+	Thiết lập dòng chữ không có chế độ wrap (không ngắt dòng): .text-nowrap
+	dãn đều dòng chữ: .text-justify
+	Đánh dấu một đoạn văn: .mark
+	Đánh dấu một đoạn văn có chữ nhỏ hơn: .small
+	Tạo một hiện thị trích dẫn có ký hiệu -- .blockquote-footer
+	Đánh dấu ul, li bỏ kiểu trình bày danh sách .list-unstyled
+	Đánh dấu ul hiện thị dạng inline .list-inline
+	Đánh dấu li hiện thị dạng inline float left: .list-inline-item
+	Ẩn thẻ: .invisible
+	Hiện thị .visible
+	background-color: bg-dark
+Thiết lập thuộc border:
+	.border viền 4 cạnh
+	.border-{top | bottom  | left | right }		viền từng cạnh chỉ định
+	.border-{1|2|3|4|5}	=> độ rộng viền
+	.border-{primary|secondary|success| danger|warning|info|light|dark|white}	màu viền
+	.rounded bo tròn cả 4 góc
+	.rounded-(left|top|right|bottom)
+	.rounded-circle
+	.rounded-0
+Thiết lập chiều cao, chiều rộng:
+	w-25 w-50 w-75 w-100 w-auto để thiết lập chiều rộng theo phần trăm của chiều rộng phần tử cha, auto là tự động co
+	mw-100 thiết lập thuộc tính max-width: 100%
+	h-25 h-50 h-75 h-100 h-auto để thiết lập chiều cao theo phần trăm của chiều cao phần tử cha, auto là tự động co
+	mh-100 thiết lập thuộc tính max-height: 100%
+nav cơ bản:
+	<ul class="nav">
+    		<li class="nav-item">
+        		<a class="nav-link" href="#">Mục 1</a>
+    		</li>
+    		<li class="nav-item">
+        		<a class="nav-link active" href="#">Mục 2</a>
+    		</li>
+    		<li class="nav-item">
+        		<a class="nav-link" href="#">Mục 3</a>
+    		</li>
+    		<li class="nav-item">
+        		<a class="nav-link disabled" href="#">Mục 4</a>
+    		</li>
+	</ul>
+	=> class bổ sung trên thẻ ul: nav dùng flex nên có thể sử dụng các class chỉnh flex
+			- nav-tabs hoặc nav-pills		làm nổi bật item có .active			- nav-justified hoặc nav-fill		đều lấp đầy khoảng trống của item, nhưng .nav-fill giúp ko co quắ mức content
+Drop-Down:
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </li>
+Tabs nâng cao:
+	<ul class="nav nav-tabs" id="myTab">		=> sử dụng flex để điều chỉnh layout
+        	<li class="nav-item">
+             		<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home">Home</button>
+        	</li>
+        	<li class="nav-item">
+              		<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile">Profile</button>
+        	</li>
+  	</ul>
+  	<div class="tab-content">
+        	<div class="tab-pane fade show active" id="home">...1</div>
+        	<div class="tab-pane fade" id="profile">...2</div>
+  	</div>

@@ -1,0 +1,33 @@
+Bước 1:	Tạo mạng cục bộ: truy cập website cùng wifi
+	- cmd: ipconfig lấy IPv4 Address
+				hoặc string url = "https://localhost:7199/";
+				var uri = new Uri(url);
+				var hostEntry = Dns.GetHostEntry(uri.Host);
+				Console.WriteLine($"Host {uri.Host} có các IP");
+				hostEntry.AddressList.ToList().ForEach(ip => Console.WriteLine(ip));
+		- dùng kiến thức web tạo và chạy 1 localhost
+		- truy cập với quyền admin
+		- tắt tường lửa: windows Explorer => network => property = > windows defender firewall => turn windows defender.. => off
+		-  Thêm vào appsetting đối với asp:
+			"Kestrel": {
+      			"EndPoints": {
+       				 "Http": {
+          				"Url": "http://*:4300"
+        			}
+      			}
+    		}
+		- để máy khác cùng mạng wifi truy cập tới, chỉ cần thay localhost bẳng địa chỉ ip ở dòng đầu
+	Bước 2: Tạo mạng toàn cục
+		- lấy ip moderm wifi: https://www.ip-adress.com/
+		- cài đặt moderm: Advanced Features => NAT => Virtual Server => add:
+			- Use Interface: lấy ở Network Settings-WAN
+			- Services: Network time Protocol
+			- IpAddress: lấy ở cmd:ipconfig
+			- port start/end: lấy ở port localhost mà ta lập trình
+			- Protocol: TCP/UDP
+		- để máy khác có thể truy cập ta chỉ cần thay localhost bằng ipwifi lấy ở https://www.ip-adress.com/
+	Chú ý: wifi tắt thì ipmodem sẽ thay đổi, và thiết bị tắt thì ip của thiết bị sẽ thay đổi
+		- ipwifi thì ko thể cố định, nhưng nó cũng gây nhiều tác hại vì chúng ta ít khi tắt wifi
+		- còn ip máy tính thì ta có thể cố định bằng cách sau:
+			- windows exlorer => network => change adapter settings => wifi => property => internet protocol TCP/IPv4 =>
+	Chú ý: chỉ được add 1 NAT - Virtual Server trong modem, nếu add nhiều sẽ ko thể truy cập được

@@ -1,0 +1,30 @@
+import:	     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+				<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+   	 			<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+	sử dụng:
+		<script>
+			toastr.options = {
+      			"closeButton": true,
+        			"newestOnTop": false,
+        			"progressBar": true,
+        			"positionClass": "toast-bottom-center",
+        			"preventDuplicates": false,
+        			"onclick": null,
+        			"showDuration": "300",
+        			"hideDuration": "1000",
+        			"timeOut": "20000",						// thời gian tồn tại của alert
+        			"extendedTimeOut": "1000",
+        			"showEasing": "swing",
+        			"hideEasing": "linear",
+        			"showMethod": "fadeIn",
+        			"hideMethod": "fadeOut"
+        		}
+			toastr.success('Success messages');
+			toastr.error('errors messages');
+			toastr.warning('warning messages');
+			toastr.info('info messages');
+			toastr.success('Success messages','title');
+			toastr.error('errors messages','title');
+			toastr.warning('warning messages','title');
+			toastr.info('info messages','title');
+		</script>

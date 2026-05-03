@@ -1,0 +1,64 @@
+Công việc:
+	sửa table WarrantyTicket trong sql khớp với anh hiếu
+
+-------------------------------------------------------------------------------------------------------------------
+Id int primary key identity,
+	- VoucherCode nvarchar(500),			--0 Số chứng từ(Số Ct)
+	- WarrantyStatus nvarchar(500),		--1 Tình Trạng Bảo hành
+	- HasProduct nvarchar(500),			--2 tentrangthaicohang
+	- BarCode	nvarchar(500),				--3 Mã vạch
+	 -ProductCode nvarchar(500),			--4 Mã vật tư (maTv)
+	 -ProductName nvarchar(500),			--5 Tên vật tư (Tên VT)
+	 -CustomerCode nvarchar(100),			--6 Mã khách hàng (mã kh)
+	 -ProductBrandCode nvarchar(500),		--7 Mã nhãn hiệu vật tư (manhvt)
+	 -GiveToCustomer nvarchar(500),		--8 Gửi sản phẩm lại cho khách hàng (tentrangthaitrakh)
+	- PublicationDate DateTime,			--9 Ngày xuất bản (ngayxuatban)
+	- ProductErrorStatus nvarchar(500),	--10 trạng thái lỗi sản phẩm (diengiaict)
+	- Accessory nvarchar(500),			--11 Phụ Kiện (phukiendikem)
+	- RealityError nvarchar(500),			--12 Lỗi thực tế (loithucte)
+	- Explain	nvarchar(500),				--13 Diễn giải
+	- Traders nvarchar(500),				--14 người giao dịch (nguoigd)
+	- PhoneNumber nvarchar(500),			--15 Số Điện thoại (tel)
+	- WarrantyExpiryDate DateTime,		--16 Ngày hết hạn bảo hành (ngayhetbh)
+	- WarrantyCount int,					--17 Số lần bảo hành (solandabh)
+	- WarrantyHourTotalOfSupplier int,	--18 Tổng số giờ bảo hành bên nhà cung cấp (tgbhncc)
+	- WarrantyHourTotalOfCompany int,		--19 Tổng số giờ bảo hành bên Công ty (tgbhcty)
+	- WarrantyEmployee nvarchar(500),		--20 Nhân viên bảo hành (nvbh)
+	- MaterialBrandName nvarchar(500),	--21 Tên nhãn hiệu vật tư (tennhvt)
+	- CustomerName nvarchar(500),			--22 Tên Khách hàng (tenkh)
+	- BarCodeInputToReplace nvarchar(500),		--23 Mã vạch nhập thay thế (mavachnhapthaythe)
+	- MaterialCodeInputToReplace nvarchar(500), --24 Mã vật tư nhâp thay thế(mavtnhapthaythe)
+	- MaterialNameInputToReplace nvarchar(500), --25 Tên vật tư nhập thay thế (tenvtnhapthaythe)
+	- Note nvarchar(500),							--26 Ghi chú (ghichu)
+	- WarrantyHourTotalOfSupplierToReplace nvarchar(500), --27 Tổng số giờ bảo hành bên nhà cung cấp nhập thay thế (tgbhnccnhapthaythe)
+	- WarrantyHourTotalOfCompanyToReplace nvarchar(500), --28 Tổng số giờ bảo hành bên Công ty nhập thay thế (tgbhctynhapthaythe)
+	- PublicationVoucherCode nvarchar(500),	--29 Mã chứng từ xuất bản  (so_ct_xuat_ban)
+	-  PublicationWareHousesCode nvarchar(500),	--30 Mã kho xuất bản (makhxuatban)
+	- PublicationWareHousesName nvarchar(500),	--31 Tên kho xuất bản (tenkhxuatban)
+	- Status nvarchar(500),					--32 Trạng thái (trangthai)
+	- CustomerPayStatus nvarchar(500),		--33 Trạng thái trả khách hàng (trangthaitrakh)
+	- BarCodePayToReplace nvarchar(500),		--34 Mã vạch trả thay thế (mavachtrathaythe)
+	MaterialCodePayToReplace nvarchar(500), --35 Mã vật tư trả thay thế(mavttrathaythe)
+	MaterialNamePayToReplace nvarchar(500), --36 Tên vật tư nhập thay thế (tenvttrathaythe)
+	dvttrathaythe nvarchar(500),			--37
+	tgbhncctrathaythe nvarchar(500),		--38
+	tgbhctytrathaythe nvarchar (500),		--39
+	TemBaoHanh DateTime,					--40
+	ErrorCode nvarchar (500),				--41 Mã lỗi (maloi)
+	ErrorName nvarchar(500),				--42 Tên lỗi (tenloi)
+	tentrangthaidoihangncc nvarchar (500),	--43
+	IsRepairt bit,					--44 Có thể sửa hay không, true là không thể, false là có thế (is_khongsuaduoc)
+	maCty nvarchar(100),					--45
+	SttRec nvarchar(500),					--46
+	SttRec0 nvarchar(500),					--47
+	MaCt nvarchar(500),						--48
+	NgayHenTra nvarchar(500),				--49
+	WareHouseCode nvarchar(200),			--50 Mã kho (157SG)
+	WareHouseName nvarchar(200),			--51 Tên kho (ten_kho)
+	tenbp nvarchar (500),					--52
+	CalculationUnit nvarchar (500),					--53 Đơn vị tính (dvt)
+	dvtnhapthaythe nvarchar(500),			--54
+	ghichubh4NCCtralaitien nvarchar(500),	--55
+	isncctralaitien nvarchar(500),			--56
+	ghichuhetbh nvarchar(500),				--57
+	SendingDate datetime					-- Ngày gửi nhà cung cấp

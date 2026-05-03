@@ -1,0 +1,400 @@
+INSTALL SQLSERVER:
+	SQL2019-SSEL-DEV.exe -> base -> Install-> Customize -> next -> next -> database engine services + data quality services + client tools connectity -> next -> name instance + id = localhost -> next -> add cusrent user -> next -> install ==> SSMS-Setup-ENU.exe -> Install ->
+phân tích thiết kế:
+ 	- Xác định bảng đối tượng: Người, sự vật, hiện tượng. Các bảng này sẽ có quan hệ 1
+	- Xác định bảng dữ liệu bổ sung: thông tin bổ sung cho bảng đối tượng. có quan hệ 1:1 với bảng đối tượng. Nhằm giảm các cột trống hoặc dữ liệu không cần thiết trong bảng đối tượng
+	- Xác định bảng con: Là bảng thuộc sở hữu của bảng đối tượng. Có quan hệ 1:1 hoặc n:1
+	- Xác 
+	- thủ thuật phân tích bảng: xác định các thực thể lớn
+		- tư duy theo tình huống thực tế
+		- thực thể này liên hệ với thực thể nào
+			- mối liên hệ này là 1:1 hay 1:n
+			- bảng này là của cái nào
+		- ví dụ thực thể nhân viên: 
+			nhân viên thì lái xe và chỉ có thể lái 1 xe: liên hệ với xe 1:1
+		
+- export file:- click right (Object exporer/databaseName) -> Tasks -> Generate Scripts...-> select all object -> next -> chose location C:\data\DataSQL\Scrips.sql -> next -> finish
+	- ANSI Padding => True
+	-  Script Foreign Keys => True
+
+	- Script Indexes => True
+
+	- Script Primary Keys => True
+
+	- Script Unique Keys => True
+
+	- Types of data to script => Scema and data
+- database
+	- create database profile					-> tạo db
+	- drop database profile						-> xóa db
+	- alter database profile modify name = myself 			-> sửa tên db
+- table:
+	- EXEC sp_rename 'old_table_name', 'new_table_name'		-> Đổi tên bảng
+	- DBCC CHECKIDENT(TableName, RESEED, 0)				-> reset bộ đếm identity(1,1) về 0
+	- DROP TABLE ten_bang							-> xóa bảng
+	- ALTER TABLE table_name ADD column_name datatype;		-> Thêm cột
+	- ALTER TABLE table_name DROP COLUMN column_name		-> xóa cột
+	- ALTER TABLE table_name ALTER COLUMN column_name datatype;	-> đổi tên, kiểu dữ liệu của cột
+	- exec sp_help profile						-> xem thông tin bảng
+	- truncate table ten_bang					-> xóa toàn bộ dữ liệu trong bảng
+	- ALTER TABLE Persons ADD CONSTRAINT df_City DEFAULT 'Sandnes' FOR City;	-> Thêm DEFAULT, chỉ thêm khi cột có constrant
+	- ALTER TABLE Persons ALTER COLUMN City DROP DEFAULT;		-> xóa default của cột
+	Thêm UNIQUE: ALTER TABLE Persons ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+	Xóa UNIQUE: ALTER TABLE Persons	DROP CONSTRAINT UC_Person;
+	Thêm PRIMARY KEY: ALTER TABLE Persons ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+	Xóa PRIMARY KEY: ALTER TABLE Persons DROP CONSTRAINT PK_Person;
+	Thêm FOREIGN KEY: ALTER TABLE Orders ADD CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+	Xóa FOREIGN KEY: ALTER TABLE Orders DROP CONSTRAINT FK_PersonOrder;
+	
+	- kiểu dữ liệu:
+		- char, nvarchar, text, binary, numberic, money, datetime, bit, variant
+	- Thuộc tính bổ trợ:
+		- computed: tenthuoctinh as getdate()		-> tự động set nếu để null
+		- UNIQUE: đảm bảo các giá trị 1 cột là khác nhau
+			CONSTRAINT UC_Person UNIQUE (ID,LastName)	=> thêm UNIQUE và đặt tên
+		- CHECK: giới hạn value
+			ví dụ: CHECK (Age>=18)	chỉ nhận giá trị trên hoặc = 18
+		- default 22: khi để trống thì sẽ tự điền giá trị mặc định là 22
+		- primary key: khóa chính
+			CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+		- FOREIGN KEY:
+			CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)REFERENCES Persons(PersonID)	
+			-> chỉ định rõ bảng và thuộc tính khóa chính
+			-> khóa ngoại chỉ có thể tham chiếu đến khóa chính
+			-> khóa ngoại không nên để identity để tránh lỗi
+		- foreign key references tableduocthamchieu(thuoctinh1,thuoctinh2)	
+		- identity: id tăng tự động
+			IDENTITY(1,5) bắt đầu bằng 1 và tăng sẽ cộng thêm 5
+		- INDEX:		=> giúp tăng tốc độ tìm kiếm
+			CREATE INDEX index_name ON table_name (column1, column2, ...);
+			- Xóa Index: DROP INDEX table_name.index_name;
+	ALTER DATABASE SINHVIEN SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+	ALTER DATABaSE ProESL SET MULTI_USER
+	ON DELETE { CASCADE | NO ACTION | SET NULL | SET DEFAULT } ]
+		CASCADE bảng mẹ bị xóa thì bảng con bị xóa theo
+		NO ACTION bảng mẹ bị xóa thì bảng con giữ nguyên
+		SET NULL bảng mẹ bị xóa thì khóa ngoại bảng con set Null
+		SET DEFAULT bảng mẹ bị xóa thì khóa ngoại bảng con set default
+ON UPDATE { CASCADE | NO ACTION | SET NULL | SET DEFAULT } ]	
+- update table: 
+		UPDATE table_name 
+		SET column1 = value1, column2 = value2, ... 
+		WHERE condition;
+- Delete row:  
+		DELETE FROM table_name WHERE condition;
+	delete all row: 
+		DELETE FROM table_name;
+- insert into:
+		- insert into table_name value (1,'quyet',22,..)
+		- insert into table_name (id,name,age,...) value (1,'quyet',22,..)
+ 		- insert into table_name values (),(),(),...
+		- insert into table_name(name, age) 
+		  values ("quyet", 22),(),()... -> thêm dữ liệu vào bảng
+		- định dạng datetime: 'năm/tháng/ngày giờ:phút:giây:miligiây' 
+				hoặc:	'tháng/ngày/năm'
+				có thể thay dấu / bằng dấu -
+
+CREATE PROCEDURE procedure_name
+		AS
+		sql_statement
+		GO;
+	EXEC procedure_name;
+
+	procedure có tham số:
+		CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10)
+			AS
+			SELECT * FROM Customers WHERE City = @City
+		EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP'
+- SELECT {dữ liệu dòng} from {dữ liệu bảng}:
+		dữ liệu dòng: 
+		- DISTINCT Country		-> lấy các trường có value không đụng hàng
+		- TOP number|percent column_name(s)
+		- TOP 3 *		-> chỉ select 3 row đầu tiên
+		- SELECT * FROM Products limit 10;		-> gần giống select top- giới hạn 10 row được xuất hiện
+		- SELECT * FROM Customers LIMIT 3; 		-> chỉ select 3 row đầu tiên
+		- TOP 50 PERCENT	-> lấy 50% dòng đầu của table
+		- MIN(Price) AS SmallestPrice	-> lấy giá trị nhỏ nhất của cột
+		- MAX(Price) AS max		-> lấy giá trị lớn nhất của cột
+		- COUNT(Price) AS count		-> trả về số lượng row
+		- SUM(Price) AS sum		-> trả về tổng giá trị của các row
+		- AVG(Price) AS AVG		-> trả về giá trị trung bình của các row
+		- CustomerID AS ID	-> từ khóa as để định danh lại tên thuộc tính
+		ISNULL(UnitsOnOrder, 0)	trả về 1 giá trị thay thế khi nó là null
+Bảng ảo	
+	CREATE VIEW [Brazil Customers] AS
+		SELECT CustomerName, ContactName
+		FROM Customers
+		WHERE Country = 'Brazil';
+	SELECT * FROM [Brazil Customers];	truy vấn bảng ảo
+SQL Injection: giúp bảo mật csdl https://www.w3schools.com/sql/sql_injection.asp 
+- WHERE {boolean}:
+		- toán tử so sánh; = > < >= <= <> between like in AND OR NOT
+		Boolean:
+			- Price BETWEEN 0 AND 60;		-> lọc các row có giá từ 0 đến 60
+			- City LIKE N'%oàng %n q_yết'; 		-> lọc các City có value gần giống
+								_ Đại diện cho 1 ký tự duy nhất
+								[bsp] Đại diện cho 1 ký tự trong các ký tự trong []
+								[a-c] Đại diên cho 1 ký tự a hoặc b hoặc c theo bảng chữ cái
+								[!bsp] Đại diện cho 1 ký tự bất kỳ trừ bsp
+								% Đại diện cho không hoặc nhiều ký tự
+			- City IN ('Paris','London');		-> lọc các row có values Pais và London
+				IN (SELECT Country FROM Suppliers)
+			- Country='Germany' and id='1';		-> lọc các row có cả Country = Germany và id='1'
+			- Country='Germany' OR Country='Spain';	-> lọc các row có Country = Germany hoặc London
+			- NOT Country='Germany';			-> lọc row không có value Germany
+			- column_name IS NULL
+			- column_name IS NOT NULL
+			EXISTS(SELECT ...);			=> trả về true nếu select có dữ liệu trả về
+ORDER BY Country asc||desc;			-> asc sắp xếp các values theo a->z hoặc 1,2,3... còn decs thì ngược lại
+			
+- join: 
+		SELECT column_name(s)
+		FROM table1
+		RIGHT JOIN table2
+		ON table1.column_name = table2.column_name;
+		có thể sử dụng: LEFT JOIN
+				RIGHT JOIN
+				FULL JOIN
+- group by:
+		- SELECT Country FROM Customers GROUP BY Country;
+		- SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country;
+			-> nhóm các thuộc tính có cùng giá trị và chỉ xuất hiện 1 lần	
+			-> thường được sử dụng chung với count để lấy số lượng row của mỗi group
+			-> sử dụng chung với sum(), avg(), min(),max()
+- having:
+		- SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) > 5;
+		- là mệnh đề điều kiện giống như where nhưng having chỉ sử dụng với group by
+		- câu truy vấn trên dùng đề lọc các group có count(CustomerID) > 5
+Hàm:
+	SELECT CAST(25.65 AS int);		ép kiểu
+	SELECT IIF(500<1000, 'YES', 'NO');	giống lệnh if else
+	SELECT ISNULL('Hello', 'W3Schools.com');	nếu s1 not null thì chả về Hello, ngược lại trả về w3school.com
+	SELECT ISNUMERIC('4567');			trả về 1 nếu là số, ngược lại trả về 0; trường hợp này trả về 1
+kiểu DateTime:
+	select getdate()		=> trả về thời gian hiện tại kiểu datetime
+	SELECT year('2022-4-15')	=> trả về năm kiểu int
+	SELECT month(getdate())		=> trả về tháng kiểu int
+	SELECT day(getdate())		=> trả về ngày kiểu int
+	SELECT ISDATE('2017-08-25')	=> trả về 1 nếu đó là kiểu datetime, trả về 0 nếu ko phải
+	SELECT DATEPART(month, '2017/08/25')		=> trả về interval từ date, sử dụng gần giống DATENAME()
+	DATEADD(interval, number, date)			=> cộng date với number theo interval
+	SELECT DATEDIFF((interval, date 1, date 2)	=> trừ 2 thời gian
+	select DATENAME(interval, date)
+		date: là chuỗi đinh dạng ngày giờ nhập vào
+		interval: là giá trị sẽ return từ date như:
+			day		trả về ngày của tháng đó
+			dy,y, dayofyear trả về số ngày của năm đó
+			month, mm, m	trả về tháng của năm bằng chuỗi
+			year, yyyy, yy  trả vè năm
+			week, ww, wk	trả về số tuần của năm
+			weekday, dw, w 	trả về thứ của ngày bằng chuỗi ví dụL monday
+			hour, hh 	trả về giờ
+			minute, mi, n	trả về phút
+			second, ss, s	trả về giây
+			millisecond, ms	trả về mili giây
+	SELECT DATEFROMPARTS(2018, 10, 31)	trả về định dạng datetime '2018-10-31'
+	SELECT NULLIF(25, 25);			nếu 2 giá trị = nhau trả về null, ngược lại trả về giá trị đầu tiên
+Identity:
+	kiểm soát các lệnh insert
+	- tạo identity bằng cách thêm identity trong khi tạo bảng
+	- để thêm dữ liệu cần bật identity bằng cách: set identity_insert tableName On|Off
+	- không thể bật identity khi identity của table khác đang on
+Colation:
+	cấu hình việc so sánh: ví vụ like ='AS'
+	ALTER TABLE dbo.Collections2 ALTER COLUMN CollectionName varchar(50) COLLATE SQL_Latin1_General_CP1_CS_AS;
+	_CS	(phân biệt hoa-thường) chữ thường đc sắp xếp trước phiên bản chữ hoa. tìm kiếm (LIKE='Xin') cũng phân biệt hoa thường
+	_CI	(ko phân biệt hoa thường)
+	_AS	(phân biệt dấu) ví dụ a != â
+	_AI	(ko phân biệt)
+	_KS	()
+	_WS	(phân biệt chiều ngang của ký tự)
+Phân tích:			select {dữ liệu cột} from {dữ liệu bảng}		=> dữ liệu bảng
+				WHERE {dữ liệu boolean}					=> duyệt qua
+				LIMIT, ORDER BY, GROUP BY, having   -> kết quả 2
+			dữ liệu dòng - dữ liệu cột - dữ liệu bảng - DỮ LIỆU boolean
+	select duyệt qua tất cả row và gắn vào {dữ liệu cột}:
+		- mỗi lần duyệt qua sẽ kiểm tra where; nếu where = true thì lấy row đó
+		- và trả về dữ liệu bảng
+
+
+	các hàm có dữ liệu boolean:  
+		
+		
+		
+SQLite:
+	Các hàm thông dụng:
+	=>	SELECT strftime('%d-%m-%Y--%H:%M:%S  %J','now');		=> strftime Trả về đoạn text được format, gắn các giá trị lấy ở biến now
+			hàm trả về giá trị nếu đi 1 mình: ví dụ strftime('%s',now)
+		%d	ngày của time, 01-31
+		%m	Tháng, 00-12
+		%Y	Năm của time, YYYY
+		%S	Giây của time, 00-59
+		%M	Phút của time, 00-59
+		%H	Giờ của time, 00-23
+		%f	giống %S nhưng có phần thập phân SS.SSS
+
+		%w	Ngày của tuần, 0-6 (0 là Sunday)
+		%W	Tuần của năm, 01-53
+		%j	ngày của năm, 001-366
+		%J	trả về số ngày tính từ '-4713-11-25'	tức năm 4713 Trước công nguyên
+		%s	trả về Số giây, từ 1970-01-01
+		%%	Ký hiệu %
+
+
+	date(time, modifiers...)				trả về năm-tháng-ngày
+	time(time, modifiers...)				trả về giờ:phút:giây
+	datetime(time, modifiers...)			trả về năm-tháng-ngày giờ:phút:giây
+	julianday(time, modifiers...)			trả về số ngày tính từ '-4713-11-25'	tức năm 4713 Trước công nguyên
+		time là chuỗi string tuân theo định dạng
+		modifiers là thuộc tính sẽ mổ sẻ thuộc tính time theo ý muốn, 1 hàm có thể có nhiều modifiers
+	ví dụ: time('02:50:11')				phải tuân theo định dạng
+	Định dạng ngày tháng năm giờ: Time
+		YYYY-MM-DD
+		YYYY-MM-DD HH:MM
+		YYYY-MM-DD HH:MM:SS.SSS
+		MM-DD-YYYY HH:MM
+		HH:MM
+		YYYY-MM-DDTHH:MM
+		HH:MM:SS
+		YYYYMMDD HHMMSS
+		now
+	=> Modifiers: 	
+	NNN days
+	NNN hours
+	NNN minutes
+	NNN.NNNN seconds
+	NNN months
+	NNN years		=> N là số lượng muốn thêm vào, dùng -N +N để điều chỉnh thuộc tính time
+	start of month		time bắt đầu 1 tháng, ví dụ: 0:0:0 1-12-2021
+	start of year		time bắt đầu 1 năm, ví dụ: 0:0:0 1-1-2021
+	start of day		time bắt đầu 1 ngày, ví dụ: 0:0:0 12-11-2021
+	weekday N		ngày N trong tuần, N là từ 0 -> 6, 0 là CN, 1 là thứ hai, 2 là thứ ba,..
+	unixepoch		convert giây sang định dạng thời gian	ví dụ: select time(12334,'unixepoch')	kết quả: 03:25:34
+	localtime		ngày giờ trong máy tính của ta
+	utc			tiêu chuẩn giờ quốc tế
+	ví dụ:  SELECT date('now','start of month','+1 month','-1 day');
+MYSQL:
+	Thêm xóa sửa dữ liệu:
+		update tableName set comun_name = ? , comun_name = ? where
+		DELETE FROM table_name WHERE condition;
+	Truy vấn:
+		Lấy tất cả ->kết hợp bảng->lọc điều kiện -> sắp xếp -> gom nhóm -> having -> Chọn dữ liệu xuất -> giới hạn:
+			Lấy tất cả: chọn cột và kiểu xuất:
+				* , column_name , COUNT(column_name) , AVG(column_name) , SUM(column_name) , MIN(column_name) , MAX(column_name), DISTINCT column_name
+				LENGTH(column_name)	//đếm ký tự
+				Substring(coumn_name, index_start, leng)		// index bắt đầu bằng 0
+			Kết hợp bảng:
+				table1 t1 INNER JOIN table2 t2 ON dieukien;		// lấy phần giống nhau của table 1 và 2
+				table1 t1 left join table2 t2 ON dieukien;		// lấy phần giống nhau của table 1 và 2
+			Kết hợp 3 bảng:
+				table1 t1 left join table2 t2 ON dieukien
+				left join table3 t3 on dieukieu
+			lọc điều kiện:
+				=,>=,<=, column_name (BETWEEN value1 AND value2 | LIKE 'a%' | IN (value1, value2, ...) |
+				 IS NULL | IS NOT NULL | IS NOT NULL | = ANY(SELECT ProductID from ...) | = ALL(SELECT ProductID from ...)) , exists(select * from ...)
+				
+
+				column_name REGEXP '^a'		//tìm ký tự bắt đầu bằng a
+				column_name REGEXP 'a$'		//tìm ký tự kết thúc bằng a
+				column_name REGEXP '[fdsf]$'	// tìm ký tự kết thúc bằng f hoặc d hoặc s hoặc f
+				[^...]				// Bất kỳ ký tự nào không được liệt kê trong dấu ngoặc vuông
+				[...]				// Bất kỳ ký tự nào được liệt kê trong dấu ngoặc vuông
+			sắp xếp:
+				column_name asc | desc
+				RIGHT(NAME, 3), ID		// sắp xếp theo ký tự 3 bên phải, nếu nhiều thuộc tính trùng nhau thì sắp xếp theo id
+			Gom nhóm:
+				group by column_name
+			having: sử dụng gần giống where, nhưng having chỉ có tác dụng với các row giống nhau trong group by
+			giới hạn:
+				limit number
+			Mẹo:
+				Nếu điều kiện where quá khó, hãy liên tưởng đến điều kiện trong lập trình c#
+				có thể + - * / các column ở vùng select ..here.. form
+				các hàm có chứa giá trị chuỗi hay số đều có thể sử dụng ở select ... hay where...;
+					ví dụ: select LENGTH(column_name) hoặc where LENGTH(column_name) = 5
+				
+
+		insert:
+			- insert into table_name values (),(),(),...
+			- insert into table_name value ()
+		update:
+			update dictionaries set name_en = 'Student', name_vi = n'Học sinh' WHERE id = 3;
+		delete:
+			delete from dictionaries WHERE id = 1;
+		select():
+		from:
+		join():
+			SELECT * FROM [Products] join Suppliers on Products.SupplierID = Suppliers.SupplierID
+		where():
+			
+		whereDate:
+			SELECT * FROM [Employees] where BirthDate >= '1968-12-08'
+		whereDateTime:
+			SELECT * FROM orders WHERE order_datetime < '2021-09-30 14:30:00';
+		whereTime:
+			SELECT * FROM orders WHERE TIME(order_datetime) = '14:30:00';
+		whereHas():
+			SELECT * FROM [Products] where exists (select * from Categories where Categories.CategoryID = Products.CategoryID And CategoryName = 'Beverages')
+		orderBy():
+			order BY SupplierName asc
+			order BY SupplierName desc
+		order By với 3 ký tự của 1 cột:
+			order by RIGHT(SupplierName, 3), ID 
+		Order By với 1 cột của bảng khác:
+			SELECT * FROM [Products] order by (select Description from Categories where Categories.CategoryID = Products.CategoryID limit 1) asc
+		groupBy():
+		having():
+		avg():
+		sum():
+		unique:
+			SELECT DISTINCT lastname FROM...	
+		first():
+		
+
+
+
+
+
+
+
+Nguyên tắc:
+	Chia thông tin của bạn thành các bảng dựa trên chủ đề để giảm dữ liệu dư thừa.
+	Cung cấp cho Access thông tin cần thiết để nối thông tin trong các bảng lại với nhau khi cần.
+	Giúp hỗ trợ và đảm bảo tính chính xác và toàn vẹn của thông tin của bạn.
+	Đáp ứng nhu cầu xử lý và báo cáo dữ liệu của bạn.
+Các bước thiết kế:
+	bước 1: Xác định mục đích của cơ sở dữ liệu
+		- Liệt kê thời gian, cách thức của mỗi người sẽ sử dụng cơ sở dữ liệu
+		- Tạo 1 tuyên bố sứ mệnh cho dự án để có thể được tham khảo trong suốt quá trình thiết kế. Giúp bạn tập trung vào mục tiêu của mình khi bạn đưa ra quyết định.
+	bước 2: Thu thập các thông tin cần thiết
+		- Liệt kê thông tin hiện có
+		- Tìm thông tin: đơn đặt hàng, tủ tài liệu, biểu mẫu, mẩu giấy thông tin khách hàng, tự nghĩ ra các thông tin biểu mẫu
+	bước 3: Chia các mục thông tin của bạn thành các thực thể hoặc chủ đề chính
+		- Chọn các thực thể hoặc chủ đề chính
+		- Cố gắng ghi lại mỗi sự kiện chỉ một lần để kiểm tra thông tin trùng lặp. Nếu trùng lặp đưa vào 1 bảng riêng
+	bước 4: Biến các mục thông tin thành các cột
+		- Các mục thông tin nên chia nhỏ ra 1 cách hợp lý để thuận tiện cho việc tìm kiếm, lọc, sắp xếp.
+		- Ví dụ họ tên thì lưu 2 cột họ và tên; địa chỉ thì thành các cột: đường, quận, huyện, thành phố,..
+		- Không lưu dữ liệu được tính toán
+	bước 5: Chỉ định khóa chính để xác định duy nhất mỗi hàng
+	bước 6: Tạo mối quan hệ bảng
+		- Tạo mối quan hệ một đối một:
+			- Dùng để ghi lại thông tin bổ sung đặc biệt mà hiếm khi cần hoặc chỉ áp dụng cho 1 số sản phẩm 
+			Vì việc lưu trữ trong cùng 1 bảng sản phẩm sẽ dẫn đến không gian trống cho mọi sản phẩm không áp dụng,
+			nên bạn đặt thông tin đó vào một bảng riêng
+			- khóa ngoại nằm ở bảng chính
+		- Tạo mối quan hệ một-nhiều
+			- khi liên tục nhập thông tin trùng lặp
+		- Tạo mối quan hệ nhiều-nhiều
+			- Mối quan hệ nhiều-nhiều yêu cầu bảng thứ ba.
+Kiểm tra: 
+	- Bạn có quên cột nào không?  thông tin có thuộc về các bảng hiện có không? Có bất kỳ cột nào không cần thiết vì chúng có thể được tính toán từ các trường hiện có không?
+	- liên tục nhập thông tin trùng lặp? 
+	- Mỗi mục thông tin có được chia thành các phần hữu ích nhỏ nhất của nó không?
+	- Mỗi cột có chứa thông tin về chủ đề của bảng không?
+Kiểm tra bản thiết kế:
+	- tiêu chí 1: mỗi giao điểm của hàng và cột trong bảng, tồn tại một giá trị duy nhất và không bao giờ có danh sách các giá trị.
+	- tiêu chí 2: mỗi cột không phải khóa phải phụ thuộc vào toàn bộ khóa chính chứ không phải 1 phần của khóa
+	- tiêu chí 3: mỗi cột không phải khóa phải phụ thuộc vào khóa chính và không có gì khác ngoài khóa chính
+	
+	

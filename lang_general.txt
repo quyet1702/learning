@@ -1,0 +1,12 @@
+dependency inject:
+        ví dụ có 2 class: database, UserService; và ta khởi tạo instance database cho instance UserSerivce sử dụng
+        Thay vì khởi tạo đối tượng Database trực tiếp trên contructor của UserService thì ta khởi tạo đối tượng ở bên ngoài.
+        rồi đưa vào tham số của UserService khi khởi tạo, sau đó UserService sẽ hứng tham số từ contructor.
+Vòng lặp
+do while:
+while:
+toán tử 3 ngôi:
+toán tử:
+function:
+object:
+kế thừa:

@@ -1,0 +1,375 @@
+Cài đặt:
+	cài đặt node.js
+	tạo project: 
+		npx create-react-app projectName
+	chạy project:
+		npm start
+	Luồng chạy của project:
+		public/index.html -> index.js -> 
+	Tạo thành phần cơ bản:
+		sử dụng function:
+			function Test(){
+				return <h1>xin chào</h1>
+			}
+			const root = ReactDOM.createRoot(document.getElementById('root'));
+			root.render(<Test/>);
+	----------------------------------------------------------------------------------------
+		Thêm tham số vào JSX:
+			function Test(){
+				var a = "xin chao";
+				return <h1>{a}</h1>
+			}
+		--------------------------------------------------------------------------------
+		Thêm JSX vào JSX:
+			function Test1(){
+  				return <h2>tham so</h2>
+			}	
+			function Test(){
+ 				return <h1>
+						<Test1/>
+					</h1>
+			}
+		------------------------------------------------------------------------------
+		Thêm pros vào JSX:
+			function Test(props){
+  				return <h1>{props.brand}</h1>
+			}
+			root.render(<Test brand="Đây là tham số"/>);
+		------------------------------------------------------------------------------
+		Thêm sự kiện:
+			const shoot = () => alert("Great Shot!");
+			function Test(){
+  				return (
+   					<button onClick={shoot}>Take the shot!</button>
+    				);
+  			}
+			root.render(<Test/>);
+		------------------------------------------------------------------------------
+		Thêm điều kiên:
+			function Test(props) {
+  				const isGoal = props.isGoal;
+  				if (isGoal) {
+   					 return <h1>DDieeu kiện đúng</h1>;
+  				}
+				 return <h1>DDieeu kiện sai</h1>;
+			}
+			root.render(<Test isGoal="true"/>);
+			hoặc
+			root.render(<Test isGoal={true}/>);
+		--------------------------------------------------------------------------------
+		Thêm list:
+			const list = ["hoang van quyet","hoang van tam","hoàng văn quyền"]
+			return <ul>
+				{list.map((value,index)=><li>{value}</li>)}
+				</ul>
+			-----------------------------------------------------------------------
+			Thêm key cho list:
+				const list = ["hoang van quyet","hoang van tam","hoàng văn quyền"]
+				return <ul>
+				{list.map((value,index)=><li key={index}>{value}</li>)}
+				</ul>
+		--------------------------------------------------------------------------------
+		Thêm hook:
+			
+		--------------------------------------------------------------------------------
+		cách 2:
+			const element = <h1>hello</1>
+			root.render(element);			// Tạo biến chứa JSX và đưa vào render
+		cách 3:
+			class Car extends React.Component {	// tên class phải viết hoa chữ cái đầu
+  				render() {
+    					return <h2>Hi, I am a Car!</h2>;
+  				}				// tạo phần tử bằng class và đưa vào render dưới dạng thẻ html
+			}
+			root.render(<Car/>);			// có thể viết <Car/> hoặc <Car><Car/>
+		cách 4:
+			function Car() {			
+ 				return <h2>Hi, I am a Car!</h2>;
+			}
+			root.render(<Car/>);
+		cách 5:
+			function Car(props) {					// sử dụng tham số
+  				return <h2>I am a {props.color} Car!</h2>;	// gắn vào bến color
+			}
+			root.render(<Car color="red"/>);			// gắn giá trị cho biến color
+		cách 5:		//sử dụng tương tự với class nhưng thêm import React from 'react';						
+			function Car() {
+  				return <h2>I am a Car!</h2>;
+			}
+
+			function Garage() {
+ 				return (
+    					<>
+      						<h1>Who lives in my Garage?</h1>
+      						<Car />				// sử dụng thành phần Car trong Garage
+    					</>
+  				);
+			}
+			root.render(<Garage />);
+			
+		cách 6: 	//sử dụng tương tự với class nhưng thêm import React from 'react';
+			tạo file Car.js						// chú ý tên file phải viết hoa chữ cái đầu
+				function Car() {
+  					return <h2>Hi, I am a Car!</h2>;
+				}
+				export default Car;				// export dữ liệu
+			từ file index.js
+				import Car from './Car.js';			// import dữ liệu
+				root.render(<Car />);
+		Tạo list:
+			function Car(props) {
+  				return <li>I am a { props.brand }</li>;
+			}
+			function Garage() {
+  				const cars = [
+    					{id: 1, brand: 'Ford'},
+    					{id: 2, brand: 'BMW'},
+    					{id: 3, brand: 'Audi'}
+  					];
+  				return (
+    					<>
+      						<h1>Who lives in my garage?</h1>
+      						<ul>
+        						{cars.map((car) => <Car key={car.id} brand={car.brand} />)}
+     						</ul>
+    					</>
+  				);
+			}
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	root.render(<Garage />);
+	JSX:
+		- Gía trị là 1 thẻ html; có thể đc lưu trong 1 biến
+		- thẻ html phải đúng cú pháp
+		- có thể sử dụng biến trong JSX {variable}
+		- không hỗ trợ dùng if else bên trong JSX nhưng có thể sử dụng bên ngoài
+		- có thể sử dụng toán tử 3 ngôi bên trong JSX {(x) < 10 ? "Hello" : "Goodbye"}
+		- sử dụng className thay cho class trong html
+		- thẻ html phải đc bao bọc bởi 1 phần tử mẹ; nếu ko có phần tử mẹ thì sử dụng <> </>
+		ví dụ:
+		let text = "good bye"; 
+		const myElement = (
+    			<>
+      				<p className="myclass">I am a paragraph.</p>
+      				<p>I am a paragraph too.{text}</p>
+    			</>
+  		);
+	Function: thành phần trong react
+		return về kiểu JSX
+		tham số
+			 là đối tượng props (sử dụng giống dynamic trong c#)
+		thực thi
+			 <Car brand="Ford" />;		// trong đó Car là tên function; brand là property của tham số;
+							// "Ford" là giá trị kiểu chuỗi
+	event:
+		<button onClick={shoot}>Take the shot!</button>		
+		- chỉ sử dụng cho function; 
+		- cách viết:
+			{shoot}
+			{()=>shoot(thamso)}
+			{(event) => shoot(thamso)}
+	
+		
+React ES6:
+	class:
+		constructor:
+			constructor(name) {
+    				this.brand = name;
+  			}
+		phương thức:
+			present() {
+    				return 'I have a ' + this.brand;
+  			}
+		khởi tạo đối tượng:
+			const mycar = new Car("Ford");
+			mycar.present();
+	Kế thừa:
+		class Model extends Car {
+			super(name)			// tương ứng với việc khởi tạo và thực thi constructor của lớp cha
+		}
+	Arrow function: các cách khai báo của 1 hàm
+		function có return:
+			hello = function() {
+  				return "Hello World!";
+			}
+			hello = () => {
+  				return "Hello World!";
+			}
+			hello = () => "Hello World!";
+		function có tham số:
+			hello = (val) => "Hello " + val;
+			hello = val => "Hello " + val;
+
+	mảng:
+		const vehicles = ['mustang', 'f-150', 'expedition'];
+		gắn vào biến:
+			cách 1:
+				const car = vehicles[0];
+				const truck = vehicles[1];
+			cách 2:
+				const [car, truck, suv] = vehicles;
+				const suv = vehicles[2];
+		hợp nhất 2 mảng:	từ khóa ... giúp sao chép tất cả hoặc 1 phần của mảng hoặc property của class
+			sao chép tất cả:
+				const numbersOne = [1, 2, 3];
+				const numbersTwo = [4, 5, 6];
+				const numbersCombined = [...numbersOne, ...numbersTwo];
+				// Kết quả numbersCombined = [1,2,3,4,5,6]
+			sao chép vài phần:
+				const numbers = [1, 2, 3, 4, 5, 6];
+				const [one, two, ...rest] = numbers;
+				// one = 1; two = 2; rest = [3,4,5,6]
+	export:
+		dùng để xuất các biến chứa giá trị:
+		cách 1:
+			export const name = "Jesse"
+			export const age = 40
+		cách 2:
+			export { name, age }
+		cách 3:	mỗi file chỉ có thể xuất 1 default 
+			const message = () => {
+  				const name = "Jesse";
+  				const age = 40;
+  				return name + ' is ' + age + 'years old.';
+			};
+			export default message;
+	import:
+		dùng để nhận các biến chứa giá trị từ 1 file .js khác
+		import { name, age } from "./person.js";
+		console.log(age + name);
+	toán tử 3 ngôi: kiểu viết tắt của lệnh if else
+		condition ? <expression if true> : <expression if false>
+		authenticated ? renderApp() : renderLogin();
+		
+
+
+---------------------------------------------------------------------
+Arrow function:
+	const a = number = number*3;
+Enhanced object literals:
+	var name = 'quyet'
+	var abc = 'abce'
+	const a = {
+		name,
+		[abc]: 123
+	}
+Destructuring: phân rã
+	array:
+		var a = ['quyet', 'tam']
+		const [b, c] = a;
+		console.log(b, c)		// quyet tam
+	object:
+		var a = {age: 22, name: 'tam'}
+		const {b, c} = a;
+		console.log(b, c)		// quyet tam
+rest parameter:
+	const [b, ...rest] = myArray;
+	gắn array vào ...rest => ấy phần còn lại của array hoặc object => rồi phân rã ra
+	sử dụng: console.log(rest)		// trả về array gồm các phần tử còn lại
+---------------------------------------------------------------------------------
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+Tạo element:
+	const  element = React.createElement(h1, {}, 'xin chào')				// React.createElement(type, props, childrent)
+Render:
+	const root = document.getElementById('root');
+	ReactDOM.render(element, root);								// ReactDOM.render(element, container);
+------------------------------------------------
+Tạo element với jsx:
+	const element = <h1>xin chào</h1>
+Tạo component:
+	function Header(props, chilrent){
+		return <h1 title={props.title}>{chilrent}</h1>
+	}
+	const element = (
+		<div>
+			<Header title="đây là tiêu đề">Đây là header</Header>
+		</div>
+	)
+Tạo UI Component:
+	const Form = {
+            Input () {
+                return <input type="text"/>
+            },
+            Checkbox () {
+                return <input type="checkbox"/>
+            }
+        }
+        function A(){
+            const Component = Form['Checkbox']
+            return (
+                    <div>
+                        <Component />
+                    </div>
+                );
+        }
+----------------------------------------------
+Cài đặt project với nodejs:
+	install:
+		npm init
+		npm install webpack webpack-cli --save-dev			// cài webpack
+		npm install react@17.0.2 react-dom@17.0.2 --save-dev		// cài react và react dom
+		npm install babel-loader @babel/preset-react --save-dev		// cài babel
+		npm install css-loader style-loader --save-save			//
+		npm install html-webpack-plugin --save-dev			// giúp không phải link bunlde
+	Thêm file:
+		public/index.html:
+			<div id="root"></div>
+			<script src="../build/bundle.js"></script>
+		src/index.js:
+			import React from 'react'
+			import ReactDOM from 'react-dom'
+			function App(){return <div>...</div>}
+			ReactDOM.render(<App />, document.getElementById('root'));
+		webpack.config.js:
+			const path = require("path");
+
+				module.exports = {
+  				entry: "./src/index.js", // Dẫn tới file index.js ta đã tạo
+				output: {
+					path: path.join(__dirname, "/build"), // Thư mục chứa file được build ra
+					filename: "bundle.js" // Tên file được build ra
+				},
+				module: {
+					rules: [
+					{
+						test: /\.js$/, // Sẽ sử dụng babel-loader cho những file .js
+						exclude: /node_modules/, // Loại trừ thư mục node_modules
+						use: ["babel-loader"]
+					},
+					{
+						test: /\.css$/, // Sử dụng style-loader, css-loader cho file .css
+						use: ["style-loader", "css-loader"]
+					}
+					]
+				},
+				// Chứa các plugins sẽ cài đặt trong tương lai
+				plugins: [
+				]
+			};
+		.babelrc:
+			{
+				"presets": [
+					"@babel/preset-env",
+					"@babel/preset-react"
+				]
+			}
+		package.json:
+			"scripts": {
+				...
+				"start": "webpack --mode development --watch",
+				"build": "webpack --mode production"
+			}
+		---------------------------------------------
+		npm install webpack-dev-server --save-dev
+		"scripts": {
+			"test": "echo \"Error: no test specified\" && exit 1",
+			"start": "webpack-dev-server --mode development --open --hot",
+			"build": "webpack --mode production"
+		},
+-----------------------------------------------------------------------
+Create project:
+	npx create-react-app
+	npm start
+------------------------------------------------------------------------
+npm là 

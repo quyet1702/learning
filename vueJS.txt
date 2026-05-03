@@ -1,0 +1,390 @@
+Cài đặt:
+xml:
+		if
+		for
+		attribute
+		event
+Vue object:
+		el:
+		data:
+		watch:
+		computed:
+		template:
+		props:
+		component:
+		methods:
+		mounted:
+		created:
+		updated:
+		destroyed:
+		setup:
+		mixins:
+Đăng ký và sử dụng component trong đối tượng Vue:
+các sự kiện:
+__________________________________________________________________________________________________________
+Khi reload page:
+	setup() => onMounted() => 
+__________________________________________________________________________________________________________
+Cài đặt:
+		https://vi.vuejs.org/v2/guide/events.html
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<div id="app"></div>
+		
+xml:
+		v-on:eventName="javascript"			// thêm event; cách 1					
+		@eventName="javascript"				// thêm event; cách 2					
+		v-if="isActive"						// chỉ định trên thẻ cha, và xác định thẻ con có được hiện thị hay không
+		v-else-if=""
+		v-else								// viết liền dưới thẻ có v-if
+		v-for="item in list"				// chỉ định trên thẻ cha, và lặp lại các thẻ con
+		ref="myButton"						// lấy dom của element this.refs.myButton
+		:propertyName="variable"			// gắn giá trị vào thuộc tính; cách 1
+		v-bind:propertyName="variable";		// gắn giá trị vào thuộc tính; cách 2
+		v-bind:class="{ active: true, 'text-danger': false }"			// thêm class
+		v-model="variable"					// gắn giá trị vào thẻ input, select, textarea,..
+		v-bind:style="{color: 'red',fontSize: '13px'}"			
+		<p>{{ message }}</p>
+Vue object:
+		Methods:
+				- tạo sẵn các hàm để gọi từ view và trả về kết quả
+				method: {
+					reversedMessage: function () {
+							return this.message.split(' ').reverse().join(' ')
+						}
+				}
+				<p>{{ reversedMessage() }}</p>
+		
+		Computed:
+				- giống với cách sử dụng method; nhưng computed sẽ lưu cache và chỉ cập nhật khi property ràng buộc trong nó thay đổi
+				computed: {
+					reversedMessage: function () {
+							return this.message.split(' ').reverse().join(' ')
+						}
+				}
+				<p>{{ reversedMessage }}</p>
+		Component:
+				const ButtonComponent = {
+					props: ['name', 'link']
+					data() {
+							return {
+								count: 0
+							}
+					},
+					template: `
+							<div>
+								<p>@{{ name }}</p>
+								<image :src="link"/>
+							</div>
+						`
+				}
+				Đăng ký và sử dụng component trong đối tượng Vue:
+					createApp({
+						......,
+						components: {
+							ButtonComponent
+						},
+						template: `<ButtonComponent>`
+					});
+					
+						Vue.component('todo-item', {					// todo-item đóng vai trò như tên hàm
+							data: function () {
+								return {
+								count: 0
+								}
+							},							// todo đóng vai trò như tham số
+							props: ['title'],			// khai báo thuộc tính để nhận giá trị
+							template: '<h3>{{ title }}</h3>'		// template đóng vai trò như giá trị đc return ra
+						})
+					Đổi tên template:
+						components: {
+							alert: require('../alert.vue').default,
+							errors: require('./importer-errors.vue').default,
+							importFile: require('./importer-file.vue').default,
+						}
+						- khi sử dụng sẽ có dạng <import-file></import-file>
+					Sử dụng:
+						<todo-1 v-for="item in todos" :todo="item"></todo-1>			// trong đó:
+																						<todo-1> đóng vai trò như 1 hàm thực thi
+																						:todo="item" đóng vai trò như tham số được gắn giá trị từ todo
+																						todos được lấy từ data
+						v-on:click="$emit('enlarge-text')"					// phát ra sự kiện để các component nhận tín hiệu để thực thi
+						sử dụng trên chuỗi template của component: v-on:click="$emit('enlarge-text')"
+						sử dụng trên thẻ khi gọi component:  v-on:enlarge-text="postFontSize += 0.1"
+							component sẽ nhận tín hiệu và thực thi khi có sự kiện
+			Cách 1:
+			 tạo file: file-name.vue
+				import các component khác:	(giúp sử dụng component trong component)(có thể có hoặc không)
+				property:			(nó giống như param của 1 hàm và nhận giá trị khi được gọi)(có thể có hoặc không)
+				template:			(dùng để in ra html khi được gọi)
+					<template>
+						<slot></slot>				// slot loại 1
+						<slot name="header"></slot>		// slot loại 2, khai báo tham số có tên là header
+						<Teleport to="body">			// Dịch chuyển 1 phần html ra bên trong thẻ body
+							<div>//code html</div>
+						</Teleport>
+						<KeepAlive></KeepAlive>			
+					</template>
+				export				(có thể có hoặc không)
+				Cách 4:
+					Vue.component('my-component-name', {
+					// ... các tu bỳ biến ...
+					})
+				Gọi component: sử dụng trên .vue hoặc trong thẻ được khởi tạo #app
+					<componentName propertyName="123">			// keyName là tham số truyền giá trị cho component; được khai báo từ property
+						<template name="header">			// những thẻ template được coi là 1 giá trị được truyền cho component cha, với biến header
+							// text hoặc html hoặc component	// phần này được coi là giá trị truyền vào cho componentName
+						</template>
+					</componentName>
+Quy ước:
+	Gắn giá trị vào thuộc tính class: class="item" :class="{ active: isActive}"			// class active sẽ được truyền vào nếu isActive = true
+Tạo đối tượng Vue:
+	const { createApp } = Vue;
+	createApp({
+            		data() {
+                		return { count: 1 }
+            		},
+            		template: `<div>count is @{{ count }}</div>`
+            	}).mount('#song-list')
+
+Khởi tạo(new Vue + data) => created(hook này chạy khi đối tượng được khởi tạo) => 
+
+computed: được gọi khi property được inject vào computed thay đổi
+$emit('remove')			tạo ra 1 loại event mang tên remove; giống như các loại khác, click, input, mousedown,...
+Thêm thuộc tính cho data:
+	Vue.set(vm.userProfile, 'age', 800)
+
+
+
+Khởi tạo(new Vue + data) => sử lý nội bộ => Đưa data render ra view => Update data vào Vue => render ra view
+1/ Khởi tạo(new Vue + data):
+	var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'hello',
+				checked: false,
+				todos: [],
+				list: [
+					'phần tử 1',
+					'phần tử 2',
+					'phần tử 3',
+				],
+				testIf: true,
+				isActive: true,
+  				hasError: false,
+				styleObject: {
+    					color: 'red',
+    					fontSize: '13px'
+  				}
+			},
+			methods: {
+				setText: function() {
+					this.message: 'hello'
+				}
+				setDataWithApi: function(){
+					
+				}
+			},
+			computed: {},
+			
+		});
+3/ Đưa data render ra view:
+	Dạng text:
+		<p>{{ message }}</p>
+		<p>{{ todos }}</p>
+	Dạng array:
+		<ul>
+           		<li v-for="item in list">{{ item }}</li>
+			hoặc <li v-for="(item, index) in list">{{ index }} - {{ item }}</li> 
+        	</ul>
+	Dạng input:
+		<input v-model="message">
+			v-model.trim			// cắt khoảng trắng giữa 2 đầu giá trị
+			v-model.lazy			// đồng bộ với vue theo sự kiện change, thay vì sư kiện input như mặc định
+			v-model.number			// tự động convert thành kiểu số, có có chữ thì sẽ xóa chữ chỉ lấy số
+		<input type="checkbox" v-model="checked">
+	Dạng console:
+		app.message;
+5/ Event:
+	v-on:click="setText"
+Tách file thành từng module:
+	Tạo file my-component.js:
+	  	export default {
+			data() {
+				return {
+					message: 'Hello Vue!'
+				}
+			}
+		}
+	sửa đổi bên trong thẻ script:
+		<script type="module">
+			import { createApp } from 'vue'
+			import MyComponent from './my-component.js'
+			createApp(MyComponent).mount('#app')
+		</script>
+Luồng chạy code:
+	khởi tạo -> khai báo thuộc tính cơ bản (data)
+	-> khai báo thuộc tính được custom(computed); thuộc tính này sẽ tự động chạy lại khi thuộc tính cơ bản bị thay đổi
+	-> khai báo các hàm(methods)
+	-> đổ {{thuộc tính hoặc hàm hoặc thuộc tính đc custom }} lên template
+	-> sử dụng dữ liệu vue bên ngoài vuejs(vm.property = "abc"; khi gắn property bằng giá trị khác thì nó sẽ đc cập nhật ngay)
+Cấu trúc đối tượng:
+	var vm = Vue({
+		el: '#app',
+		data():{																	// template chỉ thay đổi trạng thái template khi
+			return {																// property cơ bản, property custom, method có sự thay đổi
+				property: value														// khai báo thuộc tính; sử dụng vm.propertyName hoặc vm.$propertyName
+			}
+		},
+		watch: {
+			bất cứ lúc nào câu hỏi thay đổi, hàm bên dưới sẽ chạy
+			question: function (newQuestion, oldQuestion) {
+			this.answer = 'Đang chờ bạn đặt xong câu hỏi...'
+			this.getAnswer()
+			}
+		},
+		computed: {												// tạo thuộc tính được tính toán trước, và chỉ chạy 1 lần khi khởi tạo
+			reversedMessage: function () {
+				return this.message.split(' ').reverse().join(' ')
+			},
+			fullName: {								
+				get: function () {								// hàm get được gọi khi gọi thuộc tính fullName 
+					return this.firstName + ' ' + this.lastName
+				},
+				set: function (newValue) {						// hàm set được gọi khi gắn giá trị cho thuộc tính fullName 
+					var names = newValue.split(' ')
+					this.firstName = names[0]
+					this.lastName = names[names.length - 1]
+				}
+			}
+		}
+		template: `<button @click="count++">count is {{ count }}</button>`,			// thẻ html được xuất ra bên trong DOM id="app"
+		mounted() {										// các lệnh trong chỉ chạy 1 lần khi đối tượng được khởi tạo
+			console.log(`The initial count is ${this.count}.`)					
+		},
+		created: function () {
+			console.log('giá trị của a là ' + this.a)								// hook này thực thi khi đc khởi tạo
+		},
+		updated: ...,
+		destroyed: ...,
+		setup() {
+			const count = ref(0)
+			return {
+			count
+			}
+		},
+		mixins: [																	// Khai báo thuộc tính toàn cầu
+			{
+				msg: 'Hello '														// có thể sử dụng trên methods hoặc mounted() với cú pháp: this.$options.msg
+			}																		// hoặc sử dụng ngoài cấu hình trước khi sử dụng mount() với cú pháp: app.config.optionMergeStrategies.msg
+		],
+		methods: {																	// khai báo method; được sử dụng khi gọi ở template; ví dụ: @click="methodName"
+			methodName: function (){
+				this.count++;
+			},
+		},
+	})
+	vm.$watch('propertyName', function (newValue, oldValue) {
+		Hàm callback này sẽ được gọi khi `vm.propertyName` thay đổi
+	})
+Thuộc tính vue trên html(template):
+	ví dụ: <p v-if="true">Now you see me</p>
+	v-if="true"					// nếu trả về false sẽ remove thẻ; nếu true thì sẽ hiện thẻ
+	v-html="var"				// lấy giá trị var gắn vào nội dung của thẻ
+	:href = "url"				// nhận giá trị hoặc biến chứa giá trị url
+	v-model="propertyName"		// sử dụng để cập nhật giá trị của input vào propertyName mỗi khi giá trị thay đổi
+	:disabled="isDisable"		// nhận giá trị true false; nếu = true thì sẽ disabled và ngược lại
+	:id="propertyName"			// Tạo thuộc tính id và gắn giá trị cho thuộc tính; giá trị này sẽ thay đổi nếu property gắn thay đổi
+	@click=""
+	v-bind:class="[propertyName, propertyName]"									// thêm class bằng cách lấy giá trị của property
+	v-bind:class="{ active: propertyName, 'text-danger': propertyName }"		// thêm class active nếu propertyName trả về true
+	v-bind:class="[{ active: isActive }, errorClass]"							// thêm class theo điều kiện
+	v-bind:style="{ color: propertyName, fontSize: propertyName + 'px' }"		// in các giá trị dưới dạng chuỗi của propertyName để tạo style
+	v-bind:style="styleObject"													// data: {
+																						styleObject: {
+																							color: 'red',
+																							fontSize: '13px'
+																						}
+																						}
+	v-bind:style="[baseStyles, overridingStyles]"								// sử dụng nhiều style object
+	v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"			// in ra 1 trong các giá trị mà trình duyệt hỗ trợ
+	v-on:click="doSomething"
+	v-show="true"																// thêm thuộc tính display none khi v-show="false" và display="block" khi v-show="true"
+	@[eventName]="doSomething"
+	:data-name="methodName(data)"	// có thể gắn giá trị trả về của method cho thuộc tính
+	<li v-for="varName in property">{{ varName.text }}</li>		// tạo vòng lặp duyệt qua từng phần tử của property và mỗi phần tử in thẻ li chứa nó
+	<input v-model="message">		// giá trị của input sẽ ngay lập tức cập nhật vào property message
+	v-model.trim="msg"				// tự động loại bỏ khoảng trắng cho giá trị
+	v-model.number="age"			// tự động convert thành số cho propertyName
+If:
+	chỉ sử dụng lặp trên 1 thẻ nếu muốn lặp trên 1 nhóm thẻ thì cần thẻ <template> bao bọc nhóm thẻ cần lặp
+	ví dụ:
+		<div v-if="Math.random() > 0.5">		// 
+			Tài
+		</div>
+		<div v-else>							// phần tử v-else phải đi sau phần tử v-if hoặc v-else-if
+			Xỉu
+		</div>
+	tái sử dụng:
+		khi thay đổi if sang else: Vue js sẽ so sánh sự khác nhau giữ nguyên các thẻ trong if và else và chỉ thay đổi các thuộc tính được thay đổi thay vì tạo mới 1 thẻ
+		Nếu muốn tạo mới thẻ thì hãy dùng thuộc tính key="abc"	và gắn chuỗi bất kỳ để báo cho Vue là 2 thẻ này khác nhau và đừng dùng lại
+
+Đăng ký thuộc tính toàn cầu:
+	giống với thuộc tính được return ở data()
+Cấu hình VueJS:
+		export default {
+			data() {
+				return {
+					author: {
+						name: 'John Doe',
+						books: [
+						'Vue 2 - Advanced Guide',
+						'Vue 3 - Basic Guide',
+						'Vue 4 - The Mystery'
+						]
+					}
+				}
+			},
+			computed: {
+				// a computed getter
+				publishedBooksMessage() {							// thực hiện các chức năng logic sau đó trả về kết quả
+					// `this` points to the component instance
+					return this.author.books.length > 0 ? 'Yes' : 'No'
+				}
+			},
+			methods: {												// cách 2: sử dụng method thay vì hàm
+				calculateBooksMessage() {
+					return this.author.books.length > 0 ? 'Yes' : 'No'
+				}
+			}
+		}				
+		<span>{{ publishedBooksMessage }}</span>
+		<span>{{ calculateBooksMessage() }}</span>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------		
+Instance:	(file_name.js)
+	el: '#app',
+	data:
+	methods:
+	computed:
+	watch:
+View:
+	bind:
+		v-for="item in groceryList"
+		:propertyName = ""
+		:key						// chưa rõ cách sử dụng
+		:title="propertyName"				// gắn giá trị cho thuộc tính mặc định của thẻ
+		:class="propertyName"
+		:style="propertyName"
+		:value=""					// gắn giá trị vào thuộc tính value
+		v-html="rawHtml"				// in ra html
+		v-model="propertyName"				// Đồng bộ giá trị input, và select và propertyName khi thay đổi dữ liệu; đối với textarea sử dụng event @input="update" và hàm update thay thế
+		v-if="bool"
+		v-else-if=""
+		v-else=""
+		@input						// sự kiện input
+		@click=""					// sự kiện click
+		@click.prevent					// click và ngưng sự kiện mặc định của thẻ
+		@submit.prevent="onSubmit"
+		@change=""					// sự kiện change
+		
+	for							// các giá trị của for, if,.. đều lấy từ component chứa nó hoặc component cha
+	class, style, href, onclick, id, show,

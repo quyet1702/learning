@@ -1,0 +1,28 @@
+new
+	post
+	media
+	page
+	user
+dashboard
+posts
+	all posts		// danh sách các post, thêm categories, tags cho post
+	category		// quản lý categories
+	tags			// quản lý các tags
+media
+	library			// danh sách các file media, ảnh ,...
+	add new media file	// thêm file
+pages	
+	all page 		// quản lý các post có type = page
+	add new page		// Thêm post có type = page
+comments
+appearance
+	themes			// quản lý các themes
+	editor			// chỉnh sửa, tạo các themes
+plugins
+users
+	all users		// quản lý users
+	add new user		// thêm mới user
+	profile			// thiết lập thông tin user đang sử dụng
+tools
+setting				// thiết lập ngày giờ, múi giờ, ngôn ngữ
+collapse menu

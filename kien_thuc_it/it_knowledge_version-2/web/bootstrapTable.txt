@@ -1,0 +1,547 @@
+cơ bản:
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+		<table id="table">
+			<thead>
+				<tr>
+				<th data-field="id">ID</th>
+				<th data-field="name">Item Name</th>
+				<th data-field="price">Item Price</th>
+				</tr>
+			</thead>
+		</table>
+
+		<script>
+		var $table = $('#table')
+
+		$(function() {
+			var data = [
+			{
+				'id': 0,
+				'name': 'Item 0',
+				'price': '$0'
+			},
+			{
+				'id': 1,
+				'name': 'Item 1',
+				'price': '$1'
+			}
+			]
+			$table.bootstrapTable({data: data})
+		})
+		</script>
+---------------------------------------------------------------------------------------
+Thêm form search:
+	- table: 
+		data-pagination-loop="false"		// tắt vòng vặp phân trang; ví dụ khi ở page 1 sau đó bấm previous sẽ bị disabled chứ ko về trang cuối
+		
+		data-method="post"					// nếu dùng ajax thì sẽ sử dụng method post
+		data-maintain-meta-data="true"		// tải hết dữ liệu cùng 1 lúc, nhưng vẫn tự phân trang trên client
+		data-cache="false"					// tắt lưu lại cache cho các param khi gửi request lên server
+		data-card-view="true"				// tự động chuyển qua chế độ xem dạng thẻ
+		data-content-type="application/x-www-form-urlencoded"	// thay đổi content-type khi dùng ajax
+		
+css:
+	data-align="center"					// căn giữa thẻ td, th theo trục X
+	data-valign="center"				// căn giữa thẻ td theo trục X
+	data-halign="center"				// căn giữa thẻ th theo trục X
+	data-vertical="middle"				// css căn giữa theo trục Y
+	data-buttons-class="primary"		// thêm class cho toolbar
+	data-buttons-prefix="btn-sm btn"	// Thêm class cho từng button toolbar
+	data-buttons-align="left"			// căn chỉnh danh sách button option
+Ajax:
+	<table data-ajax="ajaxRequest">
+	function ajaxRequest(params) {		//param = [search, offet, limit, orderby, sort(value data-field), order(desc, asc)]
+		var url = 'https://examples.wenzhixin.net.cn/examples/bootstrap_table/data'
+		$.get(url + '?' + $.param(params.data)).then(function (res) {
+			params.success(res)
+		})
+	}
+	response trả về phải có dạng sau:
+		{
+			rows: [
+				{
+					id: 1
+					name: "quyet"				// name trùng với value của data-field
+				}
+			],
+			total: 800,
+			"footer": {
+				"id": "footer id",
+				"_id_colspan": 2,
+				"name": "footer name"
+			}
+		}
+ajaxOptions:									// giúp gửi header kèm theo;
+	<table data-ajax="ajaxRequest">
+	window.ajaxOptions = {
+		beforeSend: function (xhr) {
+		xhr.setRequestHeader('custom-auth-token', 'custom-auth-token')
+		}
+	}
+data-url:							// gửi api để lấy dữ liệu; dùng thay cho ajax nếu ko muốn tinh chỉnh
+	<table data-url="json/data1.json">
+thêm nút chức năng:					// Thêm nút chức năng
+	<table data-buttons="buttons">
+	<script>
+		function buttons () {
+			return {
+				btnUsersAdd: {
+					text: 'Highlight Users',
+					icon: 'fa-users',
+					event: function () {
+						alert('Do some stuff to e.g. search all users which has logged in the last week')
+					},
+					attributes: {
+						title: 'Search all users which has logged in the last week'
+					}
+				},
+				btnAdd: {
+					text: 'Add new row',
+					icon: 'fa-plus',
+					event: function () {
+						alert('Do some stuff to e.g. add a new row')
+					},
+					attributes: {
+						title: 'Add a new row to the table'
+					}
+				}
+			}
+		}
+		</script>
+Set text cho các cột và name của dữ liệu sẽ đổ vào:
+	$table.bootstrapTable({
+      columns: [{
+        title: 'ID',
+        field: 'id'
+      }, {
+        title: 'Item Name',
+        field: 'name'
+      }, {
+        title: 'Item Price',
+        field: 'price'
+      }]
+    })
+Tìm kiếm trên fontend không gọi ajax:
+	<table data-custom-search="customSearch">
+	function customSearch(data, text) {
+		return data.filter(function (row) {
+		return row.price.indexOf(text) > -1
+		})
+	}
+Sắp xếp trên fontend không gọi ajax:
+	<table data-custom-sort="customSort">
+	<thead>
+		<tr>
+		<th data-field="id" data-sortable="true">ID</th>
+		<th data-field="name" data-sortable="true">Item Name</th>
+		<th data-field="price" data-sortable="true">Item Price</th>
+		</tr>
+	</thead>
+	function customSort(sortName, sortOrder, data) {
+		var order = sortOrder === 'desc' ? -1 : 1
+		data.sort(function (a, b) {
+		var aa = +((a[sortName] + '').replace(/[^\d]/g, ''))
+		var bb = +((b[sortName] + '').replace(/[^\d]/g, ''))
+		if (aa < bb) {
+			return order * -1
+		}
+		if (aa > bb) {
+			return order
+		}
+		return 0
+		})
+	}
+Xem chi tiết:
+	<table data-detail-view="true" data-detail-formatter="detailFormatter" data-detail-filter="detailFilter">
+	function detailFilter(index) {  			// chỉ định row có index nào sẽ  có details
+		return index == 2;
+	}
+	function detailFormatter(index, row) {
+		var html = []
+		$.each(row, function (key, value) {
+		html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+		})
+		return html.join('')
+	}
+Chỉ định nút xem chi tiết nằm bên phải hay trái:
+	$table.bootstrapTable({								// sử dụng khi setup table
+      detailViewAlign: 'right'
+    })
+	$table.bootstrapTable('refreshOptions', {			// sử dụng khi tùy biến thay đổi
+        detailViewAlign: 'left'
+      })
+Ẩn icon xem chi tiết nhưng vẫn show chi tiết khi bấm vào row:
+	data-detail-view-icon="false"
+  	data-detail-view-by-click="true"
+Hiện footer của table:
+	<table data-show-footer="true">
+		<thead>
+			<tr>
+				<th data-field="price" data-footer-formatter="priceFormatter">Giá</th>
+			</tr>
+		</thead>
+	</table>
+	function priceFormatter(data, price) {			// param price lấy từ dữ liệu footer, còn data lấy từ rows
+		return price;								// sau khi return sẽ đổ dữ liệu vào footer của table
+	}
+	{
+		rows: [...],
+		total: 200,
+		footer: {
+			price: 200;
+		}
+	}
+
+____________________________________________________________________________________________________
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" integrity="sha512-jU9MK8CV6eX66LhEpALfpgdmjLWt1g7fRLYdbsQJ5qgPbJvT9GJtIp8Ka7vSNF64qFoGjlBz+DexxUOwu4uVKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js" integrity="sha512-AxVZ2w1UhuwEaKRRtZ2svl9Q+eah6AxkjwGWdBtIK/Iuy5c9V6WUrom/T/pgqPvw6RJmWZG4NTliqt0OW10f5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/sticky-header/bootstrap-table-sticky-header.min.css" integrity="sha512-Jvql/DFZ5ryzEvC+rlNGFL217hEO1/9gjsLR5+k+aUfeNfnpc7kpc3Fu7syUHn8XGCB7wTdSluzujQXcGoTrGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/extensions/sticky-header/bootstrap-table-sticky-header.min.js"></script>
+    <style>
+        .fixed-table-container {
+            min-height: 473px;
+        }
+    </style>
+</head>
+<body>
+<script>
+  
+    /////////////////////////////////////////////////////////
+  $(function() {
+    table.bootstrapTable({
+        method: "GET",                              // request: xác định method tải data của api
+        maintainMetaData: false,
+        // toggle: "table",                         // ko rõ tác dụng
+        classes: 'table table-striped',             // table: set class cho thẻ table
+        cache: false,                               // request: tắt lưu lại cache cho param request
+        cookie: false,                              // request: tắt lưu lại cookie
+        url: 'data.json',                           // request: url tới api để lấy dữ liệu
+        queryParams: function queryParams() {       // request: Điều chỉnh hoặc thêm mới param trên request
+                        return {
+                            offset: 0,
+                            limit: 10,
+                        }
+                    },
+        cardView: false,                            // table: Tự động chuyển qua chế độ xem dạng thẻ
+        showHeader: true,                           // table: Ẩn header của table
+        height: 500,                             // table: set chiều cao cho table
+        showSearchButton: true,                     // search: Hiện thị nút tìm kiếm
+        formatSearch: function () {                 // search: thay đổi placeholder
+            return 'Search Item Price1'
+        },
+        search: true,                               // search: hiện thị form tìm kiếm
+        searchOnEnterKey: true,                     // search: chỉ tìm kiếm khi bấm enter
+        trimOnSearch: true,                         // search: cắt khoảng trống đầu và cuối của chuỗi tìm kiếm
+	dataToggle:"table",			    // toolbar: hiện toolbar
+        showPaginationSwitch: true,                 // toolbar: nút toggle pagination
+        showRefresh: true,                          // toolbar: nút refresh lại table
+        showToggle: true,                           // toolbar: nút chuyển table => list
+        showColumns: true,                          // toolbar: select columns để show lên table
+        showColumnsToggleAll: true,                 // toolbar: nút check chọn all trên select columns
+        minimumCountColumns: 3,                     // toolbar: không được phép chọn select columns dưới 3 cột
+        showColumnsSearch: true,                    // toolbar: nút tìm kiếm select columns
+        iconSize: 'sm',				    // toolbar: thay đổi kích thước button sm, lg,..
+        buttonsAlign: "right",                      // toolbar: căn trái, phải toolbar
+        buttonsClass: "primary",                    // toolbar: thêm class cho thẻ chứa button
+        buttonsPrefix: "btn-sm btn-primary",        // toolbar: thêm class cho từng button
+        buttons: function(){                        // toolbar: Thêm 1 hoặc nhiều nút trên toolbar
+            return {
+				btnUsersAdd: {
+					text: 'Highlight Users',
+					icon: 'fa-users',
+					event: function () {
+						alert('Do some stuff to e.g. search all users which has logged in the last week')
+					},
+					attributes: {
+						title: 'Search all users which has logged in the last week'
+					}
+				}
+			}
+        },
+        buttonsOrder: [                             // toolbar: Thay đổi thứ tự button
+            'refresh',
+            'paginationSwitch',
+            'toggle',
+            'fullscreen',
+            'columns'
+        ],
+        icons: {                                    // toolbar: Đổi icon các nút trên toolbar
+            refresh: 'bi-app',
+            columns: 'bi-app',
+            fullscreen: 'bi-app',
+            paginationSwitchDown: 'bi-app',
+            paginationSwitchUp: 'bi-app',
+            toggleOff: 'bi-app',
+            toggleOn: 'bi-app',
+            detailOpen: 'bi-app',
+            detailClose: 'bi-app',
+        },
+        pagination: true,                           // pagination: hiện thị pagination
+	paginationParts: [			    // hiện thị chi tiết số dòng
+		'pageInfo',			
+		'pageInfoShort',
+		'pageSize',
+		'pageList'],			    
+        paginationLoop: false,                      // pagination: disabled btn previous khi page = 1 và disabled btn next khi page = last
+        pageNumber: 1,                              // pagination: set mặc định page hiện tại
+        pageSize: 5,                                // pagination: số rows trên 1 page
+        pageList: [5, 10, 15, 100, 200, 'All'],     // pagination: custom list hiện thị số dòng trên 1 page
+        paginationSuccessivelySize: 5,	 	    // pagination: số lượng button liên tiếp từ page 1-> 5 và page cuối quay về 5 phần tử
+        paginationPagesBySide: 3, 		    // pagination: số lượng button liên tiếp từ trang hiện tại tới dấu '...'
+        paginationPreText: "Previous",              // pagination: thay đổi text của nút Previous
+        paginationNextText: "Next",                 // pagination: thay đổi text của nút next
+        paginationHAlign: "left",                   // pagination: căn lề phân trang
+        paginationDetailHAlign: "right",            // pagination: căn lề chi tiết trang
+        // paginationVAlign: "both",                // pagination: option này được sử dụng thì sẽ tạo thêm 1 pagination ở trên table
+        // sidePagination: "server",                // pagination: khi option này được sử dụng thì sẽ gửi dữ liệu về server, bao gồm, offset, limit, yêu cầu bên server phải truy vấn 2 tham số này
+        // <th data-field="status" data-checkbox="true"></th>    // Column: checkbox: Tạo column thay bằng data-radio="true" nếu muốn sử dụng dạng radio
+        checkboxHeader: true,                       // checkbox: tạo check all trên thead
+        clickToSelect: true,                        // checkbox: bấm vào row tự động select checkbox
+        idField: "id",                              // checkbox: gắn value = text của column id
+	undefinedText: '',			    // Cell: Cập nhật lại giá trị khi cell rỗng
+        selectItemName: "id",                       // Column: checkbox: gắn name="id"
+        fixedColumns: true,                         // Column: bật tính năng fixedColumns
+        fixedNumber: 1,                             // Column: fixed columns left
+        fixedRightNumber: 1,                        // Column: fixed columns right
+        sortable: true,                             // Column: sort: bật tính năng sắp xếp
+        // data-sortable="true"                     // Column: sort: tạo sắp xếp cho cột
+        silentSort: true,                           // Column: sort: hiện message thông báo đợi khi tải dữ liệu sort
+        serverSort: false,                          // Column: sort: nếu = false, sẽ không cần gửi dữ liệu về server, mà sắp xếp dựa trên dữ liệu hiện tại
+        sortEmptyLast: true,                        // Column: sort: khi sắp xếp, nếu ô nào trống thì sẽ đặt sau cùng
+        loadingTemplate: function(){                // Loading: Đổi text thông báo khi dữ liệu chưa tải xong
+            return 'Đang tải dữ liệu,...';
+        },
+        formatNoMatches: function(){                // Đổi text khi không tìm thấy dữ liệu
+            return 'not found'
+        },
+        responseHandler: function(res){             // Response: tùy chỉnh response trước khi đổ vào table
+            return res;
+        },
+        // totalField: "total",                     // Response: dùng thuộc tính count trong response để tính tổng số row vì total như mặc định
+        // dataField: 'rows',                       // Response: dùng thuộc tính items trong response thay vì rows như mặc định
+        // showFooter: true,
+        ajaxOptions: {                              // Request: thêm header cho ajax trước khi gửi request
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('custom-auth-token', 'custom-auth-token')
+            }
+        },
+        uniqueId: "id",
+    });
+
+  })
+function queryParams(params) {
+    params.search = 8
+    return params
+  }
+ function Utility(){
+    $table.bootstrapTable('showLoading');           // Hiện loadig
+    $table.bootstrapTable('hideLoading');           // Ẩn loadig
+    $table.bootstrapTable('hideRow', {index: 1});   // Ẩn row với index chỉ định
+    $table.bootstrapTable('updateCell', {           // cập nhật lại giá trị trong cell với index và field chỉ định
+        index: 1,
+        field: 'name',
+        value: `Updated Name 123`,
+        title: "update",
+        reinit: false
+    })
+    $table.bootstrapTable('updateCellByUniqueId', {     // cập nhật lại giá trị với id thay vì index; cần khai báo data-unique-id="id"
+        id: 3,
+        field: 'name',
+        title: "update",
+        value: 'Updated Name',
+        reinit: false
+    })
+    $table.bootstrapTable('updateColumnTitle', {           // cập nhật lại title trong cell với index và field chỉ định
+        index: 1,
+        field: 'name',
+        title: "update",
+        reinit: false
+    })
+    $table.bootstrapTable('updateFormatText', 'formatSearch', 'Enter keywords...')  // cập nhật lại placeholder trong search
+    
+    $table.bootstrapTable('refresh');                       // tải lại data từ api
+   
+      $table.bootstrapTable('refreshOptions', {		// sử dụng khi tùy biến thay đổi các property
+        detailViewAlign: 'left'
+      })
+      // stateFormatter
+}
+
+</script>
+</body>
+</html>
+------------------------------------------------------------------
+Cập nhật lại row theo index:
+	$table.bootstrapTable('updateRow', {
+        	index: 1,
+        	row: {
+            		id: 323,
+            		name: 'Item update',
+            		price: 'update'
+        	}
+    	});
+------------------------------------------------------------------
+Lấy giá trị đã select trên table:
+	<th data-checkbox="true"></th>
+	$table.bootstrapTable('getSelections');
+------------------------------------------------------------------
+Thêm event cho icon:
+	<th data-formatter="iconFormatter" data-events="iconEvents"></th>
+  	window.iconEvents = {
+    		'click .like': function (e, value, row, index) {
+      			alert('You click like action, row: ' + JSON.stringify(row))
+    		},
+    		'click .remove': function (e, value, row, index) {
+      			$('#table').bootstrapTable('remove', {
+        			field: 'id',
+        			values: [row.id]
+      			})
+    		}
+  	}
+------------------------------------------------------------------
+Thêm row theo index:
+	$table.bootstrapTable('insertRow', {
+        	index: 1,
+        	row: {
+          		id: randomId,
+          		name: 'Item ' + randomId,
+        	}
+	});
+------------------------------------------------------------------
+Xóa row theo field chỉ định:
+      	$table.bootstrapTable('remove', {
+		field: 'id',
+        	values: [1]
+      	})
+------------------------------------------------------------------
+Option trên column:
+	data-width="300" data-width-unit="%"
+	data-field="name"
+	data-align="left"			// căn giữa theo trục x, dành cho th, td
+	data-halign="left"			// căn giữa theo trục x, dành cho th
+	data-valign="left"			// căn giữa theo trục x, dành cho td
+	data-vertical="middle"			// căn giữa theo trục y, dành cho th, td
+	data-visible="false"			// ẩn
+------------------------------------------------------------------
+Điều chỉnh Column khi đổ dữ liệu vào:
+	<thead>
+		<tr>
+			<th data-formatter="statusFormatter"></th>
+			<th data-formatter="nameFormatter">Name</th>
+		</tr>
+	</thead>
+	function statusFormatter(value, row, index) {
+    		if (index === 5) {
+        		return {
+            			disabled: true,
+            			checked: true
+				// attribute
+        		}
+    		}
+    		return value
+  	}
+	function nameFormatter(value, row, index) {
+    		return `<p>${value}</p>`;
+  	}
+------------------------------------------------------------------
+Thêm events cho column:
+	<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Item Price</th>
+	function operateFormatter(value, row, index) {
+		return [
+			'<a class="like" href="javascript:void(0)" title="Like">',
+			'<i class="fa fa-heart"></i>',
+			'</a>  ',
+			'<a class="remove" href="javascript:void(0)" title="Remove">',
+			'<i class="fa fa-trash"></i>',
+			'</a>'
+		].join('')
+	}
+	window.operateEvents = {
+		'click .like': function (e, value, row, index) {
+			alert('You click like action, row: ' + JSON.stringify(row))
+		},
+		'click .remove': function (e, value, row, index) {
+      			$table.bootstrapTable('remove', {
+        			field: 'id',
+        			values: [row.id]
+      			})
+    		}
+  	}
+------------------------------------------------------------------
+Cập nhật lại dữ liệu bảng:
+	let rows = await (async () => await fetch(url).then(data=>data.json()))();
+	var rows = [
+			{
+				id: 1,
+				name: "quyet",
+			},
+			{
+				id: 2,
+				name: "Tam",
+			},
+		];
+	$table.bootstrapTable('load', rows)
+-----------------------------------------------------------------
+
+Luồng hoạt động:
+Xác định các breakpoint khi tạo bootstrapTable để xác định lỗi nếu gặp phải:
+1/ Tạo html với dữ liệu giả:	// phải chắc chắn chạy được với bootstrap
+	<table data-toggle="table">
+		<thead>
+			<tr>
+				<th>STT</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Quyết</td>
+			</tr>
+		</tbody>
+	</table>
+
+	Khởi tạo:
+		Tạo khung table html:
+			khởi tạo:
+				- option
+					pagination, search, sortable, loadingTemplate, formatNoMatches(text thông báo không có dữ liệu), dataToggle(toolbar), fixedColumns
+					option trên column:
+					url:
+						ajaxOptions
+						queryParams
+						Điều chỉnh Column khi đổ dữ liệu vào:
+							data-formatter=""
+							data-events="iconEvents"
+						Thêm events cho column:
+					option trên checkbox
+						
+				
+	Thực hiện sau khi đã khởi tạo:
+		Cập nhật lại column:
+		Cập nhật lại row theo index:
+		Cập nhật lại cell:
+		Cập nhật lại option:
+		Thêm row theo index:
+		xóa row theo field chỉ định:
+		Cập nhật lại dữ liệu bảng:
+		Lấy giá trị đã select trên table:
+						
+	

@@ -1,0 +1,340 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+Đảm bảo toàn bộ trang html đã chạy xong thì mới đc sử dụng jquery:
+	$(document).ready(function() {//code
+	});
+	hoặc
+	$(function() {//code
+	});
+Cú pháp chung:
+	$("selector").action()
+	hoặc 
+		$("selector").action().action().action().action().action()
+Action():
+	sự kiện click:
+		$("button").click(function(){	-> mouseenter ( khi chuột lia qua); dblclick (khi bấm 2 lần; ko hỗ trợ mobile)
+    			$("#test").hide();	-> mousedown (thực thi khi nhấn chuột xuống); mouseup (thực thi khi nhấc chuột lên)
+  		});				-> focus (thực thi khi bấm chọn vào ô input, hay select,..)
+		cách 2:				-> blur	(thực thi khi bỏ chọn các ô input, hay select,...)
+			$("p").on("click", function(){
+  				$(this).hide();
+			});
+		cách 3:
+			$("p").on({
+  				mouseenter: function(){
+    					$(this).css("background-color", "lightgray");
+  				},
+  				mouseleave: function(){
+    					$(this).css("background-color", "lightblue");
+  				},
+  				click: function(){
+    					$(this).css("background-color", "yellow");
+  				}
+			});
+		các sự kiện khác:
+			blur 		// thực hiện khi bỏ chọn ô input
+			change		// thực hiện khi ô input hoặc select thay đổi value
+			focus		// thực hiện khi ô input hoặc select được chọn
+			off("click")	// tắt sự kiện click cho phần tử
+			one("click", function(){})		// sự kiện chỉ được kích hoạt 1 lần cho mỗi phần tử
+			$("form").submit(functioin(){})		// sự kiện được thực hiện khi form đc submit
+			select(function(){})			// sự kiện được thực hiện được kích hoạt khi bôi đen text trong input
+			$('.input')triggerHandler("select")	// kích hoạt sự kiện select cho phần tử input
+			 $("div").scroll(function(){})		// được thực hiện khi người dùng scroll phần tử	
+			$.proxy(objPerson, "test")
+		giải quyết vấn đề gắn nhiều event trên 1 element:
+			sử dụng off()
+	css phần tử:
+		hide()			-> ẩn phần tử (display:none)
+		hide(1000)		-> ẩn phần tử trong 2s giống transition
+		hide(1000,()=>{//code})	-> chạy 1 hàm khi ẩn hết
+		toggle()			-> cách sử dụng giống hide; nhưng khi đang hide thì sẽ show và ngược lại
+		show()				-> cách sử dụng giống hide; thay vì ẩn đi thì sẽ hiện ra
+		fadeTo("slow", 0.1);		-> làm mờ phần tử
+		fadeIn(speed,callback)
+		fadeOut(speed,callback)		// toggle giữa 2 hàm fadeIn và fadeOut
+		fadeToggle(speed,callback)
+		fadeTo(speed,callback)
+		slideDown(speed,callback);
+		slideUp(speed,callback)
+		slideToggle(speed,callback);
+		stop()					// làm ngưng đọng quá trình animate ẩn/hiện của phần tử
+		$("#box").animate({height: "100px"});	// hiệu ứng chuyển động với thuộc tính css
+		delay ()				// tương ứng animate-delay
+	hiệu ứng phần tử:
+		animate({
+			left: '250px',			// tham số thứ 2 là tốc độ của animate tính bằng milisecond
+			marginRight:'200px',		// nếu có 1 animate khác thì nó chạy lần lượt từng animate
+			height: '+=150px'		// có thể sử dụng += để tăng thêm kích thước cho kích thước gốc
+			width:toggle,			// có thể sử dụng toggle, show, hide
+			...}); 				// giúp tạo animate nhanh hơn
+	thuộc tính thẻ:
+		get:
+			val()				// trả về giá trị của thuộc tính value
+			attr("thuoctinh")		// trả về giá trị của thuộc tính chỉ định
+			val(function(i,oldValue){
+				return 'old value:'+oldValue;	// tham số index và value
+			})
+		set:
+			val('gia tri moi')		//set giá trị cho thuộc tính value
+			val(function(i,oldText){
+				return 'old value:'+oldText;	// tham số index và value
+			})
+			attr("thuoctinh","giatri")	-> gắn giá trị cho thuộc tính
+		delete:
+			removeAttr("thuoctinh");	-> xóa thuộc tính
+	văn bản nội dung:
+		get:
+			text()				-> trả về chuỗi: là text đc hiện thị trên màn hình
+		set:
+			text('hello')			set text cho phần tử
+			text(function(i,oldText){
+				return 'old value:'+oldText;	// tham số index và text cũ
+			})
+	thẻ html:
+		get:
+			html();				-> trả về chuỗi: là nội dung html
+		set:
+			insertBefore("p")	// chền vào phía trên phần tử đc chọn
+			insertAfter()		// chền vào phía dưới phần tử đc chọn
+			wrap("<div></div>")	// thêm thẻ bao bọc thẻ đc chọn
+			wrapInner("<b></b>")	// bao bọc nội dung của phần tử đc chọn
+			các tham số: cho append(); html(); prepend();  after(); before();
+				var text1 = "<b>Hoàng</b>"
+       				var text2 = document.createElement("i");
+       				text2.innerText = "Văn";
+        			var text3 = $('<b></b>').append('Quyết');
+			html("<p>them</p>");		-> xóa phần tử con và set phần tử con cho thẻ
+			html(function(i,oldText){
+				return 'old value:'+oldText;	// tham số index và text cũ
+			})
+			append("<p>them</p>")		-> thêm thẻ con vào vị trí cuối
+			prepend("<p>them</p>") 		-> thêm thẻ con vào vị trí đầu
+			after("<p>them</p>") 		-> thêm thẻ cùng cấp ở phía dưới phần tử chọn
+			before("<p>them</p>") 		-> thêm thẻ cùng cấp ở phía trên phần tử chọn
+		Delete:
+			remove();			// xóa các phần tử đc chọn và xóa dữ liệu, sự kiện
+			$("p").remove(".test, .demo");	// xóa phần tử p có class là test và demo
+			empty()				// Xóa nội dụng nhưng không xóa bản thân phần tử đc chọn
+			detach();			// xóa các phần tử đc chọn mà không xóa dữ liệu và sự kiện
+				xóa: 		x = $("p").detach();
+				khôi phục: 	$("body").prepend(x);
+	Đặt biệt:
+		$("div").data("greeting", "Hello World");	// tạo ra biến có key và value
+		alert($("div").data("greeting"));		// lấy dữ liệu của biến
+		 $("div").removeData("greeting");		// xóa dữ liệu key
+		 var x = $("li").toArray()			// biến các phần tử đã chọn thành 1 mảng và có thể dùng for để duyệt
+	thuộc tính class:
+		thêm class:
+			addClass("className")			// thêm class vào phần tử
+			addClass("className className2")	// thêm nhiều class
+		xóa class:
+			removeClass("className")	-> xóa đi class trong phần tử
+		Kiểm tra class:
+			hasClass("className")		-> kiểm tra xem phần tử có một CSS class hay không
+		toggle class:
+			toggleClass("className")	nếu class tồn tại thì xóa, nếu class không tồn tại thì thêm
+	thuộc tính css:
+		get:
+			css("propertyname");		// trả về giá trị thuộc tính
+		set:
+			css("propertyname","value");					// đặt thuộc tính css
+			css({"background-color": "yellow", "font-size": "200%"})	// đặt nhiều thuộc tính
+		change(functionName)		-> bắt sự kiện: khi thay đổi thì sẽ chạy function
+		keyup(functionName)		-> bắt sự kiện cho ô input text khi nhập dữ liệu: khi nhập dữ liệu sẽ chạy function
+		css("thuoctinhCss");		-> trả về giá trị của thuộc tính css
+		css("thuoctinhCss","giatri")	-> set giá trị cho thuọc tính css
+		css({"property1":"value1", "property2":"value2" ...});		-> set nhiều thuộc tính css
+	kích thươc của phần tử chọn:
+		get:
+			width()					// trả về chiều ngang content
+			height()				// trả về chiều cao content
+			innerWidth()				// trả về chiều ngang bao gồm cả padding
+			innerHeight()				// trả về chiều cao bao gồm cả padding
+			outerWidth()				// trả về chiều ngang bao gồm cả border
+			outerHeight()				// trả về chiều cao bao gồm cả border
+			outerWidth(true)			// trả về chiều ngang bao gồm cả margin
+			outerHeight(true)			// trả về chiều cao bao gồm cả margin
+		set: 
+			width(500).height(500)			// set width height của content
+	Element:
+		get:
+			$(selector).each(function(index,element))
+			$('selector')		// đây cũng là 1 element
+			parent()		// trả về element cha của phần tử đc chọn
+			parents()		// trả về các element cha, ông, cụ, tổ ,.. của phần tử đc chọn
+			parentsUntil("div")	// trả về các element cha, ông, cụ, tổ,... cho tới khi gặp thẻ div(ko trả về thẻ div)
+			children("p.first");	// trả về các element con trực tiếp của thẻ đc chọn
+			find('span')		// trả về các element con cháu chít có thẻ là span
+			siblings()		// trả về các element anh em có cùng cha với phần tử đc chọn
+			siblings('p')		// trả về các element anh em có cùng cha với phần tử đc chọn và là thẻ p
+			next()			// trả về 1 element anh em có cùng cha ở phía dưới với phần tử đc chọn
+			nextAll()		// trả về tất cả element anh em có cùng cha ở phía dưới với phần tử đc chọn
+			nextUntil('h6')		// trả về tất cả element anh em có cùng cha ở phía dưới với phần tử đc chọn cho tới khi gặp thẻ h6 thì dừng(ko chọn thẻ h6)
+			prev(), prevAll()và prevUntil()		giống next nhưng trả về element anh em ở phía trên phần tử đc chọn
+			last()			// trả về phần tử cuối cùng trong các phần tử đc chọn
+			first()			// trả về phần tử đầu tiên trong các phần tử đc chọn
+			eq(1)			// trả về phần tử theo index trong các phần tử đc chọn
+			filter('.info')		// tìm kiếm trong bộ sưu tập element đã chọn
+			not('.info')		// loại bỏ những phần tử có class info ko bộ sưu tập (trái ngược với filter)
+	Tìm kiếm:
+		$('input').on('keyup',function(){
+                	var value = $(this).val();
+                console.log(value)
+                $('tbody tr').filter(function(){
+                    $(this).toggle($(this).text().indexOf(value)>-1)
+                });
+            });
+	tư duy Hướng đối tượng cho jquery: select 1 mảng element -> vòng lặp for duyệt qua tất cả -> sử dụng từ khóa this ->  tìm kiếm phần tử -> lọc phần tử ->  
+	ajax:
+		$(selector).load(URL,data,callback);	// gửi yêu cầu để lấy dữ liệu sau đó đưa dữ liệu vào phần tử đc chọn
+		$('selector')load(url)			// trả về nội dung của url cho phần tử đc chọn
+		$('div').load('https://xinchao.com',(pram1,pram2,pram3)=>{				// trả về nội dung response
+            		console.log(pram1);		// pram1 chứa nội dung nếu gọi thành công
+            		console.log(pram2);		// pram2 trả về trạng thái response 'error' hoặc 'success'
+            		console.log(pram3);		// pram3 chứa đối tượng XMLHttpRequest
+           	});
+		get:
+			$.get(URL,callback);
+			$.get("demo_test.asp", function(data, status){			// dữ liệu lấy về và trạng thái
+    				alert("Data: " + data + "\nStatus: " + status);
+  			});
+		post:
+			$.post(URL,data,callback);
+			$.post("demo_test_post.asp",
+  				{
+    				name: "Donald Duck",
+    				city: "Duckburg"
+  				},
+  				function(data, status){						// trả về trạng thái 'success' hoặc 'error'
+    					alert("Data: " + data + "\nStatus: " + status);		// data trả về nội dung từ response
+  			});
+	Di chuyển phần tử selector:
+		next()		-> di chuyển select xuống phần tử ở dưới ngang cấp
+$("selector")
+	$("p") $("#test") $(".test")
+	$(this)			-> select phần tử hiện tại
+	$(".intro,.demo")	-> select với 2 class
+	$("h1,div,p")		-> select với 3 thẻ html
+	$("p:first")		-> select thẻ p đầu tiên trong html
+	$("p:last")		-> select thẻ p cuối cùng trong html
+	$("tr:even")		-> select thẻ tr ở vị trí chẵn
+	$("tr:odd")		-> select thẻ tr ở vị trí lẻ
+	$("p:first-child")	-> select thẻ p khi nó là thẻ đầu tiên trong thẻ cha chứa nó
+	$("p:last-child")	-> select thẻ p khi nó là thẻ cuối cùng trong thẻ cha chứa nó
+	$("p:first-of-type")	-> select thẻ p khi nó là thẻ p đầu tiên trong thẻ cha chứa nó
+	$("p:last-of-type")	-> select thẻ p khi nó là thẻ p cuối cùng trong thẻ cha chứa nó
+	$("p:nth-child(2)")	-> select thẻ p khi nó là phần tử con thứ 2 đếm từ trên xuống
+	$("p:nth-last-child(2)")	-> select thẻ p khi nó là phần tử con thứ 2 đếm từ dưới lên
+	$("p:nth-of-type(2)")		-> select thẻ p khi nó là thẻ p thứ 2 đếm từ trên xuống
+	$("p:nth-last-of-type(2)")	-> select thẻ p khi nó là thẻ p thứ 2 đếm từ dưới lên
+	$("div > p")		-> select thẻ p là con trực tiếp của thẻ div
+	$("div p")		-> select thẻ p là con, cháu, chít,.. của thẻ div
+	$("div + p")		-> select thẻ p mà nó là phần tử tiếp theo của một phần tử <div>
+	$("div ~ p")		-> select thẻ p có cấp ngang hàng với một phần tử <div>
+	$("ul li:eq(3)")	-> select phần tử thứ 4 trong danh sách
+	$("ul li:gt(3)")	-> select phầ ntử có chỉ số lớn hơn 3
+	$("input:not(:empty)")	-> select input không rỗng
+	$(":header")		-> tất cả thẻ h
+	$(":animated")		-> tất cả phần tử động
+	$(":focus")		-> phần tử đang giữ focus
+	$(":contains('Hello')")	-> các phần tử có chứa chữ hello
+	$("div:has(p)")		-> select thẻ div có chứa thẻ p
+	$(":empty")		-> các phần tử rỗng
+	$("p:hidden")		-> tất cả các phần tử đang ẩn
+các vấn đề hay gặp:
+	1/ không thể set thuộc tính với value với val('text');
+		giải quyết: sử dụng attr('value','text')
+
+
+
+
+
+
+
+
+{
+	
+}
+
+
+
+$('#table-morality:first .class')
+
+datepicker:
+cơ bản:
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<p>Date: <input type="text" id="datepicker"></p>
+	<script>
+		$( function() {
+			$( "#datepicker" ).datepicker();
+		} );
+	</script>
+Option:
+	$( "#datepicker" ).datepicker({
+		showAnim: 'show',					// hiệu ứng show lịch: show, slideDown, fadeIn, blind, bounce, clip, drop, fold, slide.
+		showOtherMonths: true,				// Hiện thị các ngày của tháng khác
+		selectOtherMonths: true,			// Cho phép chọn các ngày của tháng khác
+		showButtonPanel: true,				// Hiện 2 button done và today trên lịch
+		changeMonth: true,					// Hiện thị dropdown danh sách tháng
+      	changeYear: true					// Hiện thị dropdown danh sách năm
+		numberOfMonths: 3,					// Hiện thị nhiều tháng trên 1 view
+		format: 'dd/mm/yy',				// thay đổi Định dạng ngày tháng năm
+		showOn: "both",						// cho phép hiện icon lịch ngay cạnh input: both | button
+		buttonImage: "images/calendar.gif", // link ảnh
+		buttonImageOnly: true,				//
+		buttonText: "Select date"			// hiện thị title của buttonImage
+		minDate: "12/9/2023",				// ngày nhỏ nhất cho phép select, các ngày nhỏ hơn sẽ disaled
+		maxDate: "+1m",						// ngày lớn nhất được phép select
+		firstDay: 1,						// mặc định chủ nhật (0) sẽ là ở cột đầu tiên của bảng lịch; đổi lại thứ hai(1) là ngày đầu tiên
+		numberOfMonths: [ 2, 3 ],			// số lượng lịch xuất hiện cùng 1 lúc theo x, y
+		onSelect: function(String dateText, Object inst) {				// Thêm sự kiện khi select
+			alert('onSelect');
+		}
+	});
+Add option when after Build:
+	 $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+-------------------------------------------------------------
+validate:
+			Tạo validate trên fontend với jquery:
+	import:
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	sử dụng:
+		   $(document).ready(function(){
+   		   	var a = $("form[name='contact']").validate({
+    			rules: {
+        			email: {
+        				required: true,
+        				email: true,
+       				minlength: 5,
+       	 			maxlength: 1000
+        			},
+        			phonenumber: {
+        				required: true,
+       				minlength: 8,
+        				maxlength: 15,
+        			}
+    			},
+    			messages:
+        			email: {
+            			required: "Email không được để trống",
+           				minlength: "Email không hợp lệ",
+            			maxlength: "Email quá dài"
+        			},
+        			phonenumber : {
+            			required: "Số điện thoại không được để trống",
+            			minlength: "Số điện thoại không hợp lệ",
+            			maxlength: "Số điện thoại không hợp lệ",
+        			}
+    			},
+    			submitHandler: function(form) {
+        			form.submit();
+    			}
+    		});
+		})
+	Kiểm tra:
+		var validator = $("form[name='contact']").validate();
+		validator.form()

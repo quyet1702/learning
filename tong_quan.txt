@@ -1,0 +1,13 @@
+design platform:
+	framework: (laravel, cakePHP, codeigner), (Django, Flask), (Spring, Java EE), (Ruby on Rails),...
+	language: PHP, C#, JavaScript, Python, Ruby,..
+	Cơ sở dữ liệu: (MYSQL, SQL Server, PostgreSQL) =>SQL, (MongoDB, Cassandra, Redis) => NoSQL
+	Hệ thống message: RabbitMQ, Kafka, ActiveMQ, ..
+	Cấu trúc hệ thống: Monolith, Microservices, Serverless,...
+Kỹ năng lập trình(Core software engineering):
+	software security, Cấu trúc dữ liệu, Giải thuật, Testing, OOP, Design Patterns, Version Control
+Vận hành & hạ tầng(DevOps/Infra):
+Phân phối & scale hệ thống:
+Quy trình phát triển phần mềm:
+Chuyên ngành mở rộng:
+	

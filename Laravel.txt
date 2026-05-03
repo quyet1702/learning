@@ -1,0 +1,2350 @@
+CLI:
+Cách hoạt động của Chương Trình Laravel:
+Middleware:
+Request:
+Controller:
+	Kiểm tra request: Validate
+	Các thuộc tính của request:
+	Xử lý request:
+	Response:
+	Collection:
+	QueryBuilder:
+View:
+Route:
+Model:
+	Thêm mới 1 dòng:
+	Thêm mới nhiều dòng:
+	Thêm mới hoặc cập nhật:
+	Thêm mới hoặc cập nhật hàng loạt:
+	Xóa 1 dòng:
+	Xóa nhiều dòng:
+	Quan hệ 1-1:
+	Quan hệ 1-n:
+	Quan hệ nhiều nhiều:
+Các package:
+schedule:
+Excel:
+	Export:
+	Import:
+upload File:
+PDF:
+export word:
+Cấu trúc thư mục laravel:
+Chế độ bảo trì:
+convert array to object js:
+Đọc lưu file:
+Authentication:
+Passport:
+	Cài đặt:
+	Tạo token:
+	Xác thực token:
+Sanctum:
+	Cài đặt:
+	Đăng nhập:
+	Tạo token khi đã đăng nhập:
+Thêm vue vào laravel:
+Modules:
+Services:
+
+---------------------------
+config:
+	Chạy php cơ bản:
+Install:
+	xampp:
+	composer:
+	biến môi trường:
+	laravel:	composer global require laravel/installer --prefer-source
+	Import project:
+Cấu trúc thư mục:
+Tester:
+debugbar:
+Migrate:
+	Thêm file Migration:
+	Tạo bảng:
+	Cập nhật bảng:
+	Thêm dữ liệu:
+Seeder:
+	Thêm seeder:
+	Chạy seeder:
+Helper:
+Cấu hình .env:
+chạy project với port chỉ định:
+Chế độ bảo trì:
+Thêm tên miền ảo:
+sử dụng mạng cục bộ:
+Tạo debug:
+Tạo module:
+-------------------
+	Validate:
+	Thông thường:
+	Nâng cao:
+		Không cho phép thay đổi dữ liệu nếu vị phạm ràng buộc:
+Save Data:
+	Lưu dữ liệu table:
+		Custom dữ liệu từ frontend:
+		Lưu dữ liệu:
+	Lưu với dữ liệu form là table data:
+	Lưu với dữ liệu json array:
+Get Data:
+
+Search:
+Import:
+	Cơ bản:
+	Validate tự tạo để kiểm tra dòng lỗi:
+	Validate kiểm tra template hợp lệ:
+		Lấy array Heading từ file:
+		Lấy array Heading từ database:
+		Trả về true nếu 2 array bằng nhau:
+	Lưu dữ liệu import:
+Export:
+	Tạo Template:
+Helper:
+-------------------------------------------------------------------------------------------------------------------------------------
+CLI:
+	php artisan list								// xem tất cả các lệnh CLI
+	php artisan route:list							// Kiểm tra danh sách route
+	php artisan make:middleware RoleMiddleware		// Tạo middleware
+	php artisan make:controller controllerName		// Tạo controller
+	php artisan make:model ModelName				// tạo model
+	php artisan make:model ModelName -m				// tạo model + migration
+	php artisan make:view greeting						// Tạo view
+	php artisan config:cache						// Lưu thay đổi cấu hình config
+	php artisan key:generate						// tạo key
+	php artisan cache:clear
+	php artisan route:cache
+	php artisan view:clear
+--------------------------------------------------------------------------------------------------
+Cách hoạt động của Chương Trình Laravel:
+	- Chạy chương trình:
+		+ File khởi động:
+			- index.php
+		+ Tạo instance của ứng dụng:
+			- bootstrap/app.php
+		+ Tải các cấu hình (config):
+			- gồm các file config cần thiết và các file config chạy thủ công qua command
+			- config/app.php
+			- config/database.php
+			- config/services
+			- config/auth.php
+		+ Khởi động các dịch vụ (services):
+			+ Các Service Providers
+	- Xử lý các request:
+		System => (Request => Middleware => Validate => Controller(query => Model  => response) => view)
+-----------------------------------------------------------------------------------------------
+Middleware:
+	Tạo file middleware:
+			php artisan make:middleware EnsureTokenIsValid
+			app/http/middleware/EnsureTokenIsValid.php:
+				public function handle($request, Closure $next)
+				{
+					if ($request->age <= 200) {
+							return redirect('home');				// Kiểm tra request, nếu ko đạt yêu cầu thì gửi trở lại trang chủ
+					}
+					return $next($request);						// cho phép middleware chuyển yêu cầu vào sâu hơn trong ứng dụng
+				}
+	Đăng ký middleware:
+		->withMiddleware(function (Middleware $middleware) {
+			$middleware->append(EnsureTokenIsValid::class);
+		})
+	Sử dụng:
+		Cách 1: sử dụng với route
+			Route::get(...)->middleware([EnsureTokenIsValid::class]);
+										->withoutMiddleware([MiddlewareName::class]);			// loại bỏ middleware	
+		Cách 2: sử dụng trên controller:
+			public function __construct()					// cách sử dụng middleware cho controller thuận tiện hơn so với sử dụng trên route
+			{
+				$this->middleware([EnsureTokenIsValid::class]);
+				$this->middleware(function ($request, $next) {		// đăng ký middleware
+					// code
+						return $next($request);
+				});
+			}
+	-------------------------------------------------------------------------------------------
+Controller:
+	Kiểm tra request:
+		Validate:
+			Dạng 1: Sử dụng trực tiếp:
+				$validator = Validator::make($request->all(),
+							[
+								'title' 			=> 'required|max:22|unique:TableName,Column_name',
+								'data.*.value.content'	=> 'required'	 				// name = data[591][value][content]
+							],
+							[
+								'title.max'				=>':attribute không được vượt quá :max ký tự',
+							],
+							[
+								'title'			=>'Tiêu đề',
+								'content'			=>'Nội dung'
+							]);
+				if ($validator->fails()) {
+						return back()->withErrors($validator);
+				}
+				$validator->messages()->first()											// lấy thông báo error đầu tiên
+			Dạng 2: Tạo file Request:
+				php artisan make:request StoreArticleRequest
+				protected function prepareForValidation()								// Kiểm tra parameter trước khi validate
+				{
+					if ($this->has('price'))
+						$this->merge(['price'=> 0]);
+				}
+				public function rules(){
+					return [
+						title' =>  'min:10|max:20|required'
+					];
+				}
+				public function messages() {				// Thay đổi nội dung của các loại lỗi
+					return [
+						'title.required' => 'A title is required',
+						'body.required' => 'A message is required',
+					];
+				}
+				public function withValidator($validator)				// Thêm 1 số loại lỗi trước khi validate đc kiểm tra:
+				{
+					$validator->after(function ($validator) {
+						if ($this->somethingElseIsInvalid()) {
+							$validator->errors()->add('field', 'Something is wrong with this field!');
+						}
+					});
+				}
+				public function authorize()					// Kiểm tra request có quyền hay ko
+				{
+					return true;						// nếu đã có logic sử lý phân quyền có thể để true
+				}
+		Các thuộc tính của request:
+			$value = $request->cookie('name');					// lấy giá  trị từ cookie
+			Cookie::get('name')						// cách 2 để lấy cookie
+			$uri = $request->path();						// lấy thông tin route ví dụ: http://domain.com/foo/bar thì trả về foo/bar
+			$request->is('admin/*')							// kiểm tra xem request có phải đến từ url admin/* hay ko
+			$url = $request->fullUrl();						// trả về url có route truy vấn
+			$method = $request->method();						// trả về method của form submit từ request
+			$request->isMethod('post')						// trả về true flase nếu mothod khớp từ request
+				$input = $request->all();						// lưu thành array
+			$name = $request->input('name');					// lấy dữ liệu từ request
+			$name = $request->name;							// giống cách ở trên
+			$name = $request->input('name', 'Sally');				// lấy dữ liệu từ request; nếu request ko có dữ liệu này thì mặc định là Sally
+			$name = $request->input('products.0.name');				// truy cập các mảng
+			$names = $request->input('products.*.name');
+			$input = $request->input();						// truy xuất toàn bộ dữ liệu từ request bao gồm chuỗi query từ route
+			$name = $request->query('name');					// chỉ truy xuất dữ liệu từ chuỗi query từ route
+			$name = $request->query('name', 'Helen');				// nếu key name ko có giá trị thì sẽ trả về Helen
+			$query = $request->query();						// truy xuất dưới dạng mảng kết hợp
+			$name = $request->input('user.name');					// khi request là chuỗi json
+			$archived = $request->boolean('archived');				// lấy dữ liệu là checkbox từ request
+			$input = $request->only(['username', 'password']);			// chỉ lấy dữ liệu yêu cầu với kiểu array có key
+			$input = $request->except(['credit_card']);				// lấy dữ liệu yêu cầu với kiểu array có key
+			$IsExits = $request->has('name')					// kiểm tra đầu vào xem có input là name hay không
+			$IsExits = $request->has(['name', 'email'])				// Kiểm tra xem tất cả dữ liệu có tồn tại hay ko
+			$IsExits = $request->hasAny(['name', 'email'])				// Kiểm tra chỉ cần 1 key tồn tại sẽ trả về true
+			$IsExits = $request->missing('name')					// trả về true nếu key không tồn tại
+			$IsExits = $request->filled('name')					// trả về true nếu giá trị tồn tại và not null
+			$request->flash();							// đưa toàn bộ dữ liệu vào session
+			$request->flashOnly(['username', 'email']);				// đưa dữ liệu chỉ định vào session
+			$request->flashExcept('password');					// đưa all dữ liệu ngoại trừ password vào session
+			$username = $request->old('username');					// lấy dữ liệu chỉ định từ session
+			$file = $request->file('photo');					// truy xuất các tệp đã tải lên
+			$file = $request->photo;
+			$request->hasFile('photo')						// kiểm tra tệp có tồn tại hay ko
+			$request->file('photo')->isValid()					// kiểm tra tệp đã tải lên thành công chưa
+			$path = $request->photo->path();					// lấy đường dẫn tệp
+			$extension = $request->photo->extension();				// lấy phần mở rộng của tệp ví dụ: .png .txt
+			$path = $request->photo->store('images');				// lưu tệp tìm hiểu thêm
+			$path = $request->photo->store('images', 's3');				// lưu tệp tìm hiểu thêm
+			$path = $request->photo->storeAs('images', 'filename.jpg');		// lưu tệp tìm hiểu thêm
+			$path = $request->photo->storeAs('images', 'filename.jpg', 's3');	// lưu tệp tìm hiểu thêm
+			View::exists('emails.customer')						// Kiểm tra view có tồn tại hay không
+			! $request->hasValidSignature()						// kiểm tra request có chữ ký url hợp lệ hay ko
+			$value = $request->session()->get('keyName');				// lấy giá trị session từ người dùng thông qua key
+				hoặc $value = session('keyName');
+			$data = $request->session()->all();					// lấy toàn bộ giá trị session từ người dùng
+			$value = $request->session()->get('keyName', 'default');		// nếu key ko tìm thấy sẽ trả về giá trị mặc định
+				hoặc $value = session('key', 'default');
+			$request->session()->put('key', 'value');				// lưu dữ liệu session vào trình duyệt người dùng
+				hoặc session(['key' => 'value']);
+			$request->session()->has('keyName')					// trả về true nếu giá trị của key không null
+			$request->session()->exists('keyName')					// trả về true nếu tồn tại session có key này trên người dùng
+			$value = $request->session()->pull('key', 'default');			// xóa session
+			$request->session()->flash('keyName', 'Task was successful!');		// lưu session, nhưng chỉ sử dụng 1 lần duy nhất cho 1 request kế tiếp và sẽ tự động xóa session này
+				$request->session()->reflash();					// trước khi session đc tạo bởi flash bị xóa, thì sẽ đc giữ lại
+				hoặc $request->session()->keep(['username', 'email']);		// chỉ định củ thể session muốn giữ lại
+			$request->session()->forget('key');					// xóa 1 dữ liệu session
+			$request->session()->forget(['key1', 'key2']);				// xóa nhiều dữ liệu
+			$request->session()->flush();						// xóa toàn bộ
+			$request->session()->regenerate();					// tạo lại id session
+	Response:
+		return response($content)
+				 ->header('Content-Type', $type)
+				 ->
+		Kiểu phản hồi:
+			response()
+				->action('HomeController@index')
+			redirect()
+			back()
+		option kèm theo:
+
+		trả về file kèm dữ liệu:
+		-> with('articles',$articles); with(['articles',$articles]);
+		redirect()->action('HomeController@index');				// chuyển hướng đến 1 action của controller chỉ định
+		redirect()->action('UserController@profile', ['id' => 1]);		// chuyển hướng đến 1 action của controller chỉ định và kèm tham số là id
+		redirect('form')->withInput();						// chuyển hướng đến form nhập liệu
+		redirect()->away('https://www.google.com');				// chuyển hướng đến đến 1 url bên ngoài website
+		back()										// quay lại trang trước
+		back()->withInput()								// quay lại và lưu section của form
+		back()->withErrors(['email' => 'The provided credentials ',])		// quay lại kèm tin nhắn lỗi; dữ liệu này đc hiện thị dựa trên @error
+		return response('Hello World')->withCookie($cookie);			// phản hồi người dùng và loại bỏ cookie
+		return redirect('form')->withInput($request->except('password'));	// trả về 1 view kèm theo dữ liệu session trước đó ngoại trừ password
+		return response('Hello World')->cookie('name', 'value', $minutes);	// gửi cookie về cho người dùng với key, value, số phút có hiệu lực
+		return response()->download($pathToFile, $name, $headers);		//  người dùng tải xuống tệp theo đường dẫn với tên chỉ định
+						->deleteFileAfterSend()
+		return response()->file($pathToFile);					
+		return response()->file($pathToFile, $headers);					// hiện thị trực tiếp file trên trình duyệt thay vì người dùng tải xuống
+		return redirect('home/dashboard');					// chuyển hướng từ url trên trình duyệt
+		return back()->withInput();							// chuyển hướng về lại địa chỉ cũ, ví dụ gửi form ko hợp lệ sẽ chuyển về lại form
+		return view()->first(['custom.admin', 'admin'], $data);
+		return View::first(['custom.admin', 'admin'], $data);
+		return view('greetings', ['name' => 'Victoria']);
+		return view('greeting')->with('name', 'Victoria');
+		return URL::signedRoute('unsubscribe', ['user' => 1]);			// url đc đăng ký, và trả về token để đảm bảo url ko bị sửa đổi
+		return URL::temporarySignedRoute(
+				'unsubscribe', now()->addMinutes(30), ['user' => 1]		// tạo thời gian hết hạn cho url
+		);
+		Illuminate\Support\Facades\Validator;
+		
+	Cookie:
+		return view và model:
+			public function store(Request $request)
+    		{
+				return response('Hello World')->cookie(
+    					'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
+				);
+				Cookie::queue(Cookie::make('name', 'value', $minutes));
+				Cookie::queue('name', 'value', $minutes);
+				$cookie = cookie('name', 'value', $minutes);
+				return response('Hello World')->cookie($cookie);
+				Cookie::queue(Cookie::forget('name'));					// loại bỏ cookie
+				$cookie = Cookie::forget('name');
+    		}
+	----------------------------------------------------------------------------------
+	QueryBuilder:
+			Chọn dữ liệu cần lấy:
+				find(1);					// tìm theo id trả về kiểu Blog
+				first();					// trả về phần tử đầu tiên, trả về kiểu Blog
+				select('id','name'); count(); max('columnName'); min('columnName'); avg('columnName');
+				distinct()							// không lấy trùng
+				Blog::all()					// lấy tất cả dữ liệu; chỉ sử dụng đc trực tiếp với model
+				Blog::get();				// lấy tất cả dữ liệu
+				Destination::addSelect(['last_flight' => Flight::select('name')			// select thêm 1 trường với truy vấn phụ
+    				->whereColumn('destination_id', 'destinations.id')
+    				->orderByDesc('arrived_at')
+    				->limit(1)
+				])->get();		
+				->paginate(10)
+				Blog::pluck('title');				// trả về collection string title
+				Blog::pluck('title', 'id');			// trả về array title dưới dạng key value; key được lấy từ giá trị cột id trong table
+			Điều kiện:
+				where(where([
+    				['status', '=', '1'],
+    				['subscribed', '<>', '1'],				// phải thỏa mãn tất cả điều kiện 
+				])'title','ád')
+				whereBetween('propertyName', [1, 100])				// lấy dữ liệu từ 1 -> 100
+				whereIn('id', [1, 2, 3])					// lấy dữ liệu thuộc các phần tử trong mảng
+				whereNotIn('id', [1, 2, 3])					// lấy dữ liệu không thuộc các phần tử trong mảng
+				where('propertyName', '>', 100)				// lấy dữ liệu với propertyName > 100
+				where('name', 'like', 'T%')
+				orWhere('name', 'John')						// giống toán tử so sánh || ( true || false)	
+				whereNull; whereNotNull; whereDate; whereMonth; whereDay; whereYear
+				whereTime('created_at', '=', '11:20:45')				// Kiểm tra giờ
+				whereColumn('first_name', 'last_name')					// kiểm tra 2 cột có giá trị bằng nhau hay không
+				whereColumn('updated_at', '>', 'created_at')			// so sánh giá trị 2 cột
+				has('comments', '>=', 3)								// chỉ lấy bản ghi cha khi có ít nhất 3 bản ghi con
+				whereHas('comments', function (Builder $query) {		// giống với has(); nhưng whereHas cho phép truy vấn thêm điều kiện để lọc bản ghi cha
+						$query->where('content', 'like', 'foo%');		// trường hợp này chỉ lấy bản ghi cha với ít nhất 1 bản ghi con chứa từ foo
+				})
+				whereHas('comments', function (Builder $query) {		// Truy xuất các bài đăng có ít nhất mười nhận xét có chứa các từ như foo%
+						$query->whereHas('users', function(){})
+						->orWhereHas('users', function(){})
+						
+				}, '>=', 10)
+			Sắp xếp:
+				orderBy('columnName', desc)					// sắp xếp dữ liệu theo columnName theo a -> z, 1 -> 9
+				Destination::orderByDesc(					// sắp xếp từ 1 bảng khác
+    				Flight::select('arrived_at')
+        				->whereColumn('destination_id', 'destinations.id')
+        				->orderByDesc('arrived_at')
+        				->limit(1)
+				)->get();
+			join:
+				leftJoin('tableRight', 'tableLeft.id', '=', 'tableRight.user_id')	// tương tự rightJoin, join(tức là innerjoin)
+				join('contacts', function ($join) {
+							$join->on('users.id', '=', 'contacts.user_id')			// join với điều kiện
+							->where('contacts.user_id', '>', 5);
+					})
+			Tải dữ liệu bảng phụ:
+				->with(['posts' => function ($query) {
+						$query->where('title', 'like', '%first%');
+				}])								// lấy dữ liệu 1 bảng khác đã được xác định trên model
+				
+				diff(User::whereIn('id', [1, 2, 3])			// trả về tất cả đối tượng nằm ngoài các đối tượng đã cho
+				except([1, 2, 3])					// trả về tất cả đối tượng ko có khóa chính đã cho
+				
+				with('posts')							// tải dữ liệu từ hàm posts
+				with(['author', 'publisher'])					// tải dữ liệu từ 2 hoặc nhiều hàm
+				with('author:id,name')						// lấy các cột củ thể; giống với select
+				with('author.contacts')						// tải bảng author và bảng contact
+				with(['posts' => function ($query) {
+						$query->where('title', 'dssd');				// chỉ đc sử dụng builder cho bảng phụ; không sử dụng collection
+				}])
+												// điều kiện, chỉ lấy bản ghi cha khi tồn tại ít nhất 1 bản ghi con 
+		paginate(10);					// tạo phân trang; {{$articles->appends(request()->input())-> links()}}		// giữ lại param search khi chuyển trang
+		Trả về array string:
+		
+		Action:
+			Thêm mới 1 dòng:
+				
+			Thêm mới:
+				Blog::insert(['title'=>$request->title, 'content'=>$request->content]);		// thêm mới và trả về bool; ko cần fillable
+				Blog::create(['title'=>$request->title, 'content'=>$request->content]);		// thêm mới và trả về 1 model; cần sử dụng fillable
+			Cập nhật 1 dòng:
+				$blog = Blog::find(1);
+				$blog->title = "title 1";
+				$blog->save();
+			Cập nhật hàng loạt:
+				cách 1:
+              				->update(['votes' => 1]);
+				cách 2:
+					$flight->fill(['name' => 'Flight 22'])->save();		// gắn hàng loạt thuộc tính cho model; khi đã có 1 model, và đã khai báo $fillable 
+			Xóa:
+				$deletedRows = Blog::where('active', 0)->delete();
+				DB::statement('drop table users');
+	----------------------------------------------------------------------------------------
+	Collection: Thêm, xóa, sửa, sắp xếp, lọc, tìm kiếm, convert to json, convert to array, tổng, foreach
+	Response:
+		Chuyển hướng đến route + kèm session; Quay lại trang cũ; Trả về json; Cho tải file; kèm cookie; kèm header;
+------------------------------------------------------------------------------------------------
+Model:
+	Phương thức truy cập thuộc tính (Accessor):
+	Phạm vi truy vấn (Query scope);
+	Chỉ định được gắn hàng loạt ($fillable);
+	chỉ định không được gắn hàng loạt ($guarded);
+	Đặt lại tên table ($table);
+	Bật tắt tạo id tự động tăng khi lưu ($incrementing);
+	Kiểu dữ liệu khóa chính ($keyType):
+	Tự động cập nhật created_at và updated_at ($timestamps);
+	Đổi tên 2 cột created_at và updated_at (const CREATED_AT; const UPDATED_AT)
+	Đặt giá trị mặc định của atrribute khi khởi tạo model ($attributes)
+	Thêm mới 1 dòng (save()):
+	Thêm mới 1 dòng (fill()->save()):
+	Thêm mới 1 dòng (create()):
+	Thêm mới hoặc cập nhật (updateOrCreate()):
+	Thêm mới hoặc cập nhật hàng loạt (upsert()):
+	Xóa 1 dòng (delete()):
+	Xóa 1 hoặc nhiều dòng (destroy()):
+	Relationship:
+		Quan hệ 1-1:
+			$this->belongsTo(Comment::class);		// thực hiện trên model có khóa ngoại		// sẽ trả về 1 model
+			$this->hasOne(Phone::class);			// thực hiện trên model ko có khóa ngoại	// sẽ trả về 1 model
+		Quan hệ 1-n:
+			$this->hasMany(Comment::class, 'post_id', 'id');		// thực hiện trên bảng 1; tức là không có khóa ngoại	// sẽ trả về 1 collection
+			$this->belongsTo('App\Post');					// thực hiện trên bảng n; tức là có khóa ngoại		// sẽ trả về 1 model
+		Quan hệ nhiều nhiều:	1 - n - 1:
+			return $this->belongsToMany('Product::class','order_details');	// thực hiện trên bảng 1 để lấy bảng 3			// sẽ trả về collection
+		Quan hệ nhiều nhiều lấy dữ liệu bảng trung gian:
+			public function products(){
+        			return $this->belongsToMany('Product::class','order_details')
+						->withPivot('quantity')			// select thêm thuộc tính bảng trung gian
+						->as(tableName);			// đổi tên bảng trung gian
+    					}							// có thể thêm distinct(),..
+					queryBuilder:
+						$order = Order::find(1);
+						$order->products[0]				// lấy dữ liệu bảng products
+    						$order->products[0]->pivot->quantity;		// lấy dữ liệu bảng trung gian; chú ý cần khai báo ->withPivot('quantity');
+		Quan hệ đa hình: 1 - n - 1
+			Mô tả: quan hệ đa hình gần giống với một - nhiều; nhưng bảng nhiều chỉ chứa 1 khóa ngoại duy nhất dành cho các bảng khác tham chiếu tới, và 1 cột type để biết row đó dành cho bảng nào
+				khai báo:
+					return $this->morphOne(Image::class, 'imageable');		// sử dụng trên bảng 1; trả về 1 mo del
+				sử dụng:
+					trên bảng 1:	Post::find(1)->image;			// trả về 1 model image
+					trên bảng nhiều:  Image::find(1)->imageable;		// trả về 1 model post hoặc user
+					morphToMany(): sử dụng cho bảng 1
+					morphToMany($1, $2, $3, $4, $5)
+							$tham số 1: tên class bảng đích
+							$tham số 2: tên định danh tự đặt của bảng trung gian
+							$tham số 3: tên đúng của bảng trung gian trong database
+							$tham số 4: tên khóa ngoại của bảng trung gian liên kết với bảng hiện tại
+							$tham số 5: tên khóa ngoại của table đích trong bảng trung gian
+		Quan hệ 1-1-1:
+			public function carOwner(): HasOneThrough			// đơn giản là từ bảng 1 lấy bảng thứ 3(Owner) thông qua bảng 2(Car); nhưng trả về 1 model, chứ ko phải collection
+    			{
+        			return $this->hasOneThrough(Owner::class, Car::class);
+    			}
+		nâng cao:
+			return $this->orders()->one()->latestOfMany;		// cách rút gọn
+			public function latestOrder(): HasOne			// truy xuất 1 model mới nhất
+			{
+   				 return $this->hasOne(Order::class)->latestOfMany();
+			}
+			public function oldestOrder(): HasOne			// truy xuất 1 model cũ nhất
+			{
+    				return $this->hasOne(Order::class)->oldestOfMany();
+			}
+			public function largestOrder(): HasOne			// truy xuất 1 model có giá đắt nhất
+			{
+    				return $this->hasOne(Order::class)->ofMany('price', 'max');
+			}
+			public function currentPricing(): HasOne		// Thực hiện lọc các row theo published_at; lấy kết quả lọc lấy 1 model mới nhất, và id mới nhất
+			{
+    				return $this->hasOne(Price::class)->ofMany([
+        				'published_at' => 'max',
+        				'id' => 'max',
+    				], function (Builder $query) {
+       					$query->where('published_at', '<', now());
+    				});
+			}
+	Tạo hàm truy vấn có thể sử dụng lại:
+		public function scopeActive($query)		Tên hàm phải có hậu tiền tố là scope+In hoa chữ cái đầu
+    		{
+        		return $query->where('active', 1);
+    		}
+		sử dụng: User::active()->get();			// viết thường tên hàm
+	-----------------------------------------------------------------------------------------------------------
+	Provider:
+			RouteServiceProvider:
+			public function boot()					
+			{
+    			Route::pattern('id', '[0-9]+');			// tham số id của mọi route luôn bị giới hạn ký tự từ 0->9
+				parent::boot();
+			}
+	---------------------------------------------------------------------------------------------------------
+	Layout:
+		thư mục lưu trữ: 	Resource/views/layouts/app.blade.php
+		gắn layout vào view:
+			@extends('layouts.app')
+			@section('content')
+			// code html, css,js,php,blade,..
+			@endsection
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Route:
+	Gọi lại 1 route từ view:
+		Route::prefix('blog')->as('blog.')->group(function () {
+    				Route::get('/', [BlogController::class, 'show']);->name('show'); 	// get; post; put; patch; delete; any(đa năng get,post,...);
+			});
+		Route::get($uri, $callback);		// 
+		Route::options($uri, $callback);
+		Route::match(['get', 'post'], '/', function () {			// tạo route có phương thức get, post,...
+		});
+		Route::redirect('/here', '/there');					// chuyển hướng route, nhưng sẽ trả về mã trạng thái là 302
+		Route::redirect('/here', '/there', 301);				// thay đổi mã trạng thái
+		Route::permanentRedirect('/here', '/there');				// chuyển hướng  với mã trạng thái 301
+												// route chuyển hướng ko cho phép xài 2 tham số này destinationvà status.
+		Route::view('/welcome', 'welcome');					// return về 1 view và 1 array model; tham số ko thể sử dụng: view, data, status, and headers.
+		Route::view('/welcome', 'welcome', ['name' => 'Taylor']);			
+		Route::get('/user/{id}', function ($id) {				// lấy id của người dùng
+   			 return 'User '.$id;
+		});
+		Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
+				return 'User'.$comments;
+			});									// nhiều tham số route
+		Route::get('/user/{id}', function (Request $request, $id) {		// nếu người dùng gửi form thì thêm tham số request đề lấy dữ liệu từ form
+    			return 'User '.$id;
+		}) ->where(['id' => '[0-9]+', 'name' => '[a-z]+'])			// tạo ràng buộc cho tham số của route id chỉ đc từ 0 -> 9, và name từ a -> z
+			->name('profile');	
+								Kiểm tra danh sách route hiện có
+		Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {		// middleware kiểm soát  cache					];
+	$flight->fresh()	// fresh đối tượng
+		foreach (Flight::where('foo', 'bar')->cursor() as $flight) {
+    			//
+		}
+		$users = App\User::cursor()->filter(function ($user) {
+    			return $user->id > 500;
+		});
+	----------------------------------------------------------------------------------
+View:
+	Tạo view:
+		php artisan make:view greeting
+	Layout:
+	Các biến Global:
+		$error; $errors->all(); $errors->any();				// chứa lỗi validate; cần xử lý validate trước
+	Chia sẻ dữ liệu cho tất cả view:
+		app/Providers/AppServiceProvider.php:
+		public function boot()
+		{
+			View::share('key', 'value');				// cung cấp dữ liệu cho mọi view
+		}
+	let receiptId = e.currentTarget.getAttribute('data-receipt-id');
+                var url = "{{ route('admin.tuition.receipt.update', ":receiptId") }}";
+                url = url.replace(':receiptId', receiptId);
+			@csrf									// các form đều phải có lệnh này, nếu ko sẽ bị từ chối
+	Sử dụng biến chứa dữ liệu từ (controller, AppServiceProvider,route, hệ thống,..) gửi tới:
+		Tạo view:	resource/views/folderName/fileName.blade.php
+		{{$Ten_bien}}								// miễn là có dữ liệu sẵn
+		$errors->first('email')							// tên biến có thể là bất kỳ kiểu dữ liệu nào: object,function, static...; 
+		
+		@if ($errors->any())
+    			<div class="alert alert-danger">				// cú pháp cho if và for
+        		<ul>
+            		@foreach ($errors->all() as $error)
+                		<li>{{ $error }}</li>
+            		@endforeach
+        		</ul>
+    			</div>
+		@endif
+		@error('title')
+    			<div class="alert alert-danger">{{ $message }}</div>
+		@enderror
+		controller:
+		Route:
+		Hệ thống:
+			url("/posts/{$post->id}");					// in ra url hiện tại và query ví dụ: http://example.com/posts/1
+			url()->current();
+			url()->full();
+			url()->previous();
+			URL::current();
+			route('post.show', ['post' => 1])				// http://example.com/post/1	// lưu ý post.show là url đc đặt tên
+			route('comment.show', ['post' => 1, 'comment' => 3])		// http://example.com/post/1/comment/3
+
+
+	thư mục chứa view: resource/view
+	layout:
+		resources/views/layouts/app.blade.php
+		khai báo:		sử dụng trên views/index.blade.php
+			layout:
+				@yield('content')								// link phần nội dung index
+			index:
+				@extends('layouts.app')								// khai báo layout muốn sử dụng
+				@section('content')								// bên layout cần khai báo <main>yield('content')</main>
+				// toàn bộ nội dung html
+				@endsection
+				cách 2: @section('title', 'Page Title')						// tham số thứ 2 là nội dung html
+			section loại 1:	
+				@section('sidebar')
+    					@parent									// nơi mà thẻ html ở layout hiện ra
+   					<p>This is appended to the master sidebar.</p>
+				@endsection
+			section loại 2:
+				@section('content')
+    					<p>This is my body content.</p>
+				@endsection
+			section loại 3:
+				@section('title', 'Page Title')						// lưu trữ dữ liệu với key value
+		sử dụng:
+			sử dụng section loại 1:
+				@section('sidebar')
+            			This is the master sidebar.
+        			@show											// nơi mà dữ liệu khai báo sẽ hiện ra
+			sử dụng section loại 2:
+				@yield('content')								// toàn bộ nội dung của section loại 2 sẽ hiện ra
+			sử dụng section loại 3:
+				@yield('title')								// in ra dữ liệu với key
+	Link file tĩnh vào html:
+		bước 1:	đưa thư viện vào folder public
+		bước 2:	<link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+			hoặc: <link rel="stylesheet" href="./assets/lib/bootstrap-5/css/bootstrap.min.css">
+	Tạo Layout:
+		Tạo section:
+			section có thể là 1 biến; 1 hoặc nhiều thẻ html
+			khai báo 1 section chứa thẻ html:
+				@section('content')
+				//html,css,php,..
+				@endsection
+		khai báo 1 layout:
+			<main class="py-4">
+            			@yield('content')			// trong đó 'content' trùng với tên section để liên kết
+        		</main>
+		khai báo 1 section
+		Thêm layout vào section:
+			@extends('layouts.app')
+		Thêm 1 section kiểu biến vào section:
+			@section('title', 'Page Title')
+		Thêm 1 section khác vào trong section:
+			@section('sidebar')
+    			@@parent
+	Gắn array php vào biến js:
+		<script>
+    		var app = @json($array);
+ 			var app = @json($array, JSON_PRETTY_PRINT);
+		</script>
+		hoặc:
+		<script>
+    			var app = <?php echo json_encode($array); ?>;
+		</script>
+	Cấu trúc câu lệnh điều kiện kiểm tra:
+		câu lệnh if else:
+		@if (count($records) === 1)
+    			I have one record!
+		@elseif (count($records) > 1)
+    		I have multiple records!
+		@else
+    		I don't have any records!
+		@endif
+		câu lệnh blade kiểm tra dữ liệu:
+			@isset($records)
+    				// $records is defined and is not null...
+			@endisset
+			@empty($records)
+    				// $records is "empty"...
+			@endempty
+		kiểm tra người dùng đã đăng nhập hay chưa:
+			@auth
+    				// The user is authenticated...
+			@endauth
+ 
+			@guest
+    				// The user is not authenticated...
+			@endguest
+		Kiểm tra section có tồn tại hay ko:
+			@hasSection('navigation')
+			@endif
+		Tìm hiểu sau:
+			nó gần giống với cshtml; những gì cshtml làm đc thì blade.php cũng làm đc; tìm hiểu thêm tại: https://laravel.com/docs/7.x/blade#defining-a-layout
+	tạo form:
+		tạo create.blade.php trên views
+			<form action="{{route('article.store')}}" method="post">
+        			@csrf
+        			<input type="text" name="title"/>
+        			<input type="text" name="content"/>
+        			<button type="submit">submit</button>
+    			</form>
+		giải thích:
+			@csrf dùng để sinh ra input hidden có value là mã token
+			{{route('article.store')}} dùng để in ra path dẫn đến action post store
+			tên thuộc tính name phải khớp với tên trong action
+	Blade Template:
+		{{ $name }}					// hiện thị nội dung của biến
+		{{ time() }}					// lấy thời gian hiện tại
+		{!! $name !!}					// cách này ko đc bảo mật
+		{ @$name !!}					// cho phép null
+		var a = '{{ $name }}';				// sử dụng biến php gắn vào biến js
+		@verbatim					// Không phải sử dụng dấu @ trước {{ name }} khi phân biệt biến php và js
+				<div class="container">
+				Hello, {{ name }}.
+				</div>
+		@endverbatim
+
+		@foreach ($users as $user)
+				<p>This is user {{ $user->id }}</p>
+		@endforeach
+		Khối kiểm tra:
+		@if (count($records) === 1)	//html
+		@elseif (count($records) > 1)
+				I have multiple records!
+		@else
+			//
+		@endif
+		@unless (Auth::check())	//html 	@endunless			// thực thi nếu chưa đăng nhập
+		@isset($records) 	//html 	@endisset				// thực thi nếu tồn tại và ko null
+		@empty($records)	//html	@endempty				// thực thi nếu biến chứa ký tự ""
+		@auth			//html	@endauth					// thực thi nếu người dùng đã đăng nhập
+		@guest			//html	@endguest					// thực thi nếu người dùng chưa đăng nhập
+		@auth('admin')		//html	@endauth
+		@guest('admin')		//html	@endguest
+		@hasSection('nav')	//html	@endif					// thực thi nếu @section'navigation'() tồn tại
+			@sectionMissing('nav')	//html @endif				// thực thi nếu @component tồn tại
+			@switch($i)							// sử dụng switch
+				@case(1)
+					First case...
+					@break
+				@case(2)
+					Second case...
+					@break
+				@default
+					Default case...
+			@endswitch
+------------------------------------------------------------------------------------------------------------------------
+schedule:
+	Tự động thực thi code mỗi ngày:
+		App\Console\Kernel:
+			protected function schedule(Schedule $schedule): void
+    			{
+        			$schedule->call(function () {
+            				DB::table('recent_users')->delete();
+        			})->daily();
+    			}
+	các hàm thiết lập khoảng thời gian chạy:
+		->everySecond();		// chạy mỗi giây
+		->everyTwoSeconds();		// mỗi 2 giây, 
+		->hourly();			// mỗi giờ
+		->hourlyAt(17);			// mỗi giờ 17 phút
+		->daily();			// nửa đêm
+		->monthly();			// mỗi tháng
+		->yearly();			// mỗi năm
+		->days([Schedule::SUNDAY, Schedule::WEDNESDAY]);		// chạy vào mỗi chủ nhật và thứ tư
+		..........................	// tham khảo thêm: https://laravel.com/docs/10.x/scheduling#defining-schedules
+------------------------------------------------------------------------------------------------------------------------
+Excel:
+	Install:
+		composer require maatwebsite/excel:*						// kiểm tra có "maatwebsite/excel": "^3.1" chưa
+		composer require phpoffice/phpspreadsheet:*
+		php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+	Export:
+		Chạy cơ bản:
+			Tạo Route:
+				Route::get('/export', function(){
+					return Excel::download(new BlogsExport, 'users.xlsx');
+				});
+			Tạo file cấu hình:
+				php artisan make:export BlogsExport --model=Blog
+				app/Exports/BlogsExport:
+					use App\Exports\BlogExport;
+					use Maatwebsite\Excel\Facades\Excel;
+			Thêm nhiều trang tính:	// Bao gồm trang tính đầu tiền
+				use Maatwebsite\Excel\Concerns\Exportable;
+				use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+				implements WithMultipleSheets
+				public function sheets(): array
+    				{
+        				$sheets = [];
+					$sheets[] = new BlogSheet1();			// lưu ý: BlogExport sẽ ko còn đc sử dụng để import dữ liệu cho excel
+            				$sheets[] = new BlogSheet2();			//tạo 1 class BlogSheet2 Export khác
+        				return $sheets;
+    				}
+				class BlogSheet2 implements FromArray
+				{
+    					public function array (): array {
+        					return [
+            					[1,2,3],
+            					[2,3,4]
+        					];
+    					}
+				}
+		Nâng cao:	Sửa file BlogSheet2				// app/Exports/BlogsExport.php
+			Show dữ liệu:
+				query => đưa vào file excel bắt đầu từ A1->?:
+					class BlogsExport implements FromCollection, FromArray, FromQuery
+					{
+					public function collection()				// cách 1
+    					{
+        					return Blog::all();
+    					}
+					----------------------------------------
+					public function array(): array				// cách 2
+    					{
+        					return [
+            						[1, 2, 3],					// A1:1 B1:2 C1:3
+            						[4, 5, 6]					// A2:4 B2:5 C2:6
+        					];
+    					}
+					----------------------------------------
+					public function query()						// cách 3
+					{
+						return Blog::query()->whereYear('created_at', 2023);
+					}
+					----------------------------------------
+					use Illuminate\Contracts\View\View;
+					use Maatwebsite\Excel\Concerns\FromView;
+					public function view(): View				// cách 4
+					{
+						return view('Blog.export.blog', [		// tạo 1 trang Blog/export/blog.blade.php: tạo 1 bảng <table>
+							'blogs' => Blog::all()				// và lặp qua các phần tử của mảng; laravel sẽ tự convert sang excel và export
+						]);
+					}
+					----------------------------------------------
+					use Maatwebsite\Excel\Concerns\WithMapping;
+					implements WithMapping
+					public function map($blog): array			// Sau khi lấy dữ liệu ở hàm collection, array hoặc query
+					{											// thì dữ liệu sẽ được sử dụng để thực hiện mapping: giống như hàm map(function($blog){reuturn $blog})
+						return [								// có thể lọc các cột muốn show, hoặc thêm các cột mới, hoặc sửa giá trị của các cột
+							$blog->id,
+							$blog->title,
+							$blog->content,
+							$create->add = 1
+						];
+					}
+			------------------------------------------------------
+			Cài đặt cần thiết:
+				đặt ô bắt đầu show dữ liệu:		mặc định là A1
+					use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+					implements WithCustomStartCell
+					public function startCell(): string
+    					{
+       						return 'B2';
+    					}
+				Tiêu đề bảng dữ liệu:
+					use Maatwebsite\Excel\Concerns\WithHeadings;
+					implements WithHeadings
+					public function headings(): array
+    					{
+        					return [
+            						'#',									// tạo ra 1 row tiêu đề
+            						'User',
+            						'Date',
+        					];
+							hoặc 
+							return [										
+								['First row', 'First row'],				// row tiêu đề 1
+								['Second row', 'Second row'],			// row tiêu đề 2
+							];
+    					}
+				Sự kiện:
+					use Maatwebsite\Excel\Concerns\WithEvents;
+					use Maatwebsite\Excel\Events\AfterSheet;
+					use PhpOffice\PhpSpreadsheet\Style\Alignment;
+					implements WithEvents
+					public function registerEvents(): array
+   					{
+						return [
+							AfterSheet::class => function(AfterSheet $event) {
+								$event->sheet->getStyle('C2')->applyFromArray([
+                    					'alignment' => [
+                        					'vertical' => Alignment::HORIZONTAL_CENTER,
+                        					'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    					],
+							'fill' => [
+								'fillType'   => Fill::FILL_SOLID,
+								'startColor' => ['argb' => 'ffffff'],
+							],
+							'font' => [
+								'name' => 'Times New Roman',
+								'size' => 15,
+								'bold' => true
+							],
+									
+						]);
+						$event->sheet->setCellValue('C2', 'Nội dung 1');	// Ghi nộ dung vào cell chỉ định
+						$event->sheet->mergeCells('A1:B1');			// merge các cell lại với nhau, nếu 2 ô merge có dữ liệu thị sẽ bị mất dữ liệu 1 ô bên phải
+						}
+						]
+					}
+
+
+
+
+
+			prepareRows()
+
+			Tính năng phụ:
+			Đặt tên cho trang tính:
+				use Maatwebsite\Excel\Concerns\WithTitle;
+				implements WithTitle
+				public function title(): string
+    				{
+        				return 'sdf';
+    				}
+			Cho phép gắn dữ liệu excel từ controller:
+				implements FromArray
+    				protected $invoices;
+    				public function __construct(array $invoices)
+    				{
+        				$this->invoices = $invoices;
+    				}
+    				public function array(): array
+    				{
+        				return $this->invoices;
+    				}
+
+				controller:
+				public function export()
+				{
+    					$export = new InvoicesExport([
+        					[1, 2, 3],
+        					[4, 5, 6]
+    					]);
+    					return Excel::download($export, 'invoices.xlsx');
+				}
+			
+			truy vấn dữ liệu từ controller và gắn vào excel:
+				implements FromQuery
+				use Exportable;
+				public function __construct(int $year)
+    				{
+        				$this->year = $year;
+    				}
+    				public function query()
+    				{
+        				return Blog::query()->whereYear('created_at', $this->year);
+    				}
+				từ controller:
+					return (new InvoicesExport(2018))->download('invoices.xlsx');
+			
+			Định dạng dữ liệu cột:
+				use PhpOffice\PhpSpreadsheet\Shared\Date;
+				use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+				use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+				implements  WithColumnFormatting
+				public function columnFormats(): array
+    				{
+        				return [
+            				'B' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            				'C' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
+        				];
+    				}
+			Kích thước width cột:
+				use Maatwebsite\Excel\Concerns\WithColumnWidths;
+				implements WithColumnWidths
+				public function columnWidths(): array
+    				{
+        				return [
+            				'A' => 55,
+            				'B' => 45,
+        				];
+    				}
+			Tạo kiểu:
+				use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+				use Maatwebsite\Excel\Concerns\WithStyles;
+				implements WithStyles
+				public function styles(Worksheet $sheet)
+    				{
+        				return [
+            				1   => ['font' => ['bold' => true]],			// chỉ định kiểu cho dòng 1
+            				'B2'=> ['font' => ['italic' => true]],			// chỉ định kiểu cho 1 Cell củ thể
+            				'C' => ['font' => ['size' => 16]],			// chỉ định kiểu cho 1 cột củ thể
+        				];
+    				}
+	Import:
+		Cơ bản:
+			php artisan make:import BlogsImport --model=Blog
+			Route::post('/blog/import',[BlogController::class,'import'])->name('blog.import');
+			<form action="{{route('blog.import')}}"  enctype="multipart/form-data"  method="post">
+    				@csrf
+    				<input name="file1" type="file" value="{{route('blog.import')}}">
+    				<button>import</button>
+			</form>
+			Model:     protected $fillable = ['title','content'];
+			$array = Excel::toArray(new BlogsImport, $request->file);
+		Đọc dữ liệu từ excel:
+			public function model(array $row)
+    			{
+        			return new User([
+           			'name'     => $row[0],
+           			'email'    => $row[1],
+           			'password' => Hash::make($row[2]),
+        		]);
+		insert vào db:
+			use Maatwebsite\Excel\Concerns\ToModel;
+			implements ToModel
+			public function model(array $row)
+    			{
+       			return new Blog([
+           				'title'     => $row[1],
+           				'content'    => $row[2],
+        			]);
+    			}
+			Excel::import(new BlogsImport, $request->file1);
+		cho phép số row đc insert hàng loại mỗi lần:		// giúp tăng nhanh thời gian insert
+			use Maatwebsite\Excel\Concerns\WithBatchInserts;
+			implements  WithBatchInserts
+			public function batchSize(): int
+    			{
+        			return 1000;
+    			}
+			public function uniqueBy()					// Nếu cơ sở dữ liệu đã tồn tại cùng 1 email thì row đó sẽ được update thay vì insert
+			{
+				return 'email';
+			}
+			public function model(array $row)
+			{
+				if (!isset($row[0])) {				// Nếu cell null thì bỏ qua tới row tiếp theo
+					return null;
+				}
+			}
+		khai báo các cột trùng nhau sẽ là update thay vì insert:
+			use Maatwebsite\Excel\Concerns\WithChunkReading;
+			implements WithUpserts
+			public function uniqueBy()
+    			{
+        			return 'title';
+    			}
+		Thay vì đọc toàn bộ trang tính, thì sẽ đọc lần lượt 1000 row và lưu vào db:
+			implements WithChunkReading
+			public function chunkSize(): int
+    			{
+        			return 1000;
+    			}
+		lấy số row đang đọc của bảng tính:
+			use Maatwebsite\Excel\Concerns\RemembersRowNumber;
+			use RemembersRowNumber;
+			public function model(array $row)
+    			{
+        			$currentRowNumber = $this->getRowNumber();
+    			}
+		Hàng tiêu đề:
+			mô tả: hàng tiêu đề trong excel giống như table > thead trong html dùng làm key liên kết với value
+			sử dụng:
+				use Maatwebsite\Excel\Concerns\WithHeadingRow;
+				implements WithHeadingRow
+				public function model(array $row)
+    				{
+       			return new Blog([
+           				'title'     => $row['tieu_de'],			// các tiêu đề đều đc format ví dụ: "Tiêu đề"=>"tieu_de"
+           				'content'    => $row['noi_dung'],		// khoảng trắng đc format thành _ và chữ có dấu thành không dấu
+        			]);
+    			}
+				public function headingRow(): int				// Chỉ định hàng chứa tiêu đề
+				{
+					return 2;
+				}
+				public function getRowCount(): int
+    				{
+        				return 2;
+    				}
+		Kiểm tra validate trước khi lưu vào db:
+			use Maatwebsite\Excel\Concerns\WithValidation;
+			use Illuminate\Validation\Rule;
+			implements WithValidation
+			public function rules(): array
+    			{
+        			return [
+            			'1' => Rule::in(['patrick@maatwebsite.nl']),
+             			'*.1' => Rule::in(['patrick@maatwebsite.nl']),
+             			'0' => function($attribute, $value, $onFailure) {
+                  			if ($value !== 'Patrick Brouwers') {
+                       				$onFailure('Name is not Patrick Brouwers');
+                  			}
+              			}
+        			];
+    			}
+	Thứ tự: startRow => prepareForValidation => rules => customValidationMessages => model
+	Tìm hiểu sau:
+		thay đổi đường dẫn tải					https://docs.laravel-excel.com/3.1/exports/store.html
+		thay đổi định dạng file export				https://docs.laravel-excel.com/3.1/exports/export-formats.html
+		xuất dữ liệu trực tiếp trên class BlogsExport	https://docs.laravel-excel.com/3.1/exports/exportables.html
+___________________________________________________________________________________________________________________________
+sử dụng cơ bản:
+	tạo project:		composer create-project laravel/laravel:^8.* projectName
+	kết nối mysql:		
+				mở xampp => start apache, mysql => ghi nhớ port, mở http://localhost:8090/phpmyadmin/
+			configfile .env
+				DB_HOST=localhost
+				DB_PORT=3306
+				DB_DATABASE=blog
+				DB_USERNAME=root
+				DB_PASSWORD=
+	thêm model:		php artisan make:model -m
+	thêm cột migrate:	$table->string('title');
+				$table->string('content');
+				php artisan migrate
+	thêm controller:	php artisan make:controller BlogController
+	-------------------------------------------------------------------------------------------------------------------
+	Sử dụng 1 Model User khác:
+		config/auth:	providers => users => model => App\Models\User::class,
+	-------------------------------------------------------------------------------------------------------------------
+	Thay đổi múi giờ:	config/app:	'timezone' => 'Asia/Ho_Chi_Minh'
+	-------------------------------------------------------------------------------------------------------------------
+	Đa ngôn ngữ:
+		bước 1: kiểm tra
+			config/app: 'locale' => 'en'
+		bước 2: copy paste resources/lang/en thành resources/lang/vi
+		bước 3: thêm file cho cả en và vi: resources/lang/vi/general
+			- tiến hành sửa folder en/pagination.php:	'blog' => 'Blog'
+			- tiến hành sửa folder vi/pagination.php:	'blog' => 'Bài viết'
+		bước 4: thay đổi file config để đổi ngôn ngữ;
+			config(['app.locale' => 'vi']);		// Thường đc dùng trên middleware và lưu trên session
+		bước 4:
+			Sử dụng trên view:
+				<h1>{{ trans(pagination.blog) }}</h1>
+			Sử dụng trên controller:
+				trans(pagination.blog)
+Đọc lưu file:
+		echo base_path();  					// Path to the project's root folder
+		echo app_path();    				// Path to the 'app' folder    
+		echo public_path();					// Path to the 'public' folder 
+		echo storage_path();				// Path to the 'storage' folder
+		echo storage_path('app');			// Path to the 'storage/app' folder
+
+		cấu hình: config/filesystems.php
+		thư mục lưu trữ file: storage/app
+
+		$file = $request->file('file1')->getClientOriginalExtension();						// lấy đuôi file
+		$imageName = $request->file('file1')->getClientOriginalName();									// trả về Tên file 'name.mp3'
+		$request->file('file1')->store('public');											// Tạo file, trong đó:file1 là name của input; public là thư mục chứa file ảnh trong storage/app/
+		Storage::putFileAs('public/image', $request->image, 'name.mp3');					// Tạo file
+		Storage::disk('public')->put('example.txt', 'Contents');							// Tạo file, tham số 1 là tên file, tham số 2 là nội dung file; được lưu trong storage/app/public
+		Storage::disk('public')->delete('public/fileName.jpg');								// Xóa file,
+		unlink('storage/..');																// xóa file, tham số là link url tới file
+		File::delete('storage/upload/Screenshot_1052.png');									// Xóa file,
+		Storage::makeDirectory($directory);						// Tạo folder
+		Storage::exists('private_uploads/signatures')			// Kiểm tra folder tồn tại không
+		file_exists('storage/upload/Screenshot_1052.png');		// kiểm tra thủ công: url+path xem có ảnh xất hiện hay không
+		Storage::disk('s3')->missing('file.jpg')				// Kiểm tra tệp có bị thiếu trên đĩa hay ko
+		Storage::disk('local')->exists('file.jpg')											// Kiểm tra, file tồn tại hay ko
+		$request->file('file1')->storeAs(						// Lưu ảnh với tên
+			'public',
+			$fileName,
+			'local'													// chỉ định đĩa
+		);
+		Chuyển file từ storage sang public:
+			bước 1: thao tác tạo lưu file ở phải nằm trong thư mục: storage/app/public
+			bước 2: tạo trước thư mục storage/app/public
+			bước 3: php artisan storage:link
+			bước 4: test và truy cập /storage/filename
+
+upload File:
+	Luồng cơ bản: tạo base64 + lưu session => lấy base64 từ session => gắn base64 vào thẻ input => gửi form => lưu file
+	Tạo base64 từ input + lưu vào session:
+		const fileInput = document.getElementById('avatar');
+		const file = fileInput.files[0];
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = function() {
+			const base64 = reader.result;
+			console.log(base64);
+			sessionStorage.setItem("base64", base64);
+			sessionStorage.setItem("fileType", file.type);
+			sessionStorage.setItem("fileName", file.name);
+		}
+	Gắn base64 vào thẻ input:
+		<input type="file" name="avatar" id="avatar"/>
+		<script>
+			fetch(base64Image)
+                .then(res => res.blob())
+                .then(blob => {
+                    const file = new File([blob], "text.png",{ type: "image/png" });
+					var element = document.getElementById("avatar");
+                    let list = new DataTransfer();
+                    list.items.add(file);
+                    element.files = list.files;
+                })
+		</script>
+-------------------------------------------------------------------------------------------
+Tốc độ truy xuất của vòng lặp:
+	array_map	=> 1.8s
+	foreach 	=> 1.02
+--------------------------------------------------------------------------------------------------------------------------------------
+PDF:
+	composer require niklasravnsborg/laravel-pdf
+	niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+	'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+	php artisan vendor:publish
+	return [
+		'format'           => 'A4', // See https://mpdf.github.io/paging/page-size-orientation.html
+		'author'           => 'John Doe',
+		'subject'          => 'This Document will explain the whole universe.',
+		'keywords'         => 'PDF, Laravel, Package, Peace', // Separate values with comma
+		'creator'          => 'Laravel Pdf',
+		'display_mode'     => 'fullpage'
+	];
+Sử dụng:
+	use PDF;
+	file: view/pdf/pdf.blade.php:
+		<h1>adsfds<h2>							// lưu ý: chỉ chia layout bằng <table>
+	function generate_pdf() {
+		$data = [
+			'foo' => 'bar'
+		];
+		$pdf = PDF::loadView('pdf.document', $data);
+		return $pdf->stream('document.pdf');
+	}
+Nâng cao:
+	PDF::loadView('pdf', $data, [], [
+  		'format' => 'A5-L'
+	])->save($pdfFilePath);
+export word:
+	- composer require phpoffice/phpword
+	public function exportWord(Request $request){
+        	$phpWord = new TemplateProcessor('danh_tu.docx');
+        	$dictionaries = Dictionary::orderBy('name_en')->get();
+        	$values = $dictionaries->map(function($value, $index) {
+            		return [
+                		'index' => $index + 1,
+                		'name_en' => $value->name_en,
+                		'name_vi' => $value->name_vi,
+                		'typeText' => $value->typeText,
+                		'singularPluralText' => $value->singularPluralText,
+                		'description' => $value->description,
+            		];
+        	})->toArray();
+        	$phpWord->cloneRowAndSetValues('index' , $values);
+        	$phpWord->saveAs('danh_sach_danh_tu.docx');
+        	return  Response::download('danh_sach_danh_tu.docx');
+    	}
+Cấu trúc thư mục laravel:
+	folder config: tệp cấu hình
+	folder app: chứa code cốt lõi, hầu hết các class của project đều nằm ở đây
+	folder public: chứa các file tĩnh
+-------------------------------------------------------
+Breeze:
+	cài đặt:
+		composer require laravel/breeze
+		php artisan breeze:install
+Tạo trang login:
+	use Illuminate\Support\Facades\Auth;
+	sinh code auth gồm, route, controller, view, model, migrate:
+	Kết nối db:
+		sửa file .env
+		vào phpmyadmin thêm db
+		php artisan config:cache
+	cập nhật lên db:
+		php artisan migrate
+	cơ bản:
+		middleware auth:
+			app/Http/Middleware/Authenticate.php		//chuyển hướng người dùng chưa đăng nhập tới trang login
+			đăng kí middleware tại kernel:			'auth' => \App\Http\Middleware\Authenticate::class,
+			Route::get('/flights', function () {}) -> middleware('auth:admin'); 	khai báo middleware cho route
+	xác thực login:		so sánh email, password từ request với db, nếu thành công thì trả về true Auth::attempt($credentials)
+		$credentials = $request->validate([
+            		'email' => ['required', 'email'],
+            		'password' => ['required'],
+        	]);
+		Auth::attempt($credentials)		// trả về true nếu tk mk đúng; tự động so sánh email từ request và db, nếu tồn tại thì băm password từ request, sau đó so sánh với pass của db
+									// dịch vụ xác thực này dựa trên config/auth.php => App\Models\User
+		cách 2:	Auth::attempt([
+				'email' => $email,				
+				'password' => $password,
+				'active' => 1						// thêm điều kiện đăng nhập cột active = 1
+				fn ($query) => $query->has('activeSubscription')	// thêm điều kiện truy vấn phức tạp
+			],
+			 $remember					// thêm chức năng nhớ tk nếu giá trị là true
+		);
+		cách 3;	Auth::guard('admin')->attempt($credentials)							// thêm xác thực dựa trên admin
+		$request->session()->regenerate();			//Lưu dữ liệu đăng nhập vào section
+		cách 4: Auth::login($user, $remember = true);		// đăng nhập bằng object User
+		cách 5: Auth::loginUsingId(1, $remember = true);	// đăng nhập bằng id
+		cách 6:	Auth::once($credentials)			// xác thực 1 lần và không sử dụng session hay cookie
+	khi đã login:
+		ứng dụng cấp cho 1 đối tượng để thao tác với user đã đăng nhập: Auth; có thể sử dụng trực tiếp ở view {{Auth::user()}}
+		Auth::user()				// là đối tượng User chứa dữ liệu bảng
+		Auth::user() ->name
+		Auth::user() ->email
+		Auth::user() ->id			// user() bao gồm các thuộc tính lưu ở db
+		Auth::logout()
+	đăng xuất:
+		Auth::logout();
+    		$request->session()->invalidate();		// hủy bỏ session đã lưu trữ user
+    		$request->session()->regenerateToken();
+	đăng xuất trên các thiết bị khác ngoại trừ thiết bị hiện tại:
+		Route::middleware(['auth', 'auth.session'])->group(function () {
+    			Route::get('/', function () {
+        			// ...
+    			});
+		});
+		// đảm bảo được xác thực bằng session auth.session
+		Auth::logoutOtherDevices($currentPassword);		$currentPassword là biến mặc định
+	dùng jwt:
+		App\ProvidersAuthServiceProvider
+			use Illuminate\Support\Facades\Auth;
+			 $this->registerPolicies();
+        		Auth::extend('jwt', function ($app, $name, array $config) {
+            			// Return an instance of Illuminate\Contracts\Auth\Guard...
+            			return new JwtGuard(Auth::createUserProvider($config['provider']));
+        		});
+		config/auth:
+			'guards' => [
+    				'api' => [
+        				'driver' => 'jwt',
+        				'provider' => 'users',
+    				],
+			],
+		cách 2:
+			App\ProvidersAuthServiceProvider:
+			Auth::viaRequest('custom-token', function (Request $request) {
+        			return User::where('token', $request->token)->first();
+    			});
+			config/auth:
+				'guards' => [
+    					'api' => [
+        				'driver' => 'custom-token',
+    					],
+				],
+	yêu cầu người dùng xác nhận mật khẩu khi thực hiện 1 request nhạy cảm:
+		Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])		// vào route\auth đặt tên cho route
+                ->name('password.confirm');
+
+		Route::get('/settings', function () {			// chỉ định route cần phải xác thực trước khi đc truy cập
+    			// ...
+		})->middleware(['password.confirm']);			// password.confirm chính là route được đặt tên đã thực hiện ở bước 1
+		if (! Hash::check($request->password, $request->user()->password)) {
+        		return back()->withErrors([
+            			'password' => ['The provided password does not match our records.']
+        		]);
+    		}
+		$request->session()->passwordConfirmed();		// nếu xác thực thành công, đánh dấu thời gian xác thực cho session
+	login:
+		luồng dữ liệu:
+		-> chuyển hướng trang login nếu chưa login sử dụng middleware (App\Http\Middleware\Authenticate.php -> route\auth.php -> App\Http\Controllers\Auth\AuthenticatedSessionController.create -> view\auth\login)
+		-> khi login thì đối chiếu với db rồi lưu session (route\auth -> App\Http\Controllers\Auth\AuthenticatedSessionController.store -> App\Http\Requests\Auth\LoginRequest -> App\Providers\RouteServiceProvider -> route\web)
+		-> khi đã login sẽ cấp đối tượng chứa dữ liệu user (đối tượng đã đc inject chứa dữ liệu user  {{Auth::user() ->name}} {{Auth::user() ->email}} {{Auth::user()->created_at}}...)
+		-> chỉnh sửa thông tin user (route/web -> ProfileController.update -> App\Http\Controllers\ProfileController)
+		-> xóa user (route/web -> ProfileController.destroy -> App\Http\Controllers\ProfileController)
+		-> xác nhận mật khẩu (route\auth\confirm-password -> ConfirmablePasswordController.show -> view -> ConfirmablePasswordController.store)
+		-> đăng xuất (route\auth\logout -> AuthenticatedSessionController.destroy -> view)
+Tạo role:
+	tạo model+migrate:		php artisan make:model Role -m
+	thêm cột cho migrate:		$table->string('name');
+	thêm ràng buộc cho Role:	public function Users(){
+        					return $this->hasMany(User::class);
+    					}
+	thêm cột role_id cho User từ migrate:
+					$table->integer('role_id');
+	refresh lại db:			php artisan migrate hoặc php artisan migrate:refresh	nếu đã có table trước đó
+	thêm seeder:			php artisan make:seeder roleSeeder
+	sửa file roleSeeder method run:	
+					$role = new Role();
+        				$role->name = 'admin';
+        				$role->save();
+	khai báo trên databaseSeeder:	$this->call(roleSeeder::class);
+	thêm ràng buộc cho User:
+   					public function Role(){
+        					return $this->belongsTo(Role::class);
+    					}
+	thêm role_id mặc định cho User khi tạo user:
+					protected $attributes = [		
+        					'role_id' => 1,
+    					];
+	thêm middleware:
+		php artisan make:middleware RoleMiddleware
+		sửa middleware RoleMiddleware:
+			public function handle(Request $request, Closure $next,$role)
+    			{
+        			if(!(Auth::user() || Auth::user()->role->name==$role)){
+            				return redirect()->route('login');
+        			}
+        			return $next($request);
+    			}
+		đăng kí middleware app/http/kernel.php: 	'role' => \App\Http\Middleware\RoleMiddleware::class,
+		sử dụng trên route: 
+			 Route::get('/profile', [ProfileController::class, 'edit'])->middleware([role:admin])->name('profile.edit');
+					// trong đó: role là tên đã đăng kí trên kernel; admin là tham số $role sẽ đc truyền vô trong Middleware đã tạo
+	sử dụng dữ liệu role trên controller hoặc view:
+		Auth::user()->role_id
+		Auth::user()->role->id
+		Auth::user()->role->name
+		Auth::user()->role->create_at
+Tìm hiểu thêm:
+	Phân quyền cho phép truy cập 1 trang		=> sử dụng middleware('auth')
+	Phân quyền cho phép thêm xóa sửa:		=> sử dụng role hoặc police
+	Phân quyền cho phép nhìn thấy 1 phần view:	=> sử dụng role	
+cài hỗ trợ debug:
+	composer require barryvdh/laravel-debugbar --dev
+
+
+Công cự auth nâng cao Laravel Jetstream:
+--------------------------------------------------------------------------
+Passport:
+	Cài đặt:
+		composer require laravel/passport
+		php artisan migrate
+		php artisan passport:install
+		php artisan passport:keys					// tạo bảng mã hóa token
+	file model/user.php:
+	use Illuminate\Database\Eloquent\Factories\HasFactory;
+	use Illuminate\Foundation\Auth\User as Authenticatable;
+	use Illuminate\Notifications\Notifiable;
+	use Laravel\Passport\HasApiTokens;
+ 
+	class User extends Authenticatable
+	{
+    		use HasApiTokens, HasFactory, Notifiable;
+	}
+------------------------------------------------
+Sanctum:
+	Cài đặt:
+		php artisan install:api
+		composer require laravel/breeze				// sử dụng chung với breeze
+		php artisan breeze:install
+		AppServiceProvider:
+			public function boot(): void
+			{
+				Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+			}
+		User.php:
+			use HasApiTokens, HasFactory, Notifiable;
+	Đăng nhập:
+		$request->authenticate();
+	Tạo token khi đã đăng nhập:
+        $token = $request->user()->createToken('token_name')->plainTextToken;
+--------------------------------------------------
+
+-------------------------------------------------
+jetstream:
+	composer require laravel/jetstream
+composer require inertiajs/inertia-laravel
+php artisan jetstream:install inertia
+npm install
+npm install @inertiajs/vue3
+npm run dev
+php artisan migrate
+
+Layout 1 => layout 2 => component
+Layout 1:
+    resources/views/app.blade.php:
+        <!DOCTYPE html>
+            <head>
+            </head>
+            <body>
+                @inertia
+            </body>
+        <html>
+    Layout 2:
+        @inertia => js/layouts/AppLayout.vue:
+            <script setup>
+                // code import vue + setup variable
+            </script>
+            <template>
+                // component    => js/Components
+                <main>
+                    <slot />                // tưởng tưởng 2 table db; slot là khóa chính, còn khóa ngoại nằm ở file component
+                </main>
+            </template>
+        Components:
+            Inertia::setRootView()      // thay đổi file layout
+Authen:
+    $page.props.auth.user.current_team.name
+    $page.props.auth.user.current_team_id
+Middleware:
+    php artisan inertia:middleware
+---------------------------------------
+queue:
+	Thiết lập:
+	php artisan queue:table
+	php artisan migrate
+	.env:
+		QUEUE_CONNECTION=database
+		php artisan make:job ProcessPodcast
+	config/queue.php:
+		default => env('QUEUE_CONNECTION', 'sync'),
+
+	controller:
+		use App\Jobs\ProcessPodcast;
+		dispatch(new ProcessPodcast());		// đẩy vào hàng đợi
+		ProcessPodcast::dispatch()->onQueue(env('QUEUE_CONNECTION'))		// chỉ dùng onQueue cho radis
+
+		php artisan queue:work				// chạy để xử dụng queue
+		php artisan queue:listen			// nếu code thay đổi thì sẽ tự động cập nhật lại queue
+		php artisan queue:restart			// Khởi động lại tất cả queue
+-----------------------------------------------------
+Thêm vue vào laravel:
+	Cài đặt:
+		npm install vue @vitejs/plugin-vue
+		file vite.config.js:
+			import vue from '@vitejs/plugin-vue'; 
+			....
+			plugins: [
+				laravel({
+					input: ['resources/css/app.css', 'resources/js/app.js'],
+					refresh: true,
+				}),
+				vue(),
+			],
+			resolve: {
+				alias: {
+					vue: 'vue/dist/vue.esm-bundler.js',
+				},
+			},
+		file resources/js/app.js:
+			import { createApp } from 'vue'
+			const app = createApp()
+			app.mount('#app')
+		file layout:
+			<head>
+				…
+				@vite(['resources/js/app.js'])
+			</head>
+			<body>
+				<div id="app">
+					<!-- Vue.js components will be processed here. -->
+				</div>
+			</body>
+		Tạo file component resources/js/components/Counter.vue:
+			<script setup>
+				import { ref } from 'vue'
+			
+				const count = ref(0)
+			</script>
+			
+			<template>
+				{{ count }}
+			
+				<button @click="count++">
+					Add
+				</button>
+			</template>
+		Thêm component vào Vue ở file resources/js/app.js:
+			import Counter from './components/Counter.vue';
+			...
+			app.component('counter', Counter)
+			app.mount('#app')
+		Gọi nó trong blade:
+			<div id="app">
+				<counter />
+			</div>
+		Chạy nodejs:
+			npm run dev
+----------------------------------------------------------------------
+Chạy php cơ bản:
+	tạo file test.php trong thư mục làm việc 
+	chạy localhost:8090/test.php
+----------------------------------------------------------------------
+Install:
+	xampp: 	php -v
+	biến môi trường:	C:\xampp\mysql\bin; C:\App\xampp\php
+	composer:		composer -v
+		thay đổi phiên bản:	// project sẽ ko chạy nếu phiên bản php không phù hợp với version composer
+			composer self-update 1.10.12
+			composer self-update --rollback		// quay về phiên bản cũ
+	laravel:	composer global require laravel/installer --prefer-source					// giống như cài đặt net4,5,6 trong asp
+			Tạo project:
+				composer create-project laravel/laravel:^7.* projectName --prefer-source| --prefer-dist		// --prefer-source là tự động giải nén package mà ko cần dùng 7-zip
+				Lưu ý: phiên bản php 8.2 không hỗ trợ laravel từ 7.* trở xuống
+	Import project:
+		composer install --ignore-platform-reqs		// Thêm các thư viện từ file composer.json
+		composer install				// cũng thêm nhưng sẽ ngưng lại nếu gặp lỗi hệ thống
+		composer update					// cập nhật các phiên bản thư viện mới nhất
+---------------------------------------------------------------------------
+Cấu trúc thư mục:
+	vendor 			// code thư viện
+	composer.json 		// liệt kê thư viện
+	public			// Nơi chứa file thư viện fontend: js, css,..
+	public/index.php	// sẽ được chạy đầu tiên
+	packge.json		// chứa package js
+	app/providers		// khai báo nơi chứa thư mục controller, route, middleware
+------------------------------------------------------------------------------------------
+Tester:
+	
+	Unit Test:
+		php artisan make:test UserTest
+		php artisan make:test UserTest --unit
+--------------------------------------------------------------------------------------------
+debugbar:
+	composer require barryvdh/laravel-debugbar --dev		// debugbar; chạy các lệnh php artisan cache:clear để reset
+	composer dump-autoload									// tự động load
+------------------------------------------------------------------------------------------
+Migrate:
+		php artisan make:migration create_flights_table --table=blogs | --create=blogs	// tùy chọn --create=users sẽ tạo ra 1 table mới; --table=users sẽ chỉnh sửa table;
+		Thêm file Migration:		composer require doctrine/dbal
+				php artisan make:migration create_flights_table --table=blogs | --create=blogs
+				php artisan migrate
+				php artisan migrate:rollback
+		Tạo bảng:
+					Schema::create('products', function (Blueprint $table) {
+						$table->id();
+						$table->string("title");
+        					$table->text("content");			// title và content là tên column sql
+						$table->timestamps();				// tự động tạo 2 column created_at và updated_at
+						$table->integer('role_id')-> default(2); 	// giá trị mặc định 2
+			            		$table->foreignId('user_id');
+						$table->softDeletes();
+					
+					});
+		Cập nhật bảng:
+					Schema::hasTable('users')				// kiểm tra table tồn tại hay chưa
+					Schema::hasColumn('users', 'email')			// kiểm tra column tồn tại hay chưa
+					Schema::dropIfExists('users');				// xóa bảng
+					Schema::table('users', function (Blueprint $table) {
+						$table->renameColumn('from', 'to');				// Đổi tên cột
+						$table->primary('id')->change();				// thêm khóa chính
+						$table->dropPrimary('users_id_primary');	// xóa khóa chính theo tên quy ước
+						$table->foreign('user_id')->references('id')
+							->on('users')->onDelete('cascade');;	// Tạo khóa ngoại users.id nối với id bảng user
+						$table->dropForeign('posts_user_id_foreign');	// Xóa khóa ngoại {ten_bang_chua_khoa_ngoại}_{cot_khoa_ngoai}_foreign
+						$table->unique('email')->change();			// thêm unique
+						$table->dropUnique('email')->change();			// xóa unique
+						$table->string('email')->change();			// Thêm cột
+						$table->dropColumn('votes')->change();			// Xóa cột
+						$table->string('name', 50)->change()->change();		// sửa cột và kích thước cột
+						$table->nullable('name')->change();			// cho phép cột null
+						$table->dropColumn(['votes', 'avatar', 'location']);		// Xóa nhiều cột
+						$table->dropSoftDeletes()->change();					// Xóa cột deleted
+						$table->dropTimestamps()->change();					// Xóa created_ad và updated_at
+						$table->string('email')->unique()->change();				// tạo cột và gắn unique
+						$table->unique('email')->change();					// gắn unique với cột đã tồn tại
+						$table->dropUnique('users_email_unique')->change();			// xóa unique
+						$table->index(['account_id', 'created_at'])->change();
+						$table->foreignId('user_id')->constrained()->onDelete('cascade')->change();	// sử dụng tên quy ước để xác định khóa ngoại
+						$table->dropForeign('posts_user_id_foreign')->change();				// sử dụng tên quy ước với hậu tố là {ten_bang_chua_khoa_ngoại}_{cot_khoa_ngoai}_foreign
+					})
+		Thêm dữ liệu:
+--------------------------------------------------------------------------------------------
+Seeder:
+	Thêm seeder:
+		database/seeds
+			tạo seeder php artisan make:seeder ArticlesTableSeeder
+			mở file database/seeds/ArticlesTableSeeder
+			Thêm vào hàm run:
+				use App\Models\Article;
+        			for($i=0;$i<200;$i++){
+            				$article = new Article();
+            				$article -> title = "Tieu de ".$i;
+            				$article -> content = "Noi dung".$i;
+            				$article -> save();
+        			}
+			mở file databaseSeeder vào thêm vào hàm run:
+			 $this->call(ArticlesTableSeeder::class);
+	Chạy seeder:
+				php artisan db:seed
+				hoặc  php artisan db:seed --class=ArticlesTableSeeder	// cách này gọi trực tiếp và ko cần lệnh $this->call(ArticlesTableSeeder::class);
+--------------------------------------------------------------------------------------
+Helper:
+	Bước 1: Tạo file app/Helpers/Helper.php:
+	Bước 2: edit file composer.json: thêm vào trong autoload:
+		"autoload": {
+			"files": [
+				"app/Helpers/Helper.php"
+			]
+		}
+	Bước 3: composer dump-autoload
+	Bước 4: viết function:
+		<?php
+		use ....
+		if(!function_exists('getTable1ById'))		// điều kiện giúp đảm bảo ko có function đã có sẵn trong project
+		{
+			function getTable1ById($id){
+				if(!empty($id)){
+					return Table1::where('id', $id)->get();
+				}
+			}
+		}
+	Bước 5: Có thể gọi trực tiếp trên bất kỳ file .php nào:
+		$table1 = getTable1ById(1);
+--------------------------------------------------------------------------------------
+Cấu hình .env:
+	file .env:
+		APP_KEY=				// phải có để chạy project; php artisan key:generate
+		APP_URL="127.0.0.1"			// chỉ định url của app nếu ko thì để APP_URL=
+		DB_CONNECTION=mysql			// chỉ định loại sql
+		DB_HOST=127.0.0.1			// localhost
+		DB_DATABASE=cmms			// tên db
+		DB_USERNAME=root			// mặc định là root
+		DB_PASSWORD=				// mật khẩu của sql nếu có
+		APP_TIMEZONE='UTC'			// thay đổi múi giờ, 'UTC'; 'Asia/Ho_Chi_Minh';...
+		APP_DEBUG=true				// bật/tắt debug; khi code lỗi thì sẽ có gợi ý dòng lỗi trên view, khi đưa web lên serve cần tắt nó đi
+		APP_ENV=local				// có 2 loại là local và production; local dùng để khóa 1 số chức năng như thanh toán,.. còn product để mở
+------------------------------------------------------------------------------------
+chạy project với port chỉ định:
+		cd public -> php -S localhost:8080
+		hoặc php artisan serve
+------------------------------------------------------------------------------------
+Chế độ bảo trì:
+		php artisan down	bật bảo trì
+		php artisan up		tắt bảo trì
+		đổi view thông báo bảo trì:
+			tạo file resources/views/errors/503.blade.php  => viết html
+-----------------------------------------------------------------------------------
+Thêm tên miền ảo:
+	bước 1: C:\Windows\system32\drivers\etc\host	-> properties -> security -> users -> edit -> users -> full controll -> apply -> ok
+	bước 2: mở file host hiện tại: thêm vào dòng cuối: 	127.0.0.1  cmms.local		// lưu ý là tiền tố phải khác nhau ví dụ: cmms != royal
+								127.0.0.1  royal.local
+	bước 3: Kiểm tra port C:\xampp\apache\conf\httpd.conf:	Listen 80
+	bước 4: C:\xampp\apache\conf\extra\httpd-vhosts.conf
+		- bỏ 2 dấu # trước NameVirtualHost *:80		port phải trùng với bước 3
+		<VirtualHost *:80>
+    			DocumentRoot "C:/xampp/htdocs/royal-cmms/public"
+    			ServerName cmms.local
+			ErrorLog "c:/xampp/apache/logs/error.log"
+			TransferLog "c:/xampp/apache/logs/access.log"
+		</VirtualHost>
+		<VirtualHost *:80>
+    			DocumentRoot "C:/xampp/htdocs/royal-school/public"
+    			ServerName cmms.local
+			ErrorLog "c:/xampp/apache/logs/error.log"
+			TransferLog "c:/xampp/apache/logs/access.log"
+		</VirtualHost>
+----------------------------------------------------------------
+sử dụng mạng cục bộ:
+	Bước 1: hoàn thành các bước thêm tên miền ảo:
+	Bước 2:  mở file C:\xampp\apache\conf\httpd.conf: và thêm dòng mới với port chỉ định	Listen 8081
+	Bước 3: đổi port ở file C:\xampp\apache\conf\extra\httpd-vhosts.conf
+	Bước 4: truy cập ipconfig lấy port ip4 address ví dụ: http://192.168.0.112:8081
+----------------------------------------------------------------------
+Tạo debug:
+	2/ tải debug:	https://xdebug.org/download
+			lưu ý phải tải đúng phiên bản phù hợp
+			bước 1:	php -v
+			bước 2: kiểm tra phiên bản php; kiểm tra xem có dòng ZTS hay ko; nếu có thì tải phiên bản TS
+	3/ thêm file debug vào C:\xampp\php\ext
+	4/ cấu hình file  php.ini:	[XDebug]
+					zend_extension=C:\xampp\php\ext\php_xdebug-3.2.0RC2-8.2-vs16-nts-x86_64.dll
+					xdebug.remote_enable = 1 
+					xdebug.remote_autostart = 1
+					xdebug.remote_port=9003
+					xdebug.mode=debug
+					xdebug.start_with_request=yes
+	5/ kiểm tra lại php -v và kiểm tra dòng xdebug
+	6/ thêm Extension php debug cho vscode
+	7/ thêm lauch.json php=> kiểm tra port 9003
+	9/ thêm breakpoint và bấm debug
+	10/ chạy php artisan serve
+	==> Đã test thành công và hướng dẫn chi tiết; ko chỉnh sửa thêm
+---------------------------------------------------------------------------------------
+Tạo module:
+	Tham khảo: laravel-modules
+	Bước 1: Tạo /Modules/Blog
+	Bước 2: Tạo thư mục trong Blog:
+		Controllers
+		Models
+		Views
+		Migrations
+	Bước 3: Đăng ký module: config/app.php:
+		Thêm dòng sau vào mảng providers:
+		'providers' => [
+			// ...
+			App\Modules\Blog\BlogServiceProvider::class,
+		],
+	Bước 4: Tạo ServiceProvider cho module
+		Tạo một class mới trong module, ví dụ BlogServiceProvider.php, và đăng ký các thành phần của module (Controller, Model, View,...) vào trong method register() của class này.
+
+			php
+			namespace App\Modules\Blog;
+			use Illuminate\Support\ServiceProvider;
+			class BlogServiceProvider extends ServiceProvider
+			{
+				/**
+				* Register services.
+				*
+				* @return void
+				*/
+				public function register()
+				{
+					// Đăng ký Controller
+					$this->app->make('App\Modules\Blog\Controllers\BlogController');
+
+					// Đăng ký Model
+					$this->app->make('App\Modules\Blog\Models\Blog');
+				}
+
+				/**
+				* Bootstrap services.
+				*
+				* @return void
+				*/
+				public function boot()
+				{
+					// Load View
+					$this->loadViewsFrom(__DIR__.'/Views', 'blog');
+
+					// Load Migration
+					$this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+				}
+			}
+	Bước 5: Route cho module
+	Trong file routes/web.php hoặc routes/api.php, thêm các route cho module.
+		php
+		Route::get('/blog', 'App\Modules\Blog\Controllers\BlogController@index');
+	Bước 6: Chạy migration để tạo bảng trong database
+		Chạy command php artisan migrate để tạo các bảng trong database.
+		Sau khi hoàn thành các bước trên, bạn đã có thể sử dụng module Blog trong Laravel.
+-------------------------------------------------------------------------------
+Authentication:
+	Chưa đăng nhập:
+	Đã đăng nhập:
+		->withoutMiddleware(['auth:sanctum'])
+-------------------------------------------------------------------------------
+Khác:
+	Sự khác nhau giữa get, post, put, patch, delete:
+		get: dùng để lấy dữ liệu ra
+		post: dùng để tạo dữ liệu mới
+		put dùng để thay thế tất cả cột dữ liệu từ ô input form
+		patch dùng để thay đổi 1 số cột dữ liệu từ ô input form
+		delete dùng để xóa dữ liệu
+	Tìm hiểu sau:
+	BaseServiceInterface
+	protected $except = [			// khi gửi cookie tới máy khách nó sẽ tự động mã hóa; lệnh sau tắt mã hóa cookie
+    				'cookie_name',
+			];	
+		
+	Thêm auth
+		 Route::get('admin','AdminController@showImportantInfo') -> middleware('auth');		// phải đăng nhập mới thấy trang
+		Route::get('admin','AdminController@showImportantInfo') -> middleware(['auth','role:admin']);
+	
+	thên authentication:	cmd: composer require laravel/ui:^2.4
+	Thêm ui bootstrap	cmd: php artisan ui bootstrap --auth   
+			cmd: npm install cross-env
+			cmd: npm install && npm run dev
+	Kiểm tra: xuất hiện nút login và register
+	
+	protected $routeMiddleware = [				
+			'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,		// kiểm tra chữ ký
+	];
+		Tìm hiểu sau: view:cache; view:clear
+	tester:
+		tạo :	php artisan make:test UserTest --unit hoặc php artisan make:test UserTest
+		chạy unittest:	php artisan test	hoặc php artisan test --group=feature
+		Tạo request giả/dữ liệu giả:
+			$response = $this->get('/');			// tạo request
+		Tạo dữ liệu giả từ người dùng:
+		so sánh đối chiếu kết quả, dữ liệu mong muốn:
+			$response->assertStatus(200);
+	$validated = Validator::make($request->all(), [
+            'full_name' => 'required|max:50',
+            'email' => 'required|email:rfc,dns',
+            'phone_number' => 'required'|'max:15'|'min:9',
+            'content' => 'required|max:10000',
+        ]);
+
+        if ($validated->fails()) {
+            return back()->withInput();
+        }
+        $contact = new Contact();
+        $contact->full_name = $request->fullname;
+        $contact->email = $request->email;
+        $contact->phone_number = $request->phonenumber;
+        $contact->content = $request->content;
+        $contact->save();
+        return back();
+
+blade:
+	 <button wire:click="increment">+</button>	giống với onlick của js, sử dụng function của lẩ
+convert array to object js:
+------------------------------------------------------------------------------------------------------------------
+Validate:
+	Thông thường:
+		$validator = Validator::make($request->all(),
+        		[
+				'title' 		=> 'required|max:22|unique:TableName,Column_name',
+				'content'		=>'required'],
+				'data.*.value.content'	=> ['required'],	 				// name = data[591][value][content]
+				'meta_data'     => [ 'required',
+                					function ($attribute, $value, $fail) {
+								$fail("Vui lòng chọn loại môn học");
+							}
+        		[
+            			'title.required'=>':attribute không được để trống',
+            			'title.max'=>':attribute không được vượt quá :max ký tự',
+					'title.unique'=>':attribute không được trùng'
+        		],
+        		[
+            			'title'=>'Tiêu đề',
+            			'content'=>'Nội dung'
+        		]
+        		);
+			if ($validator->fails()) {
+    				Toastr::error("Vui lòng nhập đầy đủ thông tin", 'Thất bại', ["positionClass" => "toast-top-right"]);
+                		return back()->withInput();
+			}
+	Nâng cao:
+		Không cho phép thay đổi dữ liệu nếu vi phạm ràng buộc:
+			// Quy tắc: chỉ nhận dữ liệu đã thay đổi từ request
+			public function checkChangeData(){
+				$getData = getDataFromDb($request);
+				$requestData = customRequestData($request);
+				$isChange = checkDataChange($getData, $requestData);
+				return $isChange;
+			}
+			public function getDataFromDb($request){
+				return $data;
+			}
+			public function customRequestData($data){
+				$data = [];
+				return data;
+			}
+			public function checkDataChange($getData, $requestData){
+				return 
+			}
+Save Data:
+	Lưu dữ liệu table:
+		Custom dữ liệu từ frontend:
+			Bước 1: Lặp qua từng ô input mỗi khi nhập dữ liệu
+			Bước 2: Trong for: Kiểm tra dữ liệu thay đổi của từng ô input
+			Bước 3: Nếu có thay đổi thì dán ô input đó vào trong 1 thẻ form submit
+		Lưu dữ liệu:
+			public function storeData($request){
+				foreach($request->data as $item){
+					$modelName = ModelName::find($item['id']);
+					$modelName->title = $item['id'];
+					$modelName->save();
+				}
+			}
+	Lưu với dữ liệu form là table data:
+		Yêu cầu dữ liệu form có dạng:
+			table1[row_id].Column_name				// Khi dữ liệu cần lưu là bảng 1 duy nhất
+			table2[row_id].Column_name				// Khi dữ liệu cần lưu là nhiều bảng
+		Biến đổi dữ liệu Form thành json:
+			{
+				table1: [
+					{
+						"id": "value",
+						"Column_name": "value",
+						"Column_name": "value",
+					}
+				]
+				table2: [
+					{
+						"id": "value",
+						"Column_name": "value",
+						"Column_name": "value",
+					}
+				]
+			}
+		Sử dụng Ajax gửi dữ liệu:
+		validate dữ liệu json:
+			Test validate có sử dụng được với dữ liệu json hay không
+	Lưu với dữ liệu json array:
+		function saveDataWithJson($data){		$data = json => array => object{id: 1, name:'dsf', meta_mark: '[]'}
+			$data = json_decode($data);
+			foreach($data as $key => $item){
+				$item.
+			}
+			$modelName = ModelName::find(data['id']);
+			if(empty($modelName)){
+				$modelName = new ModelName();
+			}
+			$modelName->name = $data['name'];
+			$modelName->save();
+		}
+Get Data:
+	Xác định các dữ liệu cần show lên màn hình:
+	Xác định các thông tin cần thiết để lưu vào cơ sở dữ liệu:
+	Xác định các dữ liệu cần thiết khác:
+	Sau đó Join và lấy dữ liệu chính và các bảng cần thiết:
+		$data = ModelName::select('tableName.columnName',..)
+			->Leftjoin('tableRight', 'tableLeft.id', '=', 'tableRight.id')
+			->where('', '')
+			->orderBy('tableName.columnName')
+			->groupBy('tableName.columnName')
+			->get();
+	Lọc dữ liệu khi có search request:
+		if($request->has('Column_name')){
+			$data->where('Column_name', $request->input('Column_name'));
+		}
+		if($request->has('Column_name')){
+			$data->where('Column_name', $request->input('Column_name'));
+		}
+		$data->get();
+	Lọc dữ liệu bằng filter:
+		$data = $data->filter(function(){
+			if(){
+				// code
+				return true;
+			}
+			return false;
+		})
+	Thêm/Sửa dữ liệu bổ sung và format:
+		$data = $data->map(function($item){
+			// $item->{'newProp'} = ...;
+			// $item->columnName = ....;
+			return $item;
+		});
+Search:
+	$data = $this->services->filterData(request);
+	public function filterData($request){
+		$query = Table1::query->select()->where();
+		if (!empty($request->grade_id)) {
+            		$query->where('grade_id',$request->grade_id);
+        	}
+		....................
+		return $query->orderBy('last_name')->paginate(30);
+	}
+Import:
+	Cơ bản:
+		$beginReadData = 3;
+		$sheetIndex = 0;
+		DB::beginTransaction();
+		try {
+			$getData        = Excel::toArray(new stdClass(), $request->file);
+			$data           = array_slice($getData[sheetIndex], beginReadData);				// $rows[sheetIndex], cắt bỏ phần tử đầu
+			$checkExistData = array_filter($data, function($item){
+					return trim(join($item));
+				});
+			if(count($checkExistData) == 0){
+				return response()->json(["status" => 400, 'success' => false, 'message' => 'Dữ liệu trống'], 400);
+			}
+			$validator = Validator::make($data,
+        		[
+				'1.1' 		=> 'required',					// trong đó key dưới dạng: 'xxx.yyy' trong đó xxx, yyy có thể là index hoặc property
+				'2.*'		=> 'unique:table_name,Column_name'		// trong đó * là áp dụng cho mọi thuộc tính nằm trong index = 2
+            		]);
+			if ($validator->fails()) {
+    				Toastr::error("Thông tin học sinh hoặc mã thẻ không được để trống", 'Thất bại', ["positionClass" => "toast-top-right"]);
+                		return back()->withInput();
+			}
+			$isExist	= $this->services->validateData($data);
+			DB::commit();
+		}
+		catch(Exception $e){
+			DB::rollback();
+			return response()->json(['result'=> false, "status"=> 500, 'message'=>$e->getMessage()]);
+		}
+	
+
+	Validate tự tạo để kiểm tra dòng lỗi:
+		$listError = $this->services->validateData($data, $startRow);
+		public function validateData($rows, $startRow){
+			$listError = [];
+			foreach($rows as $key => $row){
+				if(empty(trim($row[0]))){               // Kiểm tra dữ liệu trỗng
+					$listError[] = (object)[
+						'columnName'    => 'Abc',
+						'errorMessage'  => 'Không được để trống',
+						'rowNumber'     => $key + $startRow,
+					];
+				}
+				if(!is_numeric($row[1])){                // Kiểm tra dữ liệu là số
+					$listError[] = (object)[
+						'columnName'    => 'Abc',
+						'errorMessage'  => 'Phải là số',
+						'rowNumber'     => $key + $startRow,
+					];
+				}
+			}
+			return $listError;
+		}
+	Validate kiểm tra template hợp lệ:
+		public validateTemplateValid function(){
+			$templateFromExcel = $this->getTemplateFromExcel(array_slice($data,0,2));
+			$templateFromDatabase = $this->getTemplateFromDatabase();
+			if($templateFromExcel == $templateFromDatabase){
+				return true;
+			}
+		}
+		Lấy array Heading từ file:
+			public function getTemplateFromExcel($data){
+				// Tạo template có dạng [cột 1, cột 2, cột 3]
+				$heading = [];
+				$heading[] = $data[0];
+				$heading[] = $data[1];
+				return $heading;
+			}
+		Lấy array Heading từ database:
+			public function getTemplateFromDatabase(){
+				$heading = [];
+				$firstRow = ['Stt', 'Mã học sinh (trường)', 'Họ và tên', 'Ngày sinh', 'Giới tính'];
+				$SecondRow = [null, null, null, null, null];
+				$tableName = TableName::where()->get()->toArray();
+
+				$heading[] = $firstRow;
+				$heading[] = $SecondRow;
+				return $tableName;
+			}
+	Lưu dữ liệu import:
+		public function SaveData($data, $dataRequest){
+			$circularId = findCircularByClass($dataRequest['class_id']);
+			$circularCategory = $this->regularService->getCategoryByCircularId($circularId, SystemDefine::MARK_SUBJECT_ORDER);
+			$markAttributes = MarkAttribute::where(['circular_category_id' => $circularCategory->id, 'type' => SystemDefine::SUBJECT_META_ATTRIBUTE_CUSTOM])
+			foreach($data as $row){
+				$dataSave = getDataFromExcel($row, $dataRequest, $circularCategory->id, $markAttributes);
+				$isDataChange = isDataChange($dataSave);
+				$result = Store($dataSave);
+				if($isDataChange){
+					StoreHistory($dataSave);
+				}
+			}
+		}
+
+		public function getDataFromExcel($row, $dataRequest, $circularCategoryId, $markAttributes){
+			$studentId = Student::query()->where(['royal_student_code' => $row[1]])->pluck('id')->first();
+			$dataSave = [];
+			$meta_mark = [];
+			$dataSave['circular_category_id'] = $circularCategoryId;
+			$dataSave['semester'] = $dataRequest['semester_id'];
+			$dataSave['class_id'] = $dataRequest['class_id'];
+			$dataSave['student_id'] = $studentId;
+			$dataSave['meta_mark'] = getMetaMark($row, $markAttribute, $circularCategoryId, $dataRequest, $studentId);
+			return $dataSave;
+		}
+		public function isDataChange($dataSave){
+			$markStudent = MarkStudent::where([
+            		'semester_id'      	=> $dataSave['semester_id'],
+            		'class_id'              => $dataSave['class_id'],
+            		'circular_category_id'  => $dataSave['circular_category_id'],
+            		'student_id'            => $dataSave['student_id'],
+        		])->first();
+			if(!$markStudent){
+            		$markStudent = new MarkStudent();
+        		}
+        		return $item->fill([
+            		'semester_id'      	=> $dataSave['semester_id'],
+            		'class_id'              => $dataSave['class_id'],
+            		'circular_category_id'  => $dataSave['circular_category_id'],
+            		'student_id'            => $dataSave['student_id'],
+            		'meta_mark'             => $dataSave['meta_mark']
+        		]);
+		}
+		public function getMetaMark($row, $markAttribute, $circularCategoryId, $dataRequest, $studentId){
+        		$template	= $this->getTemplateFromDatabase();
+        		$template 	= array_slice($template[0], 5);
+        		$marks 	= array_slice($row, 5);
+        		$markFlag   = [];
+        		$markTitle = null;
+        		$markAttrId = null;
+
+			$change = [];
+        		$meta_mark = [];
+			$markStudents = MarkStudents::where(['circular_category_id' => $circularCategoryId,
+										 'class_id' => $dataRequest['class_id'],
+										 'semester_id' => $dataRequest['semester_id'],
+										 'subject_id' => $dataRequest['subject_id']])->get();
+			$getMetaMark = getMetaMarkFromDatabase();
+        		foreach($template as $key => $title){
+				if($key == count($template) - 1){
+         		      	 break;
+            		}
+            		if($title != null){
+                			$markTitle = $title;
+                			$markFlag = [];
+                			$markFlag[] = $marks[$key];
+                			$markAttrId = $markAttribute->where('name', $markTitle)->first()->id;
+            		} else {
+                			$markFlag[] = $marks[$key];
+            		}
+            		$meta_mark[$markTitle] = (object)[
+                                	'mark_attribute_id' 	=> $markAttrId,
+                              	'value'			=> count($markFlag) > 1 ? $markFlag : $markFlag[0],
+						'change'			=> getChangeFromDatabase($markStudents, $markAttrId, $studentId)
+                            ];
+
+        		}
+        		return json_encode(array_values($meta_mark));
+    		}
+		public function getChangeFromDatabase($markStudents, $markAttrId, $studentId){
+			$metaMark = $markStudents->where('student_id' => $studentId)->first();
+			if(!empty($metaMark)){
+				$metaMark = json_decode($metaMark->meta_mark);
+				foreach($metaMark as $item){
+					if($item['mark_attribute_id'] == $markAttrId){
+						return $item['mark_attribute_id'];
+					}
+				}
+			}
+			return null;
+			
+		}
+---------------------------------------------------------------------------
+Export:
+	Tạo Template:
+		Tạo array header:
+			Tạo array header cứng:
+			Tạo array header từ db:
+			merge 2 array:
+		Thêm dữ liệu mẫu:
+			Xác định row bắt đổ dữ liệu:
+			Xác định cell cần style:
+			Kiểm tra dữ liệu có khớp với header
+			đổ dữ liệu:
+	---------------------------------------------------------------------------------------------------------------------
+	Thêm validate:
+		use Illuminate\Support\Facades\Validator;
+		$validator = Validator::make($request->all(),
+        		[
+				'title' => 'required|max:22',
+				'content'=>'required'],
+        		[
+            			'required'=>':attribute không được để trống',
+            			'max'=>':attribute không được vượt quá :max ký tự',
+        		],
+        		[
+            			'title'=>'Tiêu đề',
+            			'content'=>'Nội dung'
+        		]
+        		);
+		if ($validator->fails()) {
+    		return back()->withErrors($validator);
+		}
+		<label>{{$errors->first('title')}}</label>
+		<label>{{$errors->first('content')}}</label>
+	---------------------------------------------------------------------------------------------------------------------
+	gọi giá trị cũ từ form:
+			return ....->withInput();
+			value="{{old('content')}}"			// content là giá trị của thuộc tính name
+	--------------------------------------------------------------------------------------------------------------------
+	Thêm 1 property cho array object:
+		->map(function ($subject) {
+			$subject->{"bar"} = '1234';
+            	return $subject;
+        	})
+		$article = Article::paginate(10);
+	---------------------------------------------------------------------------------------------------------------------
+	gắn file khác vào:
+		@section('script')
+    			@include('mark::mark.script')
+		@endsection
+	---------------------------------------------------------------------------------------------------------------------
+	Đăng nhập:
+		Thêm middleware cho route:
+		view: sửa file login
+			<form action="" method="post">
+				<input name="username" type="text"/>
+				<input name="password" type="password"/>
+				<button>Đăng nhập</button>
+			</form>
+		action:
+			public function login(Request $request){
+				$credentials = $request->validate([
+            				'email' => ['required', 'email'],
+            				'password' => ['required'],
+        			]);
+				if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+					$request->session()->regenerate();
+					return view('login');
+				}
+			}
+	--------------------------------------------------------------------------------------------------------------------
+	Đăng xuất:
+		Auth::logout();
+		$request->session()->invalidate();
+    	$request->session()->regenerateToken();
+		-------------------------------------
+Excel export: tạo sheet -> lấy dữ liệu -> map dữ liệu -> đặt tên cho trang tính -> thiết lập ô bắt đầu đổ dữ liệu
+	-> Thiết lập heading -> tạo sự kiện -> tạo kiểu chữ
+	Tạo sheet; sheets()
+	Lấy dữ liệu: 			collection(), array(), query()
+	Map dữ liệu: 			map()
+	Đặt tên cho trang tính: 	title()
+	Ô bắt đầu đổ dữ liệu: 		startCell()
+	Thiết lập headings:  		headings()
+	Tạo sự kiện: 			registerEvents()
+	Tạo kiểu chữ: 			styles(Worksheet $sheet)
+Excel Import:
+	Đọc dữ liệu từ excel và Insert vào db
+	Đọc dữ liệu từ excel và Insert vào db:  		model(array $row)
+-------------------------------------------------------------------------------------
+
+composer require laravel/breeze --dev
+php artisan breeze:install blade
+php artisan migrate
+npm install
+npm run dev
+Đăng nhập:
+	Auth::login($user);					// đăng nhập bằng model user
+	Auth::attempt(['email' => $email, 'password'], isRemember);	// kiểm tra và login
+	Auth::loginUsingId(1);					// đăng nhập bằng user_id
+	Auth::loginUsingId(1, $remember = true);
+	$request->session()->regenerate();			// tạo lại id session
+	$user = User::create([					// Đăng ký
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+	RouteServiceProvider.php/ public const HOME = '/chỉ định url khi chưa đăng nhập';
+Đã đăng nhập:
+	$user = Auth::user();		// lấy model user
+	$id = Auth::id();		// lấy id user
+	$isRemember = Auth::viaRemember() // kiểm tra xem người dùng có dùng chức năng nhớ tôi hay không
+	Auth::logout();			// đăng xuất
+		$request->session()->regenerateToken()		// xóa token lưu trên session
+	Guard: yêu cầu người dùng phải có role là admin thì mới được phép sử dụng hàm  check()
+		bước 1: 
+		bước 2: ->middleware('auth:admin')
+		bước 3: Auth::guard('admin')->check();
+Chung:
+	Auth::check()		// kiểm tra đã đăng nhập hay chưa
+Chuyển hướng tới route khi chưa đăng nhập:
+	Bước 1: gắn middleware cho route muốn chuyển hướng: middleware('auth');
+	Bước 2: sửa file middleware auth authenticaton.php: return $request->expectsJson() ? null : route('login');
+Tự động đăng xuất sau 1 thời gian:
+Tạo Gate:	Gate như 1 điều kiện để xem user có quyền thực hiện 1 hành động nhất định hay không
+	Bước 1: app/Providers/AuthServiceProvider.php:
+		Gate::define('view-post', function ($user, $post) {
+        		return $user->id === $post->user_id;
+    		});
+	Bước 2: 
+		$post = Post::find(1);
+		if (Gate::allows('view-post', $post)) {
+        		// Người dùng có quyền truy cập vào bài viết này
+       			return view('posts.show', compact('post'));
+    		} else {
+        		// Người dùng không có quyền truy cập vào bài viết này
+        		abort(403);
+Tạo police: cách sử dụng cũng gần giống Gate
+	Bước 1: php artisan make:policy PostPolicy --model=Post
+	Bước 2: app/Policies:
+		public function update(User $user, Post $post)
+		{
+    			return $user->id === $post->user_id;
+		}
+	Bước 3: Sử dụng trên controller
+		public function update(Request $request, Post $post)
+		{
+    			$this->authorize('update', $post);			// nếu không hợp lệ sẽ ném ngoại lệ AuthorizationException
+
+    			// Logic xử lý chỉnh sửa bài viết
+		}
+		Cách 2: $user->can('update', $post)
+			$user->can('create', Post::class)
+		Cách 3: 
+			Route::put('/post/{post}', function (Post $post) {
+    				// The current user may update the post...
+			})->middleware('can:update,post');
+	Nâng cao:
+		public function before($user, $ability)				// sử dụng trên police: hàm này sẽ kiểm tra trước khi các phương thức khác được kiểm tra
+		{
+    			if ($user->isSuperAdmin()) {
+        		return true;
+    			}
+		}

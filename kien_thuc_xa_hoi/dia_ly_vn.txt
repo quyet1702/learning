@@ -1,0 +1,210 @@
+Tây Bắc Bộ:
+	- Lai Châu	- 25
+	- Lào Cai	- 24
+	- Điện Biên	- 27
+	- Yên Bái	- 21
+	- Sơn La	- 26
+	- Hòa Bình	- 28
+Đông Bắc Bộ:
+	- Hà Giang	- 23
+	- Cao Bằng	- 11
+	- Tuyên Quang	- 22
+	- Bắc Cạn	- 97
+	- Lạng SƠn	- 12
+	- Thái Nguyên	- 20
+	- Bắc Giang	- 98
+	- Quảng Ninh	- 14
+	- Phú Thọ	- 19
+Đồng bằng sông Hồng:
+	- Hà Nội	- 29, 33, 40
+	- Vĩnh Phúc	- 88
+	- Bắc Ninh	- 99
+	- Hưng Yên	- 89
+	- Hà Nam	- 90
+	- Hải Dương	- 34
+	- Hải Phòng	- 15, 16
+	- Thái Bình	- 17
+	- Nam Định	- 18
+	- Ninh Bình	- 35
+Bắc TRung bộ:
+	- Thanh Hóa	- 36
+	- Nghệ An	- 37
+	- Hà Tĩnh	- 38
+	- Quảng Bình	- 73
+	- Quảng TRị	- 74
+	- Thừa Thiên Huế	- 75
+Nam trung bộ:
+	- Đà Nẵng	- 43
+	- Quảng Nam	- 92
+	- Quảng Ngãi	- 76
+	- Bình Định	- 77
+	- Phú Yên	- 78
+	- Khánh Hòa	- 79
+	- Ninh Thuận	- 85
+	- Bình Thuận	- 86
+Tây Nguyên:
+	- Kon Tum	- 82
+	- Gia Lai	- 81
+	- Dak Lak	- 47
+		Đặc điểm nổi tiếng:
+			- nhiều cafe
+			- Hồ Lắk
+			- Bản Đôn
+			- Vườn Quốc gia Yok Đôn
+			- Bảo tàng thế giới cà phê
+			- Vườn thực vật Troh Bư
+			- Thác Dray Sáp - Dray Nur
+			- Vườn Quốc gia Chư Yang Sin
+			- 
+	- Lâm Đồng	- 49
+	- Dak Nông	- 48
+Đông Nam Bộ:
+	- Tp Hồ Chí Minh	- 41, 50, 51, 51, 52, 53, 54, 55, 56, 57, 58, 59
+	- Bình Phước		- 93
+	- Bình Dương		- 61
+	- Tây Ninh		- 70
+	- Đồng Nai		- 39, 60
+	- Bà Rịa Vũng Tàu	- 72
+Đồng bằng sông Cửu Long - Miền Tây:
+	- Long An		- 62
+	- Tiền Giang		- 63
+	- Bến Tre		- 71
+	- Đồng Tháp		- 66
+	- Vĩnh Long		- 64
+	- Trà Vinh		- 84
+	- An Giang		- 67
+	- Cần Thơ		- 65
+	- Hậu Giang		- 95
+	- Sóc Trăng		- 83
+	- Kiên Giang		- 68
+	- Bạc Liêu		- 94
+	- Cà Mau		- 69
+Đảo:
+	- Đảo Phú Quốc
+	- Quần đảo HOàng Sa
+	- Quần Đảo Trường Sa
+	--------------------------------------------------------------------------------
+Bình Phước:
+	Cấp huyện:
+			- tp Đồng Xoài
+				- tx Tân thành
+				- tx Tiến Thành
+				- tx Tiến Hưng
+				- tx Tân Xuân
+				- tx Tân Bình
+				- tx Tân Đồng
+				- tx Tân Phú
+				- tx Tân Thiện
+			- Bình Long
+				- An Lộc
+				- Hưng Chiến
+				- Phú Đức
+				- Phú Thịnh
+				- Thanh Lương
+				- Thanh Phú
+			- Chơn Thành
+				- Minh Hưng
+				- Minh Lập
+				- Minh Long
+				- Minh Thắng
+				- Minh Thành
+				- Nha Bích
+				- Quang Minh
+				- Thành Tâm
+			- Đồng Phú
+				- Đồng Tâm
+				- Đồng Tiến
+				- Tân Hòa
+				- Tân Hưng
+				- Tân Lập
+				- Tân Lợi
+				- TT. Tân Phú
+				- Tân Phuớc
+				- Tân Tiến
+				- Thuận Lợi
+				- Thuận Phú
+			- Bù Gia Mập
+				- Bình Thắng
+				- Bù Gia Mập
+				- Đa Kia
+				- Đak Ơ
+				- Đức Hạnh
+				- Phú Nghĩa
+				- Phú Văn
+				- Phước Minh
+			- Bù Đăng
+				- Bình Minh
+				- Bom Bo
+				- Đak Nhau
+				- Đăng Hà
+				- Đoàn Kết
+				- Đồng Nai
+				- Đức Liễu
+				- tt Đức Phong
+				- Đường 10
+				- Minh Hưng
+				- Nghĩa Bình
+				- Nghĩa Trung
+				- Phú Sơn
+				- Phước Sơn
+				- Thọ Sơn
+				- Thống Nhất
+			- Bù Đốp
+				- Hưng Phước
+				- Phước Thiện
+				- Tân Thành
+				- Tân Tiến
+				- TT. Thanh Bình
+				- Thanh Hòa
+				- Thiện Hưng
+			- Hớn Quản
+				- An Khương
+				- An Phú
+				- Đồng Nơ
+				- Minh Đức
+				- Minh Tâm
+				- Phước An
+				- Tân Hiệp
+				- Tân Hưng
+				- TT. Tân Khai
+				- Tân Lợi
+				- Tân Quan
+				- Thanh An
+				- Thanh Bình
+			- Lộc Ninh
+				- Lộc An
+				- Lộc Điền
+				- Lộc Hiệp
+				- Lộc Hòa
+				- Lộc Hưng
+				- Lộc Khánh
+				- TT. Lộc Ninh
+				- Lộc Phú
+				- Lộc Quang
+				- Lộc Tấn
+				- Lộc Thái
+				- Lộc Thành
+				- Lộc Thạnh
+				- Lộc Thiện
+				- Lộc Thịnh
+				- Lộc Thuận
+			- Phú Riềng
+				- Bình Sơn
+				- Bình Tân
+				- Bù Nho
+				- Long Bình
+				- Long Hà
+				- Long Hưng
+				- Long Tân
+				- Phú Riềng
+				- Phú Trung
+				- Phước Tân
+			- Phước Long
+				- Long Giang
+				- Long Phước
+				- Long Thủy
+				- Phước Bình
+				- Phước Tín
+				- Sơn Giang
+				- Thác Mơ
+

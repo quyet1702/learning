@@ -1,0 +1,15 @@
+=> đối đầu trung pháo, thuận trung mã
+	- chuyển xe sang làn trái để tấn công
+		=> lên sĩ phải
+			- tấn xe áp cửu
+				=> mã biên
+					- tấn chốt đè mã biên
+						=> tấn xe đè chốt
+							phát triển ngựa trái
+								=> thúc tốt lộ 3
+									- xe tấn 2
+										=> thúc tốt lộ 3
+											- xe chuyển làn chiếm lộ 4
+												=> thúc tốt lộ 3
+													xe áp cửu gần sĩ
+														- tiến mã trái tấn công 	

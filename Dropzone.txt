@@ -1,0 +1,64 @@
+install:
+	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+	<form action="/target" class="dropzone" id="my-great-dropzone"></form>
+    <script>
+      Dropzone.options.myGreatDropzone = {
+        // camelized version of the `id`
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        accept: function (file, done) {
+          if (file.name == "justinbieber.jpg") {
+            done("Naha, you don't.");
+          } else {
+            done();
+          }
+        },
+      };
+    </script>
+
+
+Nâng cao:
+	thêm event:
+	$(document).ready(function () {
+            console.log(1);
+            var documentFileDropzone = Dropzone.forElement("#documentFileDropzone");
+            documentFileDropzone.on("processing", function(file, response) {
+                var formId = $(this.element).closest('#uploadFile').attr('id');
+                console.log(formId);
+                var document = $(`#${formId} #documents-table tbody tr input`);
+                var documentId = document.val();
+                if (document.length > 0 && documentId != undefined) {
+                    $.ajax({
+                        url: "/Documents/Documents/delete/" + documentId,
+                        method: "DELETE",
+                        success: function (response) {
+                            if( response.documentTrId) {
+                                $(`#${formId} #${response.documentTrId}`).remove();
+                            }
+                            if( response.flash) {
+                                $(".right_col").prepend(response.flash);
+                            }
+                            $(`#${formId} #documentFileDropzone`).attr('style', 'display: block');
+                        }
+                    })
+                }
+            });
+            documentFileDropzone.on("success", function(file, response) {
+                var formId = $(this.element).closest('form').attr('id');
+                var document = $(`#${formId} #documents-table tbody tr input`);
+                var documentId = document.val();
+                if (formId == 'EditTravelChargeModalForm') {
+                    let actionData = '/SheetBusinesstrips/ajaxPost/';
+                    let serializedData = $(`form#${formId}`).serialize();
+                    let request = $.ajax({
+                        url: actionData,
+                        type: "post",
+                        data: serializedData,
+                        success: function( response ) {
+                        }
+                    });
+                }
+            });
+        });

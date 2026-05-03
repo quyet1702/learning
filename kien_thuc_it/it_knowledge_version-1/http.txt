@@ -1,0 +1,7 @@
+request:
+	method: 
+-------------------------------
+mã thông báo: 200 được sử dụng khi request sử lý hoàn tất và có dữ liệu trả về
+mã thông báo: 204 được sử dụng khi request sử lý hoàn tất nhưng không có dữ liệu trả về
+mã lỗi: 404 được sử dụng khi request sử lý chưa hoàn tất do dữ liệu rỗng
+mã lỗi 500: được sử dụng khi có 1 vấn đề không rõ nguyên nhân, sử dụng khi nó rơi vào hàm try-catch

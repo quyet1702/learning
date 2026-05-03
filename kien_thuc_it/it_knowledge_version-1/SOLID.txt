@@ -1,0 +1,15 @@
+Single Responsibility Principle: Nguyên tắc Trách nhiệm Đơn lẻ
+	- Mỗi class chỉ nên chịu trách nhiệm cho 1 công việc duy nhất
+	- giống như 1 controller chỉ nên chịu trách nhiệm trên 1 màn hình
+Open-Closed Principle:	(Nguyên tắc Đóng mở)
+	- Các lớp phải mở rộng được để thêm chức năng mới nhưng không được phép sửa đổi lớp gốc
+Liskov Substitution Principle:	(Nguyên tắc thay thế Liskov)
+	- tuân theo đúng việc kế thừa trong lập trình hướng đối tượng
+	- tuân theo tính đúng đắn của lớp cha con
+	- lớp cha phải có thể được sử dụng thay cho lớp con, tức là các hàm override từ lớp con không được thay đổi cấu trúc của lớp cha
+Interface Segregation Principle: (Nguyên tắc phân tách giao diện
+	- tách các interface thành các interface nhỏ hơn để đảm bảo các interface không có hàm dư thừa khi sử dụng trên 1 UI người dùng
+Dependency Inversion Principle: (Nguyên tắc đảo ngược phụ thuộc)
+	Thay vì gọi trực tiếp hàm cha ở trong hàm con, thì hãy sử dụng interface hoặc abstract để dependency inject
+ 
+	

@@ -1,0 +1,146 @@
+Cài đặt:
+Component:
+Hook:
+JSX:
+_________________________________________________________________________________
+Cài đặt:
+		<div id="root"></div>
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<script type="text/babel">
+			ReactDOM.render(<h1>Hello, world!</h1>, document.getElementById('root'));
+		</script>
+
+Component:
+		Tạo component bằng function:
+				function Component1(props, childrent){					// Tham số thứ 2 là JSX của các thẻ con của component1
+					var name = "Hoàng Văn Quyết";
+					var functionName = (event) => alert('event');
+					const list = ["hoang van quyet","hoang van tam","hoàng văn quyền"]
+
+					return	<React.Fragment>													// thẻ giúp render nhiều phần tử
+								<span>Xin chào: {props.alies}</span>							// sử dụng properties
+								<h1>{name}</h1>													// gắn biến vào JSX
+								<Component2/>													// Thêm 1 component vào
+								<button onClick={functionName}>Take the shot!</button>			// thêm sự kiện
+								<ul>
+									{list.map((value,index)=><li key={index}>{value}</li>)}		// Thêm list
+								</ul>
+							</React.Fragment>
+				}
+				<Component1 brand="Đây là tham số"/>										// Component có gắn properties
+		Tạo component bằng class:
+				class Car extends React.Component {	// tên class phải viết hoa chữ cái đầu
+					render() {
+							return <h2>Hi, I am a Car!</h2>;
+					}
+				}
+		Tạo Component bằng biến:
+				const component = <h1>hello</1>;
+
+
+	JSX:
+		- Gía trị là 1 thẻ html; có thể đc lưu trong 1 biến
+		- thẻ html phải đúng cú pháp
+		- có thể sử dụng biến trong JSX {variable}
+		- không hỗ trợ dùng if else bên trong JSX nhưng có thể sử dụng bên ngoài
+		- có thể sử dụng toán tử 3 ngôi bên trong JSX {(x) < 10 ? "Hello" : "Goodbye"}
+		- sử dụng className thay cho class trong html
+		- thẻ html phải đc bao bọc bởi 1 phần tử mẹ; nếu ko có phần tử mẹ thì sử dụng <React.Fragment> </React.Fragment>
+---------------------------------------------------------------------------------
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+Tạo element:
+	const  element = React.createElement(h1, {}, 'xin chào')				// React.createElement(type, props, childrent)
+Render:
+	const root = document.getElementById('root');
+	ReactDOM.render(element, root);								// ReactDOM.render(element, container);
+------------------------------------------------
+Tạo UI Component:
+	const Form = {
+            Input () {
+                return <input type="text"/>
+            },
+            Checkbox () {
+                return <input type="checkbox"/>
+            }
+        }
+        function A(){
+            const Component = Form['Checkbox']
+            return (
+                    <div>
+                        <Component />
+                    </div>
+                );
+        }
+----------------------------------------------
+Cài đặt project với nodejs:
+	install:
+		npm init
+		npm install webpack webpack-cli --save-dev			// cài webpack
+		npm install react@17.0.2 react-dom@17.0.2 --save-dev		// cài react và react dom
+		npm install babel-loader @babel/preset-react --save-dev		// cài babel
+		npm install css-loader style-loader --save-save			//
+		npm install html-webpack-plugin --save-dev			// giúp không phải link bunlde
+	Thêm file:
+		public/index.html:
+			<div id="root"></div>
+			<script src="../build/bundle.js"></script>
+		src/index.js:
+			import React from 'react'
+			import ReactDOM from 'react-dom'
+			function App(){return <div>...</div>}
+			ReactDOM.render(<App />, document.getElementById('root'));
+		webpack.config.js:
+			const path = require("path");
+
+				module.exports = {
+  				entry: "./src/index.js", // Dẫn tới file index.js ta đã tạo
+				output: {
+					path: path.join(__dirname, "/build"), // Thư mục chứa file được build ra
+					filename: "bundle.js" // Tên file được build ra
+				},
+				module: {
+					rules: [
+					{
+						test: /\.js$/, // Sẽ sử dụng babel-loader cho những file .js
+						exclude: /node_modules/, // Loại trừ thư mục node_modules
+						use: ["babel-loader"]
+					},
+					{
+						test: /\.css$/, // Sử dụng style-loader, css-loader cho file .css
+						use: ["style-loader", "css-loader"]
+					}
+					]
+				},
+				// Chứa các plugins sẽ cài đặt trong tương lai
+				plugins: [
+				]
+			};
+		.babelrc:
+			{
+				"presets": [
+					"@babel/preset-env",
+					"@babel/preset-react"
+				]
+			}
+		package.json:
+			"scripts": {
+				...
+				"start": "webpack --mode development --watch",
+				"build": "webpack --mode production"
+			}
+		---------------------------------------------
+		npm install webpack-dev-server --save-dev
+		"scripts": {
+			"test": "echo \"Error: no test specified\" && exit 1",
+			"start": "webpack-dev-server --mode development --open --hot",
+			"build": "webpack --mode production"
+		},
+-----------------------------------------------------------------------
+Create project:
+	npx create-react-app
+	npm start
+------------------------------------------------------------------------

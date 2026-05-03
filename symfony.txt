@@ -1,0 +1,141 @@
+Config:
+	install:
+		composer create-project symfony/skeleton:"7.1.*" my_project_directory
+		composer install
+		symfony server:start
+		http://localhost:8000
+	Connect Sql:
+	Migrate:
+	Seeder:
+	websocket:
+	Log:
+	Command:
+Model:
+	Config:
+		composer require symfony/orm-pack
+		composer require --dev symfony/maker-bundle
+		.env:
+			DATABASE_URL="mysql://root:quyet1702@127.0.0.1:3306/symfony??serverVersion=mariadb-10.3.29"
+		php bin/console doctrine:database:create		// tạo database
+		php bin/console make:entity				// tạo model
+		php bin/console make:migration			// tạo migrate dựa trên model
+		php bin/console doctrine:migrations:migrate		// tạo bảng dựa trên migrate
+		php bin/console dbal:run-sql 'SELECT * FROM product'	// truy vấn dữ liệu
+	Relationship:
+		hasMany:
+		belongsTo:
+		hasOne:
+		belongsToMany:
+	QueryBuilder:
+		object Model:
+			cách 1: public function createProduct(EntityManagerInterface $entityManager): Response
+			cách 2: public function createProduct(ProductRepository $productRepository): Response
+			cách 3: $repository = $entityManager->getRepository(Product::class);
+		select:
+			$product = $productRepository->find($id);
+			$name = $product->getName();
+			$price = $product->getName();
+			
+			$product = $repository->find($id);
+			$repository->findAll();						// lấy tất cả
+			
+			$connect = $entityManager->getConnection()
+			$sql = 'select * from product where price = :price'
+			$resultSet = $connect->executeQuery($sql, ['price' => $price]);
+			$resultSet->fetchAllAssociative();
+		contain:
+		where:
+			$product = $productRepository->findOneBy(['name' => 'Keyboard']);		// trả về 1 product
+			$products = $repository->findBy(					// trả về array product
+				['name' => 'Keyboard']						// điều kiện
+				['price' => 'ASC']						// order by
+			);
+		join:
+		exists:
+		save:
+			 // hoặc ProductRepository $productRepository
+			EntityManagerInterface $entityManager
+			$category = new Category();
+        		$category->setName('Computer Peripherals');
+        
+			$product = new Product();
+			$product->setName('Keyboard');
+        		$product->setPrice(1999);
+        		$product->setCategory($category);		// Thêm khóa ngoại
+        		$entityManager->persist($category);		// chuẩn bị lưu	
+        		$entityManager->persist($product);		// chuẩn bị lưu
+        		$entityManager->flush();			// lưu cả category và product vào db
+		update:
+			$product = $entityManager->getRepository(Product::class)->find($id);
+			$product->setName('New product name!');
+        		$entityManager->flush();
+		delete:
+			$product = $entityManager->getRepository(Product::class)->find($id);
+			$entityManager->remove($product);
+			$entityManager->flush();
+		deleteMany:
+			
+		updateAll:
+		createMany:
+		createWithRealationship:
+		updateWithRealationship:						// cập nhật thêm bảng trung gian
+			$event = $this->eventRepository->findOneBy(['id' => $data['event_id']]);
+			$lineup = $this->lineupRepository->findOneBy(['id' => $data['lineup_id']]);
+			$event = $event->addLineup($lineup);
+			$this->manager->persist($event);
+			$this->manager->flush();
+	Accessor:
+	customQuery:
+		ProductRepository:
+			public function findAllGreaterThanPrice(int $price): array
+        			$entityManager = $this->getEntityManager();
+				$query = $entityManager->createQuery(
+				    'SELECT p
+				    FROM App\Entity\Product p
+				    WHERE p.price > :price
+				    ORDER BY p.price ASC'
+				)->setParameter('price', $price);
+				return $query->getResult();
+	ModelServices:
+Controller:
+	config:
+		php bin/console make:controller ProductController		// tạo controller
+	Middleware:
+	Route:
+		#[Route(					// above action of controller
+			'/posts/{id}',
+			name: "blog_list"			// name: not important, but it unique
+			condition: "params['id'] < 1000"	// điều kiện cho tham số
+			methods: ['GET', 'HEAD']		// ràng buộc 1 số method nhất định
+		)]
+		public function show(int $id): Response
+		public function show(Post $post): Response
+		php bin/conconsole debug:router			// lấy danh sách route
+	Component:
+	Request:
+	Response:
+		return $this->json(['username' => 'jane.doe']);	// trả về json
+		new Response('Hello '.$name, Response::HTTP_OK);
+		return $this->render('homepage/index.html.twig', response: $response);	// chuyển hướng tới 1 route
+		return $this->redirectToRoute(
+			'homepage',
+			['max' => 10],			// tham số
+			301				// status
+			);
+	Collection:
+	Language:
+	ControllerServices:
+View:
+	Template:
+		Config:
+			composer require twig
+			extends AbstractController:
+				 return $this->render('lucky/number.html.twig', [ 'number' => $number, ]);
+			lucky/number.html.twig:
+				<h1>Your lucky number is {{ number }}</h1>
+			
+		Element:
+		Layout:
+	Helper:
+		
+		

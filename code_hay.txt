@@ -1,0 +1,46 @@
+1/ Ràng buộc value của input:
+        onkeyup="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
+        
+2/ Kiểm tra thay đổi giá trị hay không:
+	function checkChangeValue(input){ 		// input = '.selector'
+        let inputs = $(input);
+        inputs.each(function(index, element){
+            if(element.tagName == 'SELECT'){
+                $(element).on('change', function(e){
+                    check();
+                });
+            } else {
+                $(element).on('input', function(e){
+                    check();
+                });
+            }
+        })
+        $('.checkAll').each(function(index, element){
+            $(element).on('change', function(e){
+                check();
+            });
+        });
+        function check(){
+            let count = 0;
+            let dataChange = {};
+            inputs.each(function(i, item){
+                if($(item).val() != $(item).attr('data-old')){
+                    if(dataChange[$(this).attr('data-meta')] != undefined) {
+                        dataChange[$(this).attr('data-meta')]++;
+                    }else{
+                        dataChange[$(this).attr('data-meta')] = 1;
+                    }
+                    count++;
+                }
+            });
+            if(count > 0){
+                $('#btnSave').prop('disabled',false);
+                $('#btnSaveAll').prop('disabled', false);
+            } else {
+                $('#btnSave').prop('disabled', true);
+                $('#btnSaveAll').prop('disabled', true);
+            }
+
+        }
+            
+    }

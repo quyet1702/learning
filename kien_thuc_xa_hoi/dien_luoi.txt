@@ -1,0 +1,47 @@
+Dung lượng tiêu thụ(Wh) = Dung lượng(Ah)*Điện áp(V)
+Dòng điện tiêu thụ (A)	 = Công suất(W) / điện áp(V)
+Thời gian sử dụng (giờ) = điện năng (Ah) / Dòng điện tiêu thụ (A)
+Dòng điện tiêu thụ (A) = Số Vôn
+1 vAh = 1 Ah
+điện năng (Ah) là đơn vị đo điện năng tối đa của pin
+điện năng (Wh) là đơn vị đo điện năng đã tiêu thụ
+công suất (w) là số điện cần tiêu tốn mỗi giây
+điện áp (V) để đo sức mạnh của dòng điện
+Dòng điện tiêu thụ (mA) là đơn vị đo điện năng tiêu thụ trong 1h
+Dòng điện xoay chiều AC
+Dòng điện 1 chiều DC
+
+
+
+
+
+
+lượng điện (pin): 1Ah = 1000 mAh; điện áp theo pin = 5v;
+	- chuyển đổi sang năng lượng: 1Ah X 5v = 5Wh
+		- Sử dụng cho thiết bị công suất 1W (công suất là số năng lượng sử dụng trong 1 giờ):
+			- số giờ có thể sử dụng: năng lượng / công suất = 5Wh / 1w = 5giờ
+			- dòng điện đã tiêu thụ trong 1 giờ:  Công suất(W) / năng lượng(V) = 1 / 5 = 0.05A
+
+
+
+
+
+
+
+
+
+
+
+
+Xe máy:
+	Khung xe máy
+	Động cơ
+	Bình ác quy
+	Thắng xe
+	Bánh xe
+	Lốp xe
+	Phanh xe
+	Dây xích
+	Lọc gió
+	Bộ giảm sóc
+				

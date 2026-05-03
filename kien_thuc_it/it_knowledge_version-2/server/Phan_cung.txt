@@ -1,0 +1,27 @@
+CPU:
+	Máy tính khởi động và tắt ngay lập tức
+	khi nhập mật khẩu máy tính tự động tắt và khởi động lại: vấn đề này có thể do nguyên nhân khác như ko cung cấp đủ điện
+	
+RAM:
+	Đang sử dụng thì máy tự khởi động lại
+	Khi khởi động máy, nghe tiếng tít tít liên tục và máy không lên nguồn
+	Máy tính hiển thị sai dung lượng RAM.
+	 Xuất hiện màn hình trắng sau khi khởi động máy tính
+MAIN:
+	Khi đang sử dụng máy tính đột ngột bị treo giữa chừng và bị đơ
+	Không nhận chuột, USB, Bàn phím,..
+	Pin sạc không vào
+	Máy tính hoạt động chập chờn, đôi khi không lên nguồn
+	Main không nhận card mở rộng, không nhận RAM,…
+	Chết BIOS
+Ổ CỨNG:
+	Máy tính chạy chậm hoặc thường xuyên bị treo
+	Xuất hiện màn hình xanh: your PC ran into a problem and needs to restart. We're just collecting some error into,...
+	máy tính thông báo lỗi khi mở 1 hoặc nhiều file: location is not available
+	Máy tính phát ra tiếng kêu lạ như rít rít, kẹt kẹt phát ra từ vị trí của ổ cứng
+	Dữ liệu bị lưu vào bad sector
+Nguồn:
+	lúc khởi động được máy tính, lúc không khởi động được
+	khi gõ mạnh vào máy tính thì tự reset
+	bấm nút nguồn mà máy tính không lên
+	nút nguồn sáng nhưng màn hình và máy không được bật mở.

@@ -1,0 +1,129 @@
+tạo forlder:
+Thao tác với tệp:
+	del "test.bat"				-> xóa file tên test.bat
+		 erase "test.bat"
+	DEL . DR		xóa tất cả tệp trong thư mục hiện tại, trừ folder
+	move "test.bat" "folder"		-> di chuyển file test.bat vào folder
+	dir "Program Files" C/data/list.txt	-> những gì đc in ra sẽ gắn vào file list.txt
+	copy "fileName1" "folderName2"		
+		-> copy fileName1 sang folderName2
+		-> nếu fileName1 là 1 folder thì sẽ biến folderName2 giống fileName1
+		-> nếu folderName2 là folder thì lệnh ko có tác dụng
+	rename "txt1.bat" "test.bat"	-> đổi tên file từ txt1.bat thành test.bat
+		-> có thể viết ren thay vì rename
+	assoc	-> thống kê tất cả các đuôi file
+	Config file:
+		attrib		-> hiện thị các file và thuộc tính của file
+		file chỉ đc phép đọc:	attrib +r fileName
+			xóa thuộc tính: attrib -r fileName
+		ẩn file: attrib -h list.txt		-> không thể nhìn thấy 
+		hiện file: attrib -h list.txt
+	Lấy dữ liệu từ file:
+		 FOR /F "tokens=* delims=" %%x in (a.txt) DO set b=%%x	-> lấy dữ liệu từ file a.txt và gắn vào biến b
+	Gắn dữ liệu vào file:
+		@echo 123> test1.txt	xóa nội dung cũ và chèn text
+		@echo 123>> test1.txt	chèn vào dòng mới
+Thao tác với folder:
+	mkdir "folderName"	-> tạo folder
+	dir			-> kiểm tra các thư mục con và file con
+	cd			-> lấy đường dẫn thư mục hiện tại
+	cd ..			-> thay đổi thư mục mẹ
+	cd folderName		-> truy cập vào folder con
+	mrdir			-> xóa folder
+	dir "Program Files"	-> kiểm tra thư mục con và file của Program Files
+	help			-> kiểm tra các lệnh
+	rename "New folder" "batch file"	-> đổi tên New folder thành batch file
+	for %%b in ("%cd%") do set project=%%~nxb	-> lấy folder chứa file thực thi
+		%project%
+Biến có sẵn:
+	%time%			-> giờ hiện tại
+	%date%			-> ngày hiện tại
+	%RANDOM%		-> biến tạo số ngẫu nhiên
+	%username%		-> tên username của hệ thống
+	%cd%			-> path hiện tại
+	%~dp0			-> path hiện tại
+Tạo dữ liệu:
+	tạo chuỗi:
+		set varName=xin chao		-> không tạo khoảng trắng ở dấu =
+		set /p varName1=xin chao	-> in ra biến varName sau đó nhập dữ liệu từ cmd và gắn vào biến varName
+	Tạo số:
+		set /a varName2=5+5		-> ép kiểu chuỗi thành kiểu int
+	Tạo array:
+		Cách 1:
+			set varName1=xin chao	-> khoảng trắng sẽ tự động tách thành 1 phần tử
+		Cách 2:
+			set varName1[0]=xin
+			set varName1[1]=chao
+			%varName1[0]%
+	Tạo Đối tượng:
+		set obj[0].Name=Joe 
+		set obj[0].ID=1
+		%obj[0].Name%
+   		%obj[0].ID%
+
+Thao tác với cửa sổ cmd:
+	@echo off	-> ẩn các code trong bat, sẽ không hiện thị code trên cửa sổ bat
+	echo xin chao	-> in đoạn text ra cửa sổ
+	pause		-> dừng cửa sổ để xem
+	start https://facebook.com	-> tự mở website với trình duyệt mặc định
+	Cls			-> clear màn hinh cmd
+thiết lập hệ thống:
+	ver				-> in phiên bản window
+	TIME				-> đặt lại giờ
+	date				-> đặt lại ngày
+	Đối tượng:
+		set obj[0].Name=Joe 
+		set obj[0].ID=1
+		set obj[1].Name=Mark 
+		set obj[1].ID=2 
+		FOR /L %%i IN (0 1 2) DO  (
+   			call echo Name = %%obj[%%i].Name%%
+   			call echo Value = %%obj[%%i].ID%%
+		)
+	in biến: echo %varName%
+	setlocal			-> code trong local sẽ ko ảnh hướng đến code bên ngoài
+	endlocal
+	if %choose% == 1 (echo da click vao so 1)
+	ELSE (
+		echo da click vao so 2
+	)
+	mshta javascript:alert("Your message!!");close();	-> thêm vài cửa sổ thông báo
+vòng lặp foreach:
+	(for %%a in (%varName1%) do ( 				-> với điều kiện %varName1% là 1 array
+   		echo %%a 
+	))
+function tham số:
+	tạo 1 file test.bat: set /a a=%1+%2
+			echo tổng là %a%
+		trong đó %1 %2 là tham số theo thứ tự
+	gọi function:
+		trên cmd: test.bat 5 6
+			-> trong đó 5 và 6 là tham số và kết quả trả về là: Tổng là 11
+if else:	if(condition) do_something ELSE (do_something_else)
+goto:	giúp chạy ngay 1 số lệnh
+	goto:label		-> khi code chạy đến đây nó sẽ tìm đến :label và chạy /some code 2
+	//some code 1		-> và bỏ qua /some code 1
+	:label
+	/some code 2
+Operator: + - * / % 	-> tương ứng cộng trừ nhân chia và lấy phần dư
+lệnh đơn:
+	ver		-> hiện thị phiên bản window
+	ASSOC		-> Đây là một lệnh hàng loạt liên kết một phần mở rộng với một loại tệp (FTYPE), hiển thị các liên kết hiện có hoặc xóa một liên kết.
+	cd
+		cd\Program Files	-> truy cập nhanh tới folder Program files
+		cd %USERPROFILE%	-> truy cập nhanh tới folder user đâng sử dụng
+		cd ..
+	
+chuyển hướng in:
+	các ký tự được in trên cmd đều có thể chuyển đến 1 file khác bằng cách thêm >path vào cuối 
+	echo xin chao >test.txt
+trả về mã lỗi khi thực thi 1 lệnh nào đó:
+	% ERRORLEVEL%
+	0	thành công
+	1	chức năng ko chính xác. Lệnh thực thi không đúng
+	2	không tìm thấy tệp chỉ định
+	3	không tìm thấy đường dẫn chỉ định
+	5 truy cập bị từ chối
+thao tác với tệp:
+	
+	

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3D Rectangular Box Example</title>
+	<style>
+		.container {
+			width: 600px; /* Width of the container */
+			height: 400px; /* Height of the container */
+			margin: 50px auto; /* Center the container on the page */
+			perspective: 1000px; /* Perspective value for the 3D space */
+			animation-name: container;
+			animation-iteration-count: infinite;
+			animation-duration: 10s;
+		}
+
+		.box {
+			width: 200px; /* Width of the box */
+			height: 150px; /* Height of the box */
+			margin: 0 auto; /* Center the box within the container */
+			position: relative;
+			transform-style: preserve-3d; /* Enables 3D transforms */
+			transform: rotateY(0deg) rotateX(0deg); /* Rotate the box to create a 3D effect */
+			animation-name: rotate;
+			animation-iteration-count: infinite;
+			animation-duration: 10s;
+			transition-timing-function: linear;
+		}
+
+		@keyframes rotate{
+			0% {
+				transform: rotateY(0deg) rotateX(0deg);
+			}
+
+			100% {
+				transform: rotateY(360deg) rotateX(360deg);
+			}
+		}
+		/* Front face of the box */
+		.front-face {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+            opacity: .5;
+			background-color: #e74c3c;
+			transform: translateZ(75px);
+		}
+
+		/* Back face of the box */
+		.back-face {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+			background-color: #3498db;
+			transform: translateZ(-75px) rotateY(180deg);
+		}
+
+		/* Left face of the box */
+		.left-face {
+			position: absolute;
+			width: 150px;
+            opacity: .5;
+			height: 150px;
+			background-color: #f1c40f;
+			transform: translateX(-75px) rotateY(-90deg);
+		}
+
+		/* Right face of the box */
+		.right-face {
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			background-color: #2ecc71;
+			transform: translateX(125px) rotateY(90deg);
+		}
+
+		/* Top face of the box */
+		.top-face {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+			background-color: #9b59b6;
+			transform: translateY(-75px) rotateX(90deg);
+		}
+
+		/* Bottom face of the box */
+		.bottom-face {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+			background-color: #34495e;
+			transform: translateY(75px) rotateX(-90deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="front-face"></div>
+			<div class="back-face"></div>
+			<div class="left-face"></div>
+			<div class="right-face"></div>
+			<div class="top-face"></div>
+			<div class="bottom-face"></div>
+		</div>
+	</div>
+</body>
+</html>

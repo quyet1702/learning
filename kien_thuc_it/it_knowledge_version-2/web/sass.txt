@@ -1,0 +1,63 @@
+Biến:
+Selector:
+Property:
+Import:
+Mixin:
+------------------------------
+Biến:
+        $myColor: red;                  // khai báo biến: kiểu số, chuỗi,.. đặt ngoài cùng file để trở thành biến toàn cục
+        h1 {
+            $myColor: red;              // khai báo biến cục bộ(giống cách khai báo biến trong 1 hàm)
+            $myColor: red !global;      // khai báo biến toàn cục
+            color: $myColor;
+        }
+Selector:
+        selector trong css:
+            nav ul {}
+            nav li {}
+            nav a {}
+        selector trong scss:
+            nav {
+                ul {}
+                li {}
+                a {}
+            }
+Property:
+        property trong css:                         // các tiền tố giống nhau sau dấu - sẽ được gom nhóm
+            font-family: Helvetica, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+        property trong scss:
+            font: {
+                family: Helvetica, sans-serif;
+                size: 18px;
+                weight: bold;
+            }
+Import:
+        tạo file reset.scss
+        @import "reset";                // dán code của file reset vào 
+        theo mặc định sẽ biên dịch hết tất cả file .scss
+        để không muốn biên dịch file chỉ định thì đổi tên __filename
+        và @import "filename"              // bỏ dấu __ để lấy code
+Mixin:
+        @mixin bordered($color, $width) {       // giống như việc khai báo 1 hàm để tái sử dụng lại code ở nơi khác với các tham số
+            border: $width solid $color;
+            color: red;
+        }
+        .myArticle {
+            @include bordered(blue, 1px);  // dán code hay thực thi đoạn mixin vào trong
+        }
+extend:
+        .button-basic  {                    // chia sẻ tập hợp css; gần giống mixin
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button-report  {
+            @extend .button-basic;
+            background-color: red;
+        }
+        

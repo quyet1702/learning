@@ -1,0 +1,22 @@
+download sdk .net6.0
+bấm search: Turn Windows features on or off -> tích chọn internet information services -> OK
+download + install iis
+bấm search: iis -> ok -> DESKTOP-E5O1M6M -> Sites -> add website -> site name: ASPCoreTest -> chọn folder lưu trữ IIS
+-> Ip address: All Unassigned -> port: 8081 -> start website
+KIỂM TRA CÁC CỔNG ĐANG MỞ: netstat -a -n
+ASPCoreTest -> manager website -> browser -> 
+mở project với visual studio có quyền quản trị viên -> chuội phải vào tên project -> publish -> web server -> web deploy -> server: localhost
+-> (server: localhost; siteName: ten project; distination url: http://localhost:8081/) -> distination url: lấy từ url đã chạy trước đó -> oke -> publish
+KẾT THÚC----------
+______________________________________________________________________________________________________________________________
+Chuyển hướng domain đến hosting:
+	cấu hình bên domain:
+		host: @ ; Loại: A ; Địa chỉ: Ip của hosting
+	Cấu hình bên hosting:
+		trỏ ip về domain
+---------------------------------------------------------------------------------------------
+	Chuyển hướng subdomain:
+		cấu hình bên domain:
+			host: Ten_sub_domain ; Loại: A ; Địa chỉ: Ip của hosting
+		Cấu hình bên hosting:
+			trỏ ip về subdomain

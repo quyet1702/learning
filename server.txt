@@ -1,0 +1,441 @@
+	General:
+Window:
+Linux:
+        Docker:
+        php7.2:
+General:
+        cd -:   quay lại thư mục mà chưa dùng cd trước đó
+        cd ..:  quay lại 1 cấp
+        cd ../../.. quay lại 3 cấp hoặc nhiều hơn
+        cd / quay lại thư mục gốc
+--------------------------------------------------------------
+Window:
+        Cài đặt window terminal:
+            - microsoft store => window terminal => download
+            - chia tab, đóng tab(ctr + shift + w), mở các loại terminal khác
+            - cài đặt git bash
+        Cài đặt ubuntu với WSL 1:
+            - yêu cầu: window 10 version 2004 build 19041 hoặc hơn
+            - kiểu tra phiên bản window: window logo + R => winver
+            - cài đặt wsl: wsl --install
+            - mở microsoft store => download ubuntu
+        Update Upgrade Package:
+            - package: giống như 1 phần mềm được đóng gói lại
+            sudo apt-get update                 // là tải các phiên bản mới nhất về máy và được lưu ở file /etc/apt/soures.list
+            sudo apt-get upgrade                // là bắt đầu tiến hành nâng cấp các package mà đã được tải về ở /etc/apt/soures.list
+            sudo apt-get instal <package-name>  // tải xuống 1 package
+        Lệnh ls, cd, clear:
+            ls: lệnh show danh sách thư mục, file
+            ls -l: show danh sách, file chi tiết
+            ls -a: hiện cả file ẩn(những file có tên bắt đầu bằng dấu .); bởi vì lệnh ls và ls -l sẽ ko hiện thị những file đó
+            ls -la hoặc (ls -al): sẽ hiện cả file ẩn và xem chi tiết
+            ls -R: hiện tất cả file và thư mục hiện tại và thư mục con
+            
+        Lệnh thao tác file, folder:
+            tạo folder:                     mkdir folderName
+                mkdir folder/folder1        tạo folder trong folder, ko thể tạo folder con nếu folder cha chưa được tạo
+                mkdir -p folder/folder1:    tạo thư mục con, nếu thư mục cha chưa đc tạo thì sẽ tự động tạo
+            tạo file trống:                 touch fileName
+            xóa folder trống:               rmdir folderName
+                rm -r folder                xóa folder hoặc file
+            xóa file:                        rm fileName
+            copy file:                      cp fileold filenew
+            copy folder:                    cp -r folderOld folderNew
+            di chuyển file, folder:          mv fileold filenew
+        Lệnh vi:
+            vi filename: tạo file và hiện editor ở trạng cái view
+            bấm i để vào trạng thái editor
+            bấm phím Esc để quay lại trạng thái view:
+                bấm :q để thoát
+                bấm :w để lưu
+                bấm :wq để lưu và thoát
+                bấm :x cũng để lưu và thoát
+                bấm e di chuyển về cuối từ
+        Lệnh cat, echo, tail, grep:
+            cat filename:  output ra text của file
+            cat test.html | grep we: tìm kiếm và trả về các dòng có từ we
+            cat filename1 filename2:  output ra text của 2 file
+            cat filename1 filename2 > newfile: copy ouput qua file mới 
+            echo "qưé": tạo output
+            echo "test" > newfile: cũng giống cat copy output ra file mới
+            tail filename: oput ra 10 dòng cuối của file
+            tail filename: oput ra 10 dòng cuối của file
+            tail filename > newfile: output ra file mới
+            cú pháp > thể hiện việc ghi mới
+            >> thể hiện việc ghi đè lên text cũ
+
+        Lệnh sudo, chmod, chown, man, wget, apt:
+            sudo: đứng trước các lệnh khác để thể hiện quyền cao nhất của user
+            ls -l kiểm tra phân quyền
+            chmod u=rwx,g=rw,o=r fileName phân quyền
+            sudo  usermod -aG <groupName> <user_name>   thêm user vào group
+            sudo gpasswd -d <user_name> <group_name>    xóa user ra khỏi group
+            wget url    dùng để tải 1 file về máy
+        Lệnh kill, ping, uname, passwd:
+            ps aux  dùng để xem các tuyến trình
+            top hoặc htop hoặc df     dùng để xem chi tiết tuyến trình và cpu
+            kill PIU_name   lấy PID để tắt tuyết trình
+            kill -9 PIU_name   lấy PID để tắt tuyết trình, sử dụg đối với tuyến trình cứng đầu
+            ping url        kiểm tra tốc độ mạng và địa chỉ ip của url
+            uname           kiểm tra tên hệ điều hành
+            uname -a        kiểm tra tên hệ điều hành
+            passwd          thay đổi mật khẩu
+        Lệnh top, df, fee:
+            -
+        Các mẹo khi gõ lệnh:
+            -
+        Chạy dự án Laravel:
+            - 
+        Deploy dự án với server thật:
+            -
+---------------------------------------------------------------
+Linux:
+        các câu lệnh linux cơ bản:
+            pwd: Hiển thị đường dẫn thư mục làm việc hiện tại.
+            ls: Liệt kê tất cả các tệp tin và thư mục trong thư mục hiện tại.
+            mkdir: Tạo mới một thư mục.
+            rm: Xóa tệp tin hoặc thư mục.
+            cp: Sao chép tệp tin hoặc thư mục.
+            mv: Di chuyển hoặc đổi tên tệp tin/thư mục.
+            cat: Hiển thị nội dung của một tệp tin.
+            grep: Tìm kiếm các chuỗi trong tệp tin hoặc đầu ra của lệnh khác.
+            chmod: Thay đổi quyền truy cập của tệp tin hoặc thư mục.
+            chown: Thay đổi chủ sở hữu của tệp tin hoặc thư mục.
+            ps: Hiển thị các tiến trình đang chạy.
+            top: Hiển thị danh sách các tiến trình đang chạy và sử dụng tài nguyên hệ thống.
+            ifconfig: Hiển thị thông tin về các giao diện mạng.
+            ssh: Kết nối với một máy chủ từ xa qua giao thức SSH.
+            touch filename.txt tạo tệp
+        fix bug ubuntu:
+            sudo apt-get update bị lỗi ko tìm thấy package: vào software and update => other software => remove
+        cài đặt mysql:
+            Truy cập vào sql ko cần mk: sudo mysql
+            Truy cập vào sql với mật khẩu: mysql -u root -p
+            Thay đổi mật khẩu root:
+                mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'new_password';
+        Cai dat dbeaver 22.3.3:
+            sudo apt-get update
+            lên trang chủ tìm phiên bản dbeaver tải về: đối với ubuntu tải file đuôi .deb
+            Lỗi thường gặp:
+                local client không nhận: tải phiên bản 22.3.3 để fix
+            connect server cơ bản: main: localhost-3306-root-Pass@123 SSH: 14.225.241.243-2115-password-Dolphin@210222!
+        INSTALL Java:
+            sudo apt install default-jre
+            java -version
+        Sử dụng ip laravel:
+            ip address
+            php artisan serve --host 192.168.10.146 --port 8887
+        redis:
+            sudo apt install lsb-release curl gpg
+            curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+            sudo apt-get install redis
+            redis-server				// khởi động redis
+            redis-cli				// kết nối redis
+            ping
+        mysql:
+            sudo apt install mysql-server
+            
+        Cài đặt rabbitmq:
+            sudo apt update
+            sudo apt install curl software-properties-common apt-transport-https lsb-release
+            curl -1sLf 'https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/setup.deb.sh' | sudo -E bash
+            sudo apt update
+            sudo apt install erlang
+            sudo apt install -y rabbitmq-server
+            sudo service rabbitmq-server status
+            sudo service rabbitmq-server stop
+            sudo service rabbitmq-server start
+            sudo service rabbitmq-server restart
+            sudo rabbitmqctl add_user admin pwd123			// sét user
+            sudo rabbitmqctl set_user_tags admin administrator	// set quyền
+            sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"	// set quyền cho nhiều user
+            hostname -I					// truy cập vào port mặc định 15672
+        Gỡ cài đặt software:
+            sudo apt remove --purge mysql-server
+            sudo apt purge mysql-server
+            sudo apt autoremove
+            sudo apt autoclean
+            sudo apt remove dbconfig-mysql
+            ----------------------------------------------------------------
+            Cài đặt window terminal:
+            - microsoft store => window terminal => download
+            - chia tab, đóng tab(ctr + shift + w), mở các loại terminal khác
+            - cài đặt git bash
+        Cài đặt ubuntu với WSL 1:
+            - yêu cầu: window 10 version 2004 build 19041 hoặc hơn
+            - kiểu tra phiên bản window: window logo + R => winver
+            - cài đặt wsl: wsl --install
+            - mở microsoft store => download ubuntu
+        Update Upgrade Package:
+            - package: giống như 1 phần mềm được đóng gói lại
+            - update: là tải các phiên bản mới nhất về máy và được lưu ở file /etc/apt/soures.list
+                - sudo apt-get update
+            - Upgrade: là bắt đầu tiến hành nâng cấp các package mà đã được tải về ở /etc/apt/soures.list
+                - sudo apt-get Upgrade
+            - Tải xuống và cài đặt package: dùng để tải và install 1 package
+                - sudo apt-get instal <package-name>
+        Lệnh ls, cd, clear:
+            ls: lệnh show danh sách thư mục, file
+            ls -l: show danh sách, file chi tiết
+            ls -a: hiện cả file ẩn(những file có tên bắt đầu bằng dấu .); bởi vì lệnh ls và ls -l sẽ ko hiện thị những file đó
+            ls -la hoặc (ls -al): sẽ hiện cả file ẩn và xem chi tiết
+            ls -R: hiện tất cả file và thư mục hiện tại và thư mục con
+            cd -:   quay lại thư mục mà chưa dùng cd trước đó
+            cd ..:  quay lại 1 cấp
+            cd ../../.. quay lại 3 cấp hoặc nhiều hơn
+            cd / quay lại thư mục gốc
+        Lệnh thao tác file, folder:
+            tạo folder:                     mkdir folderName
+                mkdir folder/folder1        tạo folder trong folder, ko thể tạo folder con nếu folder cha chưa được tạo
+                mkdir -p folder/folder1:    tạo thư mục con, nếu thư mục cha chưa đc tạo thì sẽ tự động tạo
+            tạo file trống:                 touch fileName
+            xóa folder trống:               rmdir folderName
+                rm -r folder                xóa folder hoặc file
+            xóa file:                        rm fileName
+            copy file:                      cp fileold filenew
+            copy folder:                    cp -r folderOld folderNew
+            di chuyển file, folder:          mv fileold filenew
+        Lệnh vi:
+            vi filename: tạo file và hiện editor ở trạng cái view
+            bấm i để vào trạng thái editor
+            bấm phím Esc để quay lại trạng thái view:
+                bấm :q để thoát
+                bấm :w để lưu
+                bấm :wq để lưu và thoát
+                bấm :x cũng để lưu và thoát
+                bấm e di chuyển về cuối từ
+        Lệnh cat, echo, tail, grep:
+            cat filename:  output ra text của file
+            cat test.html | grep we: tìm kiếm và trả về các dòng có từ we
+            cat filename1 filename2:  output ra text của 2 file
+            cat filename1 filename2 > newfile: copy ouput qua file mới 
+            echo "qưé": tạo output
+            echo "test" > newfile: cũng giống cat copy output ra file mới
+            tail filename: oput ra 10 dòng cuối của file
+            tail filename: oput ra 10 dòng cuối của file
+            tail filename > newfile: output ra file mới
+            cú pháp > thể hiện việc ghi mới
+            >> thể hiện việc ghi đè lên text cũ
+
+        Lệnh sudo, chmod, chown, man, wget, apt:
+            sudo: đứng trước các lệnh khác để thể hiện quyền cao nhất của user
+            ls -l kiểm tra phân quyền
+            chmod u=rwx,g=rw,o=r fileName phân quyền
+            sudo  usermod -aG <groupName> <user_name>   thêm user vào group
+            sudo gpasswd -d <user_name> <group_name>    xóa user ra khỏi group
+            wget url    dùng để tải 1 file về máy
+        Lệnh kill, ping, uname, passwd:
+            ps aux  dùng để xem các tuyến trình
+            top hoặc htop hoặc df     dùng để xem chi tiết tuyến trình và cpu
+            kill PIU_name   lấy PID để tắt tuyết trình
+            kill -9 PIU_name   lấy PID để tắt tuyết trình, sử dụg đối với tuyến trình cứng đầu
+            ping url        kiểm tra tốc độ mạng và địa chỉ ip của url
+            uname           kiểm tra tên hệ điều hành
+            uname -a        kiểm tra tên hệ điều hành
+            passwd          thay đổi mật khẩu
+        Lệnh top, df, fee:
+            -
+        Các mẹo khi gõ lệnh:
+            -
+        Chạy dự án Laravel:
+            - 
+        Deploy dự án với server thật:
+            -
+
+            
+
+
+        -----------------------------------------------------------------------
+        mở cmd: wsl --install
+            hoặc wsl install
+            hoặc dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+            nhập username password
+        cài đặt redis:
+            cmd: wsl
+            sudo apt-get update
+            sudo apt-get install redis
+            redis-server
+            sudo service redis server start
+            test: 
+                - redis-cli
+                - ping
+            Config trên laravel:
+                composer require predis/predis
+                .env
+                    REDIS_HOST=127.0.0.1
+                    REDIS_CLIENT=predis
+                    REDIS_PASSWORD=null
+                    REDIS_PORT=6379
+                php artisan optimize:clear
+            redis-cli shutdown
+
+_________________________________________________________________
+Kết nối NVP server:
+	Server IP: 103.130.214.168
+	Port hệ điều hành Windows: 8866
+	Port hệ điều hành Linux/CentOS: 22
+	Username: root
+	Password: DRCZ#K5Sn5w*gxk
+	https://103.130.214.168:10000/sysinfo.cgi?xnavigation=1
+	Truy cập vào terminal của server:	ssh username@serverIP
+	KIểm tra version ubuntu: lsb_release -a
+	Thêm public_key:
+		dành cho phiên bản cũ hơn 20.0.0: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D97A3AE911F63C51
+		dành cho phiên bản mới hơn 20.0.0:
+				curl -fsSL http://www.webmin.com/jcameron-key.asc | gpg --dearmor | sudo tee /usr/share/keyrings/webmin.gpg > /dev/null
+				echo "deb [signed-by=/usr/share/keyrings/webmin.gpg] https://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list
+				xóa key cũ: sudo apt-key del D97A3AE911F63C51
+
+Cài php8.2:
+	sudo add-apt-repository ppa:ondrej/php
+	sudo apt install software-properties-common
+	sudo apt update
+	sudo apt install php8.2 php8.2-cli php8.2-common php8.2-mbstring php8.2-xml php8.2-mysql php8.2-curl php8.2-zip php8.2-bcmath php8.2-gd php8.2-intl
+	php -v
+Cài nginx:
+	sudo apt install php8.2-fpm		// đây là cầu kết nối php với nginx; cần cài php8.2 trước
+	sudo apt install nginx
+	sudo systemctl status nginx
+	sudo lsof -i :80							// kiểm tra nginx có sử dụng port 80 không
+	sudo systemctl stop apache2		// nếu nó đang bị chiếm bởi 1 apache2 thì dừng nó
+	sudo systemctl restart nginx	// khởi động lại nginx
+	mở cổng cho nginx truy cập mạng:
+		sudo ufw status		// kiểm tra trạng thái
+		sudo ufw enable		// kích hoạt tường lửa
+		sudo ufw allow 'Nginx Full'
+
+Cài mariaDB:
+	sudo apt update
+	sudo apt install mariadb-server
+	apt install mariadb-client
+	sudo mysql_secure_installation
+	mysql -u root -p
+	sudo systemctl restart mariadb
+	sudo systemctl status mariadb
+	CREATE DATABASE ten_database;
+	mysql -u root -p -h 127.0.0.1 -P 3306 my_database
+
+	mysql -h 127.0.0.1 -u root -p company --init-command="SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION';" --force < company_website.sql
+	đổi mật khẩu: ALTER USER 'laravel_user'@'localhost' IDENTIFIED BY 'newpassword';
+		FLUSH PRIVILEGES;
+Cài đặt composer
+	sudo apt update
+	sudo apt upgrade
+	sudo apt install curl php8.2-cli php8.2-mbstring git unzip
+	curl -sS https://getcomposer.org/installer | php
+	sudo mv composer.phar /usr/local/bin/composer
+	composer --version
+Cài đặt docker:
+	sudo apt update
+	sudo apt install -y docker.io
+	sudo systemctl start docker
+	sudo systemctl enable docker
+	docker --version
+
+Clear những lỗi không cần thiết:
+	sudo apt update
+	sudo apt upgrade
+	sudo apt autoremove
+	nếu xuất hiện lỗi Ign:5 url...
+		Danh sách list:
+			ls /etc/apt/sources.list.d/
+			sudo rm /etc/apt/sources.list.d/webmin.list		// xóa những file bị lỗi
+Cài đặt docker compose:
+	sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+	docker-compose version
+Tạo project laravel 8.x:
+	composer create-project laravel/laravel:^8.0 example-app
+Đổi phiên bản php:
+	sudo update-alternatives --config php
+Đưa website lên internet:
+	xác định port đang chạy
+	đưa project vào thư mục: var/www/project_name
+	sudo chown -R www-data:www-data /var/www/project_name
+	sudo chmod -R 775 /var/www/project_name/storage /var/www/project_name/bootstrap/cache
+	sudo nano /etc/nginx/sites-available/laravel
+	server {
+    listen 8000;
+    server_name 103.130.214.168;
+
+    root /var/www/project_name/public;
+    index index.php index.html;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock; # Điều chỉnh theo PHP bạn cài
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+	}	
+	sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
+	sudo nginx -t 
+	sudo systemctl reload nginx
+
+Cài git:
+	sudo apt update
+	sudo apt install git -y
+	git --version
+	git config --global user.name "quyet1702"
+	git config --global user.email "quyet1702@gmail.com"
+	git config --global --list
+
+	ssh-keygen
+ 	cat ~/.ssh/id_rsa.pub
+	copy key vào github
+	git clone git@github.com:hikolog-corp/lop-api.git
+Giải nén file zip:
+	sudo apt update
+	sudo apt install unzip -y
+	unzip tenfile.zip
+setup react native mobile:
+	sudo apt update && sudo apt upgrade
+	cài nodejs
+	node -v
+	npm -v
+	npm install -g expo-cli
+	sudo add-apt-repository ppa:maarten-fonville/android-studio
+	sudo apt update
+sudo apt update && sudo apt install android-sdk
+	sudo apt install android-studio -y
+		nano
+			export ANDROID_HOME=$HOME/Android/Sdk
+			export PATH=$PATH:$ANDROID_HOME/emulator
+			export PATH=$PATH:$ANDROID_HOME/tools
+			export PATH=$PATH:$ANDROID_HOME/tools/bin
+			export PATH=$PATH:$ANDROID_HOME/platform-tools
+	sudo npm install -g react-native
+	npm install --save-dev @react-native-community/cli
+	npx @react-native-community/cli init MyApp
+	cd MyApp
+	npx react-native run-android
+----------------------------------------------------------------
+Docker:
+        sudo apt update
+        sudo apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt update
+        apt-cache policy docker-ce
+        sudo apt install docker-ce
+        docker compose version
+        chạy docker mà không cần sudo:
+                sudo usermod -aG docker ${USER}
+        
+php7.2:
+        sudo apt-add-repository ppa:ondrej/php
+        sudo apt update
+        sudo apt install -y php7.2 php7.2-cli php7.2-common php7.2-fpm
+        sudo phpdismod -s cli xdebug        // tắt xdebug

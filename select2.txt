@@ -1,0 +1,79 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+   select đơn:
+	Cơ bản
+                <select class="js-example-basic-single" name="states">
+                    <option value="AL">Alabama</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <script>
+                    $(document).ready(function() {
+                        $('.js-example-basic-single').select2();                
+                    });
+                </script>
+    select multiple:
+	Cơ bản:
+                <select name="states[]" multiple="multiple" id="mySelect2">
+                    <option value="AL">Alabama</option>
+                    <option value="1">Wyoming</option>
+                    <option value="2">Wyoming2</option>
+                    <option value="3">Wyoming3</option>
+                </select>
+		<script>
+			$(document).ready(function() {
+				 $('.js-example-basic-multiple').select2();
+			});
+		</script>
+	Nâng cao:
+		$('#mySelect2').select2({
+			placeholder: 'This is my placeholder',
+                        allowClear: true,                            	// hiện nút xóa toàn bộ selected
+                        maximumSelectionLength: 2,                  	// chỉ cho phép selected tối đa 2 option
+                        data: [{id: 0, text: 'option 1'}],           	// Thêm option gồm value và text
+                        ajax: {
+                        	url: '/api/students',                  	// tải các option từ api
+				dataType: 'json'
+                        },
+                        closeOnSelect: true,                        	// Đóng cửa sổ select khi selected option
+                        dropdownParent: $('#myModal'),			// fix lỗi
+			tags: true					// Thêm tags khi bấm tìm kiếm
+                });
+                });
+		- selected 1 option:
+			$('#mySelect2').val('1'); hoặc $('#mySelect2').val(['1', '2']);
+			$('#mySelect2').trigger('change');
+                - clear các selected:
+			$('#mySelect2').val(null).trigger('change');
+		- thay đổi tất cả option:
+			$('#select-simple').html('<option value="1">dffdsf</option>').trigger('change');
+		- Thêm option mới:
+			$('#select-simple').append('<option value="1">dffdsf</option>').trigger('change');
+                - selected option chỉ định:
+			$('#mySelect2').val(['1', 'AL']);
+                    	$('#mySelect2').trigger('change');
+		- Lấy dữ liệu api:
+			var studentSelect = $('#mySelect2');
+			$.ajax({
+   				type: 'GET',
+    				url: '/api/students/s/' + studentId
+			}).then(function (data) {
+    				var option = new Option(data.full_name, data.id, true, true);
+    				studentSelect.append(option).trigger('change');
+			});
+		- Xóa tất cả option:
+			$('#mySelect2').val(null).trigger('change');
+		- Lấy dữ liệu selected:
+			$('#select-simple').select2("val");
+			$('#select-simple').select2('data');
+		- Mở menu thả xuống:
+			$('#mySelect2').select2('open');
+		- Đóng menu thả xuống:
+			$('#mySelect2').select2('close');
+		- Lấy dữ liệu selected dưới dạng array:
+			$('#mySelect2').find(':selected');
+			hoặc $('#mySelect2').select2('data');
+                </script>
+		- cập nhật lại:
+			$('#mySelect2').niceSelect('update');
+			$('#mySelect2').trigger('change');

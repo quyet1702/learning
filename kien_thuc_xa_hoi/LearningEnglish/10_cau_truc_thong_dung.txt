@@ -1,0 +1,10 @@
+1/ Câu khẳng định đơn: S + V + O
+2/ Câu phủ định đơn: S + do/does + V + 0
+3/ Câu hỏi đơn: Do/Does + S + V + 0
+4/ Câu cảm thán: How + Adj + subject + Verb + O
+5/ Câu so sánh bằng: S + V + Adj/Adv + as + O
+6/ Câu so sánh hơn: S + V + Adj/Adv + er + O
+7/ Câu so sánh nhất: S + V + the + Adj/adv + est + O
+8/ câu điều kiện loại 1: If + S + V, S + will + V (If + Subject + Verb, Subject + will + Verb)
+9/ câu điều kiện loại 2: If + S + V (past simple), S + would/could/might + V (If + Subject + Verb (past simple), Subject + would/could/might + Verb)
+10/ câu bị động: S + be + V3 + (by + O) (Subject + be + Past Participle + (by + Object))

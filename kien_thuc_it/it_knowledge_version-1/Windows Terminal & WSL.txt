@@ -1,0 +1,84 @@
+Cài đặt window terminal:
+    - microsoft store => window terminal => download
+    - chia tab, đóng tab(ctr + shift + w), mở các loại terminal khác
+    - cài đặt git bash
+Cài đặt ubuntu với WSL 1:
+    - yêu cầu: window 10 version 2004 build 19041 hoặc hơn
+    - kiểu tra phiên bản window: window logo + R => winver
+    - cài đặt wsl: wsl --install
+    - mở microsoft store => download ubuntu
+Update Upgrade Package:
+    - package: giống như 1 phần mềm được đóng gói lại
+    - update: là tải các phiên bản mới nhất về máy và được lưu ở file /etc/apt/soures.list
+        - sudo apt-get update
+    - Upgrade: là bắt đầu tiến hành nâng cấp các package mà đã được tải về ở /etc/apt/soures.list
+        - sudo apt-get Upgrade
+    - Tải xuống và cài đặt package: dùng để tải và install 1 package
+        - sudo apt-get instal <package-name>
+Lệnh ls, cd, clear:
+    ls: lệnh show danh sách thư mục, file
+    ls -l: show danh sách, file chi tiết
+    ls -a: hiện cả file ẩn(những file có tên bắt đầu bằng dấu .); bởi vì lệnh ls và ls -l sẽ ko hiện thị những file đó
+    ls -la hoặc (ls -al): sẽ hiện cả file ẩn và xem chi tiết
+    ls -R: hiện tất cả file và thư mục hiện tại và thư mục con
+    cd -:   quay lại thư mục mà chưa dùng cd trước đó
+    cd ..:  quay lại 1 cấp
+    cd ../../.. quay lại 3 cấp hoặc nhiều hơn
+    cd / quay lại thư mục gốc
+Lệnh thao tác file, folder:
+    tạo folder:                     mkdir folderName
+        mkdir folder/folder1        tạo folder trong folder, ko thể tạo folder con nếu folder cha chưa được tạo
+        mkdir -p folder/folder1:    tạo thư mục con, nếu thư mục cha chưa đc tạo thì sẽ tự động tạo
+    tạo file trống:                 touch fileName
+    xóa folder trống:               rmdir folderName
+        rm -r folder                xóa folder hoặc file
+    xóa file:                        rm fileName
+    copy file:                      cp fileold filenew
+    copy folder:                    cp -r folderOld folderNew
+    di chuyển file, folder:          mv fileold filenew
+Lệnh vi:
+    vi filename: tạo file và hiện editor ở trạng cái view
+    bấm i để vào trạng thái editor
+    bấm phím Esc để quay lại trạng thái view:
+        bấm :q để thoát
+        bấm :w để lưu
+        bấm :wq để lưu và thoát
+        bấm :x cũng để lưu và thoát
+        bấm e di chuyển về cuối từ
+Lệnh cat, echo, tail, grep:
+    cat filename:  output ra text của file
+    cat test.html | grep we: tìm kiếm và trả về các dòng có từ we
+    cat filename1 filename2:  output ra text của 2 file
+    cat filename1 filename2 > newfile: copy ouput qua file mới 
+    echo "qưé": tạo output
+    echo "test" > newfile: cũng giống cat copy output ra file mới
+    tail filename: oput ra 10 dòng cuối của file
+    tail filename: oput ra 10 dòng cuối của file
+    tail filename > newfile: output ra file mới
+    cú pháp > thể hiện việc ghi mới
+    >> thể hiện việc ghi đè lên text cũ
+
+Lệnh sudo, chmod, chown, man, wget, apt:
+    sudo: đứng trước các lệnh khác để thể hiện quyền cao nhất của user
+    ls -l kiểm tra phân quyền
+    chmod u=rwx,g=rw,o=r fileName phân quyền
+    sudo  usermod -aG <groupName> <user_name>   thêm user vào group
+    sudo gpasswd -d <user_name> <group_name>    xóa user ra khỏi group
+    wget url    dùng để tải 1 file về máy
+Lệnh kill, ping, uname, passwd:
+    ps aux  dùng để xem các tuyến trình
+    top hoặc htop hoặc df     dùng để xem chi tiết tuyến trình và cpu
+    kill PIU_name   lấy PID để tắt tuyết trình
+    kill -9 PIU_name   lấy PID để tắt tuyết trình, sử dụg đối với tuyến trình cứng đầu
+    ping url        kiểm tra tốc độ mạng và địa chỉ ip của url
+    uname           kiểm tra tên hệ điều hành
+    uname -a        kiểm tra tên hệ điều hành
+    passwd          thay đổi mật khẩu
+Lệnh top, df, fee:
+    -
+Các mẹo khi gõ lệnh:
+    -
+Chạy dự án Laravel:
+    - 
+Deploy dự án với server thật:
+    -

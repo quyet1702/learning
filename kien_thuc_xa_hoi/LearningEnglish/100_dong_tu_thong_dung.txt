@@ -1,0 +1,50 @@
+1	Be 	Là, thì , ở
+2	Have 	có
+3	Do 	làm
+4	Say 	nói
+5	Get 	lấy
+6	Make 	làm
+7	Know 	biết
+8	Go 	đi
+9	See 	thấy
+10	Think 	nghĩ
+11	Look 	nhìn
+12	Use 	dùng
+13	Watch 	xem
+14	Eat 	ăn
+15	Drink 	uống
+16	Run 	chạy
+17	Dance 	Nhảy mua
+18	Put 	đặt
+19	Try 	thử
+20	Keep 	giữ
+21	Call 	gọi
+22	Open 	mở
+23	Close 	đóng
+24	Sit 	ngồi
+25	Listen 	nghe
+26	Play 	chơi
+27	Write 	viết
+28	Read 	đọc
+29	Stop 	Dùng lại
+30	Let 	Cho phep
+31	Agree 	Đồng ý
+32	Walk 	Đi bộ
+33	Sing 	hat
+34	Wait 	đợi
+35	Buy 	mua
+36	Pay 	Trả, thanh toán
+37	Win 	Chiến thắng
+38	Send 	gửi
+39	Build 	Xây dựng
+40	Spend 	dành
+41	Live 	sống
+42	Help 	Giúp đỡ
+43	Sleep 	ngủ
+44	Need 	cần
+45	Become 	Trở thành
+46	Bring 	Mang lại, đem lại
+47	Begin 	Bắt đầu
+48	Join 	Tham gia
+49	Learn 	học
+50	Swim 	bơi

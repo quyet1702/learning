@@ -1,0 +1,20 @@
+config:
+	bật chế độ nhà phát triển:
+		bench set-config -g developer_mode true
+		bench start
+
+
+
+
+
+
+
+MÔ hình ERP- Financials:
+	- Tài khoản kế toán
+	- Giao dịch tài chính
+	- Công nợ phải thu(Nợ từ khách hàng)
+	- Công nợ phải trả
+	- Số dư Tiền mặt
+	- Bảng thuế
+	- Báo cáo tài chính
+	- 

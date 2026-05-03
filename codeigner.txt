@@ -1,0 +1,105 @@
+https://devdocs.io/codeigniter~3/installation/downloads
+        php -S localhost:9999
+Model:
+	Relationship:
+		toMany:
+		belongTo:
+		hasOne:
+	QueryBuilder:
+		$selectQueryString = '*, articles.id as article_id, count(id)';
+		$conditionObject = (object)[
+			'where' => '',
+			'order_by' => [
+				articles.article_id => 'DESC'
+			]
+			'group_by' => 'tags',
+			'left_join' => [
+				'comments' => 'comments.articles = article_id'
+			]
+		];
+		Select:
+			$this->article_model->gets($selectQueryString, $conditionObject);
+			$this->article_model->get($selectQueryString, $conditionObject);
+			$this->article_model->del($idNumber);	
+			$this->article_model->custom_query();
+			$this->article_model->put();
+			$this->article_model->update_in();
+			$this->article_model->update();
+			$this->article_model->update_where();
+			$this->article_model->sum();
+		Contain:
+		Where:
+		Join:
+		Exists:
+		Delete:
+		update:
+		updateAll:
+	Accessor:
+	ModelServices:
+Controller:
+	Component:
+	Middleware:
+	ControllerServices:
+		application/libraries/MyLibrary.php
+		class MyLibrary:
+			function doSomething:
+		Controller:
+			$this->mylibrary->doSomething();
+	Language:
+	Collection: không có, sử dụng function của array php
+View:
+	Helper:
+	Element:
+	Layout:
+Config:
+	SQL:
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'myusername';
+		$config['password'] = 'mypassword';
+		$config['database'] = 'mydatabase';
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
+		$config['cache_on'] = FALSE;
+		$config['cachedir'] = '';
+		$config['char_set'] = 'utf8';
+		$config['dbcollat'] = 'utf8_general_ci';
+		$this->load->database($config);
+	WebSocket:
+	Migration:
+		application/migrations/20121031100537_add_blog.php
+		Migration_Add_blog extends CI_Migration
+			function up:
+				$this->dbforge->add_field([
+					'blog_id' => [
+				                'content_vi' => 'TEXT',
+				                'unsigned' => TRUE,
+				                'null' => TRUE,
+				        ],
+				])
+				
+				$this->dbforge->modify_column('articles', [
+					'content' => [
+						'name' => 'content_vi',
+						'type' => 'TEXT'
+					]
+				]);
+				
+				$fields = array(
+				    'age' => array(
+					'type' => 'INT',
+					'constraint' => 3,   // Giới hạn 3 chữ số
+					'null' => TRUE,      // Cho phép NULL
+					'default' => NULL
+				    ),
+				);
+        			$this->dbforge->add_column('users', $fields);
+		Chạy migrate:
+			database/controllers/Migrate.php:
+			class Migrate extends CI_Controller
+			function index:
+				$this->load->library('migration');
+				if ($this->migration->current() === FALSE) show_error($this->migration->error_string());	
+	Seeder:
+	Log:

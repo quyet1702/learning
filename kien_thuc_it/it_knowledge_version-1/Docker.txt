@@ -1,0 +1,71 @@
+cài đặt:
+	cài đặt Ubuntu từ window store -> bật Hyper-V backend -> tải và cài đặt docker
+	docker -v
+	docker info
+Image trong docker:
+	docker images						=> lấy thông tin image hiện có
+	docker search keyword				=> tìm kiếm các phần mềm trên hub docker theo keyword
+	docker pull docker_name:version		=> tải các phần mềm vào image
+Cơ bản:	Kéo image về -> khởi động container -> 
+	Image:
+		Thêm:						// giống kéo package nuget trên c#
+			docker pull imageName:version		// ví dụ: docker pull ubuntu:16.04 hoặc docker pull ubuntu:latest
+			docker pull imageName	
+		Xóa:
+			docker image rm imageName:version	// stop container chứa image trước khi xóa
+			docker image rm imageName:version -f	// dùng để xóa image đang sử dụng cho container
+		Sửa:
+			docker tag imageId newName:newVersion	// Đổi tên + version image:
+		Tìm					// Tìm image trên hub.docker.com:
+			docker search
+		Kiểm tra:
+			docker images
+		Biến container thành image:
+			docker commit ContainerName ImageName:version	// ví dụ: docker commit center ubuntu-ssh:v1
+		Lưu image ra file:
+			cd path					// thư mục muốn lưu
+			docker save --output fileName.tar
+		pull lại image đã lưu:
+			cd path					// thư mục đã lưu
+			docker load -i imageName.tar		
+
+		
+	Container:
+		Thêm + chạy container:
+			docker run thamso imageName command thamsolenh
+			docker run -i -t ubuntu:latest		// có thể thay ubuntu:latest = Id của image; có thể gôp -i -t thành -it
+						tham số -t là cấp thêm 1 terminal cho container
+			docker run -i -t --name "abc" -h ubuntu ubuntu:latest		// đặt tên cho container "abc"; đặt tên cho host của ubuntu là ubuntu
+			cmd: ls
+			cmd: exit				// để thoát và tắt image đang chạy
+		Xóa:
+			docker rm containerName			// containerName hoặc containerId
+			docker rm -f containerName		// xóa container đang chạy
+		Kiểm tra container đang chạy và đã tắt: 
+			docker ps		// kiểm tra image đang chạy
+			docker ps -a		// kiểm tra image đang chạy và image đã ngừng chạy
+		Chạy + dừng container:	
+			docker start containerName		// containerName hoặc containerId
+			docker stop containerName		// containerName hoặc containerId
+
+		Truy cập Teminal trong container đang chạy:
+			docker attach containerName	// có thể thay container thành container Id
+			docker exec containerName command	// đây là cách 2, sử dụng command trực tiếp ở ngoài 
+		teminal trong container khi đang ở ngoài host:
+			docker exec containerName cmd			// ví dụ: docker exec c0 ls
+		thoát teminal của container mà vẫn giữ đang chạy:
+			bấm tổ hợp phím ctr + p + q
+	Terminal container:
+		cài đặt htop:
+			apt update -y
+			apt install htop
+		kiểm tra các tuyến trình đang chạy:
+			htop
+		Tìm kiếm package:
+			apt search keyword
+	Chia sẻ dữ liệu:
+		Host và container:
+		container và container:
+	
+	
+		

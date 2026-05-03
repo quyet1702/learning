@@ -1,0 +1,170 @@
+Làm việc với file => làm việc với commit => làm việc với branch => làm việc với reponsitory => cấu hình
+Làm việc với file:
+	Trạng thái file:
+		Untracked:
+			là các file mới tạo. chưa được git theo dõi
+		unstaged:
+			là trạng thái file đã được theo dõi và có thay đổi nhưng chưa được thêm vào staged area.
+		staged:
+			là trạng thái đã bị thay đổi và chuẩn bị commit.
+		modified:
+			là file đã bị sửa đổi nhưng chưa đưa vào trạng staged. không thể đưa về untracked 
+	kiểm tra:
+		git status
+	Thêm staged:
+		git add filename						hoặc git add .
+	staged về unstaged:
+		git reset <tên_file>					hoặc git reset .
+	unstaged về untrack:
+		git rm --cached <tên_file>				hoặc git rm --cached .
+	đổi tên file:
+		git mv oldName newName					// nếu ta đổi thủ công bằng tay thì git sẽ hiểu nhầm là ta xóa file cũ và tạo file mới. lệnh này sẽ giúp git hiểu là ta đang đổi tên file
+Làm việc với commit:
+	Thêm:
+		git commit -m "sdf"
+	Xóa:
+		xóa commit:
+			git reset --soft HEAD~1				// xóa commit mới nhất nhưng ko xóa những thay đổi
+			git reset --hard HEAD~1				// xóa commit mới nhất và xóa những thay đổi
+			git reset => git commit => git push --force		// xóa commit cũ trên git hoặc gitlap
+		xóa thay đổi:
+			xóa bỏ những thay đổi ở file untracked so với commit cuối:
+				git restore filename			// hoặc 	git restore .
+			thay đổi trạng thái staged -> về untracked:
+				git restore --staged file_name		// hoặc git restore --staged .
+		Xóa tệp không được theo dõi:
+			git clean -fd			// xóa những tệp và thư mục
+			git clean -f			// chỉ xóa những tệp
+	Sửa:
+		git commit --amend -m "new massage"			// sửa nội dung thay đổi hoặc massage của commit cuối
+		git checkout commitCode -- file_name			// lấy file của commit cũ;
+									// không nên sử dụng git checkout commitCode -- vì nó sẽ tạo head detach; và tách ra khỏi branch
+	kiểm tra							// bấm lại git check branName để khắc phục head detach
+		git diff --staged filename				// kiểm tra file staged với commit hiện tại
+		git diff						// so sánh từng file làm việc với staged mới nhất; nếu ko có staged thì so sánh với commit gần nhất 
+		git diff mãCommit1 mãcommit2 > filename			// khiểm tra sự khác nhau giữa 2 commit	
+		git log --oneline						// xem tổng quan các commit
+		git log --oneline --graph				// xem tổng quan kèm rẽ nhánh
+	bỏ qua theo dõi:
+		tạo file: .gitignore
+		thêm nội dung file:	# Visual Studio Code		comment
+					*.tmp	bỏ qua các file có đuôi .tmp
+					folderName 			bỏ qua các folder chỉ định
+					path/folderName
+					[Bb]in				Bin hoặc bin
+	git stash:
+		- Lưu tạm thời những thay đổi
+		git stash		// chuyển những thay đổi từ thư mục làm việc vào stash và xóa sạch những modified
+		git stash apply		// đưa những thay đổi từ stash vào thư mục làm việc
+		git stash pop		// đưa những thay đổi từ stash vào thư mục làm việc và làm sạch stash
+		git stash clear		// xóa toàn bộ stash
+----------------------------------------------------------------------------------------------------------
+Làm việc với branch:
+	Thêm:
+		git branch newBranch
+		git checkout -b BranchName		// thêm mới và chuyển qua nhánh
+	xóa:
+		git branch -d BranchName		// chỉ xóa đc khi nhánh này đã đc merge
+		git branch -D branchName		// xóa nhánh không cần merge
+	chuyển:
+		git checkout BranchName	
+	Đổi tên branch:
+		git branch -m old_branch new_branch
+	Xóa commit trên repository:
+		bước 1: git reset --soft HEAD~N			N là số commit muốn xóa
+		bước 2: sửa lại nội dung muốn sửa nếu có
+		bước 3: tạo 1 commit và push lên repo
+	gộp nhánh:
+		git merge ten_nhanh_can_gop		// nhánh chính sẽ lấy hết commit của nhánh cần gộp
+	hủy bỏ xung đột:
+		git reset --merge
+	sử lý xung đột khi gộp nhánh:
+		khi gộp nhánh xuất hiện thông báo: CONFLICT (content): Merge conflict in filename
+		bước 1: git mergetool
+		bước 2: nhấn enter
+		bước 3: 
+			nhấn :diffg LO		để lấy thay đổi của master(bên trái)
+			nhấn :diffg RE		để lấy thay đổi của nhánh cần gộp (bên phải)
+			nhấn :diffg BA		để hủy bỏ thay đổi
+	Giải quyết conflicts:
+		bước 1: chuyển nhánh phụ bị dính conflicts
+		bước 2: pull với nhánh chính
+		bước 3: xem chỗ bị dính conflict: màu xanh lá là chọn phần của nhánh phụ bị dính conflicts
+								màu xanh dương là chọn phần của nhánh chính bị xung đột
+		bước 4: git add file_chứa_conflicts
+		bước 5: git commit -m "sdf"
+		bước 6 git push
+	kiểm tra:
+		git branch				// kiểm tra branch trên local
+		git branch -a			// kiểm tra branch trên server
+----------------------------------------------------------------------------------------------------------
+Làm việc với repository:
+	git remote -v					// kiểm tra các remote
+	git remote add origin URL		// Kết nối với git repository
+	git clone url folderName		// lấy resource về, và tự động kết nối git
+	git clone --branch <branchname> <remote-repo-url>	// lấy resource từ 1 nhánh củ thê
+	git pull origin master			// lấy thay đổi từ nhánh github về local:
+	git push origin master			// gửi thay đổi từ nhánh local lên github:
+	git checkout -b branchName		// tạo nhánh local
+	git push origin branchName		// push lên đồng thời tự tạo nhánh
+	git push --set-upstream origin master		// Cài đặt nhánh mặc định
+	git remote set-url origin <new_url>			// Thay đổi url git:
+	git remote rename oldName newName			// đổi tên remote
+	xóa brand ở server: git push origin --delete alpha
+	Tăng giới hạn:
+		git config http.postBuffer 524288000	// tăng giới hạn dữ liệu đc đẩy lên github lên tới 500MB
+	submodule:
+		git submodule init
+		git submodule update
+		bash package/fetch-package.sh
+	Sử dụng SSH GIT:
+		kiểm tra đã cài đặt OpenSSH Client hay chưa
+		ssh-keygen
+		cat ~/.ssh/id_rsa.pub		"~/.ssh/id_rsa2.pub" đổi tên thư mục nếu đã tồn tại
+		cat ~/.ssh/id_rsa.pub		// truy cập vào thư mục để lấy key đối với linux
+		more ~/.ssh/id_rsa.pub		// đối với window
+		lấy được key thì mở web gitlab tìm phần ssh paste vào
+	CLone cả project chính và submodule:
+		git clone --recurse-submodules -j8 git@103.27.239.167:aty/base.git
+submodule:
+	thêm:
+		git submodule add https://github.com/quyet1702/practice.git
+		git add .gitmodules practice/
+		git rm the_submodule
+		git config --global alias.pull-all 'pull --recurse-submodules'
+-------------------------------------------------------------------------------------------------------------------------
+Tải và cài đặt:
+	bước 1: tải git và install
+	bước 2: thêm biến môi trường: mặc định: C:\Program Files\Git\bin
+	bước 3: cấu hình user.name và user.email
+	bước 4: clone reposition về sẽ có nhắc đăng nhập trên trình duyệt
+	Các lệnh cấu hình:
+		git config --list
+		git config --global user.name "quyet1702"
+		git config --global user.email "quyet1702@gmail.com"
+		git --version
+		git --help
+---------------------------------------------------------------------------------------------------------------------------
+Các thao tác thường dùng với git:
+	Đẩy code lên github:
+		git push origin master			//chú ý tên branch trên local phải trùng với branch trên rep
+		Đẩy lên với nhánh khác
+		1. Pull code từ nhánh gốc: git pull origin develop
+		2. Tạo nhánh mới: git checkout -b + tên nhánh mới
+		3. Add file vào git: git add . / git add "file"
+		4. Commit code: git commit -m "message commit"
+		5. Tạo nhánh mới: git checkout -b bugfix/4254q
+		5. Lần đầu push: git push --set-upstream origin + tên nhánh mới
+		6. Sau lần đầu tiên push: git push origin + tên nhánh
+			$ git checkout -b test-branch 56a4e5c08
+			
+Quy ước đặt tên chuẩn BEM:
+		block__element--modified
+		Block:
+				Đại diện cho thành phần độc lập có thể tái sử dụng
+				là phần tử cha bao bọc các Element
+		Element:
+				Đại diện cho các phần của Block mà không thể tồn tại độc lập nếu không có Block
+		Mb odified:
+				Đại diện cho một trạng thái khác hoặc biến thể của Block hoặc Element.
+		

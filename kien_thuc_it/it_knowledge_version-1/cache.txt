@@ -1,0 +1,16 @@
+caching: lưu dữ liệu vào vùng nhớ tạm để tăng tốc độ truy xuất dữ liệu
+	2 loại cache:
+		- cache được lưu ở phía server
+		- cache được lưu ở phía client
+		- cache có thể có server riêng để truy xuất dữ liệu
+	cache trong authentication:
+		- khi đăng nhập server sẽ kiểm tra tk và mk đối chiếu với token trên server
+		- nếu thông tin đúng, thì server sẽ trả về token cho client và lưu cache
+		- các lần truy cập hay gửi request lần sau sẽ gửi kèm token trên cache về server
+		- server sẽ đối chiếu token từ request với token trên cache server, nếu cache server không có thì sẽ truy xuất từ db
+		Authentication là quá trình xác thực danh tính người dùng.
+		Authorization quyết định quyền hạn của người dùng sau khi đã xác thực.
+
+cách hoạt động của web:
+	client gửi request đến server => server trả responsive đến client
+	

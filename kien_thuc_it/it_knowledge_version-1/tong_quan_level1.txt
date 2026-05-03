@@ -1,0 +1,60 @@
+Php là gì?
+    là ngôn ngữ mã nguồn mở và các tập lệnh của PHP sẽ được thực thi trên máy chủ
+php có mấy kế thừa?
+    php chỉ có 1 kế thừa đơn duy nhất, tức là 1 class chỉ có thể kế thừa từ 1 class khác. có thể sử dụng traits. để chia sẻ giữa các lớp.
+Php sử dụng với mục đích gì?
+    phát triển website động, Quản lý cơ sở dữ liệu, Xử lý form, phát triển api.
+include và require:
+    chèn nội dung php vào vị trí của Hàm
+    nếu file ko tồn tại thì include('/filename') sẽ cảnh báo và chạy tiếp chương trình, nhưng require thì sẽ báo lỗi là ngừng chương trình
+ 
+
+1 Class có những gì?
+    - chỉ 1 kế thừa lớp cha hoặc 1 abstract
+    - có thể sử dụng nhiều traits
+    - có thể triển khai nhiều interface
+    - interface chỉ chứa hàm trừu tượng và abstract thì chứa hàm trừuu tượng và không trừu tượng
+    - hàm trừu tượng khi được kế thừa thì lớp con phải khai báo đầy đủ phương thức điều này giúp code dễ nâng cấp và bảo trì
+    - public: sử dụng biến ở 1 class khác, protected: sử dụng trong class đó hoặc kế thừa, privated: sử dụng trong class đó
+    - biến:
+        - hằng số: khai báo bằng hàm define()
+        - biến: khai báo bằng dấu $ trước tên biến để gắn giá trị
+        - mảng: là biến chứa nhiều phần tử, gồm key và value. có thể thêm, xóa, sửa các phần tử.
+            - mảng tuần tự: key tự tăng dần.
+            - mảng không tuần tự: key tự định nghĩa.
+            - mảng đa chiều: là mảng chứa 1 hoặc nhiều mảng khác.
+Form:
+    Get: Gửi dữ liệu lên server thông qua url, tính bảo mật kém, giới hạn 1024 ký tự.
+    Post: Gửi dữ liệu lên server dưới dạng ẩn thông tin qua HTTP Header, có tính bảo mật cao hơn, dữ liệu không bị giới hạn, tuy nhiên tốc độ xử lý chậm hơn.
+Cookie và session:
+    session: dùng để lưu các thông tin nhạy cảm liên quan tới bảo mật
+    cookie: dùng để lưu các trạng thái không nhạy cảm ở client.
+    - 
+    
+
+
+sql:
+    - lấy danh sách products
+        Theo điều kiện: <>=; tồn tại, không tồn tại ở bảng khác
+            - lấy đếm số hàng, lấy tổng sum(), 
+    - lấy danh sách categories có ít nhất 2 sản phẩm
+    - lấy tổng số tiền của product trong categories có id = 3
+    - mẹo:
+        - muốn lấy cái gì và điều kiện là gì?
+        - muốn lấy cái gì thì select cái đó
+        - muốn lấy theo đơn vị tính nào đó, thì phải lấy danh sách trước rồi tính toán sau
+vuejs:
+    component:
+    vòng đời:
+
+Laravel là gì:
+    là 1 framework PHP mã nguồn mở để phát triển web bằng mô hình MVC.
+composer là gì:
+    composer là công cụ quản lý thư viện và dependency trong dự án laravel.
+    bạn chỉ cần chỉ định các thư viện cần thiết trong composer.json
+Bundles là gì:
+    Bundles là các thư viện, module có thể tái sử dụng dùng để tích hợp vào ứng dụng.
+    ví dụ Laravel Passport, filament,..
+events là 1 cách xử lý các tác vụ nặng mà có thể tách biệt khỏi luồng chính của ứng dụng. để không làm chậm ứng dụng và dể bảo trì hơn.
+ 
+    

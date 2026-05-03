@@ -1,0 +1,82 @@
+tạo project
+tạo migrate: blogs:name(not null), content(not null), avatar (not null). softdelete
+Tạo model: tạo softDeletes;
+Thêm Route: prefix, group, as, middlleware
+toastr:
+tạo layout: text header, text footer, text index
+Thêm header: trang chủ, lịch sử, địa lý.
+Đưa các file js,css vào public
+debugbar
+Tìm kiếm
+Tạo controller với điều kiện tìm và update dữ liệu: index, create, store, edit ,destroy, chi tiết
+Tạo view index: table:tên, ngày thêm, nút chuyển trang thêm mới, 
+Tạo view thêm mới: form nhập tên, nút thêm mới, chuyển trang về trang chủ khi update dữ liệu
+Tạo nút quay về trang chủ cho các trang
+Thêm paginate cho trang
+Thêm validate request cho model: required, string length, số lượng request tối đa mỗi phút
+Thêm message thông báo lỗi cho form
+Thêm toastr thông báo lỗi cho form
+Thêm bootstrap table: paginate, checkbox, xóa hàng loạt với ajax,
+cấu hình lại múi giờ
+
+---------------------------------
+
+composer require brian2694/laravel-toastr
+config/app:	'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,	Brian2694\Toastr\ToastrServiceProvider::class,
+ <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
+resources/views/layouts/app.blade.php: => <main>@yield('content')</main>
+resources/views/blog/index.blade.php: => @extends('layouts.app')@section('content')xin chafo@endsection
+php artisan make:controller BlogController --resource
+Route::get('blog/create', [BlogController::class, 'create']);
+composer require barryvdh/laravel-debugbar --dev
+Barryvdh\Debugbar\ServiceProvider::class,
+'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+appServiceProvider: Paginator::useBootstrap()
+config/app.php: 'timezone' => 'Asia/Ho_Chi_Minh',
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css
+https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js
+.navbar-toggler-toggled {
+            display: none;
+        }
+        .navbar-toggler[aria-expanded=true] .navbar-toggler-toggled {
+            display: block;
+        }
+        .navbar-toggler[aria-expanded=true] .navbar-toggler-default {
+            display: none;
+        }
+        .navbar-toggler {
+            border-color: rgba(33,50,91,.1);
+        }
+<header>
+        <div class="container">
+            <nav class="navbar navbar-expand-md">
+                  <a class="navbar-brand" href="#">BLOG</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-default">
+                        <i class="bi-list"></i>
+                    </span>
+                    <span class="navbar-toggler-toggled">
+                        <i class="bi-x"></i>
+                      </span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Lịch sử</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Địa lý</a>
+                      </li>
+                    </ul>
+                  </div>
+              </nav>
+        </div>
+    </header>
+

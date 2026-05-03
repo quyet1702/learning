@@ -1,0 +1,42 @@
+thì hiện tại đơn: 1 hành động diễn ra liên tục, hoặc 1 chân lý	
+	S(số nhiều) + v0 + ...
+	S(số ít) + v(s/es) + ...
+	Đối với (are/am/is) chia theo ngôi phù hợp
+	- Dấu hiệu: every day, sometimes, always, often usually, seldom, never, first ... then
+Thì hiện tại tiếp diễn:		Đang diễn ra
+	to be (am / is / are) + V_ing
+	- Dấu hiệu: now, at the moment, right now, at the present, Look!, Listen!
+Thì hiện tại hoàn thành: xảy ra trong quá khứ nhưng khéo dài tới hiện tại
+	have / has + V_ed/V3
+	Dấu hiệu: just, yet, never, ever, already, so far, up to now, since, for, recently
+Thì Hiện tại hoàn thành tiếp diễn: Xảy ra liên tục từ quá khứ đến hiện tại
+	have / has + been + V_ing
+	Dấu hiệu: all day, the whole day, how long, since, for
+Thì Qúa khứ đơn:	Xảy ra trong quá khứ, và gần như có 1 trạng từ chỉ thời gian trong quá khứ
+	V_ed/V2
+	was/were
+	Dấu hiệu: last ..., ... ago, in (năm ở quá khứ). vd: 1999yesterday
+Thì quá khứ tiếp diễn: Diễn ra trong lúc 1 hành động khác đang diễn ra. Hoặc đang diễn ra trong 1 thời gian quá khứ
+	was / were + V_ing
+	Dấu hiệu: While , at that very moment, at 9:00 last night, ....
+Quá khứ hoàn thành: xảy ra trước 1 hành động, hành động sảy ra sau dùng quá khứ đơn.
+	had + V_ed/V3
+	already, just, never
+Quá khứ hoàn thành tiếp diễn: nhấn mạnh tính liên tục của hành động trong quá khứ
+	had + been + V_ing
+	Dấu hiệu: how long, since, for
+Tương lai đơn: 
+	will + bare_inf
+	Dấu hiệu: tomorrow, next week / month / year, in the future, soon
+Be going to:	một dự đoán (có cơ sở) về một sự việc sẽ xảy ra trong tương lai
+	am / is / are + going + to_inf
+Tương lai tiếp diễn: Một hành động xảy ra tại một thời điểm nào đó trong tương lai
+	will + be + V_ing
+Tương lai hoàn thành:	một hành động xảy ra trước một hành động khác trong tương lai
+	will + have + V_ed/V3
+	Dấu hiệu: by + (thời điểm tương lai)
+Tương lai hoàn thành tiếp diễn:
+	will + have + been + V_ing
+	nhấn mạnh: tính liên tục của hành động trong thì Tương lai Hoàn thành
+
+S + 

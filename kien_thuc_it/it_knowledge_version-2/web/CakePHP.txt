@@ -1,0 +1,406 @@
+Config:
+	Install:
+        Migrate:
+        Seeder:
+        WebSocket:
+        Connect SQL:
+        Command:
+        	
+Controller:
+	Middleware:	
+	Component:
+	ControllerServices:
+	Queue:
+	Collection:
+	Language:
+Model:
+	Relationships:
+		belongsTo:					// 1-1: có foreign key
+			$this->belongsTo('Articles');
+		hasOne:					// 1-1: không có foreign key
+		hasMany:					// 1-n: không có foreign key
+			$this->hasMany('Comments');
+		belongsToMany					// 1-n-1:
+	ModelServices:
+	QueryBuilder:
+                select:
+                Entity:
+                Array:
+                ResultSet:
+       Accessor:
+View:
+        Helper:
+        Element:
+        Layout
+Các khái niệm:
+Quy Ước:
+------------------------------------------------------------------------
+Config:
+	install:
+		composer            							// composer -v
+		php                 							// php -v
+		curl -s https://getcomposer.org/installer | php			// cài composer nếu chưa có
+		php composer.phar create-project --prefer-dist cakephp/app:4.* cms	// tạo project
+		bin/cake server        						// chạy ứng dụng cake; Đối với Windows, lệnh phải là dấu chéo ngược
+		http://localhost:8765
+	connect SQL:
+		config/app_local.php:
+                        'Datasources' => [
+                            'default' => [
+                                'host' => 'localhost',
+                                'username' => 'root',
+                                'password' => '',
+                                'database' => 'test',
+                                'url' => env('DATABASE_URL', null),
+                            ],
+                        ],
+	migrate:
+		bin/cake bake migration CreateUsers email:string password:string created modified
+		bin/cake bake migration CreateArticles title:string content:string[191]:unique
+                bin/cake bake migration Comments name:string[191]:unique content:string[191] article_id:integer:primary
+                bin/cake bake migration CreateArticlesTags article_id:integer:primary tag_id:integer:primary created modified           // xóa autoIncrement đối với 2 khóa ngoại để tránh lỗi
+                bin/cake migrations migrate
+        seeder:
+                bin/cake bake seed Users
+                bin/cake bake seed Articles
+                bin/cake migrations seed
+        render:
+                bin/cake bake middleware LockTable
+                bin/cake bake model articles
+                bin/cake bake component articles
+                bin/cake bake helper articles
+                bin/cake bake controller articles                  // tự động sinh file UsersController và action xem thêm xóa sửa
+                bin/cake bake template articles 
+Controller:
+        $articles = $this->paginate($this->Articles);
+        $this->set(['articles' => $articles]);          // đưa biến qua view template
+        $resultSet = $this->fetchTable('Articles')->find()->all();       // Lấy toàn bộ dữ liệu trong bảng
+        $articles = $this->paginate($this->Articles);                    // Tạo phân trang
+        $this->Flash->success('You are now logged in.');                 // gửi cookie lên client
+        $this->Flash->error('Login failed. Please try again.');          // gửi cookie lên client
+        response:
+                return (new Response())
+                            ->withType('application/json')
+                            ->withStringBody(json_encode($result));
+                return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard', $encryptedPass]);
+Model:
+        QueryBuilder:
+                ArticlesTable:
+                        $this->fetchTable('Articles');                                  // cách 1
+                        TableRegistry::getTableLocator()->get('Articles');              // Articles là tên table class: ArticlesTable
+                        $this->Articles;                                                // cách 3
+                        new ArticlesTable();                                            // cách 4
+                        $this->getTableLocator()->get('Sales.SaOrderHeaders')           // cách 5 sử dụng trên controller
+                SelectQuery:
+                        $ArticlesTable->find();                         // lấy QueryBuilder
+                        $selectQuery->where(['id' => 1])                // lọc theo điều kiện
+                        $selectQuery-from(['sopsos' => 'sa_order_positions_sa_order_status'])                // Đổi tên alias của table
+                        $selectQuery->select(['id', 'title'])           // select dữ liệu
+                        $selectQuery->select(['WmStockNumbers.id'])     // select thông qua relationship sử dụng với contain()
+                        $selectQuery->select(['title' =>$selectQuery->func()->concat([                          // select title và sửa giá trị của title
+                                                'title' => 'identifier', '-', 'id' => 'identifier'
+                                        ])])
+                        $selectQuery->where(['id !=' => 1])
+                        $selectQuery->where([                          // where với relationship sử dụng với contain
+                                        'WmStockQuants.enabled' => 1,   
+                                        'WmStorageTypes.wm_stock_number_id' => 2,
+                                ]);
+                        $selectQuery->order(['created' => 'DESC'])
+                        $selectQuery->distinct(['title']);              // không lấy các dòng trùng theo cột
+                        $selectQuery->group('published_date')
+                        $selectQuery->having(['count >' => 3]);
+                        $selectQuery->contain('Tags')                   // truy vấn lấy relationships của TagsTable
+                        $selectQuery->contain([ 'Materials' => ['Units'],
+                                        'IvStocks',
+                                        'IvGoodMovements',
+                                        'Units' => 'UnitTypes',
+                                        'WmStoragePlaces' => ['WmStorageTypes'],
+                                        'Materials' => function ($q) {
+                                                return $q->andWhere(['quantity !=' => 0])->contain(['WmStoragePlaces' => ['WmStorageTypes']]);
+                                        }
+                                ])
+                        $selectQuery->leftJoinWith('Materials', function ($q) {
+                                return $q;
+                        })
+                        $selectQuery->matching('WmTransportOrderPositions', function ($q) {                     // chỉ lấy bản ghi cha khi tồn tại bản ghi con
+                                return $q->where(['WmTransportOrderPositions.iv_good_movement_id' => 15]);
+                        })
+                        $selectQuery->enableHydration(false)                            // mỗi row sẽ là array thay vì entity
+                Entity:
+                        $selectQuery->first();
+                        $this->Articles->get($id);
+                ResultSet:
+                        $selectQuery->all();
+                Array:
+                        $selectQuery->toList();
+                [id=>title, ..]:
+                        $selectQuery->combine('id', 'title')->toArray();
+                        $selectQuery->combine('id', function ($quant) {                 // thay vì trả về entity thì sẽ trả về 1 column đại diện (title) và có key đại diện (id)
+                                                return $quant;
+                                        })->toArray();
+                Thêm:
+                	Thêm 1:
+		                $articleEntity = $articlesTable->newEntity([
+		                	'name' => 'abc',
+		                	'content' => 'abc'
+		                ]);
+		                $articleEntities = $articlesTable->save($articleEntity);
+		        Thêm nhiều:
+		        	$articlesTable->newEntities([
+		        		[
+		        			'name' => 'abc1',
+		                		'content' => 'abc1'
+		        		],
+		        		[
+		        			'name' => 'abc2',
+		                		'content' => 'abc2'
+		        		]
+		        	]);
+		        	$articlesTable->saveMany($articleEntities);
+                Sửa:
+                        $articleEntity = $articlesTable->get($id);
+                        $articleEntity->title = 'CakePHP is THE best PHP framework!';
+                        $articlesTable->save($articleEntity);
+                Xóa:
+                        $result = $this->Articles->delete($articleEntity);
+
+        Table:
+                src/Model/Table/ArticlesTable.php::initialize()         //cung cấp quyền truy cập vào bộ sưu tập các thực thể được lưu trữ trong một bảng cụ thể
+                $this->addBehavior('Timestamp');                        // tự động điền dữ liệu cột created và modified
+                $this->setTable('my_table');                            // đặt lại Tên table
+                $this->setPrimaryKey('my_id');                          // đặt lại khóa chính
+                $this->setEntityClass('App\Model\Entity\PO');           // Đặt lại Class Entity của table
+                beforeMarshal, afterMarshal, beforeFind, buildValidator, buildRules, beforeRules, afterRules, beforeSave, afterSave, afterSaveCommit, beforeDelete, afterDelete, afterDeleteCommit
+                public function initialize(array $config): void
+                {
+                    $this->belongsTo('Authors');                // 1-1 thực hiện trên model có khóa ngoại		// sẽ trả về 1 model
+                    $this->hasMany('SubCategories');            // 1-n thực hiện trên bảng 1; tức là không có khóa ngoại	// sẽ trả về 1 collection
+                    $this->belongsToMany('SubCategories');      // thực hiện trên bảng n; tức là có khóa ngoại		// sẽ trả về 1 model
+                    $this->hasOne('Addresses');                 // 1-1 thực hiện trên model ko có khóa ngoại	// sẽ trả về 1 model
+                }
+                Controller:
+                        $articles->save($article, ['customVariable1' => 'yourValue1']);     // lưu dữ liệu
+                        $articles = $this->getTableLocator()->get('Articles');              // lấy instance của table
+        Entity:
+                use SoftDeleteTrait;
+                protected $_virtual = ['full_name'];        // hiện thị trường ảo khi chuyển đổi json hoặc array
+                protected $_hidden = ['password'];          // ẩn trường
+                $this->Articles->newEmptyEntity()       // khởi tạo đối tượng trống giống: new Article();
+                $this->Articles->newEntity(['id' => 1, 'title' => 'New article'])       // khởi tạo đối tượng giống: new Article(['id' => 1,..]);
+                $article->set([
+                    'title' => 'My first post',
+                    'body' => 'It is the best ever!'
+                ]);
+                protected function _getQuantityAvailable() {                     // tạo thuộc tính ảo cho Entity
+                        return 1;
+                }
+View:
+        AppView:
+        HtmlHelper:
+            echo $this->Form->control('title');     // render ra form-control input mặc định; tạo file src/Template/Element/Form/text.ctp để tinh chỉnh
+            Layout:
+                    file default layout:
+                    <?= $this->fetch('content') ?>     // sử dụng trên file layout/default.php; file index sẽ tự động add vô
+                    <?= $this->fetch('sidebar') ?>     // đối với các include khác ngoài 'content' thì ta sẽ phải khai báo trên file index hoặc file view khác
+                    <?= $this->fetch('title') ?>       // 
+                    file Articles/index.php: 
+                            <?php $this->start('sidebar'); ?>
+                                <h1>xin chafo</h1>
+                            <?php $this->end(); ?>
+                            $this->assign('title', 'Test-Title');       // do ta chỉ show text nên dùng assign thay vì như $this->start('sidebar') 
+
+            echo $this->Html->link('edit', ['action' => 'edit', $post->id,]);   // tự động sinh ra thẻ link <a> được cakePHP làm sẵn
+            $this->element('form/helpbox', ['helptext' => 'Oh, this text is very helpful.',]);     // tái sử dụng lại các thành phần html: element/form/helptext.php: <?php echo $helptext; ?>
+            $this->append('sidebar', $this->element('form/element3'));      // nếu sidebar có sẵn, chèn element vào phía dưới của sidebar
+            $this->Paginator->sort('id')                    // sử dụng trong table, tạo nút để truy vấn sắp xếp theo id
+        Helper:                                 helper và view đều sử dụng instance AppView
+                bin/cake bake helper Date 
+                public function formatDate($date){ return 'ngày: '.$date; }     // src/View/Helper/DateHelper.php
+                $this->loadHelper('Date');                                      // load để sử dụng hàm helper; sử dụng trên controller hoặc view
+                <td><?php echo $this->Date->formatDate($article->published); ?></td>    // sử dụng trên view
+        Element:
+                src/Template/element/user_info.php:
+                        <p>Name: <?php echo h($user->name); ?></p>
+                view:
+                        <?php echo $this->element('user_info', ['user' => $user]); ?>
+Router:
+        Tạo Router:
+            $routes->connect('/articles/*', ['controller' => 'Articles', 'action' => 'index']);   // Tuyến động để chấp nhận nhiều tham số: /articles/15
+        Tạo Router Group:
+            use Cake\Routing\RouteBuilder;
+            use Cake\Routing\Route\DashedRoute;
+
+            $routes->scope('/', function (RouteBuilder $routes) {
+                // Connect the generic fallback routes.
+                $routes->fallbacks(DashedRoute::class);
+            });
+        Middleware:
+                Tạo Middleware:
+                        src/application.php::middleware
+                                $middlewareQueue->add(new LockTableMiddleware())
+                Lấy user:
+                        $session = $request->getSession();
+                        $user = $session->read('Auth.User');
+                Lấy url trước đó:
+                        $referer = $request->getHeaderLine('Referer');
+                Lấy uri hiện tại:
+                        $request->url
+                Lưu user vào session:
+                        Configure::write('user_id',  $user->id);
+        Request:
+                $this->request->is('post');             // kiểm tra method của request
+                $this->request->getData();              // lấy dữ liệu param
+Services:
+        Component:
+                component như 1 class instance và có lifecycle: được khởi tạo thông loadComponent();
+                src/Controller/Component/MathComponent.php:
+                        namespace App\Controller\Component;
+                        use Cake\Controller\Component;
+                        class MathComponent extends Component
+                        {
+                            public function doComplexOperation($amount1, $amount2)
+                            {
+                                return $amount1 + $amount2;
+                            }
+                        }
+                        initialize(); beforeFilter(); beforeRender(); shutdown()
+                Controller=>initialize:
+                        parent::initialize();
+                        $this->loadComponent('Math');
+                        $this->loadComponent('Math', ['unlockedActions' => ['s2Search']]);
+                sử dụng:
+                        $this->Math->doComplexOperation(1, 7);
+        Event:
+                Controller hoặc model:
+                        $event = new Event('Model.Article.afterAdd');
+                        $this->getEventManager()->dispatch($event);
+                        hoặc EventManager::instance()->dispatch($event);
+                        hoặc
+                                $this->getEventManager()
+                                ->dispatch($tEventFrom = new Event('Warehouse.CreateWmStockQuant', $this, [
+                                        'wm_storage_place_id' => $wm_storage_place_id,
+                                        'material_id' => (int) $material_id,
+                                        'iv_stock_id' => (int) $quants[$quant_id]->get('iv_stock_id'),
+                                        'quantity' => $quantity,
+                                        'operation' => '-',
+                                        'dynamic' => 1
+                                ]));
+                src/Event/ArticleListener.php:
+                        class ArticleListener implements EventListenerInterface
+                        {
+                                public function implementedEvents(): array
+                                {
+                                        return [
+                                        'Model.Article.afterAdd' => 'afterAddArticle',
+                                        ];
+                                }
+
+                                public function afterAddArticle($event)
+                                {
+                                        dd(123);
+                                        $event->getData('data')
+                                        $user = $event->getData('user');
+                                        // Ví dụ: Gửi email chào mừng cho người dùng mới
+                                        // Gửi email bằng cách sử dụng một tiện ích Email hoặc phương thức tùy chỉnh
+                                        // $this->sendWelcomeEmail($user);
+                                }
+                        }
+                scr/application:
+                        EventManager::instance()->on(new \Sales\Event\ArticleListener());
+        Queue:
+                bin/cake queue run                      // lắng nghe queue
+        queue:
+                https://github.com/dereuromark/cakephp-queue/tree/master/docs
+                cài đặt:
+                        composer require dereuromark/cakephp-queue              // cài đặt plugin
+                        $this->addPlugin('Queue');
+                        bin/cake migrations migrate -p Queue
+                Tạo task job:
+                        src/queue/task/TaskName:
+                                class PrepareCmdForExecuteByQueueTask extends ExecuteTask {
+                                        public function run()
+                                        {
+                                                $this->QueuedJobs->createJob('PrepareCmdForExecuteByQueue', $data, $config);            // chạy 1 queue job khác
+                                        }
+                                }
+                Sử dụng:
+                        bin/cake queue add <TaskName>           // đưa task vào hàng đợi
+                        bin/cake queue run                      // chạy task trong hàng đợi
+
+        Command:
+                bin/cake hello
+                        buildOptionParser()             // hàm khai báo các param
+                        execute()                       // thực thi các khối lệnh
+                        file: src/command/helloCommand.php:
+                                $this->executeCommand(\Sales\Command\ShippingClassCheckingCommand::class, [
+                                        param1, param2, param3,..
+                                ], $io);
+                cli:
+                        bin/cake Sales.Dispatch param1 param2 param3 ...
+        
+        Helper:
+                helper có sẵn: Url, Time, Text, Form, Html, Paginator, Number, Flash, Breadcrumbs
+                Form:
+                        Tạo form:
+                                echo $this->Form->create($article);
+                                echo $this->Form->control('title', ['label' => 'Title']);
+                                echo $this->Form->control('body', ['label' => 'Body', 'rows' => '3']);
+                                echo $this->Form->button(__('Save Article'));
+                                echo $this->Form->end();
+                cách hoạt động:
+                        $this->getView()->element( '/path/to/element', ['foo'=>'bar','bar'=>'foo']);
+Quy Ước:
+        UsersController         // Tên lớp bộ điều khiển ở dạng số nhiều, viết hoa chữ cái đầu và kết thúc bằng Controller
+        /users/view-me          // dựa vào cấu trúc url tự hiểu bộ điều kiển là UsersController; và action là viewMe()
+        menu_links              // Tên bảng cơ sở dữ liệu luôn là số nhiều và nếu có 2 từ trở lên dấu gạch chân và phải là số nhiều ở từ cuối cùng
+        khóa ngoại              // tên bảng số ít + _id. ví dụ menu_link_id
+        đặt tên bảng trung gian // đặt tên theo tên các bảng mà chúng kết nối và ở dạng số nhiều và sắp xếp theo bảng chữ cái. articles_tags
+        tên lớp Model           // Tên lớp bảng ở dạng số nhiều, viết hoa chữ cái đầu và kết thúc bằng Table: MenuLinksTable
+        đối tượng lớp           // tên lớp thực thể phải là tên table ở dạng số ít MenuLink
+        tên các plugins         // có tiền tố là cakephp- và có namespace khác 'cakephp'
+        tên file view           // templates/{tên controller không có hâu tố Controller}{tên action sử dụng _ cho hàm nhiều từ}
+        Tên lớp enum phải sử dụng {Entity}{Column}quy ước và các trường hợp enum phải sử dụng tên CamelCased.
+        Tên tệp phải khớp với tên lớp để tự động tải
+Các khái niệm:
+        webroot         // là thư mục gốc tài liệu công khai của ứng dụng của bạn. Thư mục này chứa tất cả các tệp bạn muốn công khai truy cập.
+Khác:
+         $puOrderHeaderEntity = $result['puOrderHeaderEntity'];
+            $view = $this->createView($this->chooseViewClass());
+            $view->loadHelper('DocumentReady.DocReady');
+            $view->set('puOrderHeaderEntity', $puOrderHeaderEntity);
+            $result = [
+                'success' => true,
+                'positionModalDeleteTitle' => __d('purchasing', 'Delete the following Order {0} of supplier {1} ?',
+                    [
+                        $puOrderHeaderEntity->get('id'),
+                        $puOrderHeaderEntity->get('supplier')->get('number'),
+                    ]),
+                'positionModalDeleteBody' => $view->element('Purchasing.PuOrderHeaders/modal_delete_body'),
+                'positionModalDeleteFooter' => $view->element('Purchasing.PuOrderHeaders/modal_delete_footer'),
+            ];
+            $result['ajaxScript'] = $view->DocReady->fetch('ajaxScript');
+            -------------------
+        if ($success) {
+                $this->Flash->success('You are now logged in.');
+                $message = $this->Flash->render('flash', ['element' => 'success']);
+            } else {
+                $this->Flash->error('Login failed. Please try again.');
+                $message = $this->Flash->render('flash', ['element' => 'error']);
+            }
+
+            // Trả về response JSON với thông báo flash
+            $this->set([
+                'message' => $message,
+                '_serialize' => ['message']
+            ]);
+            -------------------------
+            $request->withAttribute('flashMessage', 'You are not allowed to access this page.');
+            $flashMessage = $request->getAttribute('flashMessage');
+            $response = $response->withType('application/json')
+                    ->withStringBody(json_encode(['message' => $flashMessage]));
+        ---------------------------------
+        lấy chuỗi html của Element từ middleware:
+                Middleware::process():
+                        // lấy chuỗi html của Template/element/flash/error:
+                        $view = new View();
+                        $html = $view->renderElement('flash/error', ['message' => sprintf(__('This content is being used by %s, please get back this content later.'), $user->forename)]);

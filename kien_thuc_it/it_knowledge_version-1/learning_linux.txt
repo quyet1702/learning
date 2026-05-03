@@ -1,0 +1,69 @@
+các câu lệnh linux cơ bản:
+	pwd: Hiển thị đường dẫn thư mục làm việc hiện tại.
+	ls: Liệt kê tất cả các tệp tin và thư mục trong thư mục hiện tại.
+	cd: Di chuyển đến một thư mục khác.
+	mkdir: Tạo mới một thư mục.
+	rm: Xóa tệp tin hoặc thư mục.
+	cp: Sao chép tệp tin hoặc thư mục.
+	mv: Di chuyển hoặc đổi tên tệp tin/thư mục.
+	cat: Hiển thị nội dung của một tệp tin.
+	grep: Tìm kiếm các chuỗi trong tệp tin hoặc đầu ra của lệnh khác.
+	chmod: Thay đổi quyền truy cập của tệp tin hoặc thư mục.
+	chown: Thay đổi chủ sở hữu của tệp tin hoặc thư mục.
+	ps: Hiển thị các tiến trình đang chạy.
+	top: Hiển thị danh sách các tiến trình đang chạy và sử dụng tài nguyên hệ thống.
+	ifconfig: Hiển thị thông tin về các giao diện mạng.
+	ssh: Kết nối với một máy chủ từ xa qua giao thức SSH.
+	touch filename.txt tạo tệp
+fix bug ubuntu:
+	sudo apt-get update bị lỗi ko tìm thấy package: vào software and update => other software => remove
+cài đặt mysql:
+	Truy cập vào sql ko cần mk: sudo mysql
+	Truy cập vào sql với mật khẩu: mysql -u root -p
+	Thay đổi mật khẩu root:
+		mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'new_password';
+Cai dat dbeaver 22.3.3:
+	sudo apt-get update
+	lên trang chủ tìm phiên bản dbeaver tải về: đối với ubuntu tải file đuôi .deb
+	Lỗi thường gặp:
+		local client không nhận: tải phiên bản 22.3.3 để fix
+	connect server cơ bản: main: localhost-3306-root-Pass@123 SSH: 14.225.241.243-2115-password-Dolphin@210222!
+INSTALL Java:
+	sudo apt install default-jre
+	java -version
+Sử dụng ip laravel:
+	ip address
+	php artisan serve --host 192.168.10.146 --port 8887
+redis:
+	sudo apt install lsb-release curl gpg
+	curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+	echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+	sudo apt-get install redis
+	redis-server				// khởi động redis
+	redis-cli				// kết nối redis
+	ping
+mysql:
+	sudo apt install mysql-server
+	
+Cài đặt rabbitmq:
+	sudo apt update
+	sudo apt install curl software-properties-common apt-transport-https lsb-release
+	curl -1sLf 'https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/setup.deb.sh' | sudo -E bash
+	sudo apt update
+	sudo apt install erlang
+	sudo apt install -y rabbitmq-server
+	sudo service rabbitmq-server status
+	sudo service rabbitmq-server stop
+	sudo service rabbitmq-server start
+	sudo service rabbitmq-server restart
+	sudo rabbitmqctl add_user admin pwd123			// sét user
+	sudo rabbitmqctl set_user_tags admin administrator	// set quyền
+	sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"	// set quyền cho nhiều user
+	hostname -I					// truy cập vào port mặc định 15672
+Gỡ cài đặt software:
+	sudo apt remove --purge mysql-server
+	sudo apt purge mysql-server
+	sudo apt autoremove
+	sudo apt autoclean
+	sudo apt remove dbconfig-mysql
+	

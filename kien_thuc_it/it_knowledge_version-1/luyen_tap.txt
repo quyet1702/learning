@@ -1,0 +1,305 @@
+viết 20 từ vựng tiếng anh
+Tạo project laravel:
+Tạo model và migrate:
+Tạo controller:
+Tạo route:
+Thêm telescope:
+Thêm Helper:
+Tạo bảng danh sách:
+Tạo thêm mới:
+Tạo sửa:
+Tạo xóa:
+Thêm toastr:
+Thay đổi múi giờ:
+Tạo seeder:
+Tách file script riêng:
+Tạo layout:
+Thay tiêu đề web:
+Lưu file và public lên:
+Tạo component:
+Thêm icon title:
+Thêm 1 api post:
+Lưu ngày vào database:
+So sánh 2 ngày giờ:
+Cộng trừ 2 ngày:
+
+
+
+
+
+
+Tạo project laravel:
+    composer create-project laravel/laravel 
+Tạo model và migrate:
+    php artisan make:model Vocabulary -m
+        $table->string('english');
+        $table->string('vietnamese');
+        $table->string('type')->nullable();
+        $table->string('type')->nullable();
+        $table->string('description')->nullable();
+Tạo controller:
+    php artisan make:controller VocabularyController
+Thêm telescope:
+    composer require laravel/telescope --dev
+    php artisan telescope:install
+    php artisan migrate
+    App\Providers\AppServiceProvider:
+        public function register(): void
+        {
+            if ($this->app->environment('local')) {
+                $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+                $this->app->register(TelescopeServiceProvider::class);
+            }
+        }
+    composer.json:
+        "extra": {
+            "laravel": {
+                "dont-discover": [
+                    "laravel/telescope"
+                ]
+            }
+        },
+Thêm Helper:
+    app/Helpers/Helper.php:
+		<?php
+        namespace App\Helpers;
+		class Helper {
+            public static function formatNumber($number) {
+
+            }
+        }
+    composer.json:
+		"autoload": {
+			"files": [
+				"app/Helpers/Helper.php"
+			]
+		}
+	composer dump-autoload
+Tạo bảng danh sách:
+    <table>
+        <thead>
+            <tr>
+                <th>Tiếng anh</th>
+                <th>Tiếng việt</th>
+                <th>Loại</th>
+                <th>Mô tả</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($vocabularies as $item)
+                <tr>
+                    <td>{{ $item->english }}</td>
+                    <td>{{ $item->vietnamese }}</td>
+                    <td>{{ $item->type }}</td>
+                    <td>{{ $item->description }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+Tạo thêm mới:
+    <form action="{{ route('vocabulary.store') }}" method="post">
+        @csrf
+        <div>
+            <label for="name">Từ vựng</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="type">Loại từ</label>
+            <select type="text" name="type" id="type">
+                <option value="Danh từ">Danh từ</option>
+                <option value="Tính từ">Tính từ</option>
+                <option value="Động từ">Động từ</option>
+                <option value="Trạng từ">Trạng từ</option>
+                <option value="Giới từ">Giới từ</option>
+            </select>
+        </div>
+        <div>
+            <label for="description">Mô tả</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+        <button>submit</button>
+    </form>
+    Route::get('vocabulary/create', function() {
+        return view('create');
+    })->name('vocabulary.create');
+    Route::post('vocabulary/store', function(Request $request) {
+        Vocabulary::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'description' => $request->description,
+        ]);
+        return redirect()->route('vocabulary.index');
+    })->name('vocabulary.store');
+Tạo sửa:
+
+    Route::get('vocabulary/edit/{vocabulary}', function(Request $request, Vocabulary $vocabulary) {
+        return view('edit', compact('vocabulary'));
+    })->name('vocabulary.edit');
+    Route::post('vocabulary/update/{vocabulary}', function(Request $request, Vocabulary $vocabulary) {
+        $vocabulary->name = $request->name;
+        $vocabulary->type = $request->name;
+        $vocabulary->description = $request->description;
+        $vocabulary->save();
+        return redirect()->route('vocabulary.index');
+    })->name('vocabulary.update');
+
+
+Tạo xoá:
+    <form action="{{ route('vocabulary.destroy') }}" method="post">
+        @csrf
+        <input type="text" name="id" value="{{ $item->id }}" hidden>
+        <button>Xóa</button>
+    </form>
+    Route::post('vocabulary/destroy', function(Request $request) {
+        $vocabulary = Vocabulary::find($request->id);
+        if($vocabulary) {
+            $vocabulary->delete();
+        }
+        return redirect()->route('vocabulary.index');
+    })->name('vocabulary.destroy');
+
+Thêm toastr:
+    composer require brian2694/laravel-toastr
+    php artisan vendor:publish
+    Toastr::success('Nội dung đã được gửi thành công', 'Gửi thành công', ["positionClass" => "toast-top-right"]);
+    use Brian2694\Toastr\Facades\Toastr;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+
+Thay đổi múi giờ:
+    config/app:	'timezone' => 'Asia/Ho_Chi_Minh'
+Tạo seeder:
+    php artisan make:seeder
+    $data = [
+            [
+                'name'              => 'english',
+                'type'              => 'Danh từ',
+                'description'       => 'Chỉ ngôn ngữ tiếng anh',
+            ],
+            [
+                'name'              => 'word',
+                'type'              => 'Danh từ',
+                'description'       => 'Từ',
+            ],
+        ];
+        Vocabulary::upsert($data, uniqueBy: ['name']);
+    php artisan db:seed
+
+Tách file script riêng:
+    script.blade.php
+    @include('script')
+Tạo layout:
+    view/layouts/app.blade.php:
+        yeild('content')
+    index.blade.php:
+        @extends('layouts.app')
+        @section('content')
+        @endsection
+Thay tiêu đề web:
+    <title>yield('title')</title>
+    @section('title', 'Nghe nhạc')
+Lưu file và public lên:
+    static function addFile($file, $folder = 'upload', array $exceptFileName ):string
+    {
+        // check trùng
+        $imagePath = 'public/'.$folder;
+
+        // Lưu file ảnh
+        $fileImage = $file;
+        $imageName = $file->getClientOriginalName();
+
+        // Tạo tên file ảnh không trùng trong db
+        do {
+            $imageName = 'song'.self::random().'.'.$file->getClientOriginalExtension();
+        } while(in_array('storage/'.$folder.'/'.$imageName, $exceptFileName));
+
+        // Lưu ảnh vào storage
+        Storage::putFileAs($imagePath, $fileImage, $imageName);
+        return 'storage/'.$folder.'/'.$imageName;
+    }
+
+Tạo component:
+    php artisan make:component create-song-modal
+    view/components/create-song-modal.blade.php:
+        <div class="modal fade" id="create-song" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm bài hát</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                
+                    <form action="{{ route('media.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Nhập tên bài hát</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="singer">Ca sĩ</label>
+                                <input type="text" name="singer" id="singer" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Tải ảnh nền</label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="music">Tải nhạc</label>
+                                <input type="file" name="music" id="music" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="group">group</label>
+                                <div class="d-flex flex-nowrap">
+                                    <select class="form-select p-1" >
+                                        @foreach ($groups as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#create-group" class="btn-add-group"><i class="bi bi-plus-square"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn-sm btn-info">Thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <x-create-song-modal :groups="$groups"/>
+
+Thêm icon title:
+    <link rel="icon" href="/image.png" />
+quay tròn phần tử html:
+    let elementAnimation = document.getElementsByClassName('header-avatar')[0].animate([
+                                                            {transform: 'rotate(360deg)'}
+                                                        ],
+                                                        {duration: 1000, iterations: Infinity}
+                                                        );
+    elementAnimation.play();
+    elementAnimation.pause();
+Thêm 1 api post:
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <button onclick="axios.post('{{ route('media.create_group') }}', {name: document.getElementById('group-name').value})" type="button" class="btn-sm btn-info">Thêm</button>
+
+Lưu ngày vào database:
+    $startDate = Carbon::createFromFormat('d-m-Y', '17-02-1998');
+    Loan::create([
+        'start_date' => $startDate,
+        ]);
+So sánh 2 ngày giờ:
+    $startDate = Carbon::createFromFormat('d-m-Y', '17-02-2023');
+    $endDate = Carbon::now();
+    $endDate->greaterThan($startDate)
+    $startDate->lessThan($endDate)
+
+Cộng trừ 2 ngày:
+    $startDate = Carbon::createFromFormat('d-m-Y', '17-02-2023');
+    $endDate = Carbon::createFromFormat('d-m-Y', '17-02-2024');
+    $endDate->greaterThan($startDate)
+    $startDate->lessThan($endDate)

@@ -1,0 +1,3 @@
+Setup môi trường để chạy react
+Chạy được 1 app react cơ bản với android
+chạy được project lop-route

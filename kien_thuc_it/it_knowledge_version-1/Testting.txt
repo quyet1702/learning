@@ -1,0 +1,252 @@
+Tổng hợp các test case của 1 chức năng1:36 PM 01/04/2022:
+	- Khi test chúng ta cần tổng hợp lại có bao nhiêu test case
+	- Mỗi test case sẽ có kết quả mong đợi và kết quả thực tế
+		- Kết quả mong đợi: là kết quả mà dự án muống hướng tới 
+		- Kết quả thực tế: là kết quả khi được test
+			- Nếu kết quả thực tế = kết quả mong đợi => thì test case đó pass(thành công)
+
+Debug:
+	xác định endpoint
+	dotnet run -> run and debug
+	hoặc F5
+	Kiểm tra các biến:
+	Kiểm tra các input có hợp lệ hay ko
+	Kiểm tra điểm endpoint đang thực thi
+Unit Test:
+	Bước 1: tạo sln cho project cần test
+		dotnet new sln
+	Bước 2: Tạo UnitTest
+		dotnet new mstest -o UnitTest -f net5.0
+		chọn đúng .net giống với .net của project cần test
+	Bước 3: Thêm UnitTest vào sln của project chính
+		dotnet sln add UnitTest/UnitTest.csproj
+	Bước 4: Thêm project cần test vào UnitTest
+		dotnet add UnitTest/UnitTest.csproj reference MainProject/MainProject.csproj
+	Bước 5: Code UnitTest
+		- chú ý các attribute: [TestClass],  [TestMethod], [TestInitialize]
+		- đối tượng Assert
+	Bước 6:	chạy test
+		dotnet test StringLibraryTest/StringLibraryTest.csproj
+	test Controller:
+		dotnet add package Moq
+	Bước 7: chú ý phiên bản package của project chính phải cùng phiên bản của project test
+	Bước 8: Thay kết nối data:
+	var options = new DbContextOptionsBuilder<QACareContext>()
+            .UseInMemoryDatabase(databaseName: "MovieListDatabase")
+            .Options;
+Sử dụng Selenium:
+	Sử dụng WebDriver
+		dotnet add package Selenium.WebDriver
+		dotnet add package WebDriverManager
+	using
+		using WebDriverManager;
+		using WebDriverManager.DriverConfigs.Impl;
+	Thao tác Chrome:
+		Mở:
+			new DriverManager().SetUpDriver(new ChromeConfig());
+			var driver = new ChromeDriver();
+		Đóng:
+			driver.Quit();
+		Truy cập url:
+			driver.Navigate().GoToUrl("https://www.google.com");
+			driver.Navigate().Back();	=> trở lại trang trước
+			driver.Navigate().Refresh();	=> f5 lại trang
+		Lấy Request:
+			
+			searchBox.SendKeys("Selenium");				-> Thêm test vào input
+			searchBox.Clear();					-> Xóa test trong input
+			searchButton.Click();				-> Nhấn nút vào element
+				searchBox.Text;			-> Lấy Text của element
+			driver.Url;	=> lấy url
+			driver.Title; // => Title của website
+			driver.ExecuteAsyncScript("alert('xin chao')");			=> thực thi lệnh js
+			var a = driver.ExecuteScript("var a = 'xinchao'; return a;");	=> lấy giá trị return
+		Thao tác với Element:
+			var searchBox = driver.FindElement(By.Name("q"));	-> lấy element theo thuộc tính html name, id, className, CssSelectorName,Xpath
+				- var searchBox = driver.FindElement(By.Xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
+					-> Xpath là chật tự từ thẻ cha đi tới thẻ con và tới thẻ cần select
+					-> Lây Xpath trên Chrome tool: select element-> copy -> Copy Xpath
+				var element = driver.FindElement(By.CssSelector("body>div.L3eUgb>div.o3j99.ikrT4e.om7nvf>form>div:nth-child(1)>div.A8SBwf.emcav>div.RNNXgb>div>div.a4bIc>input"));
+					-> Lấy cssselector Chrome tool: select element-> copy -> Copy cssSelector
+			searchBox.SendKeys("Selenium");				-> Thêm test vào input
+			searchBox.Submit();					-> tự động click btn có thể gửi dữ liệu input
+			searchBox.Clear();					-> Xóa test trong input
+			searchBox.Clear();					-> Xóa test trong input
+			searchButton.Click();					-> click vào element
+			searchButton.Click(Element2);				-> trả về bool, kiểm tra xem 2 element có giống nhau hay ko
+			bool a = element.Displayed;				-> trả về bool, kiểm tra element dang hiện thị hay chưa
+			string value = element.GetAttribute("class");		-> lấy giá trị của thuộc tính của element
+			string value = element.GetCssValue("color");		-> lấy giá trị của thuộc tính của css
+			bool g = element.Selected;				-> kiểm tra element có đang đc selected hay ko, dùng cho thẻ <select>
+			string tag = element.TagName;				-> lấy Tag(tên thẻ html) của element đó
+			String text = element.Text;				-> lấy Text của element
+			driver.SwitchTo().Frame(element);			-> đi vào bên trong thẻ jframe, để có thể select element bên trong thẻ này
+			
+			chooseFile.sendKeys("/Users/ankita/Downloads/edureka.png"); -> UploadFile
+	Kiểm tra phiên bản trình duyệt Chrome:
+		chrome://version
+	Kiểm tra IP:
+		https://whoer.net/
+	Free Proxy:
+		https://free-proxy-list.net/
+	Test With Controller:
+		dotnet add package Moq
+		using Moq
+		Khai báo phương thức test giốn với kiểu phương thức cần test
+		Gỉa lập đối tượng inject(dbContext):
+		var mockRepo = new Mock<IBrainstormSessionRepository>();	=> đối tượng inject (dbContext)
+   		 mockRepo.Setup(repo => repo.ListAsync())			=> phương thức sẽ lấy dữ liệu
+        		.ReturnsAsync(GetTestSessions());			=> dữ liệu sẽ trả về
+    			var controller = new HomeController(mockRepo.Object);	=> Khởi tạo lại controller với tham số là dữ liệu mẫu
+			var result = await controller.Index();			=> lấy kết quả thực tế của phương thức Index()
+			var viewResult = Assert.IsType<ViewResult>(result);	=> so sánh kết quả mong muốn
+		
+		controller.ModelState.AddModelError("SessionName", "Required");	=> thêm errormessage cho key SessionName nếu property này sinh lỗi
+Thêm dữ liệu:
+	Cách 1: Thêm kiểu đơn giản
+		DbContextOptions<QACareContext> options = new DbContextOptionsBuilder<QACareContext>()
+                	.UseInMemoryDatabase("InMemoryDb")
+			.Options;
+		Tạo Thêm Sql cho dbContext:
+			QACareContext _context = new QACareContext(options);
+		Thêm dữ liệu:
+			_context.Products.Add(new Product(){Name = "Iphone"});	
+			_context.SaveChange();
+	Cách 2: Sử dụng Moq
+ 		dotnet add package Moq
+		dotnet add package Moq.EntityFrameworkCore
+		DbContextOptionsBuilder<QACareContext> options = new DbContextOptionsBuilder<QACareContext>()
+                	.UseInMemoryDatabase("InMemoryDb")	// Guid.NewGuid().ToString() => có thể thay
+			.Options;
+		Tạo DbContext giả:
+			var myDbContextMock = new Mock<QACareContext>(options);
+		Thêm dữ liệu vào DbContext giả:
+			myDbContextMock.Setup(x => x.Products).ReturnsDbSet(List<Products>(){new Product(){Name="Iphone"},...});
+	
+	Fix lỗi:
+		.UseInMemoryDatabase(Guid.NewGuid().ToString())
+		- tên Inmemory sẽ là ngẫu nhiên để tạo các Connect khác nhau, tránh sử dụng connect cũ đẻ tạo dữ liệu độc lập
+
+Tạo hàm dữ liệu giả với kiểu dữ liệu trả về phù hợp:
+	Chú ý: kiểm tra = với 1 đối tượng thì nên trước tra != null trước với 1 đối tượng củ thể
+	kiểm tra kiểu dữ liệu trả về với mong muốn có thể chuyển đổi giống nhau:
+		Assert.IsInstanceOfType(result.Result,typeof(NotFoundResult));	nếu hàm cần test có sử dụng async thì resul.result ngược lại thì result
+	kiểm tra giá trị có bằng nhau hay không với mong muốn bằng nhau:
+		Assert.AreEqual(testProducts[3].Name, result.Content.Name);
+	kiểm tra giá trị có null hay ko với mong muốn là null:
+		Assert.IsNull(result);
+	kiểm tra giá trị có null hay ko với mong muốn là không null:
+		Assert.IsNotNull(result);
+	private List<Product> GetTestProducts()
+        {
+            var testProducts = new List<Product>();
+            testProducts.Add(new Product { Id = 1, Name = "Demo1", Price = 1 });
+            testProducts.Add(new Product { Id = 2, Name = "Demo2", Price = 3.75M });
+            testProducts.Add(new Product { Id = 3, Name = "Demo3", Price = 16.99M });
+            testProducts.Add(new Product { Id = 4, Name = "Demo4", Price = 11.00M });
+
+            return testProducts;
+        }
+
+Chú ý tắt Server trước khi test
+test case 1: Có Tham số:
+	Chia ra 2 test case, dù đúng hay sai đều cần 1 return trả về giá trị đúng hoặc giá trị sai
+		test case 1: kiểu tra hàm với tham số đúng:
+		test case 2: kiểu tra hàm với tham số sai:
+	Kiểm tra kiểu trả:
+		 Assert.IsInstanceOfType(result.Value, typeof(List<Product>));
+test case 2: có return:
+	Kiểm tra notnull Để đảm bảo return có giá trị:
+	Kiểm tra kiểu trả về:
+		 Assert.IsInstanceOfType(result.Value, typeof(List<Product>));
+
+test case 2: trả về kiểu collection:
+	Kiểm tra notnull Để đảm bảo return có giá trị
+	phải kiểm tra số phần tử trả về xem có đúng với mong muốn ko
+		Assert.AreEqual(testProducts.Count, 1);
+	Kiểm tra kiểu trả về:
+		 Assert.IsInstanceOfType(result.Value, typeof(List<Product>));
+test case 3: trả về kiểu đối tượng: 
+	Kiểm tra notnull Để đảm bảo return có giá trị
+	Kiểm tra kiểu trả về:
+		 Assert.IsInstanceOfType(result.Value, typeof(List<Product>));
+	Kiểm tra có phải giá trị mong muốn:
+		Assert.AreEqual(testProducts[3].Name, result.Content.Name); => thường so sánh với id
+test case 4: test các điều kiện rẽ nhánh có return ở trong hàm
+test case 5: 
+	kết quả thực tế: là điểm cuối cùng mà dữ liệu return sẽ đi tới
+		var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
+                viewResult.ViewData.Model);
+	Kết quả mong đợi: mong muốn rằng kết quả thực tế sẽ giống kết quả mong đợi
+tes		
+	
+
+test case 6: Test Link:
+Tham khảo : https://docs.microsoft.com/en-us/aspnet/web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
+test case 7: Test Url có hoạt động hay không
+	dotnet add package Microsoft.AspNetCore.Mvc.Testing
+	using Microsoft.AspNetCore.Mvc.Testing
+	[Theory]
+        [InlineData("/")]
+        [InlineData("/Index")]
+        [InlineData("/About")]
+        [InlineData("/Privacy")]
+        [InlineData("/Contact")]
+        public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
+        {
+            // Arrange
+            WebApplicationFactory<RazorPagesProject.Startup> _factory = new  WebApplicationFactory<RazorPagesProject.Startup>();
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.GetAsync(url);
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            Assert.Equal("text/html; charset=utf-8", 
+                response.Content.Headers.ContentType.ToString());
+        }
+
+TestCase 8:
+[TestMethod]
+public void PostSetsLocationHeader()
+{
+    // Arrange
+    ProductsController controller = new ProductsController(repository);
+
+    controller.Request = new HttpRequestMessage { 
+        RequestUri = new Uri("http://localhost/api/products") 
+    };
+    controller.Configuration = new HttpConfiguration();
+    controller.Configuration.Routes.MapHttpRoute(
+        name: "DefaultApi", 
+        routeTemplate: "api/{controller}/{id}",
+        defaults: new { id = RouteParameter.Optional });
+
+    controller.RequestContext.RouteData = new HttpRouteData(
+        route: new HttpRoute(),
+        values: new HttpRouteValueDictionary { { "controller", "products" } });
+
+    // Act
+    Product product = new Product() { Id = 42, Name = "Product1" };
+    var response = controller.Post(product);
+
+    // Assert
+    Assert.AreEqual("http://localhost/api/products/42", response.Headers.Location.AbsoluteUri);
+}
+
+
+
+Test Tích hợp:
+	Kiểm tra các thành phần cửa ứng dụng:
+		- Hệ thống tập tin
+		- Cơ sở dữ liệu
+		- Thiết bị mạng
+		- Quy trình phản hồi yêu cầu
+	So sánh kiểm thử đơn vị và tích hợp:
+		Kiểm thử đơn vị:
+			Tạo đối tượng giả thay cho các thành phần của ứng dụng
+		Kiểm thử tích hợp:
+			Sử dụng thành phần thực tế mà ứng dụng sử dụng
+			Yêu cầu thêm mã và xử lý dữ liệu
+			Mất nhiều thời gian hơn để chạy

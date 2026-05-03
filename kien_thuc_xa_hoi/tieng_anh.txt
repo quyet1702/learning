@@ -1,0 +1,3368 @@
+job				jop			nghề nghiệp
+	occupation			ờ ki pấy sần		nghề nghiệp (nghiệp không cần chuyên môn)
+	profession			pồ phéts sần		nghề nghiệp (cần chuyên môn)
+	teacher				tí chờ				giáo viên
+	nurse				nớts				y tá
+	engineer 			én gi ni ơ			kỹ sư
+	police officer		pô li so phi sơ		cảnh sát
+	police				pô lit				lực lượng cảnh sát
+	officer				ó phơ sơ			công chức
+	chief				sép					đầu bếp
+	accountant			ờ khao trần			kế toán viên
+	doctor				đóc trờ				bác sĩ
+	lawyer				loi ờ				luật sư
+	revenue				róe vơ niu			doanh thu (từ mọi nguồn)
+	sale				seo					doanh thu (từ bán hàng)
+	sales				seos				việc bán hàng
+	salesperson			seo pớ sần			nhân viên bán hàng
+	sales agent			seo giế zật			đại lý bán hàng
+	IT specialist		pec sô lịt			chuyên gia CNTT
+	driver				troai vờ 			tài xế
+	hairdresser			he roét sơ			thợ cắt tóc
+	pilot				pai lịt				phi công
+	gymnast				gym nits			huấn luyện viên gym
+plant			plen			Thực vật
+	butter			pá đờ			bơ
+	corn			khôn			Ngô
+	paddy			pá đy			thóc
+	beads			pii s			hạt
+	sugar canes						câu mía
+	bamboo			pem pồ			cây tre
+	Banyan Tree		pé nen			cây đa
+	fruit			phút tr			hoa quả
+	carrot			khe ruệt		cà rốt
+	vegetable		vét trơ bồ		rau quả
+	bean			pin				hạt đậu
+	peas			phi ss			đậu Hà Lan
+	onions			on nes			Hành
+	tomato			trơ mấy đồ		cà chua
+	banana			pờ ná nờ		chuối
+	lemon			lé mần			chanh
+animal			é nơ mồ			động vật
+	chicken			check cần		gà
+	cow				khao			con bò
+	buffalo			bớ phơ lô		trâu
+	pig				pếc				lợn
+	fish			phits			cá
+	dog				đoc				chó
+location		lô khấy sần		Địa điểm
+	village		ví lịt				làng xã
+	town		thao				thị xã
+	yard		joi d				sân
+	river		rúy vờ				sông
+	temple		them pồ				ngôi đền
+	museum		míu j um			bảo tàng
+	stadium		stấy đi um			sân vận động
+	mountail	máo thần			núi
+	well		goeo				giếng
+	bakery		pếchkhuy			cửa hàng bánh mì
+	drugstore	truớc stua			nhà thuốc
+	apartment	ờ pác mân			căn hộ (sử dụng ở Bắc Mỹ)
+	flat							căn hộ (sử dụng ở Anh hoặc châu âu)
+	clinic		khờlí nịc			phòng khám
+noun							Danh từ
+	salt							muối
+	canteen			khen trin		nhà ăn
+	vehicle							xe cộ
+	tutor			thu đờ			gia sư
+	Honey							Em yêu
+	essay							tiểu luận
+	exam			ex giem			bài thi
+	boot							ngăn sau
+	neightbour						người hàng xóm
+	actress							nữ diễn viên	
+	cart			khót tr			xe đẩy
+	land			lend			đất
+	coal			khô				than đá
+	oil				oi				dầu
+	term			trhơm			điều khoản
+	gas				gáts			khí ga
+	power			pao guơ			năng lượng
+	pollution						sự ô nhiễm
+	air				é rờ			không khí
+	gases			gátsịt			chất khí
+	trash			troa s			rác
+	ocean			ấu tion			đại dương
+	street			struýt			đường
+	grass			g rats			cỏ
+	cans			khens			lon đựng nước
+	waste			guây st			rác thải
+	winter			win trơ			mùa đông
+	fall			pho				mùa thu
+	spring			s puynh			mùa xuân
+	summer			súm mơ			mùa hè
+	disciline		dis sơ lịt		kỷ luật
+	intersection	intrơséction	ngã tư
+	eggs			éc s			trứng
+	beef			pi phờ..		thịt bò
+	tennis			then nis		quần vợt
+	aerobics		ờ rố bịc		thể dục nhịp điệu
+	weather			goé đờ			thời tiết
+	sport			s pốt			thể thao
+	basketball						bóng rổ
+	accident		ắc xi đần		tai nạn
+	neighborhood	náy bơ họt		hàng xóm
+	drug			truớc 			thuốc
+	letter			lé đờ			lá thư
+	toystore		troi stua		cửa hàng đồ chơi
+	country							đất nước, miền quê
+	sign			sain			biển báo
+	hair			he rờ			tóc
+	eye				ai				mắt
+	face			phâys			mặt
+	nose			no s			mũi
+	mouth			mao				miệng
+	ear				iar				tai
+	lips			lips			môi
+	color			khó lờ			màu
+	teeth			trhi			răng
+	head			hétđ			đầu
+	shoulder		sô đờ			vai
+	arm				om				bắp tay
+	finger			phing gơ		ngón tay
+	chest			chét st			ngực
+	leg				léc g			bắp chân
+	toe				thâu			ngón chân
+	foot			phất			bàn chân
+	hand			hend			bàn tay
+	train			troen			xe lửa
+	truck			trấc			xe tải
+	road			rốt				đường đi
+	weight lifter					vận động viên thể dục
+	juice			jus				nước ép
+	bread			red				bánh mì
+	drink			truynhk			nước uống
+	kites			khays			diều
+	tent			then			lều
+	water			wa đờ			nước
+	cream			khuym			kem
+	cake			khếc			bánh ngọt
+	traveler		troa vồ lơ		du khách
+	travel			troa vồ			du lịch, di chuyển xa
+	ice				ais				nước đá
+	breakfast		roách fịt		bữa sáng
+	noodble			níu bồ			mì
+	parking			pá king			bãi đậu xe
+	park			phóck			công viên
+	glass			glats			ly
+	comparisons						sự so sánh
+verb							Động từ
+	donate			trô nịt			quyên tặng
+	tutor			thu đờ			dạy kèm
+	bump 							va chạm
+	meet							gặp mặt
+	met				mét				gặp mặt (v2, v3)
+	see								nhìn thấy
+	saw				so				nhìn thấy (v2)
+	seen							đã nhìn thấy (v3)
+	go								đi
+	went			wen tr			đi (v2)
+	gone							đi (v3)
+	release							phát hành
+	laugh			láp				cười
+	get								lấy (lấy để sở hữu)
+	got								v2
+	wake 							v3
+	take			thếch			lấy, cầm lấy (đưa 1 thứ từ nơi này đến nơi khác)
+	took							lấy, cầm lấy (v2)
+	taken							lấy, cầm lấy (v3)
+	tell							kể (v1)
+	told			thấu			kể (v2)
+	say								nói (dùng trích dẫn lời nói) (v1)
+	said							nói (dùng trích dẫn lời nói) (v2)
+	speak							nói (không có đối tượng người nghe)
+
+	stupid			stú pịt			ngu
+	Silly							ngốc nghếch
+	fancy			fen cy			thích
+	write			roay			viết
+	wrote							đã viết(v2)
+	wore			guơ r			mặc
+	throw			phờ row			ném
+	pick			píc				nhặt
+	park			phóck			đậu xe
+	drive			troai			lái
+	collect			kho léc t		thu gom
+	warn			guôn			cảnh báo
+	hot								nóng
+adjective						Tính từ
+	weak			wuy kh			yếu đuối
+	strong							khỏe mạnh
+	thousand		táo dần			nghìn
+	hundred			hấn roẹt		trăm
+	noisy			nóij			ồn nào
+	quiet			khoáiợt 		yên tĩnh
+	hungry			hấng ruy		đói
+	full			fun				no, đầy
+	tall			thô				cao
+	short			shốt			ngắn
+	heavy			hé vi			nặng
+	thin			thin			gầy
+	fat				fat				mập
+	cold			khô				lạnh
+	fast							nhanh
+	dangerous		đen truỵts		nguy hiểm
+	black			plack			màu đen
+	white			goay			màu trắng
+	green			gruyn			màu xanh lá
+	yellow			ye lâu			màu vàng
+	blue			p lưu			màu xanh da trời
+	gray			g rây			màu xám
+	brown			p broun			màu nâu
+	purple			phớ pồ			màu tím
+	orange			ố ruần			màu cam
+	pink			ping			màu hồng
+	alarm			ờ lon			báo thức
+	difficult		diff fơ khồ		khó
+Adverb							Trạng từ
+	along			ờ long			dọc theo
+	behind			bờ hai			phía sau
+	front							phía trước
+Động từ bất quy tắc:
+	steal							ăn cắp
+	stole							ăn cắp (v2)
+	stolen							ăn cắp (v3)
+	arise							phát sinh
+	arose							phát sinh (v2)
+	arisen							phát sinh (v3)
+	awake			ờ guếc			thức giấc
+	awoke							đánh thức, thức
+	awoken							đánh thức, thức
+	backslide						tái phạm
+	backslid						tái phạm (v2, v3)
+	bear							mang, chịu đựng
+	bore							mang, chịu đựng (v2)
+	borne							mang, chịu đựng (v3)
+	beat							đánh, đập (v1, v2, v3)
+	become							đánh, đập (v1, v3)
+	became							đánh, đập (v2)
+	befall							xảy đến
+	befell							xảy đến (v2)
+	befallen						xảy đến (v3)
+	begin							bắt đầu (v1)
+	began							bắt đầu (v2)
+	begun							bắt đầu (v3)
+	behold							ngắm nhìn (v1)
+	beheld							ngắm nhìn (v2, v3)
+	bend							bẻ cong (v1)
+	bent							bẻ cong (v2, v3)
+	beset							bao quanh (v1, v2, v3)
+	bespeak							chứng tỏ (v1)
+	bespoke							chứng tỏ (v2)
+	bespoken						chứng tỏ (v3)
+	bid								trả giá (v1, v2, v3)
+	bind							buộc, trói (v1)
+	bound							buộc, trói (v2)
+	bound							buộc, trói (v3)
+	bite							cắn (v1)
+	bit								cắn (v2)
+	bitten							cắn (v3)
+	bleed							chảy máu (v1)
+	bled							chảy máu (v2, v3)
+	blow						 	thổi (v1)
+	blew							thổi (v2)
+	blown							thổi (v3)
+	break							đập vỡ (v1)
+	broke							đập vỡ (v2)
+	broken							đập vỡ (v3)
+	breed							nuôi, dạy dỗ (v1)
+	bred							nuôi, dạy dỗ (v2, v3)
+	bring							mang đến (v1)
+	brought							mang đến (v2, v3)
+	broadcast						phát thanh (v1, v2, v3)
+	browbeat						hăm dọa (v1, v2, v3)
+	build							xây dựng (v1, v2, v3)
+	burst							nổ tung, vỡ òa (v1, v2, v3)
+	buy							mua (v1)
+	bought						mua (v2, v3)
+	cast						ném, tung (v1, v2, v3)
+	catch						bắt, chụp (v1)
+	caught						bắt, chụp (v2, v3)
+	choose						chọn, lựa (v1)
+	chose						chọn, lựa (v2)
+	chosen						chọn, lựa (v3)
+	cleave						dính chặt (v1)
+	clave						dính chặt (v2)
+	cleaved						dính chặt (v3)
+	cling						bám vào, dính vào (v1)
+	clung						bám vào, dính vào (v2, v3)
+	come						đến (v1, v3)
+	came						đến (v2)
+	cost						có giá là (v1, v2, v3)
+	creep						bò, trườn, lẻn (v1)
+	crept						bò, trườn, lẻn (v2, v3)
+	crossbreed					cho lai giống (v1)
+	crossbred					cho lai giống (v2, v3)
+	crow						gáy (v1)
+	crew						gáy (v2)
+	crowed						gáy (v3)
+	cut							cắt (v1, v2, v3)
+	deal						giao thiệp (v1)
+	dealt						giao thiệp (v2, v3)
+	dig							đào (v1)
+	dug							đào (v2, v3)
+	do							làm (v1)
+	did							làm (v2)
+	done						làm (v3)
+	draw						vẽ, kéo (v1)
+	drew						vẽ, kéo (v2)
+	drawn						vẽ, kéo (v3)
+	drink						uống (v1)
+	drank						uống (v2)
+	drunk						uống (v3)
+	drive						lái xe (v3)
+	drove						lái xe (v3)
+	driven						lái xe (v3)
+	dwell						trú ngụ, ở (v3)
+	dwelt						trú ngụ, ở (v3)
+	eat							ăn (v1)
+	ate							ăn (v2)
+	eaten						ăn (v3)
+	fall						ngã, rơi (v1)
+	fell						ngã, rơi (v2)
+	fallen						ngã, rơi (v3)
+	feed						cho ăn, ăn, nuôi (v1)
+	fed							cho ăn, ăn, nuôi (v2, v3)
+	feel						cảm thấy (v1)
+	felt						cảm thấy (v2, v3)
+	fight						chiến đấu (v1)
+	fought						chiến đấu (v2, v3)
+	find						tìm thấy (v1)
+	found						tìm thấy (v2, v3)
+	flee						chạy trốn (v1)
+	fled						chạy trốn (v2, v3)
+	fling						tung, quăng (v1)
+	flung						tung, quăng (v2, v3)
+	fly							bay (v1)
+	flew						bay (v2)
+	flown						bay (v3)
+	forbear						nhịn (v1)
+	forbore						nhịn (v2)
+	forborne					nhịn (v3)
+	forbid						cấm, cấm đoán (v1)
+	forbad						cấm, cấm đoán (v2)
+	forbidden					cấm, cấm đoán (v3)
+	forego						bỏ, kiêng (v1)
+	forewent					bỏ, kiêng (v2)
+	foregone					bỏ, kiêng (v3)
+	foresee						thấy trước (v1)
+	foresaw						thấy trước (v2)
+	forseen						thấy trước (v3)
+	foretell					đoán trước (v1)
+	foretold					đoán trước (v2, v3)
+	forget						quên (v1)
+	forgot						quên (v2)
+	forgotten					quên (v3)
+	forgive						tha thứ (v1)
+	forgave						tha thứ (v2)
+	forgiven					tha thứ (v3)
+	forsake						ruồng bỏ (v1)
+	forsook						ruồng bỏ (v2)
+	forsaken					ruồng bỏ (v3)
+	freeze						(làm) đông lại (v1)
+	froze						(làm) đông lại (v2)
+	frozen						(làm) đông lại (v3)
+	frostbite					bỏng lạnh (v1)
+	frostbit					bỏng lạnh (v2)
+	frostbitten					bỏng lạnh (v3)
+	gotten						nhận được (v3)
+	give						cho (v1)
+	gave						cho (v2)
+	given						cho (v3)
+	grind						nghiền, xay (v1)
+	ground						nghiền, xay (v2, v3)
+	grow						mọc, trồng (v1)
+	grew						mọc, trồng (v2)
+	grown						mọc, trồng (v3)
+	hang						móc lên, treo lên (v1)
+	hung						móc lên, treo lên (v2, v3)
+	have						có (v1)
+	had							có (v2, v3)
+	hear						nghe (v1)
+	heard						nghe (v2, v3)
+	hide						giấu, trốn, nấp (v1)
+	hid							giấu, trốn, nấp (v2)
+	hidden						giấu, trốn, nấp (v3)
+	hit							đụng (v1, v2, v3)
+	hurt						làm đau (v1, v2, v3)
+	inbreed						lai giống cận huyết (v1)
+	inbred						lai giống cận huyết (v2, v3)
+	inlay						cẩn, khảm (v1)
+	inlaid						cẩn, khảm (v2, v3)
+	input						đưa vào (v1, v2, v3)
+	inset						dát, ghép (v1, v2, v3)
+	interbreed					giao phối, lai giống (v1)
+	interbred					giao phối, lai giống (v2, v3)
+	interwind					cuộn vào, quấn vào (v1)
+	interwound					cuộn vào, quấn vào (v2, v3)
+	keep						giữ (v1)
+	kept						giữ (v2, v3)
+	know						biết (v1)
+	knew						biết (V2)
+	known						biết (v3)
+	lay							đặt để (v1)
+	laid						đặt để (v2, v3)
+	lead						lãnh đạo (v3)
+	led							lãnh đạo (v3)
+	leap						nhảy qua (v1)
+	leapt						nhảy qua (v2, v3)
+	leave						rời đi (v1)
+	left						rời đi (v2, v3)
+	lend						cho mượn (v1)
+	lent						cho mượn (v2, v3)
+	let							cho phép, để cho (v1, v2, v3)
+	lie							nằm (v1)
+	lay							nằm (v2)
+	lain						nằm (v3)
+	lose						làm mất (v1)
+	lost						làm mất (v2, v3)
+	make						chế tạo, sản xuất (v1)
+	made						chế tạo, sản xuất (v2, v3)
+	mean						có nghĩa là (v1)
+	meant						có nghĩa là (v2, v3)
+	meet						gặp mặt (v1)
+	met							gặp mặt (v2, v3)
+	misdo						phạm lỗi (v1)
+	misdid						phạm lỗi (v2)
+	misdone						phạm lỗi (v3)
+	mishear						nghe nhầm (v1)
+	misheard					nghe nhầm (v2, v3)
+	mislay						để lạc mất (v1)
+	mislaid						để lạc mất (v2, v3)
+	misread						đọc sai (v1, v2, v3)
+So sánh bất quy tắc:
+	good/well			bestter			the best					tốt
+	bad					worse			the worst					tệ
+Từ chỉ số lượng: 
+	Quantity						Số lượng
+	much + N(không dếm được)		nhiều
+	many + N(đếm được)				nhiều
+	several			sép prồ			1 số
+	some							1 ít
+	a lot of + N					rất nhiều (Đếm được và không đếm được)
+	lots of + N						rất nhiều (Đếm được và không đếm được)
+	too much						quá nhiều (không đếm được)
+	little			lít lồ			chút ít (chỉ số lượng đếm được)
+	a little						1 chút
+	few								vài (đếm được)
+	a few			phiu			1 vài
+So sánh:
+	So sánh bằng:
+		S + V + as + adj/adv + as + N/pronoun
+		S + V + not + so/as + adj/adv + N/pronoun
+	So sánh hơn:
+		S + V + adj/adv + er + than + N/pronoun
+		S + V + more + adj/adv + than + N/pronoun
+	So sánh nhất:
+		S + V + the + adj/adv + est + N/pronoun
+		S + V + the most + adj/adv + N/pronoun
+Từ vựng:
+	totally							hoàn toàn
+	quite			khoay			tương đối, khá, yên tĩnh
+	agree			ờ ruy			đồng ý
+	broaden			próa đần		mở rộng (mở rộng về chất lượng)
+	extend			ịc sten			mở rộng (mở rộng về số lượng)
+	ambition				tham vọng
+	ahead		ơ hét		phía trước
+	slow down			đi chậm lại
+	straight	stróec		thẳng
+	shorter		sô đờ		ngắn hơn
+	light		lait		nhẹ, ánh sáng
+	weight		guây tr		trọng lượng
+	thirsty		thớ tri		khát
+	tired		thai ợt		mệt
+	matter		má đờ		vấn đề
+	would like	guốt lai kh	muốn
+	favorite	fé vô rịt	yêu thích
+	bottle		pó lồ		chai
+	a bottle of cooking oil		một chai dầu ăn
+	packet		pac kịt		gói		
+	chocolates	chóc lịt	sô cô la
+	else		eos..
+	dozen		đớ dần		tá (12 cái)
+	kilo				ký
+
+	jog		gióc		đi bộ
+	skip				nhảy dây
+	fishing				câu cá
+	instead		ins tét		thay thế
+	camping		khemping	cắm trại
+	sailing		seoling		đi thuyền
+	swimming			bơi lội
+	badminton	pát mi nìn	cầu lông
+	soccer		sóc cờ		bóng đá
+	football	phút po		bóng đá
+	skateboarding	skét pó đing	trượt ván
+	roller-skating	rô lơ ske đing	trượt patin
+	baseball	pây s po	bóng chầy
+	volleyball	vó lay po	bóng chuyền
+	vacation	vây khấy tion	kỳ nghỉ
+	citadel		ci tơ đeo	thành lũy
+	uncle		ân khồ		chú
+	bring		puyng		mang đến
+	camera		khé mơ rờ	máy ảnh
+	aunt		an		dì
+	then		đen		sau đó
+	finally		fái nô ly	cuối cùng
+	grandmorther			bà
+	grandfather			ông
+	visit		ví zịt		thăm
+	stay		stay		ở lại
+	watch		wat ch		xem
+	match		mat ch		trận đấu
+	pagoda		pơ gau đa	chùa
+	million		mí li ần	triệu
+	population	po píu lấy tion	dân số
+	capital		kháp pi thồ	thủ đô
+	point		poi		phẩy
+	thick		thíc		dày
+	high		hai		cao
+	structure	strấc sơ	cấu trúc
+	wall		goao ồ		tường
+	lots of				nhiều
+	rain		roen		mưa
+	forest		for roẹt s	rừng
+	great		g roết		tuyệt
+	desert		đớ zợt		sa mạc
+	beaches		bí chậts 	bãi biển
+	china		chái nà		Trung Quốc
+	flow		phờ lâu 	chảy
+	into 					vào trong
+	north		noir		bắc
+	writer					nhà văn
+	sea		si		biển
+	field		phiêus		cánh đồng, lĩnh vực
+	produces	rồ điu sịts	sản xuất
+	also		ó sô		cũng
+	plow		p lao		cày
+	pull		pô		kéo về
+	grow		g râu		phát triển
+	burn		pơn		đốt
+	destroy		đits troi	phá hủy
+	there		đi ss		những cái này
+	thore		đô ss		những cái kia
+	environment			môi trường
+	wild		wai ò		hoang dã
+	wasting		wi sting	lãng phí
+	polluting	po lú đing	ô nhiễm
+	damage		đém mits	phá hủy
+	to save		sep 		tiết kiệm
+	recycle		rùy sái cồ	tái chế
+	empty		ém try		trống
+	them		đâm		họ
+	scrap		skoap		sắt vụn
+	metal		mé đồ		kim loại
+	plastic		phờ last tịc	nhựa
+
+	nervous		nớ vơts		lo lắng	
+	seat		sít		ghế
+	comfortable	khom trớ bồ	thoải mái
+	lovely				đáng yêu
+	bright		p roai		sáng chói
+	rest		roét st		nghỉ ngơi
+	of course	 khốts		tất nhiên rồi
+	pathroom	pát rum		phòng tắm
+	sink		sing kh		bồn rửa
+	tub		trhơ		bồn tắm
+	shower		sáo guơ		vòi sen
+	modern		mó đờ		hiện đại
+	amazing		ờ mấy zìng	tuyệt vời
+	dryer		troái ờ		máy sấy khô
+	refrigerator	ruỳ phí trơ lấy đờ	tủ lạnh
+	dishwasher	dis was sher	máy rửa chén
+	washing machine	was sing mờ sin	máy giặt
+	stove		s tô		bếp lò
+	electric stove	ơ lec tric stô	bếp biện
+	convenient	khần ví ni ần	tiện nghi
+	raises		rúy zật		tăng lên
+	cattle		khá lồ		gia súc
+	busy		bí zỳ		bận rộn
+	hard		hoot		siêng năng, khó
+	till		trhêu		cho đến khi
+	younger sister	giong gơ	em gái
+	really		rúy lỳ		thật sự
+	expensive	ex pén sịp	đắt
+	one				cái
+	furnished	phơ nịts	được trang bị
+	suitable	su đớ bồ	thích hợp
+	cheapest	chi pẹts	rẻ nhất
+	large		lo tr		lớn
+	largest		ló giịt		lớn nhất		
+
+	quarter		khố đờ		1 phần tư
+	a quarter to two		2h kém 15
+	classmate	kh lass mịch	bạn cùng lớp
+	monthday	mân đêy		thứ 2
+	tuesday		trútsđêy	thứ 3
+	wednesday	goensday	thứ 4
+	thursday	thớt đêy	thứ 5
+	friday		fai đey		thứ 6
+	saturday	sa đu đêy	thứ 7
+	sunday		sân đêy		chủ nhật
+	other		ó đờ		khác
+	subject		sấp dệch	môn học
+	geography	j ó rơ phy	địa lý
+	math		mapphờ		toán
+	physical	phi si khồ	vật lý
+	science		sái ần		khoa học
+	chemistry	khe mis truy	hóa học
+	history		his trùy	lịch sử
+		in troẹt	 sở thích (niềm đam mê)
+	ing	in troẹt ting	 hấp dẫn
+	ed	in troẹt tịt	thú vị
+	ed in			quan tâm đến
+	important	ìm pót đần	quan trọng
+	library		lái bơ ry	thư viện
+	racks		roács		giá đỡ
+	magazine	má gơ zin	tạp chí
+	shelves		sheos		những cái kệ
+	dictionaries	đíc tion ne ruys	từ điển
+	literature	lit đơ trờ	văn học
+	reader		ruy đờ		người đọc
+	novel		no vồ 		cuốn tiểu thuyết
+	reference book	roét s phần	sách tham khảo
+	door		đo r		cửa
+	you are	welcome			không có gì
+	label		lây bồ		nhãn
+	exercise	éc sơ sai	bài tập
+	week		guy k		tuần
+	learn		lơns		học
+	learner		lơn nơ		người học
+	computer	khăm píu đờ	máy tính
+	different	diff phoần	khác biệt
+	lesson		lé sần		bài học
+	experiment	ex pé ri mần	thí nghiệm
+	bell		peo		chuông
+	recess		ruy zợt		giờ ra chơi
+	excited		ex sái địt	hào hứng
+	catch		khét ch		đuổi bắt
+
+	blindman bluff	p lái mần bluff	bịt mắt bắt dê
+	marbles		má bồ		viên bi
+	rope		rốp		dây
+	skipping role			nhảy dây
+	popular		po píu lơ	phổ biến
+	talk		thóc		nói chuyện
+	relax		rùy lács	thư dãn
+	pleasure 	plái sơ		vinh hạnh
+	wedding		góe đing	lễ cưới
+	thank anyway			dù sao thì cũng cám ơn
+	half		háph		1 nửa
+	should		sớt t		nên
+	cafeteria	khá phơ tơ ri a quán cà phê
+	invite		ìn vai		mời
+	guita		ghi đờ		ghi ta
+	practives	poắc tịc sịt	thực hành
+	together	trơ ghé đờ	cùng nhau
+	why dont you come along		tại sao bạn không đi cùng
+	maybe				có lẽ
+	may				có thể, tháng năm
+	enjoy		ìn joi		thích thú, thưởng thức
+	circus		séo kịt		rạp xiếc
+	rehearse	roe hớt s	luyện tập
+	moment		mấu mần		chốc lát
+	assignment	ờ sái mần	sự phân công
+	early		ớ ly		sớm
+	hour		áo ơ		giờ
+	each		ích		mỗi
+	during		đớ ring		trong lúc
+	please				vui lòng
+	pleased		plis		vừa lòng
+	homeless	hơm lịts	vô gia cư
+	mechanic	mờ khe nịc	thợ cơ khí
+	repairs		rùy pe		sửa chữa
+	machines	mờ sin		máy móc
+	factory		phác truy	nhà máy
+	prefer		pơ phơ		thích hơn
+	shift		síp		ca làm
+	fewer		phí guơ		ít hơn
+	however		how é vờ	tuy nhiên
+	golf		góp		gôn
+	public holiday			các ngày nghỉ lễ chung
+	wish		guýt		ước
+	wishes		guýt sịt	mong muốn
+	best wishes			những lời chúc tốt nhất
+	excuse		ex ciu s	thứ lỗi
+	souvenir	su vân nia	quà lưu niệm
+	opposite	óp pơ zệt	đối diện		
+	could		khớt		có thể
+	stamp		stem		con tem
+	overseas	ố vờ siz	hải ngoại
+	pen pal		pen pao		bạn qua thư
+	how nice!			thật tuyệt vời
+	themselves	đâm seo		chúng ta
+	coach		khâu ch		xe chạy đường dài
+	guess		getss		đoán
+	have a guess			hãy đoán xem
+	thirty		tớ đi		30
+	send		sen		gửi
+	envelopes	én vơ lớp	bao thư
+	altogether	ố trơ gé đờ	toàn bộ
+	that is 11 dong altogether then	vậy tất cả là 11 đồng
+	change		chen		thay đổi
+	owner		ố nờ		người sở hữu
+	mall		mo		trung tâm mua sắm
+	bussine		pí nịts		việc kinh doanh
+	boat		pốt		thuyền
+			
+	the same as			giống như
+
+	fistful		phíts pho	1 lượng bằng nắm tay
+
+	post office	pốt tóp fịts	bưu điện
+	each other			lẫn nhau
+	regularly	róe gu lơ ly	thườn xuyên
+	card		khót		thẻ
+	aquarium	ờ khóe ri um	bể nuôi cá
+	were		guơ r		
+	place		p lâys		địa điểm
+	took		thốc		lấy đi
+	buy		bai		mua
+	gift		gip		quà
+	bought		bot th		mua(v2)
+	wasn't		was dần		không là
+	had		hatđ		có(v2)
+	sharks		soắc k		cá mập
+	away		ờ way		cách xa
+	wonderful	wuôn đờ pho	tuyệt vời
+	fun		phân		vui vẻ
+	did		đít		làm(v2)
+	didn't		đít đần		không làm
+	people		pí pồ		người
+	was		goat s		là
+	delicious	trơ lí sịt	thơm ngon
+	most		mốt s		hầu hết(liên quan đến số lượng)
+	almost		o mốt s		hầu hết(liên quan đến việc đạt đến mục tiêu, 1 trạng thái củ thể)
+	weren't		guớt		không là
+	cheap		chíp		rẻ
+	trip		truýp		chuyến đi
+	parent		pé rần		cha mẹ
+	dolphin		đó phin		cá heo
+	turtle		trớ lột		rùa
+	thought		thót		nghĩ(v2)
+	colorful	khó lơ fô	đầy màu sắc
+	cap		kháp		mũ lưỡi trai
+	picture		píc sờ		hình ảnh
+	poster		pốt trơ		áp phích
+	put		pất		đặt 
+	their		đe r		của họ
+	stall		sto		quầy hàng
+	ate		ít t		ăn(v2)
+	crab		kh rap		cua
+	remember	rờ mém bờ	nhớ
+	beautiful	píu đơ pho	xinh đẹp
+	return		rùy trơn	trở lại
+	arrive		ờ roai		đến
+	cut		khớt		cắt
+	dress		troét s		váy
+	neighbor	nấy bờ		hàng xóm
+	mrs		miss sịt	bà
+	mr		miss trơ	ông
+	material	mờ trơ ri ồ	vật liệu
+	made		mây đ		làm ra
+	clever		khờ lái vờ	lanh lợi, thông minh
+	dressmaker	troét mây khờ	thợ may
+
+	tooth		tru ph		răng
+	toothache 	trút phệc	bệnh đau răng
+	dentist		đén chịt	nha sĩ
+	appointment	ờ poi mần	cuộc hẹn
+	scared		sce rt		sợ hãi
+	hate		hêt t		ghét
+	sound		sao on		âm thanh
+	drill		truêu		máy khoan
+	loud		lao đ		ồn ào
+	worry		guơ ry		lo lắng
+	filled		pheo ồ		lấp đầy
+	cavity		kha vi đi	lỗ hổng
+	kind		khai		tốt bụng, loại
+	hurt		hớt		đau
+	afterwards	áp trơ guợts	sau đó
+	fellt		pheo		cảm thấy (v2)
+	better		pé đờ		tốt hơn
+	fixed		phít 		đã sửa
+	less		lét s		ít hơn
+	luck		lớc kh		may mắn
+	clean		khờ lin		lau dọn
+	uniform		diu ni phom	đồng phục
+	leave		li v		rời khoi
+	explain		ex plen		giải thích
+	afraid		ờ phoết		sợ
+	advice		ịc vai		khuyên bảo
+	remind		rờ mai		nhắc lại
+	sensibly	sen sập ly	một cách hợp lý
+	surgery		sớ truy		ca phẫu thuật
+	serious		sí ri ợt	nghiêm trọng
+	forget		pho gét		quên
+	brush		p ruớts		chải
+	healthy		heo phỳ		khỏe mạnh
+	fit		phết		phù hợp
+	medical		mé đơ khồ	thuộc vê y học
+	temperature	them pớ chờ	nhiệt độ
+	height		hai th		cao
+	will		guyu		sẽ
+	would		guốt 		sẽ (v2)
+	measure		mé zờ		đo
+	like this			như thế này
+	weigh		guê			cân, cân nhắc
+	scales		s keos		thiết bị cân
+	go back				quay lại
+	headache	hét đệch	đau đầu
+	sick		síc		ốm
+	awful		ó phồ		tồi tệ
+	virus		vai rợt		vi rút
+	hope		hốp			mong
+	pork		puốc		thịt lợn
+	neither		ní đờ		cũng không
+	either		í đờ		1 trong 2
+	spinach		spí nịch	rau chân vịt
+	cucumber	khíu com ber s  dưa leo
+	so do i				tôi cũng thế
+	shall		sao		phải
+	papaya		pờ phái ơ	đu đủ
+	ripe		roai		trái chín
+	pineapple	pái na pồ	dứa
+	durian		trú ri ần	sầu riêng
+	smell		smeo		ngửi mùi
+	terrible  	trhé rơ bồ	kinh khủng
+	stomachache	stó mây khệt	đau bụng
+	probably	pó bơ ly	có lẽ
+	carefully	khe pho ly	cẩn thận
+	dirt		trớt		bụi bẩn
+	medicine	mé đơ tion	thuốc
+	know		nâu		biết
+	knew		niu		biết (v2)
+	affect		ờ fác		ảnh hưởng
+	whole		hô			toàn thể
+	example		ex zé pồ	ví dụ
+	stay fit	phết		giữ dáng
+	taste		thết s		hương vị, nếm
+	moderate	mó đơ lịt	vừa phải
+	amount		ờ mao		số lượng
+	energy		é nơ gy		năng lượng
+	balanced	bá lần		cân bằng
+	diet		đai ợt		chế độ ăn
+	fatty 		phá đi		béo
+	sugar		sớ gơ		đường
+	body-building foods		thực phẩm tăng cơ
+	dairy products	trđé ruy	sản phẩm từ sữa
+	plenty		plen try	nhiều
+	cereal		si rúy ồ	ngũ cốc
+	mean		min			nghĩa 
+	meanings	mí ning		ý nghĩa
+	variety		vờ roái ơ đy	đa dạng
+	moderation 	mó đờ roấy tion	điều độ
+	key		khi		chìa khóa
+	lifestyle			cách sống
+	alone		ờ lon		1 mình
+	advantages	ex vé tơ trợt	thuật lợi
+	enough		ờ nao		đủ
+	recent		ruy sần		gần đây
+	survey		sớ vầy		sự khảo sát
+	teenagers	tri nay giợt	thanh thiếu niên
+	surprising	sờ poái zing	ngạc nhiên
+	surprisingly			thật ngạc nhiên
+	result		rùy giớt	kết quả
+	ask			ásk			hỏi
+	asked		át st		yêu cầu		
+	choice		choi s		sự lựa chọn
+	even		ý vần		thậm chí
+	though		đâu		mặc dù
+	paddles		pá lột s	cây vợt
+	spare		s pe rờ 	dự phòng
+	borrow		pó râu		vay mượn
+	all right			được rồi
+	our		ó rờ		của chúng ta
+	adventure	ẹt ven sờ	cuộc phiêu lưu
+	read		ruy		đọc
+	chess		sét ss		cờ vua
+	boring		pố ring		nhạt nhẽo
+	that sounds..			điều đó có vẻ ..
+	cowboy		khao bồi	cao bồi
+	theater		thía đờ		nhà hát
+	new age theater			thời đại mới
+	drama		troá mà		kịch
+	club		khlớc		câu lạc bộ
+	must				phải (cam kết bắt buộc theo cá nhân)	
+	must not			không được
+	have to				phải (cam kết bắt buộc mạnh mẽ theo qui định nào đó)
+	go to				đi đến
+	detective	đì thách tịp	thám tử
+	program		pố goem		chương trình
+	wear		goe rờ		mặc
+	young		giong		trẻ
+	older		âu đờ		lớn hơn
+	make		mếc		làm ra
+	cartoon		khá trun	hoạt hình
+	plenty		p len try	nhiều
+	forecast	pho khạt st	dự báo thời tiết
+	music		míu zịc		nhạc
+	artist		ó địt		nghệ sĩ
+	bands		bens		ban nhạc
+	singer		sing gơ		ca sĩ
+	perform		pơ form		trình diễn
+	contest		khon trẹts	cuộc thi
+	contestant	khon trét trần	thí sinh
+	form					hình thức
+	broad		p roát		rộng lớn
+	audience	ó đi en		khán giả
+	knowledge	nó lịts		kiến thức
+	folks		phốc s		mọi người
+	so on				vân vân
+	viewer		viêu guơ	người xem
+	join		gion		tham gia
+	through		ph ru		thông qua
+	import		im pốt		nhập vào, nhập khẩu
+	foreign		pho roèn	nước ngoài
+	series		si rùy s	1 chuỗi
+	such		sớt ch		như là
+	such as		sơ chẹts	chẳng hạn như
+	stations	stấy sần s	trạm
+	station				ga tầu
+	cheaply		chíp ly		rẻ tiền
+	amusement	ờ míu z mân	vui chơi giải trí
+	center		sen trờ		trung tâm
+	spend		spen		tiêu xài
+	addictive	ờ đíc tịp	gây nghiện
+	arcade		ó khề		giải trí
+	arcades					quán nét
+	only					duy nhất
+	inventors	ìn vén trơ	nhà phát minh
+	dizzy		đí dỳ		chóng mặt
+	own		oon		sở hữu
+	part		pát		phần
+	social		sấu sồ		xã hội
+	they should be with people of their own age		họ nên ở bên những người cùng tuổi với họ
+	village		ví lịt		làng
+	traffic		troa phịc	giao thông
+	noise		nôi ss		ồn nào
+	crossing	khó sing	băng qua
+	direction	trơ réc sần	phương hướng
+	postcard	pốt khọt	bưu thiếp
+	exciting	ex sái đing	thú vị
+	region		rúy giần	vùng đất
+	vientiane	viên tri on	viêng chăm
+	album		áo bum
+	south		sao		phía nam
+	east		ii st		phía đông
+	attractions	ạc troác sần	điểm tham quan
+	ancient		én sần		cổ đại
+	monument	mó niu mần	di tích
+	range 		roen		phạm vi
+	huge 		hiu s		to lớn
+	tradition	trơ đis sần	truyền thống
+	culture		khâu trợt s	nền văn hóa
+	dances		đen sịt		điệu nhảy
+	shadow		sa đâu		bóng tối
+	puppet		pơ pịt		con rối
+	resort		ruỳ giốt	khu nghỉ mát
+	dive		trai		lặn
+	admire		ẹt mái ờ	nhìn một cách thích thú
+	coral		khố rột		san hô
+	sail		seo		chèo
+	outdoor				ngoài trời
+	quiz		khuýts		câu đố
+	problem		pó blầm		vấn đề
+	famous		phé mợts	nổi tiếng
+	general		gie nớ rồ	đại tướng
+	commander-in-chief	khâm mé đơ rần chi ph		tổng tư lệnh
+	commander	khâm mớ đờ	chỉ huy
+	forces		pho sợt		lực lượng
+	defeat	đờ phí địt	đánh bại
+	french		phoen ch	Pháp
+	born 		pôn		sinh ra
+	army		ắ my		quân đội
+	win		guyn		chiến thắng
+	won		guơn		chiến thắng (v2)
+	received	ruỳ si		đã nhận
+	next-door neighbor		nhà hàng xóm
+	lovely smile			nụ cười đáng yêu
+	seem		sim		có vẻ
+	i am lucky enough		tôi thật may mắn
+	character	khe rịt trơ	tính cách
+	sociable	sâu sơ bồ	hòa đồng
+	extremely	ex truym ly	vô cùng
+	generous	gie nơ rệt	hào phóng
+	volunteer	vó lân tria ờ	tình nguyện viên
+	orphanage	ố phơ nệt 	cô nhi viện
+	hard-working			làm việc chăm chỉ	
+	get good grades			đạt điểm cao
+	grades		khuết s		điểm
+	unlike		ân lai		không giống
+	reserved	re zớt		kín đáo
+	both 		pô ph		cả 2
+	peace		pi s		yên bình
+	peaceful	pis phồ		yên ổn
+	outgoing			hướng ngoại
+	joke		giốc kh		nói đùa
+	jokes				chuyện cười
+	telling jokes			kể chuyện cười
+	sense		sen s		giác quan
+	humor		híu mờ		hài hước
+	sense of humor			khiếu hài hước
+	annoy		ờ nôi		làm phiền
+	although	áu đồ		mặc dù
+	close friends			những người bạn thân thiết
+	-----------------
+	dream		truym		mơ
+	wait		guết t		đợi
+	downstairs	đao stơ		tầng dưới
+	bit		pit		1 chút
+	far		pha		xa
+	cousin		khớ zần		anh em họ
+	time		thai		thời gian
+	january		zé ni goe ri	tháng một
+	february	phé bua goe ry	tháng hai
+	march		mác ch		tháng ba
+	april		ấy prồ		tháng tư
+	june		giun		tháng sáu
+	july		giồ lai		tháng bảy
+	august		ó gệt		tháng tám
+	september	sẹp them bờ	tháng chín
+	october		ọc thâu bờ	tháng mười
+	november	nô vém bờ	tháng mười một
+	december	đì xém bờ	tháng mười hai
+	scotsman	scót mần	người scotland
+	later		lây đờ		sau đó
+	emigrated	ém mơ khuấy địt	di cư
+	deaf-mutes	đép miu		người câm điếc
+	university	u ni vớ sơ đy	trường đại học	
+	all over			khắp nơi
+	demonstrated	đé mân struây địt	chứng minh
+	invention	ìn ven sần		phát minh
+	countless	khao lịt s		vô số
+	exhibition		éc sơ bấy sần		triển lãm
+	commercial	khơ mớ sồ		thương mại
+	arrangements	ờ ruấy mần		sắp xếp
+	cupboard	khấp bơ			cái tủ
+	ought		ót			nên
+	steamer		stri mờ			nồi hấp
+	under		ân đờ			dưới		
+	saucepan	sótspen			cái chảo
+	frying pan	phai ing pen		cái quạt
+	cooker 		khúc kơ			nồi cơm điện
+	beside		bờ sai			bên cạnh
+	community	khơ míu nơ try		cộng đồng	
+	safety		sép ty			sự an toàn
+	precautions	pờ khó sần		các biện pháp phòng ngừa
+	kitchen		khít trần		nhà bếp
+	chemical	khe mơ khồ		hóa chất
+	soft		sóp			mềm
+	candy		khen đy			kẹo
+	sure		sua			chắc chắn
+	matches		má chịts		diêm
+	fire		phai ơ			lửa
+	injures		in giợts		làm bị thương
+	someone					ai đó
+	cause		khót s			gây ra
+	one match to cause a fire		1 que diêm có thể gây ra cháy
+	cover		kho vờ			che phủ
+	electrical	ờ léc trơ khồ		điện
+	electricity	ờ léc tríc sơ đy	điện
+	socket		só kịt			ổ cắm
+	object		óp giếc			sự vật
+	reach		ruy ch			với tới
+	scissor		sơ zợt			cái kéo
+	knive		nai s			con dao
+	used to					đã từng
+	look after				chăm sóc
+	meal		mi ồ			bữa ăn
+	clothers	khờ lâu đợt s		quần áo
+	equipment	ì khóep mần		thiết bị
+	lit		lit			thắp sáng
+	lamp		lem			đèn
+	story		stô ry			câu chuyện
+	tale		theo			câu chuyện (mang tính mơ hồ, truyền miệng)
+	folktale	phốc theo		truyện dân gian
+	once		goăn			một lần
+	poor		pô r			nghèo
+	farmer		phá mơ			nông dân
+	moral		mố rồ			có đạo đức
+	daughter	tró đờ			cháu gái
+	wife		goai phờ		vợ
+	die		đai			chết
+	marry		mé ry			kết hôn
+	unfortunately	ân pho chơ nẹt ly	không may
+	cruel		khu ồ			tàn nhẫn
+	chores		cho rịt s		công việc nhà(công việc củ thể và nhỏ)
+	housework				công việc nhà(gồm các công việc lớn hơn và toàn diện hơn)
+	upset		ấp set			buồn bã
+	broken		prô khần		tan vỡ
+	heart		ho th			trái tim
+	hold		hô				tổ chức, tiến hành, hoặc cầm giữ
+	held		heo				tổ chức, tiến hành, hoặc cầm giữ (v2)
+	harvest		hó vịt			thu hoạch, mùa gặt
+	fairy		phé ry			bà tiên
+	appear		ờ pia rợt		đã xuất hiện
+	magically	ma díc khơ ly		điều kỳ diệu
+
+	prince		pin s			hoàng tử, vua
+	immediately	ờ mí đi ợt ly		ngay lập tức
+	choose		trus			chọn	
+	rags		roác			giẻ rách
+	dropped		choáp			đánh rơi
+	shoes		shu s			đôi giày
+	find		phai đ			tìm thấy
+	found		phao on			tìm thấy (v2)
+	decided		đì sái địt		quyết định
+	fell in love with her	pheo in lớp with hơ		đã yêu cô ấy
+	excellent	éc sơ lần		xuất sắc
+	proud		prao			tự hào
+	semester	sơ mét trờ		học kỳ
+	spanish		spe nịch		tây ban nha
+	pronunciation	pơ non si ấy sần	cách phát âm
+	improve		im pru			cải thiện
+	plentiful 	p len trờ phồ		dồi dào
+	word		guớt			từ
+	ways		guês			cách
+	tongue		thơn			lưỡi
+	sentence	sen trần		câu văn
+	order		ó đờ			tức thì
+	piece		pi s			miếng
+	stick		stíc			dán
+	so as to				để
+	across		ạc khrót		sang
+	they come across			họ bắt gặp
+	do so in				làm như vậy
+	revision	rờ ví sần		ôn tập
+	revise		rờ vai			ôn lại
+	necessary	nớ sơ se ry		cần thiết
+	may i help you?				tôi có thể giúp gì cho bạn?
+	enroll		ìn rô			tham gia
+	enrolling	in rô ling		ghi danh
+	fill it out				điền nó vào
+	application form			mẫu đăng ký
+	hobby		hó pi			sở thích (về hoạt động vui chơi)
+	server		sơ vờ			máy chủ
+	draw		cho			vẽ
+	acting		ác ting			diễn xuất
+	scouts		s kao s			hướng đạo
+	youth		diu ph			thiếu niên
+	encourages	ìn kho trật		khuyến khích
+	citizenship	sơ đơ zần shịp		quyền công dân
+	personal	pớ sân nồ		riêng tư
+	fitness		phít nịts		sự thích hợp
+	scouting	s kao ting		hướng đạo
+	businessman	pí nịts men		doanh nhân
+	lost		lót st			mất (v2)
+	got lost				bị lạc
+	led		lét			dẫn đến
+	association	ơ sấu si ấy sần		hiệp hội
+	mainly		men lỳ			chủ yếu
+	similar		sí mơ lơ		tương tự
+	guide		gai t			hướng dẫn
+	coeducational	khâu ơ đu khấy sần nồ	đồng giáo dục
+	worldwide	guớt goai		trên toàn thế giới
+	voluntary	vó lân tre ry		tình nguyện
+	nation		nấy sần			quốc gia
+	differs		đíp phơ s		khác biệt
+	slightly	s lai ly		nhẹ nhàng
+	differs slightly			hơi khác 1 chút
+	aims		ems			mục đích
+	establish	ơ sta b lịt		thành lập
+	are the same for			giống nhau ở
+	century		sen truy		thế kỷ
+	-------------------------------------------------
+	round					xung quanh(mô tả sự vật)
+	around 		ờ roao			xung quanh(mô tả hành động)
+	area		é ri ờ			khu vực
+	corner		khôr nờ			góc
+	just		trớt s			chỉ
+	what is food like			thức ăn như thế nào
+	one just				1 cái thôi
+	serves		sớ vịt			phục vụ
+	pancakes	pen kệts		bánh xèo
+	advertisement	át vơ thai mần		quảng cáo
+	conversation	khon vơ sấy sần		cuộc hội thoại
+	blank		p léc k			khoảng trắng
+	present		pớ zần			hiện tại
+	roof		ru ph			mái nhà
+	especially	ợts péc sơ ly		đặc biệt
+	humid		híu mìn			ẩm ướt
+	comfort		khom phợt		sự thoải mái
+	won't		guôn th			sẽ không
+	notice		nấu đệts		để ý
+	goods		gớt s			các mặt hàng
+	offer		ó phờ			đề nghị
+	wider		goai đờ			rộng hơn
+	selection	sơ léc sần		lựa chọn
+	price		proai			giá
+	residents	róe zơ đần		cư dân
+	store		stua			cửa hàng
+	concerned	khơn sơ			lo âu
+	discuss		địt cơts		bàn luận
+	situation	si trơ guớy sần		tình huống
+	relatives	róeo lơ tịp		họ hàng
+	heard		hớt th			đã nghe
+	permanently	pớ mơ nần ly		vĩnh viễn
+	remote		rơ mốt			xa xôi
+	that too				cái đó nữa
+	entertainment	inter thấy mần		sự giải trí
+	facilities	phờ sớ lơ đi		cơ sở
+	easily		ý zô ly			1 cách dễ dàng
+	simple		sim pồ			đơn giản
+	rural		ru rồ			nông thôn
+	struggle	s trớ gồ		đấu tranh
+	natural		ná trồ			tự nhiên
+	nature		nấy trờ			thiên nhiên
+	typhoons	thai phun		cơn bão
+	flood		ph lớt			lũ lụt
+	droughts	troao s			hạn hán
+	following				tiếp theo
+	increase	ìn puy			tăng
+	overcrowding	ố vờ crao đing		đông
+	strain		stroen			căng thăng
+	supply		sập lai			cung cấp
+	another		ờ nó đờ			khác
+	unpleasant	ân plái zần		khó chịu
+	tragedy		tróa zơ đi		bi kịch
+	apart		ờ pót			riêng biệt
+	while		goai ồ			trong khi
+	urban		ơ bần			đô thị
+	government	gau vơ mần		chính phủ
+	provide		pro vai			cung cấp
+	migrant		mai guệt		người di cư
+	emergency				trường hợp khẩn cấp
+	ambulance				xe cứu thương
+	hurt					đau
+	calm down				bình tĩnh lại
+	fell					rơi
+	conscious				có ý thức
+	bleeding				chảy máu
+						xấu
+	towel					khăn tắm
+	handkerchief				khăn tay
+	wound					Vết thương
+	pressure				sức ép
+	tight					Chặt chẽ
+	hurry					vội
+	lane					làn đường
+	ambulance				xe cứu thương
+	promise					lời hứa
+	patient					bệnh nhân
+	lying					nói dối
+	flat					bằng phẳng
+	elevate					nâng lên
+	lower					thấp hơn
+	below		pờ lâu		bên dưới
+	victim					nạn nhân
+	blankets				chăn mền
+	overheat				quá nóng
+	coast					bờ biển
+	drugs					ma túy
+	alcohol					rượu
+	burns					đốt
+	minimize		mi nơ mai	giảm thiểu
+	tissue damge				tổn thương mô
+	affected				bị ảnh hưởng
+	running cold tap			chạy vòi lạnh
+	possiable		pó sơ bồ	khả thi
+	ease					xoa dịu
+	pain			pen		nỗi đau
+	ice			ai s		đá
+	packs			pák s		gói
+	dressing		troét sing	băng vết thương
+	sterile			ste rồ		khử trùng
+	can you tell the class			bạn có thể kể cho cả lớp nghe không>
+	so is that what you mean by recycle	vậy đó có phải ý bạn khi nói tái chế
+	grabage			gróa bịt	rác thải
+	deposit			đì po zịt	tiền đặt cọc
+	broken up		pro kần ấp	đập bể
+	certainly		sớt ần ly	chắc chắn
+	reduce			rùy đu s	giảm bớt
+	packaged		pá kịt		đóng gói
+	shirts			sớt s		áo sơ mi	
+	socks			sóc k		tất		
+	paper			pây pờ		giấy
+	packaging		pá kịt zing	bao bì
+	reuse			ruy du		tái sử dụng
+	cloth			kh lót		vải
+	organization		ó gân nơ zây sần	tổ chức
+	earth			ớt		trái đất
+	compost			khăm pột	phân trộn
+	grain			groen		ngũ cốc	
+	heap			híp		đống
+	tires			thai rợt	lốp xe
+	thrown			ph rông		ném	
+	pipes			pay s		đường ống
+	coverings		kớp pruynh	lớp phủ
+	floor			ph lua		sàn nhà
+	floor  coverings			thảm trải nhà
+	sandals			xén đồ		dép xăng đan
+	billions		pí li ần	hàng tỷ
+	law			lo		pháp luật
+	milkman					người giao sữa
+	cleaned			kh lin		làm sạch
+	refill			rùy pheo	nạp lại
+	reuse			rùy diu		tái sử dụng
+	there			đe		ở đó
+	melted			meo tri		tan chảy
+	glassware		glas goe	đồ thủy tinh
+	dung			đon		phân
+	fertilizer		phơ đơ lai zơ	phân bón
+	fertilizng		phớ đơ lai zing	bón phân
+	household		hao s hồ	hộ gia đình
+	garden			gá đần		vườn
+	wonderful		guơn đề pho	tuyệt vời
+	bag			pák		túi
+	would you mind sitting			bạn có phiền khi ngồi không
+	mind			mai 		tâm trí
+	ride			roai		lái
+	crop			khóp		mùa vụ
+	canes			khin		gậy
+	seaside			si sai		bờ biển	
+	sights			sai s		điểm tham quan
+	surprise		sơ poai		sự kinh ngạc	
+	tour			thua r		chuyến du lịch
+	accommodation		ờ khớ mo đấy sần	chỗ ở
+	businsess meeting				cuộc họp doanh nhân
+	pick you up					đón bạn
+	snowvy			s nâu i			có tuyết rơi
+				slao đy			nhiều mây						
+	cool			khô			mát mẻ
+	fine			phain			khỏe
+	rainy			roen ny			nhiều mưa
+	sunny			sân ny			nhiều nắng
+	wet			goét			ướt
+	windy			win đy			có gió
+	warm			guôm			ấm
+	degrees			đì guy ss		độ
+	etc			ẹc sé đơ la		vân vân
+	minus			mai nợt			dấu trừ
+	cooking			khúc king		nấu nướng
+	rice			roai s			cơm
+	rice-cooking					nấu cơm
+	competition		khom pơ tấy sần		cuộc thi
+	fetching		phết ching		lấy
+	water-fetching					lấy nước
+	fire-making					tạo lửa
+	person			pơ sần			người
+	river bank					bờ song
+	position		pờ zí sần		vị trí
+	yell			gieo			hét lên
+	bored			pô rịt			chán
+	------------
+	question		khoéts trần		câu hỏi		
+	find out						tìm ra
+	what it is						nó là gì
+	correct			kho roét		chính xác
+	clue			kh lua			đầu mối	
+	mistakes		mis tếc			sai lầm
+	tape			thiếp			cuốn băng
+	correct the mistake				sửa sai
+	paragraph		pe rờ ráp		đoạn văn		
+	further			phơ đờ			hơn nữa
+	look no futher					không cần tìm đâu xa
+	southern		sao đờn			phía Nam
+	queensland		khuýn slen		vương quốc queensland
+	inn				in				nhà trọ
+	jungle			giong gồ		rừng
+	crystal-clear	khíts thồ		pha lê	 
+	snorkel			s nó cồ			ống thở
+	amongst			ờ mong			trong số		
+	barrier			pé ri ờ			rào chắn
+	reef			ruy ph			rạng san hô
+	marine			mờ rin			hàng hải
+	herrier			he ri ờ			chim ưng
+	site			sai ta			địa điểm	
+	relaxing		rờ lác sing		thư giãn
+	greece			gruyn			Hy Lạp
+	objector		ọp dách trờ		người phản đối
+	compilation		khom po lấy sần	biên soạn
+	wonders			goan đờ s		kỳ quan
+	wonder			goan đờ 		thắc mắc
+	claim			kh lem			khẳng định
+	greek			g ríp			người Hy Lạp
+	honor			ó nờ			tôn kính
+	buddhist		pú địt			phật tử
+	religion		rùy lí dật		tôn giáo
+	surrounding		sờ roao	đing	xung quanh
+	royal			roi ồ			hoàng gia			
+	rule			ru ồ			quy tắc, luật lệ
+	tourist			thua rịts		du khách
+	attraction		ờ trác sần		sự thu hút
+	printer			prin trờ		máy in
+	anything wrong					có gì sai
+	turn			trơn			quay
+	already			ó roe đi 		đã, rồi
+	properly		pó pơ ly		đúng cách
+	plug			pờ lớc			phích cắm
+	socket			só kịt			ổ cắm
+	manual			mé ni ồ			thủ công
+	helpful			heo phồ			hữu ích
+	guarantee		gé rần tri		bảo đảm
+	without							không có
+	stored			sto				được lưu trữ			
+	access			ác sệts			truy cập
+	requirement		requirement		yêu cầu
+	freshmen		phoets mần		sinh viên năm nhất
+	college			khô lệc			cao đẳng
+	campuses		khem pợts		cơ sở
+	jacks			jắc				giắc cắm
+	study			stớ đi			học
+	restricted		rùy tríc tịc	hạn chế
+	bulletin		pố lơ tin		bản tin
+	discuss			đis	khớt		bàn luận
+	post			pót				bài đăng
+
+	topic			tho pịc			đề tài		
+	degree			đờ guy			bằng cấp
+	skeptical		skep trơ khồ	hoài nghi
+	concerns		khin sơ			mối quan tâm
+	impact			in pạc			sự va chạm
+	cacao			khờ khao		hạt ca cao
+	step			step			bước chân
+	manufacturing	mé ni phác truy	chế tạo
+	process			pó giệts		quá trình
+	behave							ứng xử
+
+	shells			seos			vỏ sò
+	crushed			khrớt st		nghiền nát
+	liquified		lít guơ phai	hóa lỏng
+	mixture			míc strờ		hỗn hợp
+	ground			ground			đất
+	roll			rôn				cuộn
+	pour			phoi			đổ
+	molds			mô				khuôn
+	conveyor		khần ve rờ		băng tải
+	belt			peo				thắt lưng
+	procedure		prồ si trờ		thủ tục
+	pulp			pốp				bột giấy
+	drained			troen t			cạn nước
+	late			lây				lây	muộn
+	microwave		mai khồ guây	lò vi sóng
+	be-doom			pi đum			sự diệt vong
+	toaster			thốt trờ		máy nướng bánh mì
+	vacuum			va ki um		máy hút bụi
+	hairdryer		hét rai ờ		máy sấy tóc
+	dishwasher		dis goa sờ		máy rửa chén
+	loudest			lao đệt s		to nhất
+	boom			pum				bùng nổ
+	pretty			pớ đy 			đẹp
+
+	correspond		khots pon		trao đổi thư tín
+	Lam took her					đưa cô đi		
+	impress			ìm petss		gây ấn tượng
+	beauty			bíu đi			xinh đẹp
+	mausoleum		mó zơ li um		lăng mộ
+	mosque			móc sk			nhà thờ Hồi Giáo
+	atmosphere		at mật hia		bầu không khí
+	pray			pray			cầu nguyện
+	abroad			ờ proao			ở nước ngoài
+	depend			đì pen			phụ thuộc
+	divided			đờ vái đật		phân ly	
+
+	separated		sép ruy địt		ly thân
+	comprise		khầm poai		bao gồm
+	tropical		tro pơ khồ		nhiệt đới
+	climate			kh lai mệt		khí hậu
+	currency		khớ rần si		tiền tệ	
+	consist			khon sít ting	bao gồm
+	islam			its lam			đạo Hồi
+	instruction		in strớc sần	chỉ dẫn
+	compulsory		khơm páu sùy	bắt buộc
+
+	poets			pô ợts			nhà thơ
+	musicians		miu zích sần	nhạc sĩ
+	mentioned		men sần			được nhắc đến
+	poem			pấu ầm			bài thơ
+	novel			no vồ			tiểu thuyết
+	silk			sêo				lụa
+	tunic			thu nịc			áo dài
+	slit			slit			rạch
+	side			sai				bên
+	loose			luss			lỏng lẻo
+	pant			pen				quần
+	frequent		phí khuần		thường xuyên
+	worn			guôn			rách nát		
+	material		mờ trơ ri ờ		chất liệu
+	nowaday			nao ờ day		ngày nay
+	wear			goe r			mặc	
+	especally		ex péc sô ly	đặc biệt (thể hiện sự quan trọng hơn những thứ khác)
+	special			spec sồ			đặc biệt (thể hiện sự quan trọng khi đứng 1 mình)
+	occasion		ờ khấy sần		dịp
+	clothes			kh lâu			quần áo
+	fashion			phá sần			thời trang
+	ao del							áo dài
+	poetry			pấu truy		văn thơ
+	inspiration		ins poấy sần	cảm hứng	
+	sailor			se lờ			thủy thủ
+	completely		cầm plicly		hoàn toàn		
+	cotton			kho đần			bông
+	economic		e kho no mịch	thuộc kinh tế
+	trust							lòng tin
+	worse			guốts			tệ hơn
+	generation		gie nơ ruấy sần thế ệ
+	still			stêu			vẫn
+	fond			phon			ngây thơ	
+	lie				lai				nói dối
+	journey			trơ ni			hành trình
+	chance			chen s			cơ hội
+	cross			khóts			đi qua
+	entrance		en truềns		cổng vào
+	snack			snec			đồ ăn vặt
+	shrine			soain			điện thờ
+	fresh air						không khí trong lành
+	boating			pô đing			chèo thuyền
+	enjoyable		ìn joi ơ bồ		thú vị
+	replied			ruờ poai		trả lời
+	pond			pon				ao
+	bridge			puyn			cầu
+				e pọt			sân bay
+	exchange		ex chen			trao đổi
+	maize			mê s			bắp
+	grocery			c rốt sơ ry		cửa hàng tạp hóa
+				nia bai			gần đó
+	same			sem				như nhau
+	amved			em vẹt			thích thú
+	hot dog							bánh mì kẹp xúc xích
+	will be all right				sẽ ổn thôi
+	finish			phí nịts		hoàn thành
+	pass			pass			vượt qua
+	examiner		ex giem nơ		giám khảo
+	go on							đi tiếp		
+	future			phiu trờ		tương lai
+	aspect			as pẹc			diện mạo
+	passage			pass sịc		đoạn văn
+	exactly			ex giác ly		chính xác
+	attend			ờ then			tham gia
+	course			khốts			khóa học
+	written			ruýt đần		viết (v3)
+	examination		ex giem mơ nấy sần		bài kiểm tra
+	able			ây bồ			có thể		
+	will be all right				sẽ ổn thôi
+
+	groery			gốt s truy		cửa hàng tạp hóa
+	institute		in trơ tru		học viện
+	intermediate	in trơ mí đi ần	trung cấp
+	criers			khoái ờ s 		người rao tin
+	ring			ruyng 			đổ chuông
+	shout			sao				kêu ca
+	widely			goai ly			rộng rãi
+	adults			ờ đong			người lớn
+	inexpensive		in ex pen sịp	không tốn kém
+	international	in trơ ná sần nồ	quốc tế
+	channel			che nồ			kênh
+	stage			stây			sân khấu
+	development		đì ve lớp mần	phát triển
+	interact		in trơ rác		tương tác
+	remote controls					điều khiển từ xa
+	print			prin			in
+	telegraph		the lơ grap  	điện báo
+	journalism		zơ lơ lấy sầm	báo chí
+	major			mây giờ			lớn lao
+	increasingly	ìng khúy sing ly 	ngày càng
+	everyday		é ruy đay		hàng ngày
+	useful			dius pho		hữu ích
+	surf			sơ				lướt sóng
+	respond			rùys pon		trả lời
+	opinion			ờ pí ni ần		ý kiến
+	communicate		khần míu ni khây	giao tiếp
+	for me								cho tôi
+	nobody							không ai
+	deny			trờ nai			từ chối
+	benefits		pé nơ phịt		những lợi ích
+	pity			pí đi			lòng thương xót
+	available		ờ véo lơ bồ		có sẵn
+	therefore		đe pho			vì vậy
+	explore			ex pua			khám phá
+	conservationists	khon sơ vấy sần nịt 		nhà bảo tồn
+	divede			trờ vai			phân chia
+	shore			xô r			bờ biển
+	sand			sen				cát
+	rock			róc k			đá
+	has to garbage	gó bệch			rác
+	dump			đâm				bãi rác
+	kindly			khai li			tử tế
+	picnic lunch					bữa trưa dã ngoại
+	disappointed	dis sơ poi đệt	thất vọng
+	spoiled			s poi ồ			hư hỏng
+	sewage			su ịt			nước thải
+	pumped			pơm				bơm
+	directly		trơ réc ly		trực tiếp
+	dropped			trop 			giảm
+	pills			piu 			thuốc
+	sec				séc				giây
+	ond-hand		au en ti hen 	sẵn có
+	junk-yard		giâng khi ọt	bãi rác
+			troe zợt		châu báu
+	littered		lít đờ			xả rác
+	tins			thên			hộp thiếc
+	streams			struyn			dòng
+	covered			kho vợt			đề cập
+	foam			phom 			bọt
+	hedge			hét ch			hàng rào
+	wood			guốt			gỗ
+	nonsense		non sằn			vô lý
+	silly			sơ ly			ngớ ngẩn
+	right away						ngay lập tức
+	samed							giống nhau
+	be good							ngoan nhé
+	folk			phốc			dân gian
+	bill			pêu 			hóa đơn
+	enormous		ì noi mợts		lớn lao
+	first of all					đầu tiên
+	plumber		phớ mờ				thợ sửa ống nước
+	cracks			kh rắc			vết nứt
+	pipes			hâys			đường ống
+	baths			pa ph			bồn tắm
+				troai			hai lần
+	suggest			sợp giéc		gợi ý
+	faucets			phó sệc			vòi nước
+	dripping		truýp ping		nhỏ giọt
+	liter			lí đờ			lít
+	solar			sâu lờ			mặt trời
+	solar energy					năng lượng mặt trời
+	nuclear			núc khlia		hạt nhân
+	sweden			sgúy đần		Thụy điển
+	heated			hí đật			đun nóng
+	western			goét s trơ		miền Tây
+	luxuries		lớc xuy			xa xỉ
+	realize			ruy lai			nhận ra
+	consumers		khần xíu mờ		người tiêu dùng
+	effectively		ờ phéc trơ ly	có hiệu quả
+	lighting		lai đing		thắp sáng
+	percent			pơ sen			phần trăm
+	replace			rùy pâys		thay thế
+	ordinary		ố đi ne ry		bình thường
+	bulb			pô				bóng đèn tròn
+	standard		sten đợt		tiêu chuẩn
+	eight times longer				dài hơn 8 lần
+	labeling						ghi nhãn
+	scheme			skim			cơ chế
+	freezers		ph ruy zờ		tủ đông
+	tumble			thâm bồ			nhào lộn
+	efficiency		ờ phíc sần cy	hiệu quả
+	compared		khầm pe			so sánh
+	appliances		ờ poái ần sịt	thiết bị
+	category		kha đơ gô ry	loại
+	ultimately		ố tơ mét ly		cuối cùng
+	innovations		in nơ vấy sần 	đổi mới 
+	conserve		khìn sơ			bảo tồn
+	resources		ruy suộcs		nguồn
+	lunar			lấn nờ			âm lịch
+	celebrations	se leo puấy sần	lễ kỷ niệm
+	throughout		ph ru ao		khắp
+	festival		phét trơ vồ		lễ hội
+	occurs			ậc khơ			xảy ra
+	decorated		đéc kho ruy		trang trí
+	food			phu đ			đồ ăn
+	sticky			s tíc ky		dính
+	try				troai			thử
+	passover		pas sô vờ		lễ vượt qua
+	celebrated		sáo lơ ruấy địt		tôn vinh
+	jewish			ju guỵt				người Do Thái
+	freedom			ph ruy đâm			tự do
+	slavery			sle ruy			chế độ nô lệ
+	seder			sê đờ			người quyến rũ
+	easter			is trờ			Phục sinh
+	joyful			joi phồ			hân hoan
+	recive			rùy si			nhận được
+	as  long as						miễn là
+	crow			kh rao			đám đông
+	parades			pơ ruêt			cuộc diễu hành		
+	syne			zai				khớp thần kinh
+	acquintance		ờ khoen trần	người quen
+	forgot							quên
+	brought			proan			đem lại
+	cry				khoai			khóc
+	teaches			thí trịc		dạy
+	lose			lu s			thua, mất
+	whose			hu s 			của ai
+	describe		dis roai		mô tả
+	quess			khoét			thắc mắc
+	daddy			đá đi			bố
+	wedding day		goe đing day	ngày cưới
+	standing		sten đing		đứng
+	tears			tria rờ			những giọt nước mắt
+	towards			tru guơ			đối với	
+	groom			grum			chú rể
+	hug				hớc				ôm
+	forever			pho ré vờ		mãi mãi
+	lasted forever					kéo dài mãi mãi
+	little girl						cô bé
+	considerate		khần sí đơ rịt  thận trọng
+	prior			phai ó đi		ưu tiên
+	distinguishes	dis ting guỵt sịts	phân biệt
+	terific			trơ ric fịc
+	grandma			groen mờ
+	turn up
+	volume			vó li um		âm lượng
+	weatherman		góe đờ men		chuyên gia dự báo thời tiết
+	south-central	sao sen trồ		nam trung bộ
+	expect			ex pec			trông chờ
+	thunderstorm	thớn đờ stom		giông bão
+	experience						kinh nghiệm, kỷ niệm	
+	experience temperatures			trải nghiệm nhiệt độ
+	central			sen trồ			trung tâm
+	highlands		hai lần			cao nguyên
+	delta			đéo trờ			đồng bằng
+	clouds			kh lao			đám mây
+	preparing		pờ pé ring		chuẩn bị
+	r nine			ó nai			chín giờ
+	other side						phía bên kia
+	raincoat		roen khột		áo mưa
+	a single one					một cái duy nhất
+	case			khâys			trường hợp
+	earthquakes		ớt khuệch		trận động đất
+	pacific			pờ sí phịc		thái bình dương
+	known			nâu				biết
+	struck			strớc			đánh
+	block			plóc			khối, khuôn	
+	highways		hai guây		đường xa lộ
+	collapse		kho laps		sụp đổ
+	tidal			thai đồ			thủy triều
+	waves			guê ss			sóng
+	abrupt			ờ rớp			đột ngột
+	shift			ships			đột ngột
+	underwater		ân đờ góa đờ	dưới nước
+	movement		muv mân			sự chuyển động
+	predict			pơ đếc			dự đoán
+	volcano			vô khê nồ		núi lửa
+	typhoon			thai phun		bão nhiệt đới
+	wind			guyn t			gió		
+	feng			phong			phong
+	erupt			ờ rấp			phun trào
+	mount			mao t			gắn kết
+	scientist		sái ân tịt		nhà khoa học
+	tornado			trơ nấy đờ		lốc xoáy
+	funnel-shaped	phớ nâu shi		hình phễu
+	overland		ố vờ lân		đường bộ
+	suck up			sớc up 			hút liên		
+	lifted			lít địt			nâng lên
+	carriage		khê rịt			xe
+	safely			sép li			an toàn
+	strange			stroeng			lạ lùng
+	fly				bay
+	report			rùy pốt  		báo cáo
+	believe			pờ li			tin
+	spacecraft		spây khoạp		tàu vũ trụ
+	planet			plen nịt		hành tinh
+	aircraft		e khoạp			phi cơ
+	balloon			pờ lun			bóng bay
+	meteor			me đi ờ			sao băng
+	evidence		é vơ đần		bằng chứng
+	existence		ex zít tần		tồn tại
+	rainier			roen ni ơ		mưa nhiều hơn
+	moon			mun				mặt trăng
+	hole			hô				hố
+	heavier			hé vi ơ			nặng hơn
+	jump			giom			nhảy
+	plan			p len			kế hoạch
+	space			spâys			không gian
+	decide			đờ sai			quyết định
+	ready			róe đi			sẵn sàng
+	flight			ph lai			chyến bay
+	condition		khần đí sần		tình trạng
+	push-ups		pất sợp			đẩy mạnh
+	perfect			pớ phệch		hoàn hảo
+	health			heo				sức khỏe
+	goes off						đi tắt
+	get up							thức dậy
+	go down							đi xuống
+	boil							đun sôi
+	quick							nhanh nhẹn
+	lead			li đ			chỉ huy
+	plough			ph lao			cày
+	harrow			he râu			cái bừa
+	plot			p lót			kịch bản
+	during my break					trong thời gian nghỉ của tôi
+	fellow			phe lâu			đồng nghiệp
+	peasants		pé zần			nông dân
+	tobacco			trơ pác khâu	thuốc lá
+	smoke			smốc			khói
+	bank			peng			ngân hàng, bờ sông
+	out plot of land				lô đất ngoài kia
+	husband			hớts pần		chồng
+	pumps			pom				máy bơm
+	transplanting					cấy ghép
+	implant							gắn vào, cắm vào
+	chat							trò chuyện
+	contented						hài lòng(với cuộc sống hiện tại)
+	Satisfied						hài lòng(với 1 nhu cầu được đáp ứng)
+	high school						THPT
+	such as							chẳng hạn như
+	biology							sinh vật học
+	shop							cửa hàng
+	crowded							đông đúc
+	education						giáo dục
+	scientific						có tính khoa học
+	mature							trưởng thành
+	harboured						ấp ủ
+	cherished						yêu quý
+	career							sự nghiệp
+	impossible						không thể nào
+	interruption					gián đoạn
+	realise							nhận ra
+	spite							bất chấp
+	extremely						vô cùng
+	earned							kiếm được
+	degree							bằng cấp
+	mathematics						toán học
+	from then on					từ đó trở đi
+	phd								Bằng tiến sĩ
+	death							cái chết
+	took up position				chiếm vị trí
+	obtained						thu được
+	professor						giáo sư
+	soon after						một lát sau
+	awarded							Trao giải thưởng
+	determining						xác định
+	atomic							nguyên tử
+	radium							đường bán kính
+	real joy						niềm vui thực sự
+	easing human suffering			xoa dịu nỗi đau của con người
+	wish come true					mong muốn trở thành sự thật
+	congratulations					Chúc mừng
+	champion						quán quân
+	readers							độc giả
+	balance							số dư
+	minimum balance					Số dư tối thiểu
+	example							ví dụ
+	sorts							sắp xếp
+	diplorma						bằng tốt nghiệp
+	stories-romantic				truyện lãng mạn
+	disabled						tàn tật
+	dumb							câm
+	mentally						tinh thần
+	retarded						chậm phát triển
+	poor							nghèo
+	opposition						Sự đối lập
+	gradually						dần dần
+	efforts							nỗ lực
+	time of day						thời gian trong ngày
+	photography						nhiếp ảnh
+	deaf							điếc
+	secondary school				Trường cấp hai
+	art								nghệ thuật
+	whenever						bất cứ khi nào
+	wandering around				lang thang khắp nơi
+	surrounding						xung quanh
+	lens							ống kính
+	sorrow							nỗi buồn
+	disabilities					khuyết tật
+	mentally						tinh thần
+	colour							màu sắc
+	labourer						người lao động
+	passion							niềm đam mê 
+	stimulate						kích thích
+	escape							bỏ trốn
+	piece of news					mẩu tin tức
+	cave							hang động
+	formations						sự hình thành
+	excursion						đi chơi, dã ngoại
+	learnt							đã học
+	campfire						lửa trại
+	shring							cắt nhỏ
+	buses							xe buýt
+	warmer							ấm hơn
+	sunshine						ánh sáng mặt trời
+	pesuade							thuyết phục
+	pay								chi trả
+	glorious						huy hoàng
+	gate							cổng
+	destination						điểm đến
+	sang							hát
+	merrily							vui vẻ
+	botanical						thuộc thực vật
+	spacious						spacious
+	grassland						đồng cỏ
+	favourite						yêu thích
+	laugh							cười
+	delicious						thơm ngon
+	slept							đã ngủ
+	soundly							một cách rõ ràng
+	packed							đóng gói
+	left-overs						thức ăn thừa
+	news							Tin tức
+	film							phim ảnh
+	comedy							hài kịch
+	secrets							bí mật
+	punishment						hình phạt
+	headline						tiêu đề
+	portraint						chân dung
+	documentary						phim tài liệu
+	nature							thiên nhiên
+	guest							khách mời
+	wildlife						động vật hoang dã
+	summery							mùa hè
+	risen							tăng lên
+	sill							ngưỡng cửa
+	climded							leo lên
+	kept							đã giữ
+	hardly							khắc nghiệt
+	straw							Rơm rạ
+	mud								bùn
+	shortage						thiếu
+	technology						công nghệ
+	farming							nông nghiệp
+	technical						kỹ thuật
+	introduce						giới thiệu
+	method							phương pháp
+	bumper							bội thu
+	export							xuất khẩu
+	lifestyle						cách sống
+	cash							tiền mặt
+	brick							gạch
+	motorbike						xe máy
+	grandchildren					cháu
+	england							nước Anh
+	crowed							đông đúc
+	built							được xây dựng
+	narrow							chật hẹp
+	resurfaced						lại nổi lên
+	middle							ở giữa
+	widened							mở rộng
+	cut								cắt
+	suburbs							vùng ngoại ô
+	ugly							xấu xí
+	anymore							nữa không
+	bay								vịnh
+	challenge						thách thức
+	mysteries						bí ẩn
+	beneath							bên dưới			
+	submarines						tàu ngầm
+	investigate						khảo sát
+	seabed							đáy biển
+	surface							bề mặt
+	satelite						vệ tinh
+	depth							chiều sâu
+	undersea						dưới đáy biển
+	precious						quý giá
+	plants							thực vật
+	bottom							đáy
+	starfish						sao biển
+	independently					độc lập
+	indicate						biểu thị
+	organisms						sinh vật
+	jellyfish						con sứa
+	however							Tuy nhiên
+	oversized						quá khổ
+	contribute						đóng góp
+	biodiversity					sự đa dạng sinh học
+	maintained						duy trì
+	stake							cổ phần
+	whale							cá voi
+	mammals							động vật có vú
+	entire							toàn bộ	
+	tons							tấn			
+	intelligent						thông minh
+	krill							loài nhuyễn thể
+	atlantic						Đại Tây Dương
+	migrate							di cư
+	bear							con gấu
+	calves							bê
+	decrease						giảm bớt
+	due								quá hạn
+	hunt							săn bắn
+	conservation					bảo tồn
+	asked							yêu cầu
+	commission						nhiệm vụ
+	shaling							đá phiến
+	native							tự nhiên
+	hunter							thợ săn
+	eskimo							người eskimo
+	allow							cho phép
+	communities						cộng đồng
+	effective						hiệu quả
+	measures						đo
+	protect							bảo vệ
+	disappear						biến mất
+	birth							Sinh
+	national						quốc gia
+	south							phía nam
+	west							hướng Tây
+	contains						chứa
+	over							qua
+	rainforest						rừng nhiệt đới
+	butterflies						những con bướm
+	hike							đi lang thang
+	dry								khô
+	season							mùa
+	surprised						ngạc nhiên
+	recognise						nhận ra
+	habit							thói quen
+	dependent						sự phụ thuộc
+	upon							trên
+	survival						sống sót
+	sub-tropical					cận nhiệt đới
+	southeastern					hướng đông nam
+	tropical						nhiệt đới
+	toxic							độc hại
+	temperate						khí hậu ôn hòa
+	zones							khu vực
+	fanning							quạt			
+	contarnination					sự ô uế
+	officeally						một cách chính thức
+	located							xác định vị trí
+	alike							như nhau
+	nearly							gần như
+	endangered						bị đe dọa
+	species							giống loài
+	according						theo
+	flora							hệ thực vật
+	fauna							động vật
+	ethnic							dân tộc
+	invaders						kẻ xâm lược
+	minority						thiểu số
+	humans							con người
+	clearly							rõ ràng
+	sleep							ngủ
+	atmosphere						bầu không khí
+	integral						tích phân
+	communicate						giao tiếp
+	emotions						những cảm xúc
+	anger							sự tức giận
+	solemn							trang nghiêm
+	joyfulness						sự vui vẻ
+	entertains						giải trí
+	fact							sự thật
+	delight							Hân hoan
+	senses							giác quan
+	industry						ngành công nghiệp
+	imagine							tưởng tượng
+	without							không có
+	musician						nhạc sĩ
+	well							Tốt
+	actor							diễn viên
+	author							tác giả
+	hear							nghe
+	stand							đứng
+	loud							ồn ào
+	proud							tự hào
+	rousing							kích động
+	discovered						đã phát hiện
+	sequence						sự liên tiếp
+	motion							cử động
+	give							đưa cho
+	decades							thập kỷ
+	cinema							rạp chiếu phim
+	developed						đã phát triển
+	photographs						bức ảnh
+	scene							bối cảnh
+	camera							Máy ảnh
+	positions						chức vụ
+	story							câu chuyện
+	actor							diễn viên
+	scene							bối cảnh
+	character						tính cách
+	audience						khán giả
+	cinerma							rạp chiếu phim
+	really							Thực ra
+	maker							người chế tạo
+	prepared						chuẩn bị
+	silent							im lặng
+	screen							màn hình
+	musical							âm nhạc
+	titanic							tàu Titanic
+	singing							ca hát
+	guess							đoán
+	leave							rời khỏi
+	cup								tách
+	tournament						giải đấu
+	sporting						thể thao
+	passionate						say đắm
+	event							sự kiện
+	globe							khối cầu
+	governing						quản lý
+	set up							cài đặt
+	planned							kế hoạch
+	organize						tổ chức
+	championship					chức vô địch
+	gained							đạt được
+	victory							chiến thắng
+	argentina						Nước Argentina
+	final							cuối cùng
+	tournament						giải đấu
+	compete							hoàn thành
+	elimination						sự loại bỏ
+	within							ở trong
+	own								sở hữu
+	finalists						lọt vào vòng chung kết
+	jointly							cùng nhau
+	germany							nước Đức
+	trophy							chiếc cúp
+	continent						lục địa
+	honoured						vinh dự
+	greatest						vĩ đại nhất
+	powerful						mạnh mẽ
+	cotrolling						sự kiểm soát
+	led								dẫn đến
+	scored							ghi bàn
+	goals							bàn thắng
+	amassador						người bán hàng
+	understanding					sự hiểu biết
+	state							tình trạng
+	mingle							hòa nhập
+	harbour							Hải cảng
+	ice-free						không có băng
+	season							mùa
+	finest							tốt nhất
+	metropolitan					đô thị
+	renamed							đổi tên
+	unusual							bất thường
+	centre							trung tâm
+	global							toàn cầu
+	finance							tài chính
+	communications					thông tin liên lạc
+	aparment						căn hộ
+	statue							bức tượng
+	broadway						đường rộng
+	district						huyện
+	art								nghệ thuật
+	galleries						phòng trưng bày
+	museum							bảo tàng
+	liberty							tự do
+	statue							bức tượng
+	familiar						thân thuộc
+	island							hòn đảo
+	freedom							tự do
+	enlightening					khai sáng
+	french							người Pháp
+	friendship						tình bạn
+	loose							lỏng lẻo
+	robe							áo choàng
+	crown							vương miện
+	buring							chôn cất
+	torch							ngọn đuốc
+	concrete						bê tông
+	base							căn cứ
+	pedestal						bệ đỡ
+	outside							ngoài
+	inscrease						tăng lên
+	frame							khung
+	daily							hằng ngày
+	except							ngoại trừ
+	historical						lịch sử
+	arid							khô khan
+	cultural						thuộc văn hóa
+	originally						ban đầu
+	dynasty							triều đại
+	representative					tiêu biểu
+	confucian						Nho giáo
+	ways							cách
+	behaviour						hành vi
+	talented						có tài
+	men								đàn ông
+	memorialize						tưởng niệm
+	brilliant						xuất sắc
+	scholars						học giả
+	achievements					thành tựu
+	examinations					kỳ thi
+	engraved						khắc
+	stone							cục đá
+	stelae							tấm bia
+	carried							mang theo
+	giant							người khổng lồ
+	tortoises						rùa
+	attract							thu hút
+	traditional						truyền thống
+	architecture					ngành kiến ​​​​trúc
+	banyan							cây đa
+	witnessed						chứng kiến
+	feudal							phong kiến
+	times							lần
+	continue						Tiếp tục
+	flourish						Hưng thịnh
+	national						quốc gia
+	pride							kiêu hãnh
+	acient							người xưa
+	lies							dối trá
+	trading							thương mại
+	centre							trung tâm
+	port							Hải cảng
+	dutch							tiếng Hà Lan
+	east							phía đông
+	vessel							tàu
+	tile-roofed						lợp ngói
+	pillars							trụ cột
+	carved							chạm khắc
+	ornament						vật trang trí
+	covered							đề cập
+	assembly						cuộc họp
+	hall							sảnh
+	cantonese						tiếng Quảng Đông
+	congregation					hội chúng
+	belonged						thuộc về
+	ago								trước kia
+	certified						được chứng nhận
+	cultural						thuộc văn hóa
+	heritage						di sản
+	troubled						gặp rắc rối
+	brighten						làm sáng lên
+	dakest							đen tối nhất
+	acquaintances					những người quen
+	friendship						tình bạn
+	common							chung
+	incapable						không có khả năng
+	qualities						phẩm chất
+	unselfishness					tính không ích kỷ
+	aperson						một người
+	two-sided						hai mặt
+	affair							công việc
+	give-and-take					cho và nhận
+	constancy						Sự kiên định
+	enthusiasm						sự nhiệt tình
+	changeable						có thể thay đổi
+	uncertain						không chắc chắn
+	lifelong						suốt đời
+	loyalty							lòng trung thành
+	loyal							trung thành
+	each							mỗi
+	suspicions						sự nghi ngờ
+	readily							dễ dàng
+	rumours							tin đồn
+	gossip							chuyện phiếm
+	residential						khu dân cư
+	anybody							bất cứ ai
+	rode							cưỡi ngựa
+	happened						đã xảy ra
+	guitarist						nghệ sĩ guitar
+	sense							giác quan
+	humour							hài hước
+	funny							buồn cười
+	through							bởi vì
+	rough							thô
+	listener						người nghe
+	embarrassing					xấu hổ
+	floppy							đĩa mềm
+	cotton							bông
+	pop								nhạc pop
+	idol							thần tượng
+	extremely						vô cùng
+	deciced							quyết định
+	schoolboy						cậu học sinh
+	glanced							liếc
+	turned							quay
+	sneaky							lén lút
+	imagining						tưởng tượng
+	quickly							nhanh
+	own								sở hữu
+	thief							tên trộm
+	fuss							ồn ào
+	without							không có
+	carefully						cẩn thận
+	wad								Một xấp
+	imagine							tưởng tượng
+	memorable						đáng nhớ
+	scream							la hét
+	escape							bỏ trốn
+	terrified						kinh hoàng
+	embraced						ôm ấp
+	protected						được bảo vệ
+	unforgettable					không thể nào quên
+	interviewer						người phỏng vấn
+	successful						thành công
+	businesswoman					nữ doanh nhân
+	audience						khán giả
+	memorable						đáng nhớ
+	surrounded						Được bao quanh
+	wall							tường
+	minor							người vị thành niên
+	affect							ảnh hưởng
+	selfish							ích kỷ
+	realize							nhận ra
+	taught							dạy
+	appreciate						đánh giá
+	candles							Nến
+	blow							thổi
+	everybody						mọi người
+	ice cream						kem
+	cards							thẻ
+	present							hiện tại
+	celebrate						kỉ niệm
+	adult							người lớn
+	joke							câu nói đùa
+	anniversary						dịp kỉ niệm
+	couple							cặp đôi
+	celebrate						kỉ niệm
+	wives							những người vợ
+	silver							bạc
+	golden							vàng
+	mark							đánh dấu
+	milestones						cột mốc quan trọng
+	gathering						thu thập
+	served							phục vụ
+	present							hiện tại
+	winners							người chiến thắng
+	prizes							giải thưởng
+	icing							Đóng băng
+	sat								đã ngồi
+	eagerly							háo hức
+	blew							thổi
+	delicious						thơm ngon
+	mess							sự lộn xộn
+	voluntarily						tự nguyện
+	aged							già
+	sick							đau ốm
+	mow								cắt cỏ
+	lawns							bãi cỏ
+	disadvantaged					thiệt thòi
+	handicapped						tàn tật
+	comfort							an ủi
+	overcome						vượt qua
+	suffered						chịu đựng
+	wars							chiến tranh
+	natural							tự nhiên
+	during summer					trong mùa hè
+	mountainous						miền núi
+	organise						tổ chức
+	spring							mùa xuân
+	informal						không chính thức
+	advantaged						được thuận lợi
+	district						huyện
+	regularly						thường xuyên
+	organisation					tổ chức
+	co-operated						hợp tác
+	dane							người Đan Mạch
+	theatre							nhà hát
+	participate						tham gia
+	fundraising						gây quỹ
+	continue						Tiếp tục
+	arts							nghệ thuật
+	requires						đòi hỏi
+	organise						tổ chức
+	annually						hàng năm
+	sponsor							nhà tài trợ
+	activities						các hoạt động
+	sixty-one						61
+	completed						hoàn thành
+	universalisation				phổ cập hóa
+	eradication						diệt trừ
+	meant							có nghĩa là
+	eradicate						diệt trừ
+	promotion						khuyến mãi
+	ethnic							dân tộc
+	minority						thiểu số
+	northern						Phương bắc
+	campaign						chiến dịch
+	receiving						nhận được
+	effective						hiệu quả
+	moutainous						miền núi
+	against							chống lại
+	honorable						đáng kính
+	voluntarily						tự nguyện
+	relevant						liên quan
+	material						vật liệu
+	techniques						kỹ thuật
+	planning						lập kế hoạch
+	promised						đã hứa
+	expand							mở rộng
+	central							trung tâm
+	gradually						dần dần
+	decreasing						giảm dần
+	illiteracy						sự thất học
+	eradicated						bị diệt trừ
+	mutaul							sự thay đổi
+	respect							sự tôn trọng
+	essential						thiết yếu
+	implied							bao hàm
+	treated							được điều trị
+	individuals						cá nhân
+	weaknesses						những điểm yếu
+	encouraged						động viên
+	realistic						thực tế
+	positive						tích cực
+	attirudes						thái độ
+	about							Về
+	expected						hy vọng
+	gradually						dần dần
+	decreasing						giảm dần
+	eradicated						bị diệt trừ
+	motivated						có động lực
+	reflect							phản ánh
+	performance						hiệu suất
+	self-respect					tự trọng
+	self-confidence					tự tin
+	failure							sự thất bại
+	management						sự quản lý
+	maturity						trưởng thành
+	per cent						phần trăm
+	academic						học thuật
+	decision						phán quyết
+	direct							trực tiếp
+	effect							tác dụng
+	annual							hàng năm
+	arganized						được tổ chức
+	aim								mục tiêu
+	stimulate						kích thích
+	sponsored						được tài trợ
+	worksheet						bảng tính
+	sheet							tờ giấy
+	within							ở trong
+	jubges							thùng đựng nước
+	observe							quan sát
+	score							điểm
+	announce						thông báo
+	advanced						trình độ cao
+	dictionary						từ điển
+	smoothly						thông suốt
+	reciting						đọc thuộc lòng
+	poem							bài thơ
+	jubges							thùng đựng nước
+	apologised						xin lỗi
+	particepate						tham gia
+	distance						khoảng cách
+	accepted						Đã được chấp nhận
+	fermale							giống đực
+	race							loài
+	increasing						tăng dần
+	figure							nhân vật
+	doubled							nhân đôi
+	expected						hy vọng
+	scientest						khoa học nhất
+	raising							nâng cao
+	petroleum						xăng dầu
+	iron							sắt
+	silver							bạc
+	research						nghiên cứu
+	shown							cho xem
+	safe							an toàn
+	birth-control					ngừa thai
+	ladies							quý cô
+	gentlement						quý ông
+	expert							chuyên gia
+	rate							tỷ lệ
+	explosion						vụ nổ
+	conditions						điều kiện
+	care							quan tâm
+	suggestions						gợi ý
+	aware							nhận thức
+	strictly						nghiêm ngặt
+	implement						thực hiện
+	policy							chính sách
+	grandest						vĩ đại nhất
+	westem							phía Tây
+	calendar						lịch
+	agrarian						nông nghiệp
+	spread							lây lan
+	deal							thỏa thuận
+	excitement						sự phấn khích
+	coloured						màu sắc rực rỡ
+	banners							băng rôn
+	blossom							hoa
+	kumquat							cây quất
+	throughout						khắp
+	sugared							có đường
+	influence						ảnh hưởng
+	plums							mận
+	positive						tích cực
+	similarities					điểm tương đồng
+	preparations					sự chuẩn bị
+	housewives						các bà nội trợ
+	decorate						trang trí
+	rid								thoát khỏi
+	represent						đại diện
+	midnight						nửa đêm
+	broadcast						phát tin
+	mostly							hầu hết
+	service							dịch vụ
+	well-trained					được đào tạo tốt
+	office							văn phòng
+	staff							nhân viên
+	thoughtful						chu đáo
+	courteous						lịch sự
+	customer						khách hàng
+	delivered						đã giao hàng
+	parcel							bưu kiện
+	competitive						cạnh tranh
+	transfer						chuyển khoản
+	money							tiền bạc
+	speedy							nhanh chóng
+	secure							chắc chắn
+	transferning					chuyển giao
+	facsimile						mô phỏng
+	document						tài liệu
+	shape							hình dạng
+	transmission					quá trình lây truyền
+	transmit						chuyển giao
+	graphic							đồ họa
+	subscribers						người đăng ký
+	paid							trả
+	communes						xã
+	stood							đứng
+	affecting						ảnh hưởng đến
+	agriculture						nông nghiệp
+	pollutants						chất ô nhiễm
+	desappear						biến mất
+	fund							quỹ
+	destruction						sự phá hủy
+	interference					sự can thiệp
+	peacefully						một cách hòa bình
+	co-exist						cùng tồn tại
+	offspring						con cháu
+	preserve						bảo tồn
+	contain							bao gồm
+	scenic							có cảnh đẹp thiên nhiên
+	features						đặc trưng
+	rare							hiếm
+	approximately					khoảng
+	hunted							bị săn đuổi
+	fur								lông thú
+	skin							da
+	devastating						tàn phá
+	careless						cẩu thả
+	visitors						khách
+	harming							làm hại
+	maintenance						BẢO TRÌ
+	fossil							hóa thạch
+	reserves						dự trữ
+	demand							yêu cầu
+	rapidly							liên tục
+	fuels							nhiên liệu
+	exhausted						kiệt sức
+	relatively						tương đối
+	alternative						thay thế
+	geothermal						địa nhiệt
+	heat							nhiệt
+	windmills						cối xay gió
+	sailboats						thuyền buồm
+	lots							rất nhiều
+	infinite						vô hạn
+	disadvantages					nhược điểm
+	potential						tiềm năng
+	researchers						Các nhà nghiên cứu
+	include							bao gồm
+	vital							thiết yếu
+	ecologists						nhà sinh thái học
+	renewable						tái tạo
+	nonrenewable					không tái tạo được
+	cows							bò cái
+	fertilized						thụ tinh
+	unlimited						vô hạn
+	definition						sự định nghĩa
+	purpose							mục đích
+	intercultural					liên văn hóa
+	multi-sport						đa môn thể thao
+	gather							tập trung
+	strength						sức mạnh
+	solidarity						sự đoàn kết
+	advancing						tiến lên
+	participant						người tham gia
+	quality							chất lượng
+	athletes						vận động viên
+	aquatic							thủy sinh
+	shooting						chụp
+	wresting						đấu vật
+	freestyle						tự do
+	gymnasium						phòng tập thể dục
+	crashed							bị rơi
+	walking							đi dạo
+	accomplished					hoàn thành
+	guitarist						nghệ sĩ guitar
+	practise						luyện tập
+	regularly						thường xuyên
+	accompanying					đi kèm
+	admire							ngưỡng mộ
+	modest							khiêm tốn
+	tank							xe tăng
+	avid							khao khát
+	collector						người sưu tầm
+	actually						Thực ra
+	discarded						bỏ đi
+	indulge							thưởng thức
+	occupied						chiếm lĩnh
+	glad							vui mừng
+	gigantic						khổng lồ
+	fascinating						lôi cuốn
+	disease							bệnh
+	equipped						đã trang bị
+	ignorantly						một cách ngu dốt
+	therwise						theo cách đó
+	dull							đần độn
+	recreation						giải trí
+	anywhere						bất cứ nơi nào
+	leisure							thời gian rảnh rỗi
+	based							dựa trên
+	pastime							sự tiêu khiển
+	average							trung bình
+	pursuit							theo đuổi
+	improverment					cải tiến
+	gardening						làm vườn
+	british							người Anh
+	undertaken						thực hiện
+	snooker							bi da
+	pool							hồ bơi
+	dart							phi tiêu
+	spectator						khán giả
+	rugby							bóng bầu dục
+	bricklaying						sự xây gạch
+	sophisticated					cầu kì
+	stock							Cổ phần
+	fees							lệ phí
+	depressed						trầm cảm
+	waterfall						thác nước
+	backpack						balo
+	aboard							ở nước ngoài
+	orbit							quỹ đạo
+	miles							dặm
+	cosmonaut						phi hành gia
+	wrightlessness					sự bất cần
+	spoken							nói
+	historic						mang tính lịch sử
+	precisely						đúng
+	extreme							vô cùng
+	technical						kỹ thuật
+	crash							tai nạn
+	tragic							bi kịch
+	astronaut						phi hành gia
+	telegram						điện tín
+	venture							mạo hiểm
+	satisfaction					sự hài lòng
+	routine							lịch trình
+	hometown						quê hương
+	cosmounaut						phi hành gia
+	speech							lời nói
+	congress						Hội nghị
+	president						chủ tịch
+	launched						ra mắt
+	apollo							xin lỗi
+	armstrong						cánh tay mạnh mẽ
+	spacesuit						bộ đồ không gian
+	portable						cầm tay
+	oxygen							ôxy
+	performed						thực hiện
+	experiment						cuộc thí nghiệm
+	collected						đã thu thập
+	spent							đã tiêu
+	samples							mẫu
+	successfully					thành công
+	regarded						đánh giá
+	pyramid							kim tự tháp
+	tomb							mộ
+	hedied							anh ấy đã chết
+	burial							Mai táng
+	chamber							buồng
+	thieves							tên trộm
+	might							có thể
+	belongings						đồ đạc
+	transported						vận chuyển
+	metres							mét
+	consisted						bao gồm
+	surpassed						vượt qua
+	rank							thứ hạng
+	construction					sự thi công
+	theory							lý thuyết
+	suggest							gợi ý
+	enclose							bao bọc
+	carry							mang
+	inside							bên trong
+	pyramid							kim tự tháp
+	housing							nhà ở
+	mysterious						bí ẩn
+	visible							dễ thấy
+	provinces						tỉnh
+	greastest						vĩ đại nhất
+	man-made						Người làm
+	magnificence					sự tráng lệ
+	significance					ý nghĩa
+	listed							liệt kê
+	roadway							đường bộ
+	original						nguyên bản
+	excitement						sự phấn khích
+	biologist						nhà sinh vật học
+	lab								phòng thí nghiệm
+	generally						nói chung là
+	task							nhiệm vụ
+	responsibility					trách nhiệm
+	clothes							quần áo
+	unlike							không giống
+	dish							món ăn
+	eaten							ăn
+	secondary						sơ trung
+	dicuss							cây dicus
+	franky							thẳng thắn
+	solution						giải pháp
+	confidence						sự tự tin
+	considering						xem xét
+	close-knit						gắn bó chặt chẽ
+	leftover						thức ăn thừa
+	traditionally					theo truyền thống
+	marriage						kết hôn
+	contractual						hợp đồng
+	bride							cô dâu
+	precede							đứng trước
+	servey							survey
+	conducted						tiến hành
+	determine						quyết tâm
+	attitudes						thái độ
+	summary							bản tóm tắt
+	responses						phản hồi
+	attractiveness					sự hấp dẫn
+	appearance						vẻ bề ngoài
+	share							chia sẻ, cổ phần
+	majority						số đông
+	wiser							khôn ngoan hơn
+	certain							chắc chắn
+	unwise							không khôn ngoan
+	confide							tâm sự
+	reject							từ chối
+	partnership						quan hệ đối tác
+	equals							bằng
+	sacrifice						hy sinh
+	signigicantly					đáng kể
+	obliged							bắt buộc
+	suggest							gợi ý
+	counterpart						đối tác
+	involved						có liên quan
+	chosen							đã chọn
+	carefully						cẩn thận
+	wrapped							bọc
+	paper							giấy
+	tray							cái mâm
+	charge							thù lao
+	ceremony						nghi lễ
+	altar							bàn thờ
+	banquet							bữa tiệc
+	blessing						phước lành
+	newly							mới
+	attract							thu hút
+	either							hoặc
+	verbal							bằng lời nói
+	non-verbal						không lời
+	communication					giao tiếp
+	waving							vẫy
+	resin							nhựa
+	wave							sóng
+	signal							tín hiệu
+	suppose							giả định
+	plane							máy bay
+	toward							theo hướng
+	instance						ví dụ
+	obvious							rõ ràng
+	appropriate						phù hợp
+	assistance						hỗ trợ
+	whistle							còi
+	clap							vỗ tay
+	rude							bất lịch sự
+	schoolyard						sân trường
+	pointing						Chỉ trỏ
+	perfectly						hoàn hảo
+	acceptable						chấp nhận được
+	attention						chú ý
+	impolite						bất lịch sự
+	imply							bao hàm, ngụ ý
+	decent							tử tế
+	unnecessary						không cần thiết
+	desagreement					sự bất đồng
+	marvelous						tuyệt vời
+	instrument						dụng cụ
+	argument						lý lẽ
+	avoided							tránh
+	exact							chính xác
+	duration						khoảng thời gian
+	absolute						tuyệt đối
+	maximum							tối đa
+	avoid							tránh xa
+	serous							huyết thanh
+	particular						cụ thể
+	regulation						quy định
+	life							mạng sống
+	mine							của tôi
+	roommate						bạn cùng phòng
+	party							buổi tiệc
+	lonely							cô đơn
+	fighting						Chiến đấu
+	back							mặt sau
+	daunting						làm nản lòng
+	graduated						đã tốt nghiệp
+	scary							đáng sợ
+	challenging						thách thức
+	academically					một cách học thuật
+	thoroughly						triệt để
+	creativity						sáng tạo
+	society							xã hội
+	whom							ai
+	proportion						tỷ lệ
+	agriceltura						nông nghiệp
+	department						phòng
+	particularly					cụ thể
+	basic							nền tảng
+	lecturers						giảng viên
+	begining						bắt đầu
+	interview						phỏng vấn
+	pieces							miếng
+	impression						ấn tượng
+	possible						khả thi
+	express							thể hiện
+	candidate						ứng viên
+	certificate						giấy chứng nhận
+	recommendation					sự giới thiệu
+	previous						trước
+	employer						nhà tuyển dụng
+	addition						phép cộng
+	jot								ghi chú
+	qualification					trình độ chuyên môn
+	relate							liên quan
+	neatly							gọn gàng
+	formally						chính thức
+	willing							sẵn sàng
+	keenness						sự sắc sảo
+	congratulation					lời chúc mừng
+	offered							ngỏ ý
+	workforce						lực lượng lao động
+	changing						thay đổi
+	company							công ty
+	retail							bán lẻ
+	wholesale						bán sỉ
+	transportation					vận tải
+	accounting						kế toán
+	reform							cải cách
+	communist						cộng sản
+	initiated						khởi xướng
+	overall							tổng thể
+	commonly						thông thường
+	economy							kinh tế
+	under-develop					kém phát triển
+	dominated						thống trị
+	inflation						lạm phát
+	sector							lĩnh vực
+	renovation						cải tạo
+	priority						sự ưu tiên
+	eliminated						loại bỏ
+	encouraged						động viên
+	subsequent						tiếp theo
+	expanding						mở rộng
+	dissolving						hòa tan
+	laid							đặt
+	legal							hợp pháp
+	encouraging						đáng khích lệ
+	investment						sự đầu tư
+	undergone						trải qua
+	substantial						đáng kể
+	agricultural					nông nghiệp
+	achievement						thành tích
+	commitment						sự cam kết
+	inhabitant						cư dân
+	island							hòn đảo
+	rationally						một cách hợp lý
+	easier							dễ dàng hơn
+	dancing							khiêu vũ
+	effect							tác dụng
+	lazy							lười
+	began							đã bắt đầu
+	discourage						không khuyến khích
+	drug-taker						người nghiện ma túy
+	islander						người dân đảo
+	prison							nhà tù
+	pessimistic						bi quan
+	optimistic						lạc quan
+	depression						trầm cảm
+	corporation						tập đoàn
+	wiped							xóa sạch
+	security						bảo vệ
+	terrorism						người khủng bố
+	terrorist						gây khủng bố
+	contrary						trái ngược
+	cleaner							sạch hơn
+	domestic						nội địa
+	burden							gánh nặng
+	chorse							ngựa
+	various							nhiều
+	telecommunication				viễn thông
+	electronic						điện tử
+	likely							rất có thể
+	efficiently						hiệu quả
+	unexpected						không ngờ tới
+	confident						tự tin
+	reason							lý do
+	expectancy						kỳ vọng
+	mushrooming						mọc lên như nấm
+	europe							Châu Âu
+	healthily						khỏe mạnh
+	ourselves						chính chúng ta
+	cigarettes						thuốc lá
+	fatal							gây tử vong
+	cancer							bệnh ung thư
+	fiction							viễn tưởng
+	eternal							Vĩnh hằng
+	stretches						trải dài
+	sandy							cát
+	remained						vẫn
+	dunes							cồn cát
+	crest							mào
+	shines							tỏa sáng
+	frightening						đáng sợ
+	rabbit							con thỏ
+	dry								khô
+	extinction						sự tuyệt chủng
+	threatened						bị đe dọa
+	drainage						thoát nước
+	urbanization					đô thị hóa
+	wetland							đất ngập nước
+	driven							điều khiển
+	habitat							môi trường sống
+	survive							tồn tại
+	gorilla							con khỉ đột
+	bared							hở hang
+	silverback						lưng bạc
+	females							phụ nữ
+	insect							côn trùng
+	nest							tổ
+	ranger							nhân viên kiểm lâm
+	farmland						đất nông nghiệp
+	digested						đã tiêu hóa
+	up								hướng lên
+	swallowing						nuốt
+	hard-to-put						khó đặt
+	reviewer						người đánh giá
+	chew							nhai
+	slowly							chậm
+	wilderness						hoang dã
+	personality						nhân cách
+	impressive						ấn tượng
+	unbelievable					không thể tin được
+	recommend						gợi ý
+	deep							sâu
+	wide							rộng
+	goal							mục tiêu
+	vertical						thẳng đứng
+	crossbar						xà ngang
+	net								mạng lưới
+	goalie							thủ môn
+	caps							mũ lưỡi trai
+	above							bên trên
+	defensive						phòng ngự
+	unless							Trừ khi
+	interfere						can thiệp
+	penalized						bị phạt
+	ejected							bị đẩy ra
+	fouls							phạm lỗi
+	overtime						tăng ca
+	referee							trọng tài
+	inspired						lấy cảm hứng
+	synchronized					đồng bộ
+	add								thêm vào
+	founded							thành lập
+	programme						chương trình
+	recorded						ghi lại
+	coached							huấn luyện
+	officially						chính thức
+	spirit							tinh thần
+	wrestling						đấu vật
+	karatedo						karate
+	athletic						Khỏe mạnh
+	bodybuilding					thể hình
+	wushu							wushu
+	success							thành công
+	excellently						xuất sắc
+	medal							huy chương
+	firstly							Trước hết
+	prepqre							chuẩn bị trước
+	secondly						thứ hai
+	proposed						đề xuất
+	host							chủ nhà
+	bar								quán ba
+	pole-vaulter					vận động viên nhảy sào
+	attempt							nỗ lực
+	proved							đã chứng minh
+	humanitarian					nhân đạo
+	agency							hãng
+	dedicated						tận tụy
+	reducing						giảm bớt
+	disaster						thảm họa
+	epidemic						bệnh dịch
+	initiative						sáng kiến
+	wounded							bị thương
+	soldier							lính
+	appealed						kháng cáo
+	devoted							tận tâm
+	aid								sự giúp đỡ
+	official						chính thức
+	delegates						đại biểu
+	convention						quy ước
+	treatment						sự đối đãi
+	protection						sự bảo vệ
+	disaster-stricken				bị thiên tai
+	symbol							biểu tượng
+	bearing							Ổ đỡ trục
+	conference						hội nghị
+	mission							Sứ mệnh
+	emergencies						trường hợp khẩn cấp
+	headquarter						trụ sở chính
+	injured							bị thương
+	temporary						tạm thời
+	everywhere						mọi nơi
+	friendly						thân thiện
+	sexes							giới tính
+	colonies						thuộc địa
+	civilization					nền văn minh
+	deep-seated						lâu đời
+	beliefs							niềm tin
+	childbearing					sinh con
+	considered						được xem xét
+	suited							phù hợp
+	homemaking						nội trợ
+	rather							hơn là
+	involvement						sự tham gia
+	business						việc kinh doanh
+	ability							khả năng
+	employment						thuê người làm
+	political						thuộc về chính trị
+	period							Giai đoạn
+	equal							bình đẳng
+	opportunities					những cơ hội
+	formal							chính thức
+	agricultura						nông nghiệp
+	southeast						Đông Nam
+	admitted						thừa nhận
+	growth							sự phát triển
+	promote							khuyến khích
+	stability						sự ổn định
+	square							quảng trường
+	own								sở hữu
+	trade							buôn bán
+	vision							tầm nhìn
+	realization						hiện thực hóa
+	cooperation						sự hợp tác
+	actively						tích cực
+	medium							trung bình
+	enterprises						doanh nghiệp
+	solve							gỡ rối
+	tourism							du lịch
+	leading							dẫn đầu
+	beligion						tôn giáo
+	geo-political					địa chính trị
+	entity			én trơ đi		thực thể
+
+
+
+
+
+
+
+
+
+
+- Động tự theo sau là danh từ số ít thì thêm es
+thêm ing:
+	- kết thúc bằng e thì bỏ e thêm ing
+	- kết thúc với nguyên âm + phụ âm thì gấp đôi phụ âm cuối và thêm ing
+Chuyển đổi từ loại:
+	Dấu hiệu nhận biết danh từ:
+
+	tính từ sang trạng từ:
+		tính từ + ly	=> trạng từ
+		nếu tính từ kết thúc là 'y' thì chuyển 'y' => 'i' và thêm ly
+Vừa là tính từ vừa là trạng từ:
+	late
+	long
+	low
+	near
+	right
+	deep
+	early
+	fast
+	hard
+	high
+	late
+	long
+	low
+	near
+	right
+	straight
+12 thì tiếng anh:
+	1/ Hiện tại đơn:
+		khẳng định:
+			S + V(s/es) + O
+			S + be (am/is/are) + O
+		Phủ định:
+			S + do not /does not + V_inf
+			S + be (am/is/are) + not + O
+		Nghi vấn:
+			Do/Does + S + V_inf?
+			Am/is/are + S + O?
+		Cách dùng: diễn tả 1 điều hiển nhiên
+		1 chân lý
+	2/ Hiện tại tiếp diễn:
+		khẳng định:
+			S + am/is/are + V_ing
+		Phủ định:
+			S + am/is/are + not + V_ing
+		Nghi vấn:
+			Am/Is/Are + S + V_ing?
+		Cách dùng: đang xảy ra ở hiện tại và tương lai gần
+	3/ Hiện tại hoàn thành:
+		Khẳng định:
+			S + have/has + V3/ed + O
+		Phủ định:
+			S + have/has + not + V3/ed + O
+		Nghi Vấn:
+			Have/has + S + V3/ed + O?
+		Cách dùng: Diễn tả hành động đã xảy ra hoặc chưa bao giờ xảy ra ở 1 thời gian không xác định trong quá khứ.
+	4/ Hiện tại hoàn thành tiếp diễn:
+		Khẳng định:
+			S + have/has + been + V_ing
+		Phủ định:
+			S + have/has + not + been + V_ing
+		Nghi vấn:
+			Has/ Have + S + been+ V_ing?
+		Cách dùng: Nhấn mạnh hành động bắt đầu từ quá khứ và và ảnh hưởng đến hiện tại.
+	5/ Quá khứ đơn:
+		Khẳng định:
+			S + V2/ed + O
+			S + was/were + O
+		Phủ định:
+			S + didn’t + V_inf + O
+			S + was/were + not + O
+		Nghi vấn:
+			Did + S + V_inf + O?
+			Was/were + S + O?
+		Cách dùng: Diễn tả hành động đã xảy ra và chấm dứt trong quá khứ
+	6/ Quá khứ tiếp diễn:
+		Khẳng định:
+			S + was/were + V_ing + O
+		Phủ định:
+			S + was/were + not + V_ing + O
+		Nghi vấn:
+			Was/were + S + V_ing + O?
+		Cách dùng: Diễn tả hành động đang xảy ra tại một thời điểm xác định trong quá khứ
+	7/ Quá khứ hoàn thành:
+		Khẳng định:
+			S + had + V3/ed + O
+		Phủ định:
+			S + had + not + V3/ed + O
+		Nghi vấn:
+			Had + S + V3/ed + O?
+		Cách dùng: Diễn tả hành động xảy ra và kết thúc trong quá khứ
+	8/ Quá khứ hoàn thành tiếp diễn:
+		Khẳng định:
+			S + had been + V_ing + O
+		Phủ định:
+			S + had + not + been + V_ing + O
+		Nghi vấn:
+			Had + S + been + V_ing + O?
+		Cách dùng: Diễn tả hành động xảy ra và kết thúc trước 1 hành động khác trong quá khứ
+	9/ Tương lai đơn:
+		Khẳng định:
+			S + will/shall/ + V_inf + O
+		Phủ định:
+			S + will/shall + not + V_inf + O
+		Nghi vấn:
+			Will/shall + S + V_inf + O?
+		Cách dùng: Diễn tả hành động sẽ xảy ra
+	10/ Tương lai tiếp diễn:
+		Khẳng định:
+			S + will/shall + be + V-ing
+		Phủ định:
+			S + will/shall + not + be + V-ing
+		Nghi vấn:
+			Will/shall + S + be + V-ing?
+		Cách dùng: Diễn tả hành động sẽ xảy ra và tiếp diễn trong 1 khoảng thời gian trong tương lai. sẽ đi với thời gian
+	11/ Tương lai hoàn thành:
+		Khẳng định:
+			S + shall/will + have + V3/ed
+		Phủ định:
+			S + shall/will + NOT + have + V3/ed + O
+		Nghi vấn:
+			Shall/Will+ S + have + V3/ed?
+		Cách dùng: - Diễn tả hành động sẽ xảy ra và hoàn thành trước 1 hành động khác trong tương lai
+					- Hoặc sẽ hoàn thành trong 1 khoảng thời gian
+		Mẹo: chỉ cần chứng minh nó xảy ra trước 1 hành động khác.
+	12/ Tương lai hoàn thành tiếp diễn:
+		Khẳng định:
+			S + will/shall + have been + V_ing
+		Phủ định:
+			S + will not + have been + V_ing
+		Nghi vấn:
+			Will/shall + S + have been + V-ing?
+		Cách dùng: Diễn tả nhấn mạnh khoảng thời gian của 1 hành động sẽ đang xảy ra trong tương lai và sẽ kết thúc trước 1 hành động khác trong tương lai.
+	Sử dụng:
+		Hiện tại đơn + hiện tại hoàn thành
+		hiện tại hoàn thành + until + hiện tại đơn
+	Mẹo:
+		Xác định có phải dạng bị động hay không, nếu phải thì có be
+		Xác định quá khứ/hiện tại/tương lai/tương lai giần
+			- Nếu tương lai gần: dùng be + going
+			- Nếu tương lai: will
+			- Nếu quá khứ: V2
+			- Nếu hiện tại: is/are/am
+				- Nếu có phó từ: is/are/am + phó từ + V-ing
+		hoàn thành: has/have/had + V3/ed
+		tiếp diễn: V-ing
+		hoàn thành tiếp diễn: have/has/had + been + V-ing
+Chỉ thời gian:
+	yesterday									hôm qua
+	By the end of + thời gian					vào cuối + thời gian
+	Every day/month/week						mỗi ngày/tháng/tuần
+	often						ó phần			thường
+	always						ó guệts			luôn luôn
+	constantly									luôn luôn
+	usually						díu sua ly		thường xuyên
+	frequently									thường xuyên
+	sometimes					săm thai		thỉnh thoảng
+	occasionally			ờ khấy sần nơ ly	thỉnh thoảng
+	Seldom										hiếm khi
+	rarely										hiếm khi
+	now											bây giờ
+	is/are/am + phó từ + V-ing
+	Right now									Ngay bây giờ
+	At the moment								Ngay bây giờ
+	Listen!										Nghe nào!
+	Look!										nhìn kìa
+	Watch out!									cẩn thận!
+	Be quiet!									Im lặng
+	At present									hiện tại
+	For + khoảng thời gian											
+	Since + thời gian bắt đầu		
+	since		sins			từ
+	recently									gần đây	
+	lately										gần đây	
+	Just										chỉ
+	Already										đã
+	before										trước khi
+	after										sau khi
+	yet							dét				chưa
+	never						né vờ			không bao giờ
+	ever										bao giờ
+	So far										cho đến bây giờ
+	until now									cho đến bây giờ
+	up to now									cho đến bây giờ
+	All day/week/month: cả ngày/ tuần/tháng
+	At 5pm last Sunday							Vào lúc 5 giờ chiều Chủ nhật tuần trước
+	At this time last night						Vào thời điểm này đêm qua
+	When/ while/ as								Khi/trong khi/như
+	From 4pm to 9pm…							Từ 4h chiều đến 9h tối…
+	By the time									Vào thời điểm đó
+	prior to that time							Trước thời điểm đó
+	As soon as									ngay khi
+	until						ìn theo			cho đến khi
+	Until then									Cho đến lúc đó
+	tomorrow					trơ mó râu		ngày mai
+	in + thời gian								
+	Next week/ month/ year						tuần tới/tháng/năm
+	10 years from now							10 năm nữa
+	Next time									lần tới
+	in the future								trong tương lai
+	and soon									và sắp tới
+	before + thời gian tương lai				truớc ...
+	By then										Đến lúc đó
+Cách thêm ed:
+	- nếu chữ cái cuối cùng là 'e' thì chỉ thêm 'd'
+	- Tận cùng là 1 phụ âm, và có 1 âm tiết
+		+ Kế cuối là 1 nguyên âm thì gấp đôi phụ âm cuối và thêm 'ed'
+	- Tận cùng là "ie"
+		+ đổi "ie" thành "y" rồi thêm "-ed"
+	- tận cùng là "y"
+		+ kế cuối là nguyên âm ta cộng thêm "ed"
+		+ kế cuối là phụ âm ta đổi y thành i rồi cộng thêm "ed"
+Câu bị động:
+	nghĩa là "bị" hoặc "được"
+	Hiện tại đơn:
+		S + be + V3 (+ by Sb/O)
+	Hiện tại tiếp diễn:
+		S + am/ is/are +  being + V3 (+ by Sb/O)
+	Hiện tại hoàn thành:
+		S + have/has + been + V3 (+ by Sb/ O)
+	Quá khứ đơn:
+		S + was/ were + V3 (+ by Sb/O)
+	Quá khứ tiếp diễn:
+		S + was/ were +  being + V3 (+ by Sb/O)
+	Quá khứ hoàn thành:
+		S + had + been + V3 (+ by Sb/O)
+	Thì tương lai đơn:
+		S + will + be + V3 (by O)
+	Tương lai tiếp diễn:
+		S + will be + being + V3 (+ by Sb/O)
+	Tương lai hoàn thành:
+		S + will have + been + V3 (+ by Sb/ O)
+Câu điều kiện:
+	Điều kiện loại 1:
+		If + S1 + V(s/es) + O, S2 + will + V + O.
+		mệnh đề If dùng thì hiện tại đơn, mệnh đề chính dùng thì tương lai đơn.
+	Điều kiện loại 2:
+		If + S + V-ed, S + would/could/should (not) + V1
+		Mệnh đề if chia ở thì quá khứ, động từ của mệnh đề chính chia ở thì hiện tại đơn.
+	Điều kiện loại 3:
+		If + S + had + Vp2, S + would/could/should (not) + have + Vp2
+		Mệnh đề if chia ở thì quá khứ hoàn thành, động từ của mệnh đề chính chia ở thì tương lai hoàn thành.
+Câu cảm thán:
+	what + a/an adj + danh từ đếm được
+	what + adj + danh từ đếm được số nhiều
+	what + adj + danh từ không đếm được
+	what + a/an + adj + noun + S + V
+Động từ tình thái:
+	may/might			có thể(có thể xảy ra)
+	can/can not			có thể(yêu cầu)
+	could				có thể(có khả năng làm gì đó)
+	should				nên
+	ought to			lời khuyên
+	must				phải(bắt buộc)
+	have to				phải (cần thiết, bắt buộc)
+Hỏi đường:
+	could you tell me the way to .....
+	could you tell me how to .....
+	could you please show me the way to the ...., please
+	could you please tell me the way to the ...., please
+	chỉ đường:
+		go straight ahead. turn right/left, take the first/second/... street on the right/left
+Gợi ý, đề nghị:
+	what about + V_ing/Nouns		còn (V_ing/N) thì sao
+	How about + V_ing/Nouns			còn (V_ing/N) thì thế nào
+	Let's + V						hãy ...
+	why don't we + v				tại sao chúng ta không ....
+	why not + v						tại sao không + V
+	shall not + v					chúng ta + V + nhé
+Hỏi giờ:
+	what time is it?
+	what the time?
+	do you have the time?
+	trả lời:
+		cách 1:
+			it's + giờ + phút
+		giờ hơn:
+			it's + phút + past + giờ
+		giờ kém:
+			it's + phút + to + giờ
+Hỏi bao lâu:
+
+Cặp từ:
+	for now										tạm thời
+	S + is/are/am + about have					sắp có
+	here you are								của bạn đây
+	take a break								nghỉ ngơi 1 lát
+	go/goes here								đi đến đây
+	(be, am, is, are) + at + adj				đang ở ...
+	for a walk									đi dạo
+ 	for several years							trong vài năm
+	tobe + v3									bị
+	get out										ra khỏi
+	at the back									ở phía sau
+	to the back									về phía sau
+	S + used to + V								đã từng
+	S + didn't + use to + V						đã từng
+	Did + S + use to + V						đã từng
+	S + is/are/am + get used to + V_ing 		quen với
+	S + spend/waste + time/money + on + N				tiêu xài/ phung phí + thời gian/ tiền + cho việc gì
+	S + spend/waste + time/money + V-ing				tiêu xài/ phung phí + thời gian/ tiền + để làm gì
+	in + tháng/năm/mùa/thế kỷ/ các buổi trong ngày/ các địa điểm lớn
+	on + thứ/ngày/ngày tháng/ngày được định rõ/1 phần nào đó trong ngày/các vùng dài rộng như đường phố, bãi biển,..
+	at+ giờ/ các thời điểm trong ngày/địa điểm nhỏ/ địa chỉ củ thể
+	by + phương tiện giao thông
+	to the left					rẽ trái
+	write soon	roay sun		viết lại cho tôi sớm nhé
+	the way it is				cách mọi việc diễn ra
+	stand by for				chờ đợi (sẵn sàng đặc biệt)
+	along + N					đi cùng N
+	(to be) going to			sẽ (tương lai gần)
+	gonna						sẽ (viết tắt của going to)
+	(have, has, had,..) to		phải
+	as well as					cũng như
+	still + N					vẫn còn N
+Giới từ:
+	in:
+		sử dụng trong không gian 3 chiều, buổi, mùa, tháng năm, (chung chung)
+	on:
+		sử dụng trên mặt phẳng, buổi, ngày, trên phương tiện, vị trí không phải duy nhất
+	at:
+		sử dụng cho thời gian, nơi duy nhất
+Câu bị động:
+	S + ... + be + V		// sẽ có dạng be + động từ
+Câu hỏi:
+	Who
+	Where
+	what
+	When
+	Why
+	Which
+	Whose

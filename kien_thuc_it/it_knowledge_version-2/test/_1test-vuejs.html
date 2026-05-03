@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+	<div id="app">
+        <button v-bind:class="{ 'text-danger': true }" @click="count++">count is {{ count }}</button>
+        <p  v-if="count < 5">count {{ count }}</p>
+        <p>12</p>
+        <input type="text" v-model="message">
+        <input v-else type="text" v-on:keyup.enter="alert(123)">
+    </div>
+    <script>
+        const { createApp } = Vue;
+	        createApp({
+                data() {
+                    return { count: 1 , message:'123'}
+                }
+            }).mount('#app')
+    </script>
+</body>
+</html>

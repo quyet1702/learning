@@ -1,0 +1,20 @@
+Các loại khai cục:
+	- Thuận pháo chậm ra xa
+		=> 2 bên: đưa pháo nhập trung cùng bên, 2 mã phi vào trung
+		=>  bên hậu xe ra sau cùng
+		=> tiên tiến chốt 7
+			=> đối phó nước pháo bay qua đè mã
+				- mã 7 tấn 8 để kẹp pháo và khởi động xe bắt chết pháo
+					=> đối phó nước pháo bay qua đè mã phải
+						- xe di chuyển đường 7 và đẩy tốt lên tấn công
+					=> đối phó nước xe bắt pháo trái
+						- đưa pháo ra biên
+							=> đối phó nước pháo chiếm đáy
+								- lên sĩ
+									=> đối phó nước xe bắt mã
+										- hồi mã để pháo bắt xe, rồi chuyển xe qua đường 6 để dọa bắt mã
+											=> đối phó nước pháo vào góc và xe cắm đáy dọa sát
+												- hồi mã để đổi pháo
+											- cánh trái và phải tiến xe bắt mã
+												- nổ pháo tiến công
+									

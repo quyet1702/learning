@@ -1,0 +1,12 @@
+Khai cục:
+	Pháo Đầu Đưa xe qua hà <-> Thuận Pháo
+		=> 2 bên: trung pháo, trung mã cùng bên, rồi bên tiên xuất xe đường 2
+			- bên tiên tiến xe đè mã
+			=> bên hậu xuất xe trục ngang qua đường 6 dọa bắt pháo
+				- pháo tiến 5 dọa bắt xe để đưa mã địch ra biên
+					- điều pháo qua phụ xe bắt mã
+				=> đối phó nước xe bắt mã
+					- bỏ mã, lấy xe tiến 2, phục thủ đoạn đưa xe qua cánh trái tấn công
+						-- tuyệt kỹ sát: phế xe vào mã => pháo chiếu => chuyển xe qua trái tấn công
+				=> đối phó nước
+ 

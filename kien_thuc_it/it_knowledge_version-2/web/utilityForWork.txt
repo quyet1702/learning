@@ -1,0 +1,706 @@
+Danh sách:
+Tìm kiếm:
+sửa item với popup:
+Xóa item:
+Xem chi tiết item:
+Validate FontEnd:
+Xuất file pdf:
+Merge file pdf:
+Thanh toán online:
+Bỏ qua middleware:
+khung thông báo:
+Viết api:
+Chuyển đổi collection thành paginate:
+Show bootstrapTable:
+Import:
+------------------------------------------------------------------------------------------------
+Danh sách:
+    Route::get('index', [FeeController::classm 'index'])->name('index')
+    public function index(Request $request){
+        try {
+            $fees = $this->services->filterData($request->all());
+            return view('tuition-revenue/fee/index', compact('fees'));
+        } catch(\Exception $e) {
+            Toastr::error('Đã có lỗi xảy ra, vui lòng liên hệ nhân viên Okuro', 'Thất bại');
+            Log::channel('tuition-revenue')->error([
+                'error' => $e.getMessage() . ' | ' . $e.getLine()
+            ]);
+            return back                                                                                                 l();
+        }
+    }
+    public function filterData($request){
+        $feeQuery = Fee::query()->orderBy('created_at', 'desc');
+        if(empty($request->name)){
+            $feeQuery->where('name', $request->name);
+        }
+        return $feeQuery->paginate(10);
+    }
+----------------------------------------------------
+Tìm kiếm:
+		view:
+			<form action="{{route('blog')}}" method="GET">
+                       		<input type="text" name="search" value="{{$search}}">
+				<button type="submit">tìm kiếm</button>
+			</form>
+		action:
+			sử dụng trên action hiện thị list:
+			public function index (Request $request){
+        			$blogs = Blog::query();
+        			$search = $reuqest->search;
+        			if($search){
+            				$blogs = $blogs->where("title","like","%".$search."%");
+        			}
+        			if($blogs->count()==0){
+            				$blogs = Blog::where("content","like","%".$search."%");
+        			}
+        			$blogs = $blogs->paginate(10);
+        			return view('blog.index',compact('blogs','search'));
+    			}
+------------------------------------------------------------
+	----------------------------------------------------------------------------------------------------------
+	Phân trang:
+		action:
+			$article = Article::paginate(10);
+		view:
+			 @foreach($profiles as $key =>  $profile)
+			{{ $profiles->firstItem() + $key }}			// tạo stt
+			@end
+			{{$articles-> links()}}
+			{{$articles->appends(request()->input())-> links()}}		// giữ lại param search khi chuyển trang
+		AppServicesProvider/boot:
+			use Illuminate\Pagination\Paginator;
+			Paginator::useBootstrap();
+	-------------------------------------------------------------------------------------------------------
+	Thêm layout:
+		tạo file layouts/layout.blade.php:
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Document</title>
+                    </head>
+                    <body>
+                        @yield('content')
+                    </body>
+                    </html>
+		
+	----------------------------------------------------------------------------------------------------------------------
+	thêm index:
+		public function index(){
+			$blogs = Blog::all();
+        		return view('index',compact('blogs'));
+		}
+		Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+		tạo file index.blade.php:
+                    @extends('layouts.layout')
+                    @section('content')
+		<a href="{{route('blog.create')}}">Thêm mới</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($blogs as $blog)
+                            <tr>
+                                <td>{{$blog->title}}</td>
+                                <td>{{$blog->content}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endsection
+	----------------------------------------------------------------------------------------------------------------------
+	trang thêm mới:
+		Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
+		<form method='post' action="{{route('blog.store')}}">
+   			@csrf
+    			<input type='text' name='title'>
+    			<input type='text' name='content'>
+    			<button type="submit">Thêm</button>
+		</form>
+		use Illuminate\Support\Facades\Validator;
+		public function create(Request $request){
+			$validated = Validator::make($request->all(), [
+            			'full_name' => 'required|max:50',
+            			'email' => 'required|email:rfc,dns',
+        		],[
+				'required' => 'Tên không được để trống',
+            			'email' => 'email không hợp lệ ',
+			]
+			)->validate();
+			$contact = new Contact();
+			$contact->full_name = $request->fullname;
+			$contact->email = $request->email;
+			@contact->save();
+			return back();
+		}
+	----------------------------------------------------------------------------------------------------------------------
+	Trang thêm mới:
+		Route::get('/blog/create',[BlogController::class,'create'])->name('blog.create');
+		public function create(){
+        		return view('blog.create');
+    		}
+		<form method="post" action="{{route('blog.store')}}">
+    			@csrf
+    			<input type="text" name="title">
+    			<input type="text" name="content">
+    			<button>thêm mới</button>
+		</form>
+	----------------------------------------------------------------------------------------------------------------------
+	thêm mới:
+		Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
+		public function store(Request $request){
+        		$blog = new Blog();
+        		$blog->title = $request->title;
+        		$blog->content = $request->content;
+        		$blog->save();
+        		return redirect()->route('blog');
+    		}
+	---------------------------------------------------------------------------------------------------------------------
+	Xóa:
+		Route::delete('/delete', [BlogController::class, 'delete'])->name('blog.delete');
+		<form method='POST' action='{{route("blog.delete",["blog"=>$blog->id])}}'> 
+                	@csrf
+                	@method('delete')
+                	<button>xóa</button>
+                </form>
+		public function delete (Request $request) {
+        		$blog = Blog::all()->find($request->id);
+        		$blog->delete();
+        		return back();
+    		}
+	---------------------------------------------------------------------------------------------------------------------
+	Trang sửa:
+		Route::get('/blog/edit',[BlogController::class,'edit'])->name('blog.edit');
+		public function edit(Request $request){
+        		$blog = Blog::all()->find($request->id);
+        		return view('blog.edit',compact('blog'));
+    		}
+		<form method="post" action="{{route('blog.update',['id'=>$blog->id])}}">
+   			@csrf
+    			<input type="text" name="title" value="{{$blog->title}}">
+    			<input type="text" name="content" value="{{$blog->content}}">
+    			<button>sửa</button>
+		</form>
+	---------------------------------------------------------------------------------------------------------------------
+	Sửa:
+		Route::post('/blog/update',[BlogController::class,'update'])->name('blog.update');
+		public function update(Request $request){
+        		$blog = Blog::all()->find($request->id);
+        		$blog->title = $request->title;
+        		$blog->content = $request->content;
+			$blog->save();
+        		return redirect()->route('blog');
+    		}
+------------------------------------------------------------
+	khung thông báo:
+		composer require brian2694/laravel-toastr
+		php artisan vendor:publish
+		Toastr::success('Nội dung đã được gửi thành công', 'Gửi thành công', ["positionClass" => "toast-top-right"]);
+		use Brian2694\Toastr\Facades\Toastr;
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+   	 	<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+		{!! Toastr::message() !!}
+----------------------------------------------------------------------------------------------------------------------------------------------
+sửa item với popup:
+    Route::get('get-info-student/{student}', [Student::class, 'getInfoStudent'])->name('get-info-student');
+    Route::get('update/{student}', [Student::class, 'update'])->name('update');
+    
+    <button data-student-id="{{ student->id }}" onclick="showForm(this)">update<button>
+
+    public function getInfoStudent(Student $student){
+        try {
+            $customData = [
+                'name'          => $student->name,
+                'class_name'    => student->class->name
+            ]
+            return response()->json(['status' => true, 'data' => $customData,'message' => Đã tìm thấy dữ liệu học sinh], 200);
+
+        } catch(\Exception $e){
+            Log::channel('tuition-revenue')->error([
+                'error' => $e.getMessage() . ' | ' . $getLine(),
+            ]);
+            return response()->json(['status' => false, 'message' => 'Đã có lỗi xảy ra, vui lòng liên hệ nhân viên Okuro'], 500);
+        }
+    }
+
+    public function update(Request $request, Student $student){
+        $validator = Validator($request->all(),[
+            'name'  => 'required',
+        ]); 
+        try {
+            $student->name = $request->name;
+            $result = $student->save();
+            if($result){
+                Toastr::success('Cập nhật thành công', 'Thành công');
+                return back();
+            } else {
+                Toastr::error('Cập nhật thất bại', 'Thất bại');
+                return back();
+            }
+        } catch(\Exception $e) {
+            Toastr::error('Đã có lỗi xảy ra vui lòng liên hệ nhân viên Okuro', 'Thất bại');
+            Log::channel('tuition-revenue')->error([
+                'error' => $e.getMessage() . ' | ' . $e.getLine()
+            ]);
+            return back();
+        }
+    }
+    function showForm(e){
+        showLoading();
+        let studentId = $(e).attr('data-student-id');
+        let urlGetInfo = "{{ route('get-info-student', ['student' => ':studentId']) }}"
+        urlGetInfo = urlGetInfo.replace(':studentId', studentId);
+
+        let urlSubmit = "{{ route('update', ['student' => ':studentId']) }}"
+        urlSubmit = urlSubmit.replace(':studentId', studentId);
+
+        $('#popup-cancel-receipt #reason').val('');
+        $.ajax({
+            url: urlGetInfo,
+            type: 'GET',
+            success: function(response) {
+                hideLoading();
+                if(response.status == true){
+                    $('#popup-cancel-receipt').modal('show');
+                    $('#popup-cancel-receipt #student-code').val(response.data.name);
+                    
+                    $('#popup-cancel-receipt  #form-cancel').attr('action', urlSubmit);
+                }
+                else {
+                    toastr.error(response.message, 'Thất bại');
+                }
+            },
+            error: function(xhr, status, error) {
+                hideLoading();
+                toastr.error(xhr.responseJSON.message);
+            }
+        });
+
+    }
+-----------------------------------------------------------------------------------------
+Xóa item:
+    route::delete('destroy', [FeeController::class, 'destroy'])->name('destroy');
+    public function destroy(Fee $fee){
+        try {
+            $result = $fee->delete();
+            if($result){
+                Toastr::success('Đã xóa thành công', 'Thành công');
+                return back();
+            } else {
+                Toastr::error('Xóa thất bại', 'Thất bại');
+                return back();
+            }
+        } catch(\Exception $e){
+            Toastr::error('Đã có lỗi xảy ra, vui lòng liên hệ nhân viên Okuro', 'thất bại')
+            Log::channel('tuition-revenue')->error([
+                'error' => $e.getMessage() . ' | ' . $e.getLine()
+            ]);
+            return back();
+        }
+    }
+    <form action="{{ route('destroy', ['fee' => $fee->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="button" onclick="deleteFee(this)">xóa</button>
+    </form>
+    function deleteFee(e) {
+            Swal.fire({
+                title: 'Xác nhận',
+                text: 'Bạn có chắc chắn muốn xoá?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy bỏ',
+                showLoaderOnConfirm: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(e).parent().submit();
+                }
+            });
+        }
+-----------------------------------------------------------------------------------------
+Xem chi tiết item:
+    Route::get('get-info-student/{student}', [Student::class, 'getInfo'])->name('get-info-student');
+    
+    <button data-student-id="{{ student->id }}" onclick="showForm(this)">update<button>
+
+    public function getInfo(Student $student){
+        try {
+            $customData = [
+                'name'          => $student->name,
+                'class_name'    => student->class->name
+            ]
+            return response()->json(['status' => true, 'data' => $customData,'message' => Đã tìm thấy dữ liệu học sinh], 200);
+
+        } catch(\Exception $e){
+            Log::channel('tuition-revenue')->error([
+                'error' => $e.getMessage() . ' | ' . $getLine(),
+            ]);
+            return response()->json(['status' => false, 'message' => 'Đã có lỗi xảy ra, vui lòng liên hệ nhân viên Okuro'], 500);
+        }
+    }
+
+    function showForm(e){
+        showLoading();
+        let studentId = $(e).attr('data-student-id');
+        let urlGetInfo = "{{ route('get-info-student', ['student' => ':studentId']) }}"
+        urlGetInfo = urlGetInfo.replace(':studentId', studentId);
+
+        $('#popup-cancel-receipt #reason').val('');             // reset form
+        $.ajax({
+            url: urlGetInfo,
+            type: 'GET',
+            success: function(response) {
+                hideLoading();
+                if(response.status == true){
+                    $('#popup-cancel-receipt').modal('show');
+                    $('#popup-cancel-receipt #student-code').val(response.data.name);
+                }
+                else {
+                    toastr.error(response.message, 'Thất bại');
+                }
+            },
+            error: function(xhr, status, error) {
+                hideLoading();
+                toastr.error(xhr.responseJSON.message, 'Thất bại');
+            }
+        });
+
+    }
+-----------------------------------------------------------------------------------------
+Validate FontEnd:
+    Validate:
+        function validateFormCancel(){
+            $("#popup-cancel-receipt #btn-add").on('click',function(){
+                reasonInput = $("#popup-cancel-receipt textarea[name=reason]");
+                var isError = false;
+                if(reasonInput.val().trim().length == 0 || reasonInput.val().trim().length > 200){
+                    toastr.error('Lý do hủy không được để trống và không vượt quá 200 ký tự', 'Thất bại');
+                    reasonInput.css('border-bottom', '2px solid red');
+                    isError = true;
+                }
+                else {
+                    reasonInput.css('border-color', '#828bb2')
+                }
+                if(isError == true){
+                    return false;
+                }
+            });
+        }
+-------------------------------------------------------------------------------------------------
+Xuất file pdf:
+    composer require niklasravnsborg/laravel-pdf
+	'providers' => [
+		niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+	]
+	'aliases' => [
+		'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+	]
+    use PDF;
+    Route::get('export-pdf/{receipt}', [PdfController::class, 'exportPDF'])->name(export-pdf);
+    public function exportPDF(Receipt $receipt){
+        $data = [
+            'receipt'   => $receipt,
+        ]
+        $pdf = PDF::loadView('receipt/document', $data, [], [
+            'format' => 'A5-L',
+        ]);
+		return $pdf->stream('document.pdf');
+    }
+    view/receipt/document.blade.php:
+		<h1>test<h2>
+------------------------------------------------------------------------------------------------
+Merge file pdf:
+    composer require webklex/laravel-pdfmerger
+    Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class,
+    'PDFMerger' => Webklex\PDFMerger\Facades\PDFMergerFacade::class
+    use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
+    public funtion printPDF(){
+        $oMerger = PDFMerger::init();
+        $data = [
+            'foo' => 'bar'
+        ];
+        Storage::disk('public')->delete('app/public/pdf_folder');
+        for($i = 0; $i < 5; $i++){
+            $pdf = PDF::loadView('pdf', $data, [], [
+                'format' => 'A5',
+                'tempDir'=> base_path('../temp/')
+            ]);
+            Storage::disk('public')->put('pdf_folder/'.$i.".pdf", $pdf->output());
+            $oMerger->addPDF(storage_path('app/public/').'pdf_folder/'.$i.".pdf", 'all');
+        }
+        $oMerger->merge();
+        return $oMerger->stream('document.pdf');
+    }
+-------------------------------------------------------------------------------------------------
+Thanh toán online:
+    api Check bill => api napas get token => call api napas =>  update bill;
+    api napas get token:
+        $accessToken = https://dps-staging.napas.com.vn/api/oauth/token
+                        param:
+                            "grant_type" => "password",
+                            "client_id" => OKURO,
+                            "client_secret" => 4EB7869C4EBA478B607B675AA174EFF5,
+                            "username" => okuro
+                            "password" => OKURO@2021
+    call api napas:
+        https://dps-staging.napas.com.vn/api/rest/version/1/merchant/{merchantId}/order/ {orderId}/transaction/{transactionId}
+        header:
+            "Authorization" => "Bearer {$accessToken}"
+            'json'          => [
+                'apiOperation'  => 'PURCHASE_OTP',
+
+                'order' => [
+                    'amount'   => 1000000,
+                    'currency' => 'VND'
+                ] ,
+
+                "sourceOfFunds" => [
+                    "type"  => "CARD",
+                    "token" =>  'eyJpdiI6IkJWeUNvYzF0SHNXMHZNYU5mc0hyVFE9PSIsInZhbHVlIjoid2h5NzhsQmYxSUJNOVlBMzJlQ0NzdUxsMDJlMzlPOFR0ZlBPNG9EdEgxWT0iLCJtYWMiOiIwODhiYWRkMTU1ZDYyOWUyOGE2YTRiN2EyNjA0NzEzNDkzY2U1YmNmZjA2ZjBjOGFmYzcxYjYzOWY2Yzg0Mzg5In0'
+                ],
+
+                "channel" => 0000,
+                'inputParameters' => [
+                    'clientIP'       => '171.253.176.237',
+                    'deviceId'       => 'ca752f909a424864',
+                    'environment'    => 'WebApp',
+                    'cardScheme'     => 'AtmCard',
+                    'enable3DSecure' => false
+                ],
+            ],
+            'verify'        => false
+
+        Tạo token:
+            $key = Crypt::encryptString('abc');             // mã hóa
+            $deKey = Crypt::decryptString($key)             // giải mã
+            // Cache::get($deKey);                             // lấy giá trị từ cache
+        merchantId = "quyet";
+        orderId = 1             // mã hóa đơn cho thanh toán
+        transactionId = 1       // mã giao dịnh
+------------------------------------------------------------------------------------------------
+BootstrapTable:
+------------------------------------------------------------------------------------------------
+Authen:
+-------------------------------------------------------------------------------------------------
+Bỏ qua middleware:
+    Route::get('login', [LoginController::class, 'login'])->withoutMiddleware(['auth:api']);
+    if($request->is('admin/tuition')){
+        $next($request);
+    }
+    if(str_contains(Route::currentRouteName(), 'admin.tuition.')){
+        return $next($request);
+    }
+-------------------------------------------------------------------------------------------------
+Viết api:
+    Route::get('test-api', [TestApiController::class, 'testApi'])->name('test-api');
+    public function testApi($receiptId)
+    {
+        try {
+            $receipt = Receipt::find($receiptId);
+            if(empty($receipt)){
+                return response()->json(['status' => false, 'data' =>, 'message' => 'Không tìm thấy dữ liệu'], 403);
+            }
+            return response()->json(['status' => true, 'data' =>, 'message' => 'Đã tìm thấy dữ liệu'], 200);
+        } catch(\Exception $e){
+            Log::channel()->error([
+                'error' => $e->getMessage() ."  | ".$e->getLine(),
+            ]);
+            return response()->json(['status' => false, 'message' => 'Đã có lỗi xảy ra'], 200);
+        }
+    }
+---------------------------------------------------------------------------------------------------
+Chuyển đổi collection thành paginate:
+$perPage = 10;
+            $page = request('page', 1);
+            return new LengthAwarePaginator(
+                $receipts->forPage($page, $perPage),
+                $receipts->count(),
+                $perPage,
+                $page,
+                ['path' => url()->current()] // URL hiện tại
+            );
+-------------------------------------------------------------------------------------------------
+Show bootstrapTable:
+	<button title="Lịch sử thu học phí" data-receipt-id="{{ $receipt->id }}" onclick="showFormHistory(this)"></button>
+	<table id="table-history" data-toggle="table"
+                        data-query-params="queryParams"
+                        class="display school-table"
+                        data-pagination="true"
+                        data-page-size="6"
+                        width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-field="index">Stt</th>
+                                    <th data-field="creator">Người thu</th>
+                                    <th data-field="created_at">Ngày thu</th>
+                                    <th data-field="payer">Người nộp</th>
+                                    <th data-field="phone_number">Số điện thoại</th>
+                                    <th data-field="campus_name">Cơ sở</th>
+                                    <th data-field="collected_format">Số tiền</th>
+                                    <th data-field="method_text">Hình thức thu</th>
+                                    <th data-field="type">Trạng thái</th>
+                                    <th data-field="note" data-formatter="noteFormatter">Ghi chú</th>
+                                    <th data-field="content" data-formatter="contentFormatter">Nội dung</th>
+                                    <th data-field="print" data-formatter="printFormatter"></th>
+                                </tr>
+                            </thead>
+                        </table>
+	 function showFormHistory(e){
+        let studentCode = $('#popup-info-history #student-code');
+        let fullName = $('#popup-info-history #full-name');
+        let dateOfBirth = $('#popup-info-history #date-of-birth');
+        let className = $('#popup-info-history #class-name');
+
+        studentCode.val($(e).parent().find('[data-student-code]').attr('data-student-code')).trigger('change');
+        fullName.val($(e).parent().find('[data-fullname]').attr('data-fullname')).trigger('change');
+        dateOfBirth.val($(e).parent().find('[data-date_of_birth]').attr('data-date_of_birth')).trigger('change');
+        className.val($(e).parent().find('[data-class]').attr('data-class')).trigger('change');
+        let receiptId = $(e).attr('data-receipt-id');
+        let urlGetInfo = "{{ route('admin.tuition.get-receive-payment-history', ['receipt' => ':receiptId']) }}"
+        urlGetInfo = urlGetInfo.replace(':receiptId', receiptId);
+        $('#popup-info-history').modal('show');
+        $('#popup-info-history #table-history').bootstrapTable('destroy').bootstrapTable({
+            toggle: 'table',
+            undefinedText: "",
+            paginationParts: ['pageList'],
+            paginationLoop: false,
+            pagination: true,
+            pageSize: 5,
+            loadingTemplate: function(){
+                return  `<div>
+                            <div style="font-size: 18px; color:#545454; text-align: center; margin-bottom: 10px;">Đang tải dữ liệu...!</div>
+                            <div class="table-loader" style="display: flex;"></div>
+                        </div>`;
+            },
+            formatNoMatches: function(){                // Đổi text khi không tìm thấy dữ liệu
+                return 'Không có dữ liệu.'
+            },
+            url: urlGetInfo
+        });
+    }
+    
+    function printFormatter(value, row){
+        console.log(row);
+        if(row.is_type_get == 1){
+            return `<a title="In phiếu thu"
+                        target="_blank"
+                        href="${row.url_print}"
+                        style="box-shadow: 0 4px 8px 0 rgba(59, 130, 246, 0.15);; border-radius: 10px; padding: 9px;">
+                        <img src="/backEnd/img/printing.svg"
+                            alt="Không tìm thấy icon">
+                    </a>`;
+        }
+    }
+    function noteFormatter(value, row){
+        let maxWithNote = 0;
+        if(row.note){
+            maxWithNote = row.note.length * 2;
+        }
+        return `<p style="min-width: ${maxWithNote}px; white-space: pre-wrap">${row.note}</p>`;
+    }
+    function contentFormatter(value, row){
+        let maxWithContent = 0;
+        if(row.content){
+            maxWithContent = row.content.length * 2;
+        }
+        return `<p style="min-width: ${maxWithContent}px; white-space: pre-wrap">${row.content}</p>`;
+    }
+   return response()->json(['rows'=>
+					[
+						'note' => 'value',
+						'content' => 'value',
+						...................
+					]
+			],200);
+--------------------------------------------------------------------------------------------------
+Import:
+    php artisan make:import StudentImport --model=User
+    Excel::import(new StudentImport, $request->file);
+    class StudentImport implements WithMultipleSheets
+    {
+        public function sheets(): array
+        {
+            return [
+                new StudentFirstSheet()
+            ];
+        }
+    }
+    class StudentFirstSheet implements ToCollection, WithBatchInserts, WithChunkReading, WithValidation, WithStartRow, SkipsEmptyRows
+    {
+        public function collection(Collection $row)
+        {
+            return new Student([
+                'name' => $row->name,
+            ]);
+        }
+        public function rules(): array
+        {
+            return [
+                '*.0' => [
+                    function($attribute, $value, $onFailure){
+                        $this->index++;
+                        if($this->index != $value){
+                            $onFailure('Sai cột số thứ tự.');
+                        }
+                    }
+                ],
+                '*.1' => ['required','exists:classes,class_name'],
+                '*.2' => ['required','unique:students,internal_student_code', 'numeric', 'max:9999999999'],
+                '*.3' => ['nullable'],
+            ];
+        }
+
+        public function customValidationMessages()
+        {
+            return [
+                '1.required'            => 'Cột Mã lớp không được để trống',
+                '1.exists'              => 'Dữ liệu mã lớp không tồn tại trong hệ thống',
+                '2.required'            => 'Cột Mã học sinh(Trường) không được để trống',
+                ];
+        }
+
+        public function startRow(): int
+        {
+            return 2;
+        }
+
+        public function batchSize(): int
+        {
+            return 1000;
+        }
+
+        public function chunkSize(): int
+        {
+            return 1000;
+        }
+    }
+
+    Controller:
+        try {
+            Excel::import(new StudentImport, $request->file);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $messages = "<ul class='warning-list'>";
+            foreach ($failures as $failure) {
+                $error = $failure->errors()[0];
+                $messages .= "<li><span>Lỗi dòng ".$failure->row().": "."</span>".$error."</li>";
+            }
+            $messages .= "</ul>";
+            FacadesLog::channel($this->logChannel)->error('storeStudentList: Import học sinh thất bại', ['error' => $messages]);
+                return response()->json(['result' => false, "status" => 409, 'message' => $messages]);
+            FacadesLog::channel($this->logChannel)->error('storeStudentList: Import học sinh thất bại', ['error' => $e->getMessage()]);
+            return response()->json(
+                [
+                    "result" => false,
+                    "status" => 500,
+                    "message" => 'Có lỗi trong quá trình nhập dữ liệu vui lòng thử lại sau!'
+                ]);
+        }

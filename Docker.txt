@@ -1,0 +1,97 @@
+config:
+image:
+container:
+Dockerfile:
+Docker-compose:
+_________________________________________________________________
+Config:
+	Cài đặt:
+		cài đặt Ubuntu từ window store -> bật Hyper-V backend -> tải và cài đặt docker
+		docker -v
+		docker info
+image:
+	Kiểm tra:
+		docker search keyword					// tìm kiếm các image trên hub docker
+		docker images							// lấy thông tin image hiện có
+		docker ps								// kiểm tra docker đang chạy
+		docker inspect <image_id_or_name>		// xem chi tiết 1 image
+	Thêm:
+		docker pull imageName:version			// tải các phần mềm vào image; nếu không chỉ định version sẽ lấy bản latested
+		docker commit ContainerName ImageName:version		// biến container thành image
+	Xóa:
+		docker image rm imageName:version -f	// thêm tham số -f để xóa image đang khởi động
+	Sửa tên:
+		docker tag imageId newName:newVersion	// Đổi tên + version image:
+	lưu image thành file:
+		docker save -o <output_file_name>.tar <image_name>
+	tải image từ file:
+		docker load -i <input_file_name>.tar
+Container:
+	Kiểm tra:
+		docker ps		// liệt kê các container đang chạy; tham số -a liệt kê cả container đã dừng
+		docker run -d --name containerName imageName
+		docker stop/start
+		docker rm
+		docker logs
+		docker exec
+		docker inspect
+	docker run --name test-mysql -e MYSQL_ROOT_PASSWORD=123 -e MYSQL_USER=quyet1702 -e MYSQL_PASSWORD=456 -p 3307:3306 -d mysql:latest		// chạy container với image
+							// xem thông tin docker đang chạy
+		docker exec containerName bash 			// truy cập vào command của container
+			mysqladmin -u root -p ping		// kiểm tra mysql đã hoạt động chưa
+			ctr + p + q				// bấm để thoát
+		docker stop containerName			// containerName hoặc containerId
+		docker rm containerName				// xóa container với containerName hoặc containerId
+	Cơ bản:	Kéo image về -> khởi động container -> 
+		Image:
+			Lưu image ra file:
+				cd path					// thư mục muốn lưu
+				docker save --output fileName.tar
+			pull lại image đã lưu:
+				cd path					// thư mục đã lưu
+				docker load -i imageName.tar		
+		Container:
+			Thêm + chạy container:
+				docker run thamso imageName command thamsolenh
+				docker run -i -t ubuntu:latest		// có thể thay ubuntu:latest = Id của image; có thể gôp -i -t thành -it
+							tham số -t là cấp thêm 1 terminal cho container
+				docker run -i -t --name "abc" -h ubuntu ubuntu:latest		// đặt tên cho container "abc"; đặt tên cho host của ubuntu là ubuntu
+				cmd: ls
+				cmd: exit				// để thoát và tắt image đang chạy
+			Xóa:
+				docker rm containerName			// containerName hoặc containerId
+				docker rm -f containerName		// xóa container đang chạy
+			Kiểm tra container đang chạy và đã tắt: 
+				docker ps		// kiểm tra image đang chạy
+				docker ps -a		// kiểm tra image đang chạy và image đã ngừng chạy
+			Chạy + dừng container:	
+				docker start containerName		// containerName hoặc containerId
+				docker stop containerName		// containerName hoặc containerId
+
+			Truy cập Teminal trong container đang chạy:
+				docker attach containerName	// có thể thay container thành container Id
+			teminal trong container khi đang ở ngoài host:
+				docker exec containerName cmd bash			// ví dụ: docker exec c0 ls
+			thoát teminal của container mà vẫn giữ đang chạy:
+				bấm tổ hợp phím ctr + p + q
+		Terminal container:
+			cài đặt htop:
+				apt update -y
+				apt install htop
+			kiểm tra các tuyến trình đang chạy:
+				htop
+			Tìm kiếm package:
+				apt search keyword
+		Chia sẻ dữ liệu:
+			Host và container:
+			container và container:
+	
+container:
+	Kiểm tra:
+	Thêm:
+	Xóa:
+	Sửa:
+	Khởi động:
+	Dừng:
+Dockerfile:
+Docker compose:

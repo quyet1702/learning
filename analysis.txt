@@ -1,0 +1,15 @@
+Cấp độ nghiệp vụ:
+	Phân tích tổng quan các nghiệp vụ
+Cấp độ file:
+	Phân tích tổng quan vai trò của file
+cấp độ hàm:
+	input:
+	logic:
+		file:
+			file => method
+		validate:
+		get:
+		customData:
+		create:
+		update:
+	output:

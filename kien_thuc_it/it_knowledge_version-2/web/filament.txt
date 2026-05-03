@@ -1,0 +1,428 @@
+form thêm mới và form edit:
+form edit:
+table show danh sách:
+Dashboard:
+----------------------------------------------------
+
+install:
+	composer require filament/filament -W
+	php artisan filament:install --panels
+	php artisan make:filament-user
+migrate, model:
+	php artisan make:model Owner -m
+	php artisan make:model Patient -m
+	php artisan make:model Treatment -m
+-------------------------------------------------------------
+sử dụng nhanh:
+	cài đặt:
+		composer require filament/filament -W
+		php artisan filament:install --panels
+		truy cập: domain/admin
+	tạo tài khoản:
+		php artisan make:filament-user
+	tạo các model, migrate muốn quản lý ví dụ:
+		php artisan make:model Owner -m
+		php artisan make:model Patient -m
+		php artisan make:model Treatment -m
+		
+		Schema::create('owners', function (Blueprint $table) {
+    			$table->id();
+    			$table->string('email');
+    			$table->string('name');
+    			$table->string('phone');
+    			$table->timestamps();
+		});
+ 
+		// create_patients_table
+		Schema::create('patients', function (Blueprint $table) {
+    			$table->id();
+    			$table->date('date_of_birth');
+    			$table->string('name');
+    			$table->foreignId('owner_id')->constrained('owners')->cascadeOnDelete();
+    			$table->string('type');
+    			$table->timestamps();
+		});
+ 
+		// create_treatments_table
+		Schema::create('treatments', function (Blueprint $table) {
+    			$table->id();
+    			$table->string('description');
+    			$table->text('notes')->nullable();
+    			$table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
+    			$table->unsignedInteger('price')->nullable();
+    			$table->timestamps();
+		});
+
+		class Owner extends Model
+		{
+    			public function patients(): HasMany
+   			{
+        			return $this->hasMany(Patient::class);
+    			}
+		}
+ 
+		class Patient extends Model
+		{
+    			public function owner(): BelongsTo
+    			{
+        			return $this->belongsTo(Owner::class);
+    			}
+ 
+    			public function treatments(): HasMany
+    			{
+        			return $this->hasMany(Treatment::class);
+    			}
+		}
+ 
+		class Treatment extends Model
+		{
+    			public function patient(): BelongsTo
+    			{
+        			return $this->belongsTo(Patient::class);
+    			}
+		}
+	cài bộ resource quản lý thêm xóa sửa model:
+		php artisan make:filament-resource Patient
+
+------------------------------------------------------------------------------
+	form thêm mới và form edit:
+		(app/Filament/Resources/PatientResource.php):
+		public static function form(Form $form): Form
+		{
+    			return $form
+        			->schema([
+            				Forms\Components\TextInput::make('name'),
+            				Forms\Components\Select::make('type')
+                				->options([
+                    					'cat' => 'Cat',
+                    					'dog' => 'Dog',
+                    					'rabbit' => 'Rabbit',
+                			]),
+            				Forms\Components\Select::make('owner_id')
+               					->relationship('owner', 'name')
+                				->searchable()						// tìm kiếm trên thẻ select
+    						->preload()						// load 50 row
+    						->createOptionForm([					// tạo dấu + trên thẻ select, khi bấm vào sẽ hiện form (chú ý phải thêm ->relationship('owner', 'name'))
+        						Forms\Components\TextInput::make('name')
+        						Forms\Components\TextInput::make('email')
+        						Forms\Components\TextInput::make('phone')
+            							->required(),
+    					]),
+					Forms\Components\DatePicker::make('date_of_birth')
+						->label('Chú thích')					// label của input
+						->email()						// validate email
+                				->maxLength(65535)					// độ dài tối đa của chuỗi
+                				->columnSpan('full')					// set width full của input, mặc định 50%
+						->dateTime()						// validate phải có định dạng ngày giờ
+						->unique()						// không được trùng
+						->tel()							// validate phải là số điện thoại
+						->maxValue(42949672.95)					// số tối đa
+						->numeric()						// trường này phải là số
+						->minValue(-100)					// số tối thiểu
+						->hiddenOn('edit')					// khi truy cập vào form edit thì input này sẽ bị ẩn và không được gửi vào submit
+						->prefix('€')						// thêm ký tự € trước giá trị input mà không ảnh hưởng khi submit
+						->maxDate(now()),					// ngày giờ tối đa
+
+					Forms\Components\Group::make()					// tạo relationship khi khóa ngoại ở table member
+                    				->relationship('member')				// truy xuất tới table member
+                    				->schema([						// tự động thêm mới table member khi đã thêm mới table chính
+                        				Forms\Components\DatePicker::make('date_of_birth')	// lấy column date_of_birth của ngày sinh
+                                				->label('Ngày sinh')
+                                				->maxDate(now()),
+                    				])
+        			]);
+		}
+		Form tại mới cách 2:
+			class CreateUser extends CreateRecord {
+				use CreateRecord\Concerns\HasWizard;
+				 public function getSteps(): array
+    				{
+        				return [
+            					Step::make('Thông tin tài khoản')
+							->description('Thông tin cơ bản dành cho đăng nhập')
+                					->schema([
+                    						TextInput::make('name')
+                        						->label('Tài khoản')
+                        						->required()
+                        						->unique()
+                        						->maxLength(255),
+								// ...
+                					]),
+						Step::make('Thông tin cá nhân')
+                					->schema([
+								// ...
+							])
+					]
+			}
+
+	Xử lý logic khi thêm mới thành công: resource/page/create.php:
+		- được sử dụng cho trường hợp thêm mới thành công nhưng vẫn muốn sử dụng để thêm mới bảng phụ
+		protected function afterCreate(): void
+    		{
+       			Member::create([
+            			'user_id' => $this->record->id,
+            			'address' => $this->data['address'],
+            			'first_name' => $this->data['first_name'],
+            			'last_name' => $this->data['last_name'],
+            			'date_of_birth' => $this->data['date_of_birth'],
+            			'phone_number' => $this->data['phone_number'],
+        		]);
+    		}
+		lây model được đã thêm mới: $this->record
+		lấy giá trị các trường input ở form: $this->data
+-------------------------------------------------------------------------------------
+Thêm mới:
+	Sửa dữ liệu form trước khi lưu db:
+		felament/resources/pages/Create...php
+		protected function mutateFormDataBeforeCreate(array $data): array
+		{
+    			$data['user_id'] = auth()->id();
+    			return $data;
+		}
+	Sửa trong quá trình tạo:
+		protected function handleRecordCreation(array $data): Model
+		{
+    			return static::getModel()::create($data);
+		}
+	Chuyển hướng trang khi đã lưu db:
+		protected function getRedirectUrl(): string
+		{
+    			return $this->previousUrl ?? $this->getResource()::getUrl('index');
+		}
+	Thông báo khi đã lưu:
+		protected function getCreatedNotificationTitle(): ?string
+		{
+    			return 'Bạn đã đăng ký thành công';
+		}
+	Thông báo khi đã lưu nâng cao:
+		use Filament\Notifications\Notification;
+		protected function getCreatedNotification(): ?Notification
+		{
+    			return Notification::make()
+        			->success()			// success, warning, error, danger,
+        			->title('Thành công')
+        			->body('Tài khoản người dùng đã được tạo thành công.');
+		}
+	protected function beforeFill(): void { }			// trước khi giá trị mặc định của form đc tạo
+    	protected function afterFill(): void { }			// sau khi giá trị mặc định của form đc tạo
+    	protected function beforeValidate(): void { }			// trước khi bấm submit form
+    	protected function afterValidate(): void { }			// sau khi dính validate submit form
+    	protected function beforeCreate(): void { }			// trước khi lưu vào db
+    	protected function afterCreate(): void { }			// sau khi lưu vào db
+	$this->halt();							// hủy vòng đời
+Wizard::make([
+    Wizard\Step::make('Order')
+        ->schema([
+            // ...
+        ]),
+    Wizard\Step::make('Delivery')
+        ->schema([
+            // ...
+        ]),
+    Wizard\Step::make('Billing')
+        ->schema([
+            // ...
+        ]),
+])
+-------------------------------------------------------------------------------------
+	form edit: thêm xóa sửa 1 bảng nhiều tại form edit: khóa ngoại nằm ở bảng nhiều
+		php artisan make:filament-relation-manager PatientResource treatments description		// description là cột sẽ hiện thị, PatientResource là nơi sẽ quản lý, treaments là table sẽ trỏ tới
+		PatientResource:
+			public static function getRelations(): array
+    			{
+        			return [
+            				RelationManagers\TreatmentsRelationManager::class,
+        			];
+    			}
+
+		PatientResource/RelationManagers/TreatmentsRelationManager.php:
+			    protected static ?string $title = 'Danh sách khoản vay';			// chỉnh sửa tiêu đề
+
+			public function form(Form $form): Form
+			{
+    				return $form
+        				->schema([
+						Forms\Components\TextInput::make('name'),
+						Forms\Components\TextInput::make('name'),
+        				]);
+			}
+
+			public function table () {
+				->columns([
+                			Tables\Columns\TextColumn::make('description'),
+                			Tables\Columns\TextColumn::make('notes')
+						->label('chú thích'),
+                			Tables\Columns\TextColumn::make('price'),
+					Tables\Columns\TextColumn::make('created_at')
+                				->dateTime()
+            			])
+			}
+	các phương thức sử dụng giống create: getSavedNotification, getSavedNotificationTitle, getRedirectUrl
+	Tùy chỉnh trước khi điền biểu mẫu:
+		protected function mutateFormDataBeforeFill(array $data): array
+		{
+		    $data['user_id'] = auth()->id();
+		    return $data;
+		}
+	Tùy chỉnh trước khi lưu:
+		protected function mutateFormDataBeforeSave(array $data): array
+		{
+ 		   $data['last_edited_by_id'] = auth()->id();
+	  	   return $data;
+		}
+	Tùy chỉnh quá trình lưu:
+		protected function handleRecordUpdate(Model $record, array $data): Model
+		{
+    			$record->update($data);
+    			return $record;
+		}
+-------------------------------------------------------------------------------------
+	table show danh sách:
+		(app/Filament/Resources/PatientResource.php):
+		protected static ?string $modelLabel = 'Người dùng';					// điều chỉnh text trên thanh điều hướng
+		protected static ?string $pluralModelLabel = 'Người dùng';				// điều chỉnh text số nhiều trên thanh điều hướng
+		protected static ?string $navigationLabel = 'Quản lý Thành viên';			// điều chỉnh text link trên sidebar
+		protected static ?int $navigationSort = 2;						// sắp xếp thứ tự trên thanh sidebar
+
+		 ->columns([
+                	Tables\Columns\TextColumn::make('name')->label('New Column Name');,
+                	Tables\Columns\TextColumn::make('type'),
+                	Tables\Columns\TextColumn::make('date_of_birth'),
+                	Tables\Columns\TextColumn::make('owner.name')->searchable(),
+			// ...
+            	])
+		->filters([
+            		Tables\Filters\Filter::make('verified')
+                		->query(fn (Builder $query): Builder => $query->whereNotNull('email_verified_at')),
+            			// ...
+        	])
+        		
+	Tabs:											// felament/resource/pages/listUser.php
+		public function getTabs(): array
+    		{
+        		return [
+            			'Tất cả' => Tab::make()
+                			->icon('heroicon-m-user-group')
+                			->badge(User::query()->count())
+					->iconPosition(IconPosition::After)			// đặt icon sau text
+                			->badgeColor('success'),
+            			'Đã xác thực email' => Tab::make()
+                			->icon('heroicon-m-envelope')
+                			->badge(User::query()->whereNot('email_verified_at', null)->count())
+                			->badgeColor('success')
+                			->modifyQueryUsing(fn (Builder $query) => $query->whereNot('email_verified_at', null)),
+        		];
+    		}
+		public function getDefaultActiveTab(): string | int | null
+		{
+    			return 'Đã xác thực email';							// tab mặc định
+		}
+		
+
+	
+
+	Trang dashboard:
+		php artisan make:filament-widget StatsOverview --stats-overview
+		Felament/Widgets/StatsOverview.php:
+			protected static ?string $pollingInterval = '3s';
+   		 	protected function getStats(): array
+    			{
+        			$userCount = User::count();
+        			return [
+           				Stat::make('Người dùng', $userCount.' người')
+                				->chart([7, 2, 10, 340, 15, 4, 170])
+                				->description('32k increase')
+                				->descriptionIcon('heroicon-m-arrow-trending-up')
+                				->color('success'),
+            				Stat::make('Bounce rate', '21%')
+                				->description('7% increase')
+                				->descriptionIcon('heroicon-m-arrow-trending-down')
+                				->color('danger'),
+            				Stat::make('Processed', '192.1k')
+                				->color('success')
+                				->extraAttributes([
+                    					'class' => 'cursor-pointer',
+                    					'wire:click' => "\$dispatch('setStatusFilter', { filter: 'processed' })",
+                				])
+        			];
+    			}
+
+	Tinh chỉnh layout và text mặc định:
+		đổi link text trong sidebar: felament/resource/userResource:
+			protected static ?string $navigationLabel = 'Quản lý Thành viên';
+----------------------------------------------------------
+View:
+	php artisan make:filament-page ViewUser --resource=UserResource --type=ViewRecord
+	felament/resource/UserResource.php:
+		public static function getPages(): array
+		{
+    			return [
+        			'view' => Pages\ViewUser::route('/{record}'),
+    			];
+		}
+		public static function table(Table $table): Table
+		{
+    			return $table
+        			->columns([
+            				// ...
+        			])
+        			->actions([
+            				Tables\Actions\ViewAction::make(),
+            				// ...
+        			]);
+		}
+	felament/resource/pages/ViewUser.php:
+		public static function infolist(Infolist $infolist): Infolist
+		{
+    			return $infolist
+        			->schema([
+            				Infolists\Components\TextEntry::make('name'),
+            				Infolists\Components\TextEntry::make('email'),
+            				Infolists\Components\TextEntry::make('notes')
+                				->columnSpanFull(),
+        			]);
+		}
+---------------------------------------------------------
+Xoá:
+	Tables\Actions\DeleteAction::make(),
+----------------------------------------------------------
+Dashboard:
+	Tạo thẻ view:
+		
+	tạo biểu đồ:									//  Felament/Resources/widgets/UserChart:
+		composer require flowframe/laravel-trend
+		php artisan make:filament-widget TreatmentsChart --chart		// TreatmentsChart là tên biểu đồ
+		
+
+		protected static ?string $heading = 'Lượt tạo mới người dùng 5 tháng gần nhất';
+		protected static ?int $sort = 3;							// sắp xếp theo thứ tự xuất hiện
+		protected int | string | array $columnSpan = 2;						// số 2: width = 100%, nếu là 1 thì 50%
+		protected function getData(): array
+		{
+    			$data = Trend::model(Treatment::class)
+        			->between(
+            				start: now()->subYear(),
+            				end: now(),
+        			)
+        			->perMonth()
+        			->count();
+ 
+    			return [
+        			'datasets' => [
+            				[
+                				label' => 'Treatments',
+                				'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+            				],
+        			],
+        			'labels' => $data->map(fn (TrendValue $value) => $value->date),
+    			];
+		}
+		- sau khi tạo xong sẽ tự động hiện trên dashboard
+----------------------------------------------------------
+lỗi thường gặp:
+	To enable extensions, verify that they are enabled in your .ini files:  - C:\xampp\php\php.ini
+	giải quyết:
+		vào file xampp/php/php.ini bỏ comment extension=intl
+	not found table sessions:
+		cách 1: php artisan session:table
+		cách 2: sửa file .env SESSION_DRIVER=database => SESSION_DRIVER=file

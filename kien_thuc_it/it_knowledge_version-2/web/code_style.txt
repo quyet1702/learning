@@ -1,0 +1,19 @@
+hàm chính:
+        gắn biến:
+        if else:
+        foreach:
+        hàm phụ:
+
+Hàm phụ bậc 1:
+        gắn biến:
+        if else:
+        foreach:
+        hàm phụ:
+        Lấy dữ liệu:
+        custom dữ liệu:
+Hàm phụ bậc 2:
+        gắn biến:
+        if else:
+        foreach:
+        code logic:
+        

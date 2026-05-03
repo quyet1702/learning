@@ -1,0 +1,65 @@
+Kiểm tra phiên bản node:
+    node -v
+    npm -v
+Chạy server:
+    var http = require('http');
+
+    // Create server
+    http.createServer(function (req, res) {
+    
+        // HTTP Status: 200 : OK
+        // Content Type: text/html
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        
+        // Send the response body as "Hello World!"  
+        res.end('Hello World!');
+    
+    }).listen(8080);
+Dữ liệu global:
+    class Buffer
+    console
+    class URL:
+        const url = new URL('/foo', 'https://quyet1702.id.vn/');
+        console.log(url);
+        url.URLSearchParams                                             // dùng để search param trên url
+    process.argv.slice(2)
+    process.versions.node
+    var express = require('express')                                    // dùng để nhận module
+    export
+    __filename                                                          // lấy đường dẫn thư mục hiện tại của file
+
+REPL:
+    trong terminal:
+        node
+            giúp gõ lệnh js như console trong browser
+npm:
+    cài đặt:
+        Được cài đặt khi cài đặt node js
+    cập nhật bản mới nhất:
+        npm update npm@lastest -g
+    Tạo dự án:
+        npm init        // tạo ra file package.json
+    Cài đặt package:
+        npm install tên_gói --save
+        npm install express:^4.1.1          // cài đặt theo gói chỉ định
+    Gỡ cài đặt package:
+        npm uninstall tên_gói
+Tạo module:
+    calc.js:
+        exports.add = function (x, y) {
+            return x + y;
+        };
+        
+        exports.sub = function (x, y) {
+            return x - y;
+        };
+        const calculator = require('./calc');
+        let x = 50, y = 10;
+    
+        console.log("Addition of 50 and 10 is "
+                    + calculator.add(x, y));
+        
+        console.log("Subtraction of 50 and 10 is "
+                    + calculator.sub(x, y));
+        const assert = require('assert');
+        assert(3 > 5);                          // tạo module kiểm thử; nếu ko hợp lệ sẽ ném exception 

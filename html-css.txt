@@ -1,0 +1,399 @@
+Selector:
+Element:
+	padding:
+	border:
+	outline:
+	box-shadow:
+	margin:
+	background:
+	pointer-event:
+	color:
+	display:
+	cursor:
+	Text:
+	width:
+	height:
+	font:
+	opacity:
+	transform:
+	transition:
+	animation:
+Thẻ chức năng:
+	Thẻ a:
+	Thẻ img:
+	Thẻ ul li hoặc ol li:
+Bố cục website phổ biến:
+Layout:
+	flex:
+	float:
+	container:
+	struct:
+quy tắc vàng:
+selector:
+	tagName .className #id *
+	tagName, TagName,...	=> select 1 vài loại thẻ
+	div > p 		=> select tất cả phần tử p là con của phần tử </div>
+	div + p 		=> select một thẻ p nằm ở phía dưới thẻ </div>
+	div ~ p 		=> select tất cả thẻ p nằm ở phía dưới thẻ </div>
+	p::first-line		=> select dòng text đầu tiên của thẻ p
+	p::first-letter		=> select ký tự đầu tiên của thẻ p
+	::marker		=> select các mục đánh dấu của danh sách
+	h1::before {		=> select thẻ và chèn 1 số nội dung vào phía trước nội dung của phần tử
+  		content: url(smiley.gif);
+	}
+	h1::after {		=> select thẻ và chèn 1 số nội dung vào phía sau nội dung của phần tử
+  		content: url(smiley.gif);
+	}
+Bố cục website phổ biến:
+    (header>div.container>div.row>(div.logo>img)>(button.toggle)>ul.nav>li*3)>(main>(section>div.container>div.row)*3)>footer
+	các bước điều chỉnh:
+		bước 1: xác định container
+		bước 2: xác định layout cho row và các phần tử
+		bước 3: xác định padding margin cho phần tử
+		bước 4: responsive
+		XS: Dưới 576px
+		SM: Từ 576px đến 767px
+		MD: Từ 768px đến 991px
+		LG: Từ 992px đến 1199px
+		XL: Từ 1200px trở lên
+element:
+	display:
+		inline:
+			- width, heigh mặc định: bao bọc nội dung
+			- không thể set width, height
+			- không đẩy các phần tử khác xuống dòng
+			- lề trên dưới bắt đầu từ content
+			- lề trái phải bắt đầu từ margin
+			- có thể căn giữa trục x của element bằng text-align: center
+			img, text, a
+		inline-block:
+			- width, heigh mặc định: bao bọc nội dung
+			- có thể set width, height và các thuộc tính khác
+			- không đẩy các phần tử khác xuống dòng
+			- lề 4 hướng bắt đầu từ margin
+			- có thể căn giữa trục x của element bằng text-align: center
+		block:
+			- width mặc định: 100%
+			- có thể set width Height và các thuộc tính khác
+			- luôn đẩy các phần tử khác xuống dòng
+			- lề 4 hướng bắt đầu từ margin
+			- không thể căn giữa trục x của element bằng text-align: center
+		none:	ẩn phần tử như chưa tồn tại
+	background: #ffffff url("img_tree.png") no-repeat fixed right top;
+		background-color: red;			=> màu nền
+		background-image: url("paper.gif");	=> ảnh nền lấy theo kích thước ảnh; lặp lại hình theo trục y và x; căn lề top left;
+		background-repeat: repeat-x;		=> chỉ lặp hình theo trục x
+			background-repeat: repeat-y;		=> chỉ lặp hình theo trục y
+			background-repeat: no-repeat;		=> không lặp lại hình ảnh
+		background-attachment: scroll;		=> nếu có scroll, ảnh sẽ chịu tác động của scroll
+			background-attachment: fixed;		=> nếu có scroll, ảnh sẽ không chịu tác động của scroll
+		background-position:  bottom left;	=> căn lề của ảnh theo lề của thẻ
+		background-size: contain;			=> đảm bảo ảnh đc hiện thị toàn bộ trong background
+					cover				=> đảm bảo chiều ngang hoặc chiều dọc full background
+		Thứ tự cho shorthand:
+			background-color
+			background-image
+			background-position
+			background-size
+			background-repeat
+			background-origin
+			background-clip
+			background-attachment
+	Text:
+		color: navy;		 			=> màu chữ
+		vertical-align: text-top;		=> căn chỉnh theo line-height
+		text-align: center;				=> căn chỉnh theo width
+		text-align-last: center;		=> căn chỉnh dòng cuối của đoạn text
+		text-indent: 50px;				=> thụt lề dòng đầu tiên của văn bản
+		letter-spacing: 5px;			=> khoảng cách giữ các ký tự
+		word-spacing: 10px;				=> khoảng cách giữa các từ 
+		white-space: nowrap;			=> không cho phép văn bản xuống dòng nowrap <=> wrap
+		word-break: break-all;			=> cho phép ngắt các ký tự xuống dòng khi không đủ khoản trống
+		text-shadow: 2px 2px;			=> tạo bóng của text theo trục x y
+			2px 2px red;				=> thêm màu của bóng
+			2px 2px 10px red;			=> hiệu ứng mờ của bóng, px càng cao độ mờ càng rộng
+			1px 1px 2px black, 0 0 25px blue,..	=> tạo ra nhiều bóng cùng lúc trên text
+		direction: rtl;				
+  		unicode-bidi: bidi-override;		=> direction và unicode-bidi giúp đảo ngược chữ ví dụ: "đây là" => "àl yâđ"
+		text-decoration: overline;		=> Tạo đường thẳng trên text;line-through(giữa);underline(dưới); overline underline(trên dưới)
+		text-transform: uppercase;		=> uppercase(CHỮ IN); lowercase(chữ thường); capitalize(In Hoa Mỗi Từ)
+		font: italic bold 12px/30px Georgia, serif;	=> theo thứ tự: font-style font-variant font-weight font-size/line-height font-family; 
+			font-sizevà font-family là bắt buộc còn lại có thể bỏ nếu ko cần
+			font-style: italic;			=> chữ in nghiêng; normal: chữ thường
+			font-variant: small-caps;		=> chuyển đổi chữ cái thường thành in hoa, và chữ in hoa thành in hoa to hơn; normal: chữ thường
+			font-weight: bold;			=> chữ đậm, normal: bình thường
+			font-size: 40px;			=> cỡ chữ
+			line-height: 0.8;			=> chiều cao của nội dung
+			font-family: "Times New Roman", Times, serif;	=> chọn 1 vài font riêng và 1 font chung đặt cuối cùng để dự phòng trường hợp ko thấy font riêng
+			Các font chung:
+				Serif			=> có một nét nhỏ ở các cạnh của mỗi chữ cái
+				Sans-serif		=> có đường nét rõ ràng (không kèm theo các nét nhỏ)
+				Monospace 		=> tất cả các chữ cái có cùng chiều rộng cố định
+				Cursive			=> bắt chước chữ tay con người
+				Fantasy 		=> chữ trang trí, thư pháp
+			Font riêng: https://www.w3schools.com/css/css_font_websafe.asp
+				Arial (sans-serif);Verdana (sans-serif); Helvetica (sans-serif); Tahoma (sans-serif); Trebuchet MS (sans-serif); 
+				Times New Roman (serif); Georgia (serif); Garamond (serif); Courier New (monospace); Brush Script MT (cursive)
+			
+	padding: 40px;					=> Tạo độ mập của element theo 4 hướng
+		padding-top: 40px			=> Tạo độ mập của element theo từng hướng
+	border: 5px solid red;				
+		border-width: 5px;			=> set chiều rộng của viền cho 4 cạnh
+			 border-left-width: 20px;	=> set chiều rộng của viền cho từng cạnh
+		border-style: solid;			=> kiểu viền cho 4 cạnh; dotted, dashed, solid, inset, outset,..
+			border-top-style: dotted;	=> kiểu viền cho từng cạnh
+		border-color: red;			=> màu viền cho 4 cạnh
+			border-left-color: red;		=> màu viền cho từng cạnh
+		border-radius: 8px;			=> bo góc viền
+		border-image: url(border.png) 30 round;
+	outline: thick ridge pink;			=> sử dụng giống border nhưng nằm bên ngoài border và ko ảnh hưởng đến width, height của phần tử
+	box-shadow: 20px 10px;				=> đổ bóng theo trục x y
+		10px 10px lightblue;			=> thêm màu của bóng
+		10px 10px 5px lightblue;		=> 5px là độ mờ của bóng
+		10px 10px 5px 7px lightblue;		=> 7px là độ rộng của bóng
+	margin: 25px 50px 75px 100px;			=> top right bottom left: khoảng cách xung quanh với các phần tử khác
+		top rightLeft bottom
+		topbottom rightleft
+		all
+		margin-top: 25px;			=> khoảng cách bên trên
+	height: 100px;					=> tạo chiều cao của phần tử bao gồm border
+ 	width: 500px;					=> tạo chiều rộng của phần tử bao gồm border
+	opacity: 0.3;					=> độ trong suốt 0->1
+	cursor: pointer;				=> đổi kiểu chuột khi hover vào thẻ
+	transform: giúp di chuyển thẻ
+		matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
+		rotate(20deg);				=> xoay thẻ 1 góc 20độ
+		translate(50px,100px);			=> di chuyển thẻ theo trục x,y
+		scale(2,3);		 		=> co dãn thẻ theo cấp số lần theo trục x,y
+			scaleX(2);			=> co dãn theo trục x
+			scaleX(-1);			=> lật ngược ảnh
+			scaleY(2);			=> co dãn theo trục y
+		skew(20deg,10deg)			=> làm nghiêng trục x và y khoảng 20độ
+			skewX(20deg)			=> làm nghiêng trục x
+			skewY(20deg)			=> làm nghiêng trục Y
+		3D:
+			rotateX(150deg);		=> xoay thẻ theo trục X
+			rotateY(150deg);		=> xoay thẻ theo trục y
+			rotatez(150deg);		=> xoay thẻ theo trục z
+	transition:							// hiệu ứng thay đổi từ từ nếu 1 phần của element bị thay đổi
+		transition: width 3s;			=> nếu thuộc tính width bị tác động(hover,js) làm thay đổi, thì nó sẽ thay đổi dần dần trong 3s
+		transition-delay: 1s;			=> sau 1 giây transition mới chạy
+		transition: width 2s, height 2s, transform 2s;	=> set nhiều thuộc tính bị tác động
+		transition-timing-function: linear;	=> tốc độ đều
+					ease;		=> chậm => nhanh => chậm
+					ease-in;	=> khởi động chậm => nhanh
+					ease-out;	=> nhanh => chậm
+					ease-in-out	=> chậm => nhanh => chậm
+	animation:							// hiệu ứng thay đổi từ từ + tác động làm phần tử thay đổi
+			animation-name: example;	=> khai báo phương thức 
+ 			animation-duration: 4s;		=> thời gian tác dụng
+			animation-delay: 2s;		=> sau 2 giây mới bắt đầu chạy
+			animation-iteration-count: 3;	=> chạy 3 lần sẽ kết thúc
+						infinite	=> chạy vô hạn
+			animation-direction: reverse;	=> chuyển động ngược lại, giống tua ngược
+					normal		=> bình thường
+					alternate	=> phát bình thường + phát ngược xen kẽ nhau
+					alternate-reverse	=> phát ngược + bình thường xen kẽ nhau
+			@keyframes example {		=> chạy phương thức
+  				from {background-color: red;}
+  				to {background-color: yellow;}
+			}
+			@keyframes example {
+				0%   {background-color: red;}		=> số % thể hiện cho số % giây đã chạy tới phải chuyển đổi xong
+				25%  {background-color: yellow;}
+				50%  {background-color: blue;}
+				100% {background-color: green;}
+			}
+Thẻ chức năng:
+	Thẻ a:
+		a:link { color:red;}				=> được sử dụng khi link chưa từng được truy cập trước đó
+		a:visited {color:red;}				=> được sử dụng khi link đã từng được truy cập trước đó
+		a:hover {color:red;}				=> sử dụng khi dùng chuột lướt qua nó
+		a:active {color:red;}				=> sử dụng khi nhấp chuột vào
+	Thẻ ul li hoặc ol li:
+		list-style-type: none;			=> tắt con dấu
+		list-style-type: circle;		=> dấu tròn; square(dấu vuông) dành cho thẻ ul li
+		list-style-type: upper-roman;		=> dấu thứ tự số la mã; lower-alpha( thứ tự abc) dành cho thẻ ol li
+		list-style-image: url('sqpurple.gif');	=> sử dụng dấu bằng icon
+		list-style-position: outside;		=> con dấu nằm ngoài content; inside( nằm trong content)
+	thẻ table:
+		overflow-x: auto;			=> gắn cho thẻ chứa table, để tạo thanh cuộn
+	thẻ img:
+		max-width:100%;
+		height: auto;					=> co dãn img theo tỉ lệ chuẩn, nhưng ko thể dãn quá kich thước thật của img
+		filter: 						=> bộ lọc hình ảnh
+			blur(4px);					=> làm mờ hình ảnh
+			brightness(250%);			=> chiếu ánh sáng vào ảnh
+			contrast(180%);				=> tăng độ nét cho hình ảnh
+			grayscale(100%);			=> tạo ảnh trắng đen
+			hue-rotate(180deg);			=> lật màu ảnh
+			invert(100%);				=> lật ngược màu ảnh
+			opacity(50%);				=> độ trong suốt ảnh
+			saturate(7);				=> tạo ảnh giống bức tranh
+			sepia(100%);				=> thêm màu xám cho ảnh
+			drop-shadow(8px 8px 10px green)	=> bóng của ảnh
+responsive:
+	cách 1: đặt width theo % và tăng % của width lên khi trong @media
+	cách 2: chia layout theo flex và chuyển đổi flex-derection: row thành column trong @media
+	cách 3: chia layout theo flex và set wrap
+	@media (max-width: 800px) {
+  		selector {
+    
+  		}
+	}
+	pc: >=1024; tablet: >=768px,mobile <768
+layout:
+	flex:
+		parent:
+			display: flex;
+			flex-direction: row|column|row-reverse|column-reverse			// chỉnh row hoặc column
+			flex-wrap: wrap|nowrap|wrap-reverse;							// cho phép xuống dòng khi quá dài hay không
+			justify-content: center|flex-start|flex-end|space-around|space-between	// sắp xếp theo hướng chính
+			align-items: stretch|flex-start|flex-end|center|baseline|start|end	// căn giữa, trên, dưới trong 1 row theo hướng phụ
+			align-content: flex-start|flex-end|center|space-between|
+				space-around|space-evenly|stretch|start|end|baseline		// sắp xếp hướng phụ giữa các row
+			gap: 10px 20px;								// khoảng cách giữa các item; giữa các row
+			gap: 10px;									// gap: row-gap column-gap
+			row-gap: 10px;								// Khoảng cách giữa các row
+			column-gap: 20px;							// Khoảng cách giữa các item trên 1 row						
+		children:
+			width: 10%|...								// sử dụng width theo % để xác định độ dài của 1 item						
+			order: 1|2|3|...;							// đánh số thứ tự cho item
+			flex-grow: 1|2|3|...;						// phân chia khoản trống còn lại cho item theo tỉ lệ
+			flex-shrink: 3;								// được sử dụng khi nowrap; các item bị dồn lại sẽ lấy đi phần bị dồn của item theo tỉ lệ
+			flex-basis: 10px|...						// chỉ định kích thước content
+			align-self: auto|flex-start|flex-end|center|baseline|stretch;		// tự căn chỉnh trên hướng phụ trong 1 row
+		flex-flow: row|column wrap|nowrap;						//
+		overflow: scroll|hidden|auto|		// xử lý nội dung bị tràn ra ngoài thẻ cha, ẩn, cuộn, tự động cuộn
+quy tắc vàng:
+	Phân biệt rõ layout và element:
+	Hạn chế set width height cho layout và tập trung set width height cho element
+	Làm layout trước, element sau
+	bước 1: tạo bố cục layout: header, nav, content-column1, content-column2, content-column3, footer
+		=> sử dụng background; padding cho từng phần để nhìn bố cục
+		=> sử dụng (flex, height) lên thẻ main; thẻ con flex:1;
+	bước 2: responsive cho bố cục layout:
+		sử dụng (flex-direction: column) cho thẻ main
+	bước 3: tạo phần tử:
+		header>nav>ul>li*4>a
+	bước 4: responsive
+		ẩn nav left ở 1024px hiện nút toggle; 
+	bước 5: xây dựng chi tiết các element
+	min-width:200px; max-width: 500px;		=> thiết lập độ co dãn theo chiều ngang, và gắn width là max-width nếu ko set width
+							=> nếu chỉ có min-width:200px; thì width có thể co từ 200px -> + vô cùng
+							=> nếu chỉ có max-width:500px; thì width có thể co từ 0 -> 500px
+	position:					=> sử dụng thuộc tính left, top, right, bottom để định vị
+		relative;				=> định vị theo vị trí hiện tại của nó, các thuộc tính khác ko bị điều chỉnh
+		fixed;					=> định vị theo cửa sổ trình duyệt; ko để lại khoảng trống trên trang
+		absolute;				=> định vị theo thẻ cha(thẻ cha phải là relative); nếu ko có thì sẽ định vị theo thẻ body
+		sticky;					=> định vị theo khung thanh cuộn, chỉ có tác dụng khi có thanh cuộn
+		static; 				=> luôn được định vị bằng dòng bình thường của trang, ko bị ảnh hưởng bởi top, bottom, left, and right
+		z-index: 1;				=> nổi lên màn hình; số càng lớn nổi càng cao; chỉ có tác dụng khi có position
+	Căn chỉnh thẻ block:
+		width: 200px;
+		margin-left: auto 				// đẩy phần tử về phía phải
+		margin-rigth: auto				// đẩy về phí trái
+		margin-left và right:auto		// căn giữa thẻ
+	float:
+		giống game xếp gạch
+		các thẻ có float sẽ trở thành inline-block
+		thẻ không có float sẽ đè lên thẻ có float
+			sử dụng clear: left; trên thẻ ko có float để không đè
+		thẻ cha(ko phải float) chứa thẻ float không thể bao bọc thẻ hết thẻ float nếu nó quá lớn
+			để khắc phục điều này:	sử dụng trên thẻ cha: overflow: auto;
+	sử dụng trên thẻ cha:
+		float: right					=> các phần tử con đều có thuộc tính float: right
+	Bí kíp:
+		sử dụng padding thay vì margin để dễ dàng tìm lỗi:
+		căn lề với thẻ block:
+			đối với thẻ block: margin:auto 0px; để căn giữa
+			có thể căn trên trái phải dưới dựa vào margin-...: auto
+		tạo sub-menu:
+			dùng position relative và absolute
+			top: 100%
+		text-align:
+			chỉ có tác dụng với thẻ: inline-block và inline
+		khoảng trống dưới chân thẻ:
+			trong thẻ inline và inline block đều tạo ra khoảng trống dưới chân thẻ;
+			dùng display:block để xóa khoảng trắng đó
+		căn giữa trục Y với position:abslute
+			    top: 50%;
+    			transform: translateY(-50%);
+		Height 100%:
+			khi là item của flex: dùng  align-self: stretch; trên thẻ item
+		khung layout cố định:
+			header:
+				+ top-bar -> container -> row
+				+ main-nav -> container -> row
+			main>section>container:
+				+ row
+				+ heading -> container -> row
+		căn giữa thẻ block
+			thẻ block ko bị tác động bởi text-align: center
+			sử dụng width cố định, và set margin auto để căn giữa
+		căn giữa thẻ block bằng cách
+	Tuyệt kỹ Thần thánh CSS:
+		Đưa item ra ngoài width của thẻ cha 1 cách an toàn
+			thực hiện trên thẻ item: margin-right: -100%
+		Tạo dấu 3 chấm khi text quá dài:
+			overflow: hidden;
+			-webkit-line-clamp: 2;				// khi text dài hơn 2 dòng thì sẽ tự ngắn và tạo dấu ...
+    			-webkit-box-orient: vertical;
+    			display: -webkit-box;
+			overflow: hidden;
+HTML:
+	- chỉnh sửa trực tiếp text của thẻ:
+		- attribute: contenteditable="true"
+- tối ưu SEO:
+		thẻ title:
+		<title>đây là website của tôi</title>
+				// đây là thẻ có yếu tố quan trọng nhất trong seo
+				// độ dài nên dưới 60 ký tự; bời vì nếu quá dài thì google sẽ hiện thị dấu ... cho thẻ
+				// đặt các từ khóa quan trọng lên đầu thẻ
+		Thẻ Meta Description:
+			thẻ description là thẻ chứa nội dung sẽ hiện thị trên công cụ tìm kiếm của google
+		thẻ h1:
+			// sử dụng thẻ h1 giúp google đánh giá nội dung của trang web
+		 thuộc tính alt của thẻ <img> và <video>:
+			// khi ko thể thấy hình ảnh thì thuộc tính alt cũng giúp tối ưu seo
+
+tự động xuống dòng khi text quá dài:
+	<div style="border: 1px solid black; text-align: center;">
+        	<span style="display: inline-block; vertical-align: middle; max-width: 100px;">ắes sd fds fds fds fds fd</span>
+        	<span style="display: inline-block; vertical-align: middle; max-width: 100px;">ắes sd fds fds fds fds fd</span>
+    	</div>
+Lỗi html thường gặp:
+	ko thể submit form:	do form có chứa thẻ bị ẩn và thẻ này lại có thuộc tính required
+	tắt sự kiện của element: 	disabled
+			cách 2:		pointer-events: none;
+---------------------------------------------------------------------
+html 3D:
+	Tạo thẻ div.rectangle có set width, height, color, transition: transform 1s;
+Tạo thẻ Không gian 3D:
+	container{
+		perspective: 1000px;
+		width:100px;
+		height:100px;
+		perspective-origin: -200% 50%;
+	}
+	// 1000px là khoảng cách từ thẻ tới người dùng với kích thước khung là 100x100;
+	// perspective-origin: Góc nhìn của người dùng theo trục x y
+Tạo thẻ phần tử 3D nằm trong thẻ không gian:
+	position: relative;
+	width: 200px;
+  	height: 200px;
+	transform-style: preserve-3d;		// thuộc tính rotate() của thẻ con sẽ xoay quanh vị trí tâm
+						// của phần tử 3d thay vì xoay quanh chính nó
+Tạo các mặt của phần tử 3D:
+	- Tư duy: hãy tưởng tưởng 1 hình hộp vuông; dùng translateZ để nó nổi lên giống mặt trước; sau đó dùng rotate quay nó thành các mặt bên
+	width: 200px;
+  	height: 200px;
+	background-color:
+	di chuyển thẻ theo trục: 	transform: translateZ(300px);
+	Xoay thẻ theo trục: 		rotateY(180deg);
+	
+Tạo thẻ bài 3D:
+	Bước 1: tạo không gian 3D bằng thẻ div có set width heigh bằng phần tử
+	Bước 2: Tạo các mặt của vật thể 3D cần thiết
+	Bước 3: 
+	Bước 4: dùng transiton để quay
